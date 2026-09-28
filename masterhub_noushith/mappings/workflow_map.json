@@ -1,0 +1,400 @@
+{
+  "domains": {
+    "desktop": {
+      "label": "Python / Desktop",
+      "icon": "💻",
+      "mode": "DESKTOP_MODE",
+      "gesture": "push",
+      "transport": "target",
+      "description": "Applications and desktop controls"
+    },
+    "embedded": {
+      "label": "Embedded Mobility",
+      "icon": "🕹️",
+      "mode": "EMBEDDED_MODE",
+      "gesture": "pull",
+      "transport": "mqtt",
+      "description": "Robot car and wheelchair"
+    },
+    "iot": {
+      "label": "IoT Smart Home",
+      "icon": "💡",
+      "mode": "IOT_MODE",
+      "gesture": "left",
+      "transport": "mqtt",
+      "description": "Lights, fans and pumps"
+    },
+    "ai_ml": {
+      "label": "AI/ML & Media",
+      "icon": "🎵",
+      "mode": "MEDIA_MODE",
+      "gesture": "right",
+      "transport": "target",
+      "description": "Media playback and audio controls"
+    }
+  },
+  "devices": {
+    "robot_car": {
+      "label": "Robot car",
+      "mode": "CAR_MODE",
+      "topic_setting": "car_topic",
+      "gesture": "push",
+      "domain": "embedded",
+      "launch_command": null
+    },
+    "wheelchair": {
+      "label": "Wheelchair",
+      "mode": "CHAIR_MODE",
+      "topic_setting": "chair_topic",
+      "gesture": "pull",
+      "domain": "embedded",
+      "launch_command": null
+    },
+    "mobile_jiosaavn": {
+      "label": "Mobile JioSaavn",
+      "mode": "MOBILE_JIOSAAVN_MODE",
+      "topic_setting": "jiosaavn_topic",
+      "gesture": "push",
+      "domain": "ai_ml",
+      "launch_command": null
+    },
+    "desktop_jiosaavn": {
+      "label": "Desktop JioSaavn",
+      "mode": "DESKTOP_JIOSAAVN_MODE",
+      "topic_setting": "jiosaavn_topic",
+      "gesture": "pull",
+      "domain": "ai_ml",
+      "launch_command": "jiosaavn_open"
+    },
+    "youtube": {
+      "label": "YouTube",
+      "mode": "YOUTUBE_MODE",
+      "gesture": "push",
+      "domain": "desktop",
+      "launch_command": "open_youtube"
+    },
+    "chrome": {
+      "label": "Chrome",
+      "mode": "CHROME_MODE",
+      "gesture": "pull",
+      "domain": "desktop",
+      "launch_command": "open_chrome"
+    },
+    "notepad": {
+      "label": "Notepad",
+      "mode": "NOTEPAD_MODE",
+      "gesture": "left",
+      "domain": "desktop",
+      "launch_command": null
+    },
+    "gmail": {
+      "label": "Gmail",
+      "mode": "GMAIL_MODE",
+      "gesture": "right",
+      "domain": "desktop",
+      "launch_command": "gmail_open"
+    },
+    "light": {
+      "label": "Light",
+      "mode": "LIGHT_MODE",
+      "gesture": "push",
+      "domain": "iot",
+      "launch_command": null
+    },
+    "fan": {
+      "label": "Fan",
+      "mode": "FAN_MODE",
+      "gesture": "pull",
+      "domain": "iot",
+      "launch_command": null
+    },
+    "pump": {
+      "label": "Pump",
+      "mode": "PUMP_MODE",
+      "gesture": "left",
+      "domain": "iot",
+      "launch_command": null
+    }
+  },
+  "parameters": {
+    "search_*": [
+      "query"
+    ],
+    "play_youtube": [
+      "query"
+    ],
+    "write_notepad": [
+      "text"
+    ],
+    "save_notepad": [
+      "filename"
+    ],
+    "compose_gmail": [
+      "to",
+      "subject",
+      "body"
+    ],
+    "mobile_jiosaavn_search": [
+      "query"
+    ]
+  },
+  "heartbeat_timeout_seconds": 90,
+  "bci_workflow": {
+    "youtube": [
+      {
+        "id": "youtube_previous",
+        "label": "Previous video",
+        "gesture": "push"
+      },
+      {
+        "id": "youtube_next",
+        "label": "Next video",
+        "gesture": "pull"
+      },
+      {
+        "id": "youtube_pause",
+        "label": "Play / Pause",
+        "gesture": "left"
+      },
+      {
+        "id": "youtube_search",
+        "label": "Search & play",
+        "gesture": "right"
+      }
+    ],
+    "chrome": [
+      {
+        "id": "chrome_open_article",
+        "label": "Open article",
+        "gesture": "push"
+      },
+      {
+        "id": "chrome_scroll_up",
+        "label": "Scroll up",
+        "gesture": "pull"
+      },
+      {
+        "id": "chrome_scroll_down",
+        "label": "Scroll down",
+        "gesture": "left"
+      },
+      {
+        "id": "chrome_search",
+        "label": "Google search",
+        "gesture": "right"
+      }
+    ],
+    "notepad": [
+      {
+        "id": "notepad_open",
+        "label": "Open",
+        "gesture": "push"
+      },
+      {
+        "id": "notepad_save",
+        "label": "Save file",
+        "gesture": "pull"
+      }
+    ],
+    "gmail": [
+      {
+        "id": "gmail_compose",
+        "label": "Compose",
+        "gesture": "push"
+      },
+      {
+        "id": "gmail_send",
+        "label": "Send",
+        "gesture": "pull"
+      }
+    ],
+    "robot_car": [
+      {
+        "id": "car_forward",
+        "label": "Forward",
+        "gesture": "push"
+      },
+      {
+        "id": "car_back",
+        "label": "Backward",
+        "gesture": "pull"
+      },
+      {
+        "id": "car_left",
+        "label": "Left",
+        "gesture": "left"
+      },
+      {
+        "id": "car_right",
+        "label": "Right",
+        "gesture": "right"
+      },
+      {
+        "id": "car_stop",
+        "label": "Stop",
+        "gesture": "left+right"
+      },
+      {
+        "id": "car_left360",
+        "label": "Left 360",
+        "gesture": "pull+left"
+      },
+      {
+        "id": "car_right360",
+        "label": "Right 360",
+        "gesture": "pull+right"
+      }
+    ],
+    "wheelchair": [
+      {
+        "id": "chair_forward",
+        "label": "Forward",
+        "gesture": "push"
+      },
+      {
+        "id": "chair_back",
+        "label": "Backward",
+        "gesture": "pull"
+      },
+      {
+        "id": "chair_left",
+        "label": "Left",
+        "gesture": "left"
+      },
+      {
+        "id": "chair_right",
+        "label": "Right",
+        "gesture": "right"
+      },
+      {
+        "id": "chair_stop",
+        "label": "Stop",
+        "gesture": "left+right"
+      },
+      {
+        "id": "chair_left360",
+        "label": "Left 360",
+        "gesture": "pull+left"
+      },
+      {
+        "id": "chair_right360",
+        "label": "Right 360",
+        "gesture": "pull+right"
+      }
+    ],
+    "light": [
+      {
+        "id": "left_light_on",
+        "label": "On",
+        "gesture": "right"
+      },
+      {
+        "id": "left_light_off",
+        "label": "Off",
+        "gesture": "left"
+      }
+    ],
+    "fan": [
+      {
+        "id": "left_fan_on",
+        "label": "On",
+        "gesture": "right"
+      },
+      {
+        "id": "left_fan_off",
+        "label": "Off",
+        "gesture": "left"
+      }
+    ],
+    "pump": [
+      {
+        "id": "left_pump_on",
+        "label": "On",
+        "gesture": "right"
+      },
+      {
+        "id": "left_pump_off",
+        "label": "Off",
+        "gesture": "left"
+      }
+    ],
+    "mobile_jiosaavn": [
+      {
+        "id": "mobile_jiosaavn_next",
+        "label": "Next song",
+        "gesture": "right"
+      },
+      {
+        "id": "mobile_jiosaavn_previous",
+        "label": "Previous song",
+        "gesture": "left"
+      },
+      {
+        "id": "mobile_jiosaavn_play_pause",
+        "label": "Play / Pause",
+        "gesture": "push"
+      },
+      {
+        "id": "mobile_jiosaavn_home",
+        "label": "Android home",
+        "gesture": "pull"
+      },
+      {
+        "id": "mobile_jiosaavn_volume_up",
+        "label": "Volume up",
+        "gesture": "right+push"
+      },
+      {
+        "id": "mobile_jiosaavn_volume_down",
+        "label": "Volume down",
+        "gesture": "right+pull"
+      },
+      {
+        "id": "mobile_jiosaavn_search",
+        "label": "Search JioSaavn",
+        "gesture": null
+      },
+      {
+        "id": "mobile_jiosaavn_launch",
+        "label": "Launch JioSaavn",
+        "gesture": null
+      }
+    ],
+    "desktop_jiosaavn": [
+      {
+        "id": "media_next",
+        "label": "Next track",
+        "gesture": "push"
+      },
+      {
+        "id": "media_previous",
+        "label": "Previous track",
+        "gesture": "pull"
+      },
+      {
+        "id": "media_play",
+        "label": "Play / Pause",
+        "gesture": "left"
+      },
+      {
+        "id": "media_volume_up",
+        "label": "Volume up",
+        "gesture": "right+push"
+      },
+      {
+        "id": "media_volume_down",
+        "label": "Volume down",
+        "gesture": "right+pull"
+      },
+      {
+        "id": "jiosaavn_search",
+        "label": "Search",
+        "gesture": "right"
+      }
+    ]
+  },
+  "navigation": {
+    "back": "push+right",
+    "main_menu": "push+left"
+  }
+}

@@ -1,0 +1,127 @@
+<aside class="panel bci-panel bci-drawer" id="bciPanel" aria-label="BCI headset drawer">
+  <div class="panel-header bci-drawer-header">
+    <div class="bci-header-title-block">
+      <div class="bci-eyebrow">MASTERHUB / CORTEX BCI</div>
+      <h2 class="panel-title">🧠 Headset &amp; Mental Console</h2>
+    </div>
+    <div class="bci-drawer-header-actions">
+      <span class="bci-badge" id="bciStreamStatus">Offline</span>
+      <button type="button" class="btn-drawer-close" id="bciDrawerCloseBtn" onclick="closeBciDrawer()" aria-label="Close BCI Drawer" title="Close Drawer (Esc)">✕</button>
+    </div>
+  </div>
+  
+  <p class="bci-help bci-drawer-intro">Configure your EMOTIV Cortex bridge, manage trained profiles, and monitor real-time EEG mental command streams. <a href="/cortex/" target="_blank" rel="noopener noreferrer">Standalone view ↗</a></p>
+
+  <!-- Node 1: Connection & Authentication -->
+  <details class="bci-node" open>
+    <summary>
+      <span class="bci-node-icon">01</span>
+      <span>Connection &amp; Credentials<small>EMOTIV Cortex Daemon · Local WebSocket Bridge</small></span>
+      <span class="bci-chevron">⌄</span>
+    </summary>
+    <div class="bci-node-body">
+      <p class="bci-help">Ensure EMOTIV Launcher is active. Power on your headset, then connect.</p>
+      
+      <details class="bci-credentials">
+        <summary>API Credentials <span id="bciCredentialsStatus"></span></summary>
+        <form id="bciCredentialsForm">
+          <label for="bciClientId">Client ID</label>
+          <input id="bciClientId" autocomplete="off" placeholder="EMOTIV application client ID">
+          <label for="bciSecret">Client Secret</label>
+          <input id="bciSecret" type="password" autocomplete="new-password" placeholder="Leave blank to keep saved secret">
+          <button class="btn-secondary" type="submit" style="margin-top:8px;">Save Credentials</button>
+        </form>
+      </details>
+
+      <div class="bci-actions">
+        <button class="btn-primary" id="bciConnect" type="button">Connect Headset</button>
+        <button class="btn-secondary" id="bciDisconnect" type="button">Disconnect</button>
+      </div>
+
+      <ol class="bci-stages" aria-label="Connection progress">
+        <li id="bciStageConnection">Cortex</li>
+        <li id="bciStageAuth">Access</li>
+        <li id="bciStageSession">Session</li>
+        <li id="bciStageProfile">Profile</li>
+      </ol>
+
+      <label for="bciProfile" style="margin-top:14px;">Trained Mental Profile</label>
+      <div class="bci-profile-row">
+        <select id="bciProfile"><option value="">Connect to discover profiles</option></select>
+        <button type="button" class="btn-secondary" id="bciRefresh" aria-label="Refresh profiles">↻</button>
+      </div>
+      <button class="btn-secondary" id="bciLoad" type="button" style="width:100%;">Load Selected Profile</button>
+    </div>
+  </details>
+
+  <!-- Node 2: Live Headset Telemetry -->
+  <dl class="bci-device-stats">
+    <div><dt>HEADSET MODEL / ID</dt><dd id="bciHeadset">—</dd></div>
+    <div><dt>BATTERY</dt><dd id="bciBattery">—</dd></div>
+    <div><dt>CONTACT SIGNAL</dt><dd id="bciSignal">—</dd></div>
+  </dl>
+
+  <!-- Node 3: Real-Time Mental Command Live Stream -->
+  <div class="bci-live-card">
+    <div class="bci-live-heading">
+      <span>⚡ LIVE MENTAL COMMAND</span>
+      <span id="bciSampleAge">No samples yet</span>
+    </div>
+    <div class="bci-command" id="bciAction">Waiting</div>
+    <div class="bci-power-label">
+      <span>Command Intensity / Power</span>
+      <strong id="bciPowerLabel">—</strong>
+    </div>
+    <progress id="bciPower" max="1" value="0" aria-label="Mental command power"></progress>
+    <p class="bci-help" id="bciStreamHelp">Connect your headset and load a trained profile to begin.</p>
+  </div>
+
+  <!-- Node 4: Safety Mode Toggle -->
+  <div class="bci-mode-row">
+    <div>
+      <strong id="bciModeLabel">Monitor mode</strong>
+      <p class="bci-help" style="margin:2px 0 0;">Control mode sends mental commands to MasterHub.</p>
+    </div>
+    <button type="button" class="btn-secondary" id="bciControl" aria-pressed="false">Enable control</button>
+  </div>
+  <p class="bci-message" id="bciMessage" role="status" aria-live="polite"></p>
+
+  <!-- Node 5: Mapped Workflow & Choices -->
+  <section class="bci-navigation" aria-label="Mental command workflow">
+    <div class="bci-eyebrow">CURRENT ACTIVE WORKFLOW</div>
+    <h3 id="bciPath">Main menu</h3>
+    <p class="bci-help" id="bciTarget">Loading active target…</p>
+    <div class="bci-domains" id="bciDomains" aria-label="Domains"></div>
+    <p class="bci-help" id="bciUsage">Perform a gesture to start the window. Add the second gesture before time runs out. Execution happens at zero.</p>
+    <p class="bci-help" id="bciTiming"></p>
+    <div id="bciChoices" class="bci-choices"></div>
+    <div class="bci-pending">
+      <progress id="bciFrameProgress" max="4" value="0" aria-label="Headset temporal frame progress"></progress>
+      <strong id="bciPending">No command pending</strong>
+      <p class="bci-help" id="bciWorkflowHelp" style="margin-top:4px;">Connect to start.</p>
+    </div>
+    <details id="bciInputs" class="bci-inputs" hidden>
+      <summary>Prepare command inputs</summary>
+      <p class="bci-help">Pause control and save inputs before using search, compose, or save commands.</p>
+      <div id="bciInputForms"></div>
+    </details>
+    <div class="bci-outcome">
+      <span>Last execution result</span>
+      <strong id="bciOutcome">No command executed</strong>
+      <p class="bci-help" id="bciOutcomeDetail">Execution feedback will appear here.</p>
+    </div>
+  </section>
+
+  <!-- Node 6: Stream History & Routed Actions -->
+  <div class="bci-history-heading">
+    <span>Recent Telemetry Samples</span>
+    <span>Newest first</span>
+  </div>
+  <ol class="bci-history" id="bciHistory">
+    <li class="bci-help">Live headset samples will appear here.</li>
+  </ol>
+  <div class="bci-route">
+    <span>Last Routed Action:</span>
+    <strong id="bciRouted">—</strong>
+  </div>
+</aside>

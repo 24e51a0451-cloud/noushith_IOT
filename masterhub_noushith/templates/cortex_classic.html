@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cortex Classic · SYNAPTI MESH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b101a;
+      --bg-card: #111927;
+      --bg-card-hover: #162134;
+      --bg-input: #080c14;
+      --border: #263044;
+      --border-focus: #4a6fa5;
+      --text: #edf2fa;
+      --text-muted: #8e9bb0;
+      --text-dim: #64748b;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --green: #10b981;
+      --green-bg: rgba(16, 185, 129, 0.12);
+      --red: #ef4444;
+      --red-bg: rgba(239, 68, 68, 0.12);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.12);
+      --blue: #3b82f6;
+      --blue-bg: rgba(59, 130, 246, 0.12);
+      --purple: #8b5cf6;
+      --purple-bg: rgba(139, 92, 246, 0.12);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 32px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brain {
+      padding: 12px 14px;
+      background: #1c2b4b;
+      border: 1px solid #2d4067;
+      border-radius: 14px;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 0 0 4px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    p { margin: 0; color: var(--text-muted); font-size: 13px; }
+    small { color: var(--text-muted); line-height: 1.5; }
+
+    /* Action bar */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button, a.btn {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 16px;
+      background: #19253a;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.18s ease;
+    }
+
+    button:hover:not(:disabled), a.btn:hover {
+      background: #22334f;
+      border-color: #3b5075;
+      transform: translateY(-1px);
+    }
+
+    button.primary {
+      background: #c1f2e5;
+      color: #102c26;
+      border-color: #c1f2e5;
+    }
+
+    button.primary:hover:not(:disabled) {
+      background: #a3ebd9;
+      box-shadow: 0 2px 10px rgba(193, 242, 229, 0.25);
+    }
+
+    button.accent-btn {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    button.accent-btn:hover:not(:disabled) {
+      background: var(--accent-hover);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    #feedback {
+      min-height: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: -6px 0 0;
+    }
+
+    /* Status Pills */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: #283041;
+      color: #c3cddd;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .pill.online {
+      background: #103831;
+      color: #77dcc0;
+      border-color: rgba(52, 199, 89, 0.25);
+    }
+
+    .pill.warn {
+      background: var(--amber-bg);
+      color: var(--amber);
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+
+    .pill.error {
+      background: var(--red-bg);
+      color: var(--red);
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+    }
+
+    .value {
+      font-size: 20px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+      margin: 12px 0 4px;
+    }
+
+    /* Settings Panel */
+    .settings-panel {
+      background: #121c2e;
+      border: 1px solid #2d3d59;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .settings-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .settings-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 9px 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .btn-toggle-vis {
+      position: absolute;
+      right: 8px;
+      background: none;
+      border: none;
+      padding: 4px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .settings-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .settings-status-msg {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Summary Grid */
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    /* Two Columns */
+    .columns {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 20px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin: 0 0 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    dl { margin: 0; }
+    dl > div {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #1c273a;
+      align-items: center;
+    }
+    dl > div:last-child { border: 0; }
+    dt { color: var(--text-muted); font-size: 13px; }
+    dd { margin: 0; font-size: 13px; overflow-wrap: anywhere; font-weight: 600; font-family: var(--font-mono); }
+
+    /* Prediction Card */
+    .prediction {
+      background: #192238;
+      border: 1px solid #29334d;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .gesture {
+      font-size: 36px;
+      font-weight: 750;
+      margin: 14px 0 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .meter {
+      height: 8px;
+      background: #2b344b;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .meter span {
+      display: block;
+      background: linear-gradient(90deg, #3b82f6, #65d6b8);
+      height: 100%;
+      width: 0;
+      transition: width 0.2s ease;
+    }
+
+    .confidence {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .counts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .counts .card {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(17, 25, 39, 0.7);
+    }
+    .counts strong {
+      display: block;
+      font-size: 22px;
+      margin-top: 6px;
+      font-family: var(--font-mono);
+    }
+
+    /* Console Card */
+    .console-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .console-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .console-title-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .console-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+    }
+
+    .console-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-export-log { background: var(--amber-bg); color: var(--amber); border-color: rgba(245, 158, 11, 0.3); }
+    .btn-export-log:hover { background: rgba(245, 158, 11, 0.25); }
+    .btn-export-json { background: var(--blue-bg); color: var(--blue); border-color: rgba(59, 130, 246, 0.3); }
+    .btn-export-json:hover { background: rgba(59, 130, 246, 0.25); }
+    .btn-export-csv { background: var(--green-bg); color: var(--green); border-color: rgba(16, 185, 129, 0.3); }
+    .btn-export-csv:hover { background: rgba(16, 185, 129, 0.25); }
+
+    .console-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .console-filter-input {
+      flex: 1;
+      padding: 8px 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-size: 12px;
+      outline: none;
+    }
+
+    .console-container {
+      background: #080c14;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      height: 260px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .log-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .log-row:hover {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .log-time { color: var(--text-dim); flex-shrink: 0; }
+    .log-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .badge-cmd { background: var(--blue-bg); color: var(--blue); }
+    .badge-sys { background: var(--purple-bg); color: var(--purple); }
+    .badge-pred { background: var(--green-bg); color: #6ee7b7; }
+    .badge-cfg { background: var(--amber-bg); color: var(--amber); }
+
+    .log-gesture { color: #f8fafc; font-weight: 700; flex-shrink: 0; }
+    .log-cmd { color: #cbd5e1; font-weight: 600; flex-shrink: 0; }
+    .log-ack { color: #34d399; font-weight: 600; flex: 1; }
+    .log-ack.err { color: #f87171; }
+    .log-ack.warn { color: #fbbf24; }
+
+    footer {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .summary { grid-template-columns: repeat(3, 1fr); }
+      .settings-grid { grid-template-columns: 1fr; }
+      .columns { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      main { padding: 16px; }
+      .summary { grid-template-columns: 1fr 1fr; }
+      header { flex-direction: column; align-items: flex-start; }
+      .gesture { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brain">🧠</div>
+      <div>
+        <h1>Cortex Classic</h1>
+        <p>Emotiv headset · Cortex API · SYNAPTI MESH</p>
+      </div>
+    </div>
+    <span class="pill" id="online">Checking Cortex…</span>
+  </header>
+
+  <!-- Action Bar -->
+  <div class="actions">
+    <button class="primary" id="connect" onclick="control('connect')">Connect headset</button>
+    <button id="disconnect" onclick="control('disconnect')">Disconnect</button>
+    <button onclick="refresh()">Refresh status</button>
+    <button onclick="toggleSettings()" id="settingsToggleBtn">⚙️ Connection Settings</button>
+    <a href="/dashboard" class="btn">MasterHub dashboard</a>
+  </div>
+
+  <p id="feedback" role="status">Uses the Cortex credentials configured in your local connection settings.</p>
+
+  <!-- Connection & API Settings Card -->
+  <section class="settings-panel" id="settingsPanel">
+    <div class="settings-header">
+      <div class="settings-title">
+        <span>⚙️</span>
+        <span>Cortex API Credentials &amp; Trained Profiles</span>
+      </div>
+      <span class="pill" id="credsStatusPill">Loading credentials…</span>
+    </div>
+
+    <form id="settingsForm" onsubmit="event.preventDefault(); saveCredentials();">
+      <div class="settings-grid">
+        <div class="form-group">
+          <label for="cortexClientId">CORTEX_CLIENT_ID</label>
+          <input type="text" id="cortexClientId" class="form-input" placeholder="e.g. LeIpR00oXMhYpKNsnH5I2..." required/>
+        </div>
+        <div class="form-group">
+          <label for="cortexClientSecret">CORTEX_CLIENT_SECRET</label>
+          <div class="input-wrapper">
+            <input type="password" id="cortexClientSecret" class="form-input" placeholder="Enter Client Secret" required/>
+            <button type="button" class="btn-toggle-vis" onclick="toggleSecretVisibility()" title="Show/hide secret">👁</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cortexProfileSelect">Emotiv Trained Profile</label>
+          <div style="display:flex;gap:8px;">
+            <select id="cortexProfileSelect" class="form-input" style="flex:1;">
+              <option value="">(No profile selected)</option>
+            </select>
+            <button type="button" onclick="loadSelectedProfile()" title="Load profile into active session" style="padding:4px 10px;font-size:11px;">Load</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button type="submit" class="accent-btn" id="saveCredsBtn">💾 Save &amp; Register API Keys</button>
+        <button type="button" onclick="queryTrainedProfiles()" id="queryProfilesBtn">🔄 Query Trained Profiles</button>
+        <span class="settings-status-msg" id="settingsMsg"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- Summary Cards -->
+  <section class="summary">
+    <article class="card">
+      <div class="eyebrow">Cortex connection</div>
+      <div class="value"><span id="connection" class="pill">Unknown</span></div>
+      <small>WebSocket connection to Cortex</small>
+    </article>
+    <article class="card">
+      <div class="eyebrow">Authorization</div>
+      <div class="value"><span id="authorization" class="pill">Unknown</span></div>
+      <small>Cortex application access</small>
+    </article>
+    <article class="card">
+      <div class="eyebrow">Headset</div>
+      <div class="value" id="headset">—</div>
+      <small>Connected Emotiv device</small>
+    </article>
+    <article class="card">
+      <div class="eyebrow">Session</div>
+      <div class="value" id="session">—</div>
+      <small>Cortex session</small>
+    </article>
+    <article class="card">
+      <div class="eyebrow">Trained Profile</div>
+      <div class="value" id="currentProfileCard">—</div>
+      <small>Loaded mental command profile</small>
+    </article>
+  </section>
+
+  <!-- Status Columns -->
+  <div class="columns">
+    <!-- Left Column: Headset & Cortex Status -->
+    <section class="card">
+      <h2>📊 Headset &amp; Cortex Status</h2>
+      <dl>
+        <div><dt>Connection</dt><dd id="detailConnection">—</dd></div>
+        <div><dt>Authorization</dt><dd id="detailAuthorization">—</dd></div>
+        <div><dt>Headset name / ID</dt><dd id="detailHeadset">—</dd></div>
+        <div><dt>Battery</dt><dd id="battery">—</dd></div>
+        <div><dt>Signal quality</dt><dd id="signal">—</dd></div>
+        <div><dt>Session ID</dt><dd id="sessionId">—</dd></div>
+        <div><dt>Session status</dt><dd id="sessionStatus">—</dd></div>
+        <div><dt>Active Profile</dt><dd id="detailProfile">—</dd></div>
+        <div><dt>Last connection error</dt><dd id="error">—</dd></div>
+      </dl>
+    </section>
+
+    <!-- Right Column: Live Prediction -->
+    <section class="card">
+      <h2>🧠 Live Mental Prediction</h2>
+      <div class="prediction">
+        <div class="eyebrow">Current gesture</div>
+        <div class="gesture" id="gesture">NEUTRAL</div>
+        <div class="confidence">
+          <span>Confidence</span>
+          <span id="confidence">0.0%</span>
+        </div>
+        <div class="meter"><span id="power"></span></div>
+      </div>
+      <div class="counts">
+        <div class="card"><small>Accepted</small><strong id="accepted">0</strong></div>
+        <div class="card"><small>Rejected</small><strong id="rejected">0</strong></div>
+        <div class="card"><small>Duplicates</small><strong id="duplicates">0</strong></div>
+        <div class="card"><small>Commands sent</small><strong id="sent">0</strong></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Real-Time Command & Acknowledgement Console -->
+  <section class="console-section">
+    <div class="console-header">
+      <div class="console-title-area">
+        <span class="console-dot"></span>
+        <strong style="font-size:15px;">📟 Real-Time Command &amp; Acknowledgement Console</strong>
+        <span style="font-size:12px;color:var(--text-muted);" id="logCount">0 events</span>
+      </div>
+      <div class="console-actions">
+        <button type="button" class="btn-export-json" onclick="exportLogsJson()">🗂 Save JSON</button>
+        <button type="button" class="btn-export-csv" onclick="exportLogsCsv()">📊 Save CSV</button>
+        <button type="button" onclick="clearLogsConsole()">🧹 Clear</button>
+      </div>
+    </div>
+
+    <div class="console-filter-bar">
+      <input type="text" id="logFilter" class="console-filter-input" placeholder="Filter commands by gesture, acknowledgement, domain, or status…" oninput="renderConsoleLogs()"/>
+    </div>
+
+    <div class="console-container" id="consoleBody">
+      <div style="color:var(--text-dim);padding:8px;">Waiting for mental commands and telemetry events…</div>
+    </div>
+  </section>
+
+  <footer id="updated">Waiting for live status…</footer>
+</main>
+
+<script>
+  const base = '/cortex';
+  const text = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value ?? '—';
+  };
+
+  function pill(id, ok, label, state) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    text(id, label);
+    el.className = 'pill' + (state ? ' ' + state : (ok ? ' online' : ''));
+  }
+
+  /* Internal telemetry event store */
+  let localLogs = [];
+  let logIdCounter = 0;
+
+  function addLocalLog(type, gesture, confidence, command, domain, ack, status, detail) {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString();
+    const isoStr = now.toISOString();
+    const entry = {
+      id: ++logIdCounter,
+      timestamp: isoStr,
+      time: timeStr,
+      type: type || 'COMMAND',
+      gesture: gesture || '—',
+      confidence: confidence || '—',
+      command: command || '—',
+      domain: domain || 'system',
+      acknowledgement: ack || 'ACK_RECEIVED',
+      status: status || 'SUCCESS',
+      detail: detail || ''
+    };
+    localLogs.unshift(entry);
+    if (localLogs.length > 500) localLogs.pop();
+    renderConsoleLogs();
+  }
+
+  function renderConsoleLogs() {
+    const body = document.getElementById('consoleBody');
+    const filter = (document.getElementById('logFilter')?.value || '').toLowerCase().trim();
+    const countEl = document.getElementById('logCount');
+    if (countEl) countEl.textContent = localLogs.length + ' event' + (localLogs.length !== 1 ? 's' : '');
+
+    if (!body) return;
+    if (localLogs.length === 0) {
+      body.innerHTML = '<div style="color:var(--text-dim);padding:8px;">Waiting for mental commands and telemetry events…</div>';
+      return;
+    }
+
+    const filtered = localLogs.filter(e => {
+      if (!filter) return true;
+      return (e.gesture && e.gesture.toLowerCase().includes(filter)) ||
+             (e.command && e.command.toLowerCase().includes(filter)) ||
+             (e.acknowledgement && e.acknowledgement.toLowerCase().includes(filter)) ||
+             (e.domain && e.domain.toLowerCase().includes(filter)) ||
+             (e.status && e.status.toLowerCase().includes(filter));
+    });
+
+    body.innerHTML = '';
+    filtered.forEach(e => {
+      const row = document.createElement('div');
+      row.className = 'log-row';
+
+      const time = document.createElement('span');
+      time.className = 'log-time';
+      time.textContent = e.time;
+
+      const badge = document.createElement('span');
+      badge.className = 'log-badge ' + (e.type === 'COMMAND' ? 'badge-cmd' : e.type === 'CONFIG' ? 'badge-cfg' : e.type === 'PREDICTION' ? 'badge-pred' : 'badge-sys');
+      badge.textContent = e.type;
+
+      const gest = document.createElement('span');
+      gest.className = 'log-gesture';
+      gest.textContent = e.gesture !== '—' ? `${e.gesture} (${e.confidence})` : '';
+
+      const cmd = document.createElement('span');
+      cmd.className = 'log-cmd';
+      cmd.textContent = e.command !== '—' ? `-> ${e.command}` : '';
+
+      const ack = document.createElement('span');
+      ack.className = 'log-ack ' + (e.status === 'REJECTED' || e.status === 'ERROR' ? 'err' : e.status === 'IGNORED' ? 'warn' : '');
+      ack.textContent = `[${e.acknowledgement}]`;
+
+      row.append(time, badge);
+      if (e.gesture !== '—') row.append(gest);
+      if (e.command !== '—') row.append(cmd);
+      row.append(ack);
+
+      body.appendChild(row);
+    });
+  }
+
+  async function syncBackendLogs() {
+    try {
+      const res = await fetch(base + '/logs');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.logs && Array.isArray(data.logs)) {
+          // Merge unique logs from backend
+          const existingIds = new Set(localLogs.map(l => l.id));
+          data.logs.forEach(l => {
+            if (!existingIds.has(l.id)) {
+              localLogs.unshift(l);
+              existingIds.add(l.id);
+            }
+          });
+          localLogs.sort((a, b) => b.id - a.id);
+          renderConsoleLogs();
+        }
+      }
+    } catch (err) {}
+  }
+
+  function clearLogsConsole() {
+    localLogs = [];
+    renderConsoleLogs();
+    fetch(base + '/logs/clear', { method: 'POST' }).catch(() => {});
+  }
+
+  function exportLogsJson() {
+    const blob = new Blob([JSON.stringify(localLogs, null, 2)], { type: 'application/json' });
+    downloadBlob(blob, 'cortex_command_telemetry.json');
+  }
+
+  function exportLogsCsv() {
+    const headers = ['ID', 'Timestamp', 'Type', 'Gesture', 'Confidence', 'Command', 'Domain', 'Acknowledgement', 'Status', 'Detail'];
+    const rows = localLogs.map(e => [
+      e.id,
+      `"${e.timestamp}"`,
+      `"${e.type}"`,
+      `"${e.gesture}"`,
+      `"${e.confidence}"`,
+      `"${e.command}"`,
+      `"${e.domain}"`,
+      `"${e.acknowledgement}"`,
+      `"${e.status}"`,
+      `"${(e.detail || '').replace(/"/g, '""')}"`
+    ].join(','));
+    const csvContent = [headers.join(','), ...rows].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    downloadBlob(blob, 'cortex_command_telemetry.csv');
+  }
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    addLocalLog('SYSTEM', '—', '—', 'EXPORT', 'telemetry', `Saved ${filename}`, 'SUCCESS');
+  }
+
+  /* Credentials and Settings */
+  function toggleSettings() {
+    const panel = document.getElementById('settingsPanel');
+    if (panel) {
+      panel.style.display = (panel.style.display === 'none') ? 'flex' : 'none';
+    }
+  }
+
+  function toggleSecretVisibility() {
+    const secretInput = document.getElementById('cortexClientSecret');
+    if (secretInput) {
+      secretInput.type = secretInput.type === 'password' ? 'text' : 'password';
+    }
+  }
+
+  async function loadCredentials() {
+    try {
+      const res = await fetch(base + '/config');
+      if (res.ok) {
+        const data = await res.json();
+        const idInput = document.getElementById('cortexClientId');
+        const secInput = document.getElementById('cortexClientSecret');
+
+        if (idInput && data.client_id) idInput.value = data.client_id;
+        if (secInput && data.client_secret) secInput.value = data.client_secret;
+
+        if (data.has_credentials) {
+          pill('credsStatusPill', true, 'API Keys Configured', 'online');
+        } else {
+          pill('credsStatusPill', false, 'API Keys Missing', 'warn');
+        }
+
+        if (data.current_profile) {
+          text('currentProfileCard', data.current_profile);
+          text('detailProfile', data.current_profile);
+        }
+        if (data.profiles && Array.isArray(data.profiles)) {
+          populateProfileDropdown(data.profiles, data.current_profile);
+        }
+      } else {
+        pill('credsStatusPill', false, 'Unable to load config', 'error');
+      }
+    } catch (e) {
+      pill('credsStatusPill', false, 'Unable to load config', 'error');
+    }
+  }
+
+  async function saveCredentials() {
+    const idInput = document.getElementById('cortexClientId');
+    const secInput = document.getElementById('cortexClientSecret');
+    const msg = document.getElementById('settingsMsg');
+    const btn = document.getElementById('saveCredsBtn');
+
+    if (!idInput) return;
+    const clientId = idInput.value.trim();
+    const clientSecret = secInput ? secInput.value.trim() : '';
+
+    if (!clientId) {
+      if (msg) msg.textContent = 'Please enter Cortex Client ID.';
+      return;
+    }
+
+    if (btn) btn.disabled = true;
+    if (msg) msg.textContent = 'Saving & registering credentials…';
+
+    try {
+      const payload = { client_id: clientId };
+      if (clientSecret && !clientSecret.includes('*')) {
+        payload.client_secret = clientSecret;
+      }
+
+      const res = await fetch(base + '/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Failed to update credentials');
+
+      if (msg) msg.textContent = '✅ Credentials saved & registered successfully!';
+      pill('credsStatusPill', true, 'API Keys Configured', 'online');
+      addLocalLog('CONFIG', '—', '—', 'SAVE_KEYS', 'cortex', 'ACK · API keys registered', 'SUCCESS');
+      await refresh();
+      await loadCredentials();
+    } catch (err) {
+      if (msg) msg.textContent = '❌ ' + err.message;
+      addLocalLog('CONFIG', '—', '—', 'SAVE_KEYS', 'cortex', 'Error: ' + err.message, 'ERROR');
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  }
+
+  function populateProfileDropdown(profiles, selected) {
+    const select = document.getElementById('cortexProfileSelect');
+    if (!select) return;
+    select.innerHTML = '<option value="">(Select trained profile)</option>';
+    profiles.forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p;
+      opt.textContent = p;
+      if (p === selected) opt.selected = true;
+      select.appendChild(opt);
+    });
+  }
+
+  async function queryTrainedProfiles() {
+    const msg = document.getElementById('settingsMsg');
+    const btn = document.getElementById('queryProfilesBtn');
+    if (btn) btn.disabled = true;
+    if (msg) msg.textContent = 'Querying Emotiv user profiles…';
+
+    try {
+      const res = await fetch(base + '/profiles');
+      const data = await res.json();
+      if (data.profiles && Array.isArray(data.profiles)) {
+        populateProfileDropdown(data.profiles, data.current_profile);
+        if (msg) msg.textContent = `Found ${data.profiles.length} trained profile(s).`;
+        addLocalLog('PROFILE', '—', '—', 'QUERY_PROFILES', 'cortex', `ACK · Found ${data.profiles.length} profile(s)`, 'SUCCESS');
+      } else {
+        if (msg) msg.textContent = data.message || 'No trained profiles returned.';
+      }
+    } catch (e) {
+      if (msg) msg.textContent = 'Error querying profiles: ' + e.message;
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  }
+
+  async function loadSelectedProfile() {
+    const select = document.getElementById('cortexProfileSelect');
+    const msg = document.getElementById('settingsMsg');
+    if (!select || !select.value) {
+      if (msg) msg.textContent = 'Please select a profile first.';
+      return;
+    }
+    const profileName = select.value;
+    if (msg) msg.textContent = `Loading profile '${profileName}'…`;
+
+    try {
+      const res = await fetch(base + '/profiles/load', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ profile: profileName })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Failed to load profile');
+
+      text('currentProfileCard', profileName);
+      text('detailProfile', profileName);
+      if (msg) msg.textContent = `✅ Profile '${profileName}' active!`;
+      addLocalLog('PROFILE', '—', '—', `LOAD:${profileName}`, 'cortex', `ACK · Profile '${profileName}' Active`, 'SUCCESS');
+    } catch (e) {
+      if (msg) msg.textContent = '❌ ' + e.message;
+      addLocalLog('PROFILE', '—', '—', `LOAD:${profileName}`, 'cortex', 'Error: ' + e.message, 'ERROR');
+    }
+  }
+
+  /* Status Refresh */
+  let lastGesture = 'neutral';
+  let lastSentCount = 0;
+
+  async function refresh() {
+    try {
+      const response = await fetch(base + '/state', { signal: AbortSignal.timeout(6000) });
+      if (!response.ok) throw Error('Status unavailable');
+      const { state: s } = await response.json();
+      const connected = s.status.connected;
+      const authorized = connected && s.status.authorized;
+
+      pill('online', connected, connected ? 'Cortex connected' : 'Cortex offline');
+      pill('connection', connected, connected ? 'Connected' : 'Disconnected');
+      pill('authorization', authorized, authorized ? 'Authorized' : 'Not authorized');
+
+      text('detailConnection', connected ? 'Connected' : 'Disconnected');
+      text('detailAuthorization', authorized ? 'Authorized' : 'Not authorized');
+      text('headset', connected ? (s.headset.id || 'No headset') : 'No headset');
+      text('detailHeadset', connected ? s.headset.id || '—' : '—');
+      text('battery', connected && s.headset.battery_percent != null ? s.headset.battery_percent + '%' : '—');
+      text('signal', connected ? s.headset.signal_quality : '—');
+      text('session', connected ? s.session.status : 'none');
+      text('sessionStatus', connected ? s.session.status : 'none');
+      text('sessionId', connected ? s.session.id || '—' : '—');
+      text('error', s.status.last_error || 'None');
+
+      const currentProf = s.status.current_profile || 'None';
+      text('currentProfileCard', currentProf);
+      text('detailProfile', currentProf);
+
+      const gest = connected ? (s.metrics.current_gesture || 'neutral').toUpperCase() : 'NEUTRAL';
+      text('gesture', gest);
+
+      const power = connected ? Math.max(0, Math.min(100, (s.metrics.confidence || 0) * 100)) : 0;
+      text('confidence', power.toFixed(1) + '%');
+      const powerEl = document.getElementById('power');
+      if (powerEl) powerEl.style.width = power + '%';
+
+      for (const [id, key] of Object.entries({
+        accepted: 'accepted',
+        rejected: 'rejected',
+        duplicates: 'duplicates',
+        sent: 'commands_sent'
+      })) {
+        text(id, s.metrics[key] || 0);
+      }
+
+      // Check if a new command was sent to log it
+      if (s.metrics.commands_sent > lastSentCount) {
+        lastSentCount = s.metrics.commands_sent;
+        const routed = s.metrics.current_routed_command || 'command';
+        const dom = s.metrics.current_domain || 'system';
+        const respMs = s.metrics.response_time_ms ? `${s.metrics.response_time_ms.toFixed(1)}ms` : 'ACK';
+        addLocalLog('COMMAND', gest, power.toFixed(1) + '%', routed, dom, `ACK · ${s.metrics.http_status || 200} OK (${respMs})`, 'SUCCESS');
+      }
+
+      text('updated', 'Updated ' + new Date().toLocaleTimeString() + ' · Status refreshes every 2 seconds');
+    } catch (e) {
+      ['online', 'connection', 'authorization'].forEach(id => pill(id, false, 'Unavailable'));
+      ['headset', 'session', 'detailConnection', 'detailAuthorization', 'detailHeadset', 'battery', 'signal', 'sessionId', 'sessionStatus'].forEach(id => text(id, 'Unknown'));
+      text('gesture', '—');
+      text('confidence', '—');
+      const p = document.getElementById('power');
+      if (p) p.style.width = '0%';
+      text('updated', 'Connection to MasterHub lost. Retrying…');
+    }
+  }
+
+  async function control(action) {
+    document.querySelectorAll('.actions button').forEach(b => b.disabled = true);
+    text('feedback', action === 'connect' ? 'Connecting to Cortex service…' : 'Disconnecting…');
+    try {
+      const r = await fetch(base + '/' + action, { method: 'POST' });
+      const d = await r.json();
+      if (!r.ok) throw Error(d.error || 'Connection request failed');
+      text('feedback', d.message || 'Headset disconnected.');
+      addLocalLog('SYSTEM', '—', '—', action.toUpperCase(), 'cortex', d.message || 'Action completed', 'SUCCESS');
+      await refresh();
+    } catch (e) {
+      text('feedback', e.message);
+      addLocalLog('SYSTEM', '—', '—', action.toUpperCase(), 'cortex', 'Error: ' + e.message, 'ERROR');
+    } finally {
+      document.querySelectorAll('.actions button').forEach(b => b.disabled = false);
+    }
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    loadCredentials();
+    refresh();
+    syncBackendLogs();
+  });
+
+  (async function poll() {
+    await refresh();
+    await syncBackendLogs();
+    setTimeout(poll, 2000);
+  })();
+</script>
+</body>
+</html>

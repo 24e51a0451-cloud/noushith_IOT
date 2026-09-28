@@ -1,0 +1,395 @@
+{
+  "_comment": "Maps a normalized command string to a domain + action identifier. Engine/Router read this; no hardcoded if-else chains.",
+  "notepad_open": {
+    "domain": "desktop",
+    "action": "open_notepad"
+  },
+  "open_notepad": {
+    "domain": "desktop",
+    "action": "open_notepad"
+  },
+  "notepad_write": {
+    "domain": "desktop",
+    "action": "write_notepad"
+  },
+  "write_notepad": {
+    "domain": "desktop",
+    "action": "write_notepad"
+  },
+  "notepad_save": {
+    "domain": "desktop",
+    "action": "save_notepad"
+  },
+  "save_notepad": {
+    "domain": "desktop",
+    "action": "save_notepad"
+  },
+  "calculator_open": {
+    "domain": "desktop",
+    "action": "open_calculator"
+  },
+  "open_calculator": {
+    "domain": "desktop",
+    "action": "open_calculator"
+  },
+  "calc_open": {
+    "domain": "desktop",
+    "action": "open_calculator"
+  },
+  "chrome_open": {
+    "domain": "desktop",
+    "action": "open_chrome"
+  },
+  "chrome_open_article": {
+    "domain": "desktop",
+    "action": "open_chrome"
+  },
+  "chrome_search": {
+    "domain": "desktop",
+    "action": "search_chrome"
+  },
+  "open_chrome": {
+    "domain": "desktop",
+    "action": "open_chrome"
+  },
+  "close_chrome": {
+    "domain": "desktop",
+    "action": "close_chrome"
+  },
+  "previous_tab": {
+    "domain": "desktop",
+    "action": "previous_tab"
+  },
+  "next_tab": {
+    "domain": "desktop",
+    "action": "next_tab"
+  },
+  "youtube_open": {
+    "domain": "desktop",
+    "action": "open_youtube"
+  },
+  "open_youtube": {
+    "domain": "desktop",
+    "action": "open_youtube"
+  },
+  "youtube_search": {
+    "domain": "desktop",
+    "action": "search_youtube"
+  },
+  "search_youtube": {
+    "domain": "desktop",
+    "action": "search_youtube"
+  },
+  "youtube_play": {
+    "domain": "desktop",
+    "action": "play_youtube"
+  },
+  "play_youtube": {
+    "domain": "desktop",
+    "action": "play_youtube"
+  },
+  "youtube_next": {
+    "domain": "desktop",
+    "action": "youtube_next"
+  },
+  "youtube_previous": {
+    "domain": "desktop",
+    "action": "youtube_previous"
+  },
+  "youtube_volume_up": {
+    "domain": "desktop",
+    "action": "youtube_volume_up"
+  },
+  "youtube_volume_down": {
+    "domain": "desktop",
+    "action": "youtube_volume_down"
+  },
+  "youtube_pause": {
+    "domain": "desktop",
+    "action": "youtube_pause"
+  },
+  "youtube_mute": {
+    "domain": "desktop",
+    "action": "youtube_mute"
+  },
+  "gmail_open": {
+    "domain": "desktop",
+    "action": "open_gmail"
+  },
+  "open_gmail": {
+    "domain": "desktop",
+    "action": "open_gmail"
+  },
+  "gmail_compose": {
+    "domain": "desktop",
+    "action": "compose_gmail"
+  },
+  "compose_gmail": {
+    "domain": "desktop",
+    "action": "compose_gmail"
+  },
+  "gmail_search": {
+    "domain": "desktop",
+    "action": "search_gmail"
+  },
+  "search_gmail": {
+    "domain": "desktop",
+    "action": "search_gmail"
+  },
+  "gmail_send": {
+    "domain": "desktop",
+    "action": "send_gmail"
+  },
+  "send_gmail": {
+    "domain": "desktop",
+    "action": "send_gmail"
+  },
+  "calendar_open": {
+    "domain": "desktop",
+    "action": "open_calendar"
+  },
+  "left_light_on": {
+    "domain": "iot",
+    "action": "left_light_on"
+  },
+  "left_light_off": {
+    "domain": "iot",
+    "action": "left_light_off"
+  },
+  "right_light_on": {
+    "domain": "iot",
+    "action": "right_light_on"
+  },
+  "right_light_off": {
+    "domain": "iot",
+    "action": "right_light_off"
+  },
+  "light_on": {
+    "domain": "iot",
+    "action": "light_on"
+  },
+  "light_off": {
+    "domain": "iot",
+    "action": "light_off"
+  },
+  "left_fan_on": {
+    "domain": "iot",
+    "action": "left_fan_on"
+  },
+  "left_fan_off": {
+    "domain": "iot",
+    "action": "left_fan_off"
+  },
+  "right_fan_on": {
+    "domain": "iot",
+    "action": "right_fan_on"
+  },
+  "right_fan_off": {
+    "domain": "iot",
+    "action": "right_fan_off"
+  },
+  "fan_on": {
+    "domain": "iot",
+    "action": "fan_on"
+  },
+  "fan_off": {
+    "domain": "iot",
+    "action": "fan_off"
+  },
+  "left_pump_on": {
+    "domain": "iot",
+    "action": "left_pump_on"
+  },
+  "left_pump_off": {
+    "domain": "iot",
+    "action": "left_pump_off"
+  },
+  "pump_on": {
+    "domain": "iot",
+    "action": "pump_on"
+  },
+  "pump_off": {
+    "domain": "iot",
+    "action": "pump_off"
+  },
+  "all_on": {
+    "domain": "iot",
+    "action": "all_on"
+  },
+  "all_off": {
+    "domain": "iot",
+    "action": "all_off"
+  },
+  "ota_update": {
+    "domain": "iot",
+    "action": "ota_update"
+  },
+  "self_test": {
+    "domain": "iot",
+    "action": "self_test"
+  },
+  "polarity_low": {
+    "domain": "iot",
+    "action": "polarity_low"
+  },
+  "polarity_high": {
+    "domain": "iot",
+    "action": "polarity_high"
+  },
+  "iot_ping": {
+    "domain": "iot",
+    "action": "iot_ping"
+  },
+  "chair_forward": {
+    "domain": "embedded",
+    "action": "chair_forward"
+  },
+  "chair_back": {
+    "domain": "embedded",
+    "action": "chair_back"
+  },
+  "chair_left": {
+    "domain": "embedded",
+    "action": "chair_left"
+  },
+  "chair_right": {
+    "domain": "embedded",
+    "action": "chair_right"
+  },
+  "chair_left360": {
+    "domain": "embedded",
+    "action": "chair_left360"
+  },
+  "chair_right360": {
+    "domain": "embedded",
+    "action": "chair_right360"
+  },
+  "chair_360": {
+    "domain": "embedded",
+    "action": "chair_left360"
+  },
+  "chair_backward": {
+    "domain": "embedded",
+    "action": "chair_back"
+  },
+  "chair_stop": {
+    "domain": "embedded",
+    "action": "chair_stop"
+  },
+  "car_forward": {
+    "domain": "embedded",
+    "action": "car_forward"
+  },
+  "car_back": {
+    "domain": "embedded",
+    "action": "car_back"
+  },
+  "car_backward": {
+    "domain": "embedded",
+    "action": "car_back"
+  },
+  "car_left": {
+    "domain": "embedded",
+    "action": "car_left"
+  },
+  "car_right": {
+    "domain": "embedded",
+    "action": "car_right"
+  },
+  "car_left360": {
+    "domain": "embedded",
+    "action": "car_left360"
+  },
+  "car_right360": {
+    "domain": "embedded",
+    "action": "car_right360"
+  },
+  "car_360": {
+    "domain": "embedded",
+    "action": "car_left360"
+  },
+  "car_stop": {
+    "domain": "embedded",
+    "action": "car_stop"
+  },
+  "media_play": {
+    "domain": "ai_ml",
+    "action": "play"
+  },
+  "media_pause": {
+    "domain": "ai_ml",
+    "action": "pause"
+  },
+  "media_next": {
+    "domain": "ai_ml",
+    "action": "next_track"
+  },
+  "media_previous": {
+    "domain": "ai_ml",
+    "action": "previous_track"
+  },
+  "media_volume_up": {
+    "domain": "ai_ml",
+    "action": "volume_up"
+  },
+  "media_volume_down": {
+    "domain": "ai_ml",
+    "action": "volume_down"
+  },
+  "media_album_search": {
+    "domain": "ai_ml",
+    "action": "album_search"
+  },
+  "media_mute": {
+    "domain": "ai_ml",
+    "action": "mute"
+  },
+  "jiosaavn_open": {
+    "domain": "ai_ml",
+    "action": "open_jiosaavn"
+  },
+  "chrome_scroll_up": {
+    "domain": "desktop",
+    "action": "chrome_scroll_up"
+  },
+  "chrome_scroll_down": {
+    "domain": "desktop",
+    "action": "chrome_scroll_down"
+  },
+  "jiosaavn_search": {
+    "domain": "ai_ml",
+    "action": "search_jiosaavn"
+  },
+  "mobile_jiosaavn_next": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_next"
+  },
+  "mobile_jiosaavn_previous": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_previous"
+  },
+  "mobile_jiosaavn_play_pause": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_play_pause"
+  },
+  "mobile_jiosaavn_home": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_home"
+  },
+  "mobile_jiosaavn_volume_up": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_volume_up"
+  },
+  "mobile_jiosaavn_volume_down": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_volume_down"
+  },
+  "mobile_jiosaavn_search": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_search"
+  },
+  "mobile_jiosaavn_launch": {
+    "domain": "ai_ml",
+    "action": "mobile_jiosaavn_launch"
+  }
+}

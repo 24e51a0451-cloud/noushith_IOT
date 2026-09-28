@@ -1,0 +1,176 @@
+is it mandatary i the emotive luncher should be instlled where the masterhub is running and it okay run on another computer?
+
+
+Yes — **for your current MasterHub Cortex code, the EMOTIV Launcher needs to be running on the same computer where the Cortex Python client is running.**
+
+Your code connects to:
+
+```text
+wss://localhost:6868
+```
+
+The key word is **`localhost`**.
+
+### Your current setup
+
+If MasterHub is running on **Computer A**:
+
+```text
+Computer A
+┌──────────────────────────────────────┐
+│ EMOTIV Launcher                      │
+│        ↓                             │
+│ Cortex service : localhost:6868      │
+│        ↑                             │
+│ MasterHub / cortex_client.py         │
+│        ↓                             │
+│ Dashboard : localhost:5000           │
+└──────────────────────────────────────┘
+```
+
+This works.
+
+### If Launcher is on another computer
+
+Suppose:
+
+```text
+Computer A                         Computer B
+─────────────                      ─────────────
+MasterHub                          EMOTIV Launcher
+Python Cortex client               EPOC X
+localhost:6868                     localhost:6868
+```
+
+Your current code **will NOT connect to Computer B**, because:
+
+```python
+CORTEX_URL = "wss://localhost:6868"
+```
+
+means:
+
+> Connect to port 6868 on the **same machine where MasterHub is running**.
+
+It does not mean "find any computer running Cortex."
+
+---
+
+## For your EPOC X + MasterHub project
+
+You have two practical architectures.
+
+### Option 1 — Recommended for now
+
+Put everything on the same Windows laptop:
+
+```text
+             WINDOWS LAPTOP
+┌────────────────────────────────────────┐
+│                                        │
+│  EPOC X                                │
+│    ↓                                   │
+│  USB Dongle                            │
+│    ↓                                   │
+│  EMOTIV Launcher                       │
+│    ↓                                   │
+│  Cortex : 6868                         │
+│    ↓                                   │
+│  MasterHub                             │
+│    ↓                                   │
+│  /cortex/ Dashboard : 5000             │
+│                                        │
+└────────────────────────────────────────┘
+```
+
+This is the easiest setup for your current code.
+
+---
+
+### Option 2 — Launcher and MasterHub on different computers
+
+This is possible **only if you redesign/configure the connection for a remote Cortex service** rather than using:
+
+```text
+localhost:6868
+```
+
+For example:
+
+```text
+Computer A                         Computer B
+─────────────                      ─────────────
+EPOC X                             MasterHub
+   ↓                                  ↓
+EMOTIV Launcher                   Cortex client
+   ↓                                  ↓
+Cortex service                    Remote connection
+192.168.x.x:6868  ───────────────→ 192.168.x.x:6868
+```
+
+But **don't change your code to this yet**. Your current implementation is explicitly built around the local Cortex endpoint.
+
+---
+
+## Important for your Raspberry Pi plan
+
+This is especially important because you previously wanted to eventually run MasterHub on your **Raspberry Pi 5**.
+
+If you do:
+
+```text
+EPOC X
+   ↓
+Windows Laptop
+   ↓
+EMOTIV Launcher
+   ↓
+Cortex
+```
+
+and:
+
+```text
+Raspberry Pi 5
+   ↓
+MasterHub
+```
+
+then your current:
+
+```text
+wss://localhost:6868
+```
+
+on the Raspberry Pi would mean:
+
+```text
+Raspberry Pi → Raspberry Pi:6868
+```
+
+It would **not** reach the Windows laptop's Cortex service.
+
+So for the Raspberry Pi architecture, we need to determine whether your intended Cortex setup supports the required network topology and then modify the client accordingly.
+
+### For right now
+
+Since you're testing your EPOC X integration:
+
+**Keep EMOTIV Launcher + EPOC X + MasterHub on the same Windows PC.**
+
+Once you successfully get:
+
+```text
+Connected
+→ Authorized
+→ Headset connected
+→ Session created
+→ com stream subscribed
+→ push / pull / etc.
+```
+
+then we can work on separating:
+
+**EPOC X/Launcher PC → Raspberry Pi MasterHub.**
+
+Your current `localhost:6868` configuration is the reason the Launcher needs to be on the same machine as the MasterHub Cortex client.

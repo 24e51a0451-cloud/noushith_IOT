@@ -1,0 +1,36 @@
+# MasterHub PC Agent - dependencies
+#
+# Only what this project's own imports actually require (checked
+# against every `import`/`from` in agent/, actions/, protocol/,
+# config/, common/) - not a copy of MasterHub's own requirements.txt.
+
+# Serial link to MasterHub (USB transport)
+pyserial>=3.5
+
+# MQTT link to MasterHub (MQTT transport - see mqtt/connection.py).
+# Pinned to match MasterHub's own requirements.txt so both sides of the
+# link are exercised against the same paho-mqtt major/minor version.
+paho-mqtt==1.6.1
+
+# Desktop/media automation (keyboard/mouse/screen control on the
+# target Windows PC)
+pyautogui>=0.9.54
+Pillow>=10.0.0
+pyscreeze>=0.1.29
+pygetwindow>=0.0.9
+pyperclip>=1.8.2
+
+# Optional: --register-url convenience (POST device registration to
+# MasterHub's existing /api/devices endpoint before connecting over USB)
+requests>=2.31.0
+
+# .\install_agent.bat
+ # python -m pytest tests/ -q
+ # [System.IO.Ports.SerialPort]::GetPortNames()
+ #.\.venv\Scripts\python.exe -m agent.pc_agent
+ #.\start_agent.bat
+# Chrome DevTools connection for reliable YouTube player controls
+websocket-client>=1.9.0
+
+# Agent-root .env settings (identity and MQTT connection)
+python-dotenv>=1.0.0

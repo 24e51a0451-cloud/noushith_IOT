@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>MasterHub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="/static/masterhub.css" rel="stylesheet"/>
+<style>
+  html { background-color: var(--bg-base); }
+  /* Hidden elements kept for backward compatibility with test suite */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+</style>
+</head>
+<body>
+
+<!-- Theme toggle inline script: apply saved theme before paint -->
+<script>
+(function(){
+  var saved = localStorage.getItem('masterhub_theme');
+  if (saved === 'light') document.body.classList.add('light-mode');
+})();
+</script>
+
+<!-- Sidebar Backdrop -->
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()" aria-hidden="true"></div>
+
+<!-- BCI Drawer Backdrop -->
+<div class="bci-drawer-backdrop" id="bciDrawerBackdrop" onclick="closeBciDrawer()" aria-hidden="true"></div>
+
+<!-- Sidebar Drawer -->
+<aside class="sidebar-drawer" id="sidebarDrawer" aria-label="MasterHub Sidebar Navigation" aria-hidden="true">
+  <div class="sidebar-header">
+    <div class="sidebar-brand">
+      <div class="logo-icon">🧠</div>
+      <div>
+        <div class="sidebar-title">MasterHub</div>
+        <div class="sidebar-subtitle">BCI · IoT · Desktop</div>
+      </div>
+    </div>
+    <button class="btn-sidebar-close" id="sidebarCloseBtn" onclick="closeSidebar()" aria-label="Close sidebar">✕</button>
+  </div>
+
+  <div class="sidebar-content">
+    <!-- 1. Live Connection Matrix -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">📡 Live Connection Matrix</div>
+      <div class="sidebar-status-matrix" id="sidebar-status-matrix">
+        <div class="matrix-row matrix-row-interactive" onclick="refreshConnections()" title="Click to refresh connection status">
+          <span class="matrix-label"><span class="matrix-dot dot-mqtt"></span>MQTT Transport:</span>
+          <span class="matrix-val" id="sideMqttStatus">CHECKING</span>
+        </div>
+        <div class="matrix-row matrix-row-interactive" onclick="openUartConfigModal(); closeSidebar();" title="Click to configure UART / Serial link">
+          <span class="matrix-label"><span class="matrix-dot dot-uart"></span>UART / USB:</span>
+          <span class="matrix-val" id="sideUartStatus">CHECKING</span>
+        </div>
+        <a href="#bciPanel" id="cortexDashboardBtn" onclick="openBciDrawer(); closeSidebar(); return false;" class="matrix-row matrix-row-interactive matrix-link" title="Open Cortex Dashboard &amp; Headset Controls">
+          <span class="matrix-label"><span class="matrix-dot dot-bci"></span>BCI Headset (Cortex Dashboard):</span>
+          <span class="matrix-val" id="sideBciStatus">CHECKING</span>
+        </a>
+        <div class="matrix-row matrix-row-interactive" onclick="window.open('/api/health', '_blank')" title="View JSON health telemetry">
+          <span class="matrix-label"><span class="matrix-dot dot-health"></span>System Health:</span>
+          <span class="matrix-val" id="sideHealthStatus">CHECKING</span>
+        </div>
+        <div class="matrix-row">
+          <span class="matrix-label">Active FSM Mode:</span>
+          <span class="matrix-val badge-fsm" id="sideActiveFsmMode">IDLE</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Domain Quick Jump -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">⚡ Domain Quick Jump</div>
+      <div class="sidebar-domain-jump-grid">
+        <button type="button" class="sidebar-domain-pill" onclick="quickJumpDomain('iot')">
+          <span class="pill-icon">🏠</span> <span>IoT Home</span>
+        </button>
+        <button type="button" class="sidebar-domain-pill" onclick="quickJumpDomain('desktop')">
+          <span class="pill-icon">💻</span> <span>PC Desktop</span>
+        </button>
+        <button type="button" class="sidebar-domain-pill" onclick="quickJumpDomain('embedded')">
+          <span class="pill-icon">🤖</span> <span>Robotics</span>
+        </button>
+        <button type="button" class="sidebar-domain-pill" onclick="quickJumpDomain('ai_ml')">
+          <span class="pill-icon">🧠</span> <span>AI / Media</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 3. Workflow & Timing Settings -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">⚙️ Workflow &amp; Timing</div>
+      <div class="sidebar-timing-controls">
+        <div class="sidebar-control-row">
+          <span class="control-label">Hold Window:</span>
+          <div class="control-btn-group" id="sidebarTemporalPresets">
+            <button type="button" class="btn-micro" onclick="setTemporalWindow(2.0)">2s</button>
+            <button type="button" class="btn-micro active" onclick="setTemporalWindow(4.0)">4s</button>
+            <button type="button" class="btn-micro" onclick="setTemporalWindow(8.0)">8s</button>
+          </div>
+        </div>
+        <div class="sidebar-control-row">
+          <span class="control-label">Simulation Mode:</span>
+          <button type="button" class="btn-toggle-sim" id="sidebarSimToggleBtn" onclick="toggleSimMode()">
+            <span id="sidebarSimText">SIM: OFF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Tools & Diagnostics -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">🛠️ Tools &amp; Actions</div>
+      <button type="button" class="sidebar-action-btn btn-danger-action" onclick="emergencyStop(); closeSidebar();" title="Instantly stop all motors and cancel pending commands">
+        <span class="sidebar-link-icon">🛑</span>
+        <span>Emergency Stop (All Nodes)</span>
+      </button>
+      <button type="button" class="sidebar-action-btn" onclick="openCheatSheetModal(); closeSidebar();" title="View mental command and keyboard combo mappings">
+        <span class="sidebar-link-icon">📖</span>
+        <span>BCI Gesture Cheat Sheet</span>
+      </button>
+      <button type="button" class="sidebar-action-btn" onclick="openUserGuideModal(); closeSidebar();" title="Read complete MasterHub documentation">
+        <span class="sidebar-link-icon">📘</span>
+        <span>MasterHub User Guide (.MD)</span>
+      </button>
+      <button type="button" class="sidebar-action-btn" onclick="openRegisterDeviceModal(); closeSidebar();">
+        <span class="sidebar-link-icon">➕</span>
+        <span>Register Target PC Agent</span>
+      </button>
+      <button type="button" class="sidebar-action-btn" onclick="openUartConfigModal(); closeSidebar();">
+        <span class="sidebar-link-icon">🔌</span>
+        <span>UART Configuration</span>
+      </button>
+      <button type="button" class="sidebar-action-btn" onclick="resetFsmState(); closeSidebar();">
+        <span class="sidebar-link-icon">🔄</span>
+        <span>Reset FSM State</span>
+      </button>
+      <button type="button" class="sidebar-action-btn" onclick="clearActivityLog(); closeSidebar();">
+        <span class="sidebar-link-icon">🧹</span>
+        <span>Clear Activity Log</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-footer-status">
+      <span class="status-dot"></span>
+      <span>MasterHub v1.0 · Ready</span>
+    </div>
+  </div>
+</aside>
+
+<div class="app-container">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="brand">
+      <!-- Three-line Hamburger menu button -->
+      <button class="btn-hamburger" id="hamburgerBtn" aria-label="Toggle navigation sidebar" aria-expanded="false" onclick="toggleSidebar()">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <div class="logo-icon">🧠</div>
+      <div>
+        <div class="brand-title">MasterHub</div>
+        <div class="brand-subtitle">BCI · IoT · Desktop</div>
+      </div>
+    </div>
+    <div class="header-status">
+      <!-- Persistent status matrix (test compatibility) -->
+      <div class="sidebar-status-matrix sr-only" id="sidebar-status-matrix">
+        <div class="matrix-title">Connections status</div>
+        <div class="matrix-row"><span class="matrix-label">MQTT Transport:</span><span class="matrix-val" id="sideMqttStatus">CHECKING</span></div>
+        <div class="matrix-row"><span class="matrix-label">UART / USB:</span><span class="matrix-val" id="sideUartStatus">CHECKING</span></div>
+        <div class="matrix-row"><span class="matrix-label">BCI Headset:</span><span class="matrix-val" id="sideBciStatus">CHECKING</span></div>
+        <div class="matrix-row"><span class="matrix-label">System Health:</span><span class="matrix-val" id="sideHealthStatus">CHECKING</span></div>
+        <div class="matrix-row"><span class="matrix-label">Active FSM Mode:</span><span class="matrix-val" id="sideActiveFsmMode">IDLE</span></div>
+      </div>
+      <!-- Visible status pills -->
+      <span class="status-pill" id="pillMqtt"><span class="dot"></span>MQTT</span>
+      <span class="status-pill" id="pillUsb"><span class="dot"></span>USB</span>
+      <span class="status-pill status-pill-interactive" id="pillBci" onclick="toggleBciDrawer()" role="button" tabindex="0" title="Click to open Cortex BCI settings & diagnostics"><span class="dot"></span>BCI</span>
+      <span class="status-pill" id="pillSystem"><span class="dot"></span>System</span>
+    </div>
+    <div class="theme-toggle" id="themeToggleBtn" role="button" tabindex="0" aria-label="Toggle theme">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+      <span class="theme-label" id="themeLabel">Dark</span>
+    </div>
+  </header>
+
+  <!-- Metrics HUD -->
+  <section class="metrics-hud" id="metricsHud">
+    <div class="hud-card">
+      <span class="hud-label">Response Latency</span>
+      <span class="hud-val" id="hudResponseLatency">—</span>
+      <span class="hud-sub">Round-trip</span>
+    </div>
+    <div class="hud-card">
+      <span class="hud-label">Process Latency</span>
+      <span class="hud-val" id="hudProcessLatency">—</span>
+      <span class="hud-sub">FSM &amp; validation</span>
+    </div>
+    <div class="hud-card">
+      <span class="hud-label">Execution Latency</span>
+      <span class="hud-val" id="hudExecutionLatency">—</span>
+      <span class="hud-sub">Driver dispatch</span>
+    </div>
+    <div class="hud-card">
+      <span class="hud-label">Fault Recovery</span>
+      <span class="hud-val" id="hudFaultRecovery">—</span>
+      <span class="hud-sub">Command outcomes</span>
+    </div>
+  </section>
+
+  <!-- Live Neural HUD & Command Acknowledgment Bar -->
+  <section class="neural-hud" id="neuralHud" aria-label="Live Neural Command HUD">
+    <div class="neural-hud-left">
+      <div class="neural-gesture-block">
+        <div class="neural-hud-label">⚡ MENTAL COMMAND</div>
+        <div class="neural-gesture-display">
+          <span class="neural-gesture-icon" id="hudBciGestureIcon">🧠</span>
+          <span class="neural-gesture-name" id="hudBciGestureName">Waiting</span>
+        </div>
+      </div>
+      <div class="neural-power-block">
+        <div class="neural-power-header">
+          <span class="neural-sublabel">Intensity / Power</span>
+          <span class="neural-power-val" id="hudBciPowerVal">—</span>
+        </div>
+        <div class="neural-power-track">
+          <div class="neural-power-fill" id="hudBciPowerFill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="neural-hud-center">
+      <div class="neural-ack-box" id="hudBciAckBox">
+        <div class="neural-ack-header">
+          <span class="neural-status-indicator" id="hudBciStatusDot"></span>
+          <span class="neural-ack-title" id="hudBciAckTitle">Neural Command Stream</span>
+          <span class="neural-mode-chip" id="hudBciModeChip">MONITOR MODE</span>
+        </div>
+        <div class="neural-ack-message" id="hudBciAckMessage">
+          Headset stream monitoring. Click "Cortex Setup" or BCI pill to connect and load profiles.
+        </div>
+      </div>
+    </div>
+
+    <div class="neural-hud-right">
+      <div class="neural-telemetry-pill" id="hudBciTelemetry">
+        <span class="telemetry-item" title="Headset Model"><span class="tele-icon">🎧</span> <strong id="hudBciHeadsetLabel">Emotiv Cortex</strong></span>
+        <span class="telemetry-sep">•</span>
+        <span class="telemetry-item" title="Battery Level"><span class="tele-icon">🔋</span> <strong id="hudBciBatteryLabel">—</strong></span>
+        <span class="telemetry-sep">•</span>
+        <span class="telemetry-item" title="Signal Quality"><span class="tele-icon">📶</span> <strong id="hudBciSignalLabel">—</strong></span>
+      </div>
+      <div class="neural-hud-actions">
+        <button type="button" class="btn-neural-mode" id="hudBciToggleModeBtn" onclick="toggleBciControlMode()" title="Toggle Monitor vs Active Control">
+          <span class="mode-icon">⚡</span> <span id="hudBciToggleModeText">Enable Control</span>
+        </button>
+        <button type="button" class="btn-neural-setup" id="hudBciSetupBtn" onclick="openBciDrawer()" title="Open Headset Settings & Diagnostics Drawer">
+          <span>⚙️ Cortex Setup</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="workflow-container">
+  <!-- Main Panel -->
+  <section class="panel workflow-panel">
+    <div class="panel-header">
+      <div class="panel-title"><span class="icon">⚡</span> Command Workflow</div>
+    </div>
+
+    <!-- Phase navigation -->
+    <nav class="phase-nav" aria-label="Workflow phases">
+      <button class="phase-btn active" id="phase1Btn" onclick="goToPhase(1)">01 · Domain</button>
+      <button class="phase-btn" id="phase2Btn" onclick="goToPhase(2)" disabled>02 · Device</button>
+      <button class="phase-btn" id="phase3Btn" onclick="goToPhase(3)" disabled>03 · Command Execution</button>
+      <button class="phase-btn workflow-nav-btn" id="workflowBackBtn" onclick="workflowBack()">Push + Right · Back</button>
+      <button class="phase-btn workflow-nav-btn" id="workflowMainBtn" onclick="workflowMainMenu()">Push + Left · Main Menu</button>
+    </nav>
+
+
+    <!-- Live Informative Temporal Window Observer Card (Persistent across Phase 1, 2, 3) -->
+    <div class="temporal-card" id="temporalWindowCard" style="margin-top:14px;margin-bottom:18px;">
+      <div class="temporal-left">
+        <div class="temporal-display" id="twDisplay">4.0s</div>
+        <div class="temporal-status-pill status-armed" id="twStatusPill">
+          <span class="pulse-dot"></span>
+          <span id="twStatusText">ARMED</span>
+        </div>
+      </div>
+      <div class="temporal-content">
+        <div class="temporal-header-row">
+          <div class="temporal-title-wrap">
+            <span class="temporal-title">⏱️ Temporal Window Observer</span>
+            <span class="temporal-phase-badge" id="twPhaseBadge">Phase 1 · Domain Selection</span>
+          </div>
+          <div class="temporal-controls" id="temporalPresets">
+            <span class="presets-label">Window:</span>
+            <button type="button" class="preset-btn" onclick="setTemporalWindow(2.0)">[ 2s ]</button>
+            <button type="button" class="preset-btn active" onclick="setTemporalWindow(4.0)">[ 4s ]</button>
+            <button type="button" class="preset-btn" onclick="setTemporalWindow(8.0)">[ 8s ]</button>
+          </div>
+        </div>
+
+        <!-- Live Command Being Executed Banner -->
+        <div class="temporal-command-banner" id="twCommandBanner">
+          <div class="temporal-cmd-main">
+            <span class="cmd-state-icon" id="twCmdIcon">⚡</span>
+            <div class="cmd-info-col">
+              <div class="cmd-label-line">
+                <span class="cmd-exec-label" id="twCommandLabel">Ready · Select Domain or Command</span>
+                <span class="cmd-id-code" id="twCommandId">IDLE</span>
+              </div>
+              <div class="cmd-meta-line" id="twCommandMeta">
+                <span class="cmd-meta-item" id="twMetaDomain">Domain: <strong>None</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="cmd-meta-item" id="twMetaDevice">Device: <strong>None</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="cmd-meta-item" id="twMetaTarget">Target: <strong>Local Host</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="cmd-meta-item" id="twMetaSource">Source: <strong>—</strong></span>
+              </div>
+            </div>
+          </div>
+          <div class="temporal-action-buttons" id="twActionButtons">
+            <button type="button" class="btn-tw-action btn-tw-now" id="twExecuteNowBtn" onclick="executePendingImmediately()" style="display:none;">
+              ⚡ Execute Now
+            </button>
+            <button type="button" class="btn-tw-action btn-tw-abort" id="twAbortBtn" onclick="cancelFrame()" style="display:none;">
+              ✕ Abort
+            </button>
+          </div>
+        </div>
+
+        <div class="temporal-desc" id="twDescText">
+          Delay before command is sent. Live telemetry and framing countdown active for every phase.
+        </div>
+      </div>
+      <div class="temporal-gauge" id="twGaugeFill" style="position:absolute;bottom:0;left:0;height:4px;background:var(--accent);border-radius:0 0 12px 12px;width:100%;transition:width 0.08s linear;"></div>
+    </div>
+
+    <!-- Phase 1: Domains -->
+    <section id="phase1">
+      <div class="domain-grid" id="domainGrid"></div>
+    </section>
+
+    <!-- Phase 2: Devices -->
+    <section id="phase2" hidden>
+      <p class="section-heading" id="selectedDomainLabel"></p>
+
+      <!-- Python Domain PC Agent & Transport Controller (Active in Python/Desktop Domain) -->
+      <div class="pc-agent-card" id="pcAgentControlCard" hidden>
+        <div class="pc-agent-card-header">
+          <div class="pc-agent-title">
+            <span class="pc-agent-icon">🖥️</span>
+            <div>
+              <div class="pc-agent-heading">PC Agent Controller <code class="agent-code">agent_H</code></div>
+              <div class="pc-agent-sub">Choose the PC for Python and AI/ML commands. Connect over MQTT or USB.</div>
+            </div>
+          </div>
+          <div class="pc-agent-target-badge">
+            <span class="target-badge-label">Active Target:</span>
+            <span class="target-badge-val" id="activeTargetBadge">Local Host</span>
+          </div>
+        </div>
+
+        <!-- Connection & Action Toolbar -->
+        <div class="pc-agent-toolbar">
+          <!-- MQTT Section -->
+          <div class="agent-conn-block" id="agentMqttBlock">
+            <div class="agent-conn-header">
+              <span class="agent-conn-icon">📡</span>
+              <span class="agent-conn-name">MQTT Link</span>
+              <span class="agent-status-tag offline" id="agentMqttTag">OFFLINE</span>
+            </div>
+            <div class="agent-conn-desc" id="agentMqttDesc">Default Node: <strong>PC_001</strong> · Checking status...</div>
+            <div class="agent-btn-group">
+              <button type="button" class="btn-agent-action" id="btnRegisterDevice" onclick="openRegisterDeviceModal()">
+                <span>➕ Register Device ID</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- UART Section -->
+          <div class="agent-conn-block" id="agentUartBlock">
+            <div class="agent-conn-header">
+              <span class="agent-conn-icon">🔌</span>
+              <span class="agent-conn-name">UART / Serial</span>
+              <span class="agent-status-tag offline" id="agentUartTag">DISCONNECTED</span>
+            </div>
+            <div class="agent-conn-desc" id="agentUartDesc">Port: None · 115200 baud</div>
+            <div class="agent-btn-group">
+              <button type="button" class="btn-agent-action" id="btnUartConfig" onclick="openUartConfigModal()">
+                <span>⚙️ UART Configuration</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Target Selector Pills -->
+        <div class="agent-target-selector" id="agentTargetSelector">
+          <span class="selector-label">Send commands to:</span>
+          <div class="target-pills-row" id="targetPillsRow"></div>
+        </div>
+      </div>
+
+      <div class="choice-grid" id="deviceButtons"></div>
+    </section>
+
+    <!-- Phase 3: Commands -->
+    <section id="phase3" hidden>
+      <p class="section-heading" id="selectedDeviceLabel"></p>
+      <div class="choice-grid" id="commandButtons"></div>
+
+      <form id="commandForm" onsubmit="event.preventDefault(); executeWorkflow()" style="margin-top: 16px;">
+        <div id="commandParams"></div>
+        <div style="margin-top:12px;display:flex;gap:10px;">
+          <button type="submit" class="btn-primary" id="executeBtn" disabled>⚡ Execute Command</button>
+        </div>
+      </form>
+      <div class="execution-result" id="executionResult" role="status"></div>
+
+      <!-- UART Target Node Container (test compatibility) -->
+      <div class="uart-target-container sr-only" id="uartTargetContainer">
+        <div class="uart-nodes-grid" id="uartNodesGrid"></div>
+      </div>
+    </section>
+  </section>
+  </div>
+
+  <!-- BCI Setup & Diagnostics Slide-Out Drawer -->
+  {% include "bci_panel.html" %}
+
+  <section class="panel" aria-label="Mobile JioSaavn">
+    <div class="panel-header"><div class="panel-title">Mobile JioSaavn</div></div>
+    <div style="padding:16px" aria-live="polite">
+      <p id="mobileJiosaavnStatus">Checking phone connection...</p>
+      <p id="mobileJiosaavnTrack"></p>
+      <p id="mobileJiosaavnAck">No phone command yet.</p>
+    </div>
+  </section>
+
+  <!-- Console Log -->
+  <section class="panel">
+    <div class="panel-header">
+      <div class="panel-title"><span class="icon">📋</span> Activity Log</div>
+      <button class="btn-secondary" onclick="clearActivityLog()" style="padding:4px 10px;font-size:0.72rem;">Clear</button>
+    </div>
+    <div class="console-card">
+      <div class="console-body" id="consoleBody"></div>
+    </div>
+  </section>
+
+  <!-- Export -->
+  <section class="panel">
+    <div class="panel-header">
+      <div class="panel-title"><span class="icon">📊</span> Export Telemetry</div>
+      <span style="font-size:0.72rem;color:var(--text-secondary);" id="recordCount">0 records</span>
+    </div>
+    <div class="export-panel">
+      <div class="export-body">
+        <div class="export-btn-row">
+          <button class="btn-export btn-export-log" onclick="exportDataLog()">📄 Export LOG</button>
+          <button class="btn-export btn-export-json" onclick="exportDataJson()">🗂 Save JSON</button>
+          <button class="btn-export btn-export-csv" onclick="exportDataCsv()">📊 Save CSV</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Theme toggle logic -->
+<script>
+(function(){
+  var toggle = document.getElementById('themeToggleBtn');
+  var icon = document.getElementById('themeIcon');
+  var label = document.getElementById('themeLabel');
+  function apply(){
+    var isLight = document.body.classList.contains('light-mode');
+    icon.textContent = isLight ? '☀️' : '🌙';
+    label.textContent = isLight ? 'Light' : 'Dark';
+    localStorage.setItem('masterhub_theme', isLight ? 'light' : 'dark');
+  }
+  toggle.addEventListener('click', function(){
+    document.body.classList.toggle('light-mode');
+    apply();
+  });
+  toggle.addEventListener('keydown', function(e){
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle.click();}
+  });
+  apply();
+})();
+</script>
+
+<!-- Modal Backdrop -->
+<div class="modal-backdrop" id="modalBackdrop" onclick="closeModals()" aria-hidden="true"></div>
+
+<!-- Register Device ID Modal -->
+<div class="modal-dialog" id="registerDeviceModal" role="dialog" aria-modal="true" aria-labelledby="regModalTitle" hidden>
+  <div class="modal-header">
+    <div class="modal-title" id="regModalTitle">
+      <span class="modal-icon">➕</span> Register Target PC Agent
+    </div>
+    <button type="button" class="modal-close-btn" onclick="closeModals()" aria-label="Close modal">✕</button>
+  </div>
+  <form id="registerDeviceForm" onsubmit="event.preventDefault(); submitRegisterDevice();">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="regDeviceId" class="form-label">Device ID <span class="required">*</span></label>
+        <input type="text" id="regDeviceId" class="form-input" placeholder="e.g. PC_001, PC_002, PC_003" required autocomplete="off" />
+        <span class="form-hint">Must match the <code>device_id</code> in your target machine's <code>config/agent_config.json</code></span>
+      </div>
+      <div class="form-group">
+        <label for="regDeviceName" class="form-label">Device Name / Label</label>
+        <input type="text" id="regDeviceName" class="form-input" placeholder="e.g. Office PC, Secondary Machine" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label for="regDeviceTransport" class="form-label">Transport Link</label>
+        <select id="regDeviceTransport" class="form-select">
+          <option value="mqtt" selected>MQTT Network Protocol (Default)</option>
+          <option value="usb">UART / USB Serial Link</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Supported Capabilities</label>
+        <div class="checkbox-row">
+          <label class="checkbox-label"><input type="checkbox" id="regCapDesktop" checked /> Desktop Automation (Chrome, Notepad, Gmail, Apps)</label>
+          <label class="checkbox-label"><input type="checkbox" id="regCapMedia" checked /> Media Control (Play/Pause, Volume, Next/Prev Track)</label>
+        </div>
+      </div>
+      <div class="modal-feedback" id="regModalFeedback"></div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn-modal-secondary" onclick="closeModals()">Cancel</button>
+      <button type="submit" class="btn-modal-primary" id="btnSubmitRegister">Register Device</button>
+    </div>
+  </form>
+</div>
+
+<!-- UART Configuration Modal -->
+<div class="modal-dialog" id="uartConfigModal" role="dialog" aria-modal="true" aria-labelledby="uartModalTitle" hidden>
+  <div class="modal-header">
+    <div class="modal-title" id="uartModalTitle">
+      <span class="modal-icon">⚙️</span> UART / Serial Link Configuration
+    </div>
+    <button type="button" class="modal-close-btn" onclick="closeModals()" aria-label="Close modal">✕</button>
+  </div>
+  <div class="modal-body">
+    <!-- Live Status Summary -->
+    <div class="uart-status-box" id="uartStatusBox">
+      <div class="status-box-header">
+        <span class="status-box-title">Hardware Link Status</span>
+        <span class="status-badge offline" id="uartModalStatusBadge">DISCONNECTED</span>
+      </div>
+      <div class="status-box-grid">
+        <div><span class="box-label">Active Port:</span> <span class="box-val" id="uartModalPortVal">—</span></div>
+        <div><span class="box-label">Baud Rate:</span> <span class="box-val" id="uartModalBaudVal">—</span></div>
+        <div><span class="box-label">Tx Packets:</span> <span class="box-val" id="uartModalTxVal">0</span></div>
+        <div><span class="box-label">Rx Packets:</span> <span class="box-val" id="uartModalRxVal">0</span></div>
+      </div>
+    </div>
+
+    <!-- COM Port Selector -->
+    <div class="form-group">
+      <div class="label-with-action">
+        <label for="uartPortSelect" class="form-label">Available COM Port</label>
+        <button type="button" class="btn-inline-action" onclick="refreshUartPorts()">🔄 Scan Ports</button>
+      </div>
+      <select id="uartPortSelect" class="form-select" onchange="onUartPortChange()">
+        <option value="">Scanning COM ports...</option>
+      </select>
+    </div>
+
+    <!-- Manual Port input -->
+    <div class="form-group">
+      <label for="uartManualPort" class="form-label">Manual Port Override</label>
+      <input type="text" id="uartManualPort" class="form-input" placeholder="e.g. COM4, COM7, /dev/ttyUSB0, SIMULATED" />
+      <span class="form-hint">Enter custom COM port or use 'SIMULATED' for software testing</span>
+    </div>
+
+    <!-- Baud Rate Selector -->
+    <div class="form-group">
+      <label for="uartBaudSelect" class="form-label">Baud Rate</label>
+      <select id="uartBaudSelect" class="form-select">
+        <option value="115200" selected>115200 bps (Standard MasterHub / PC Agent)</option>
+        <option value="57600">57600 bps</option>
+        <option value="38400">38400 bps</option>
+        <option value="19200">19200 bps</option>
+        <option value="9600">9600 bps</option>
+        <option value="230400">230400 bps</option>
+      </select>
+    </div>
+
+    <div class="modal-feedback" id="uartModalFeedback"></div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn-modal-secondary" onclick="closeModals()">Close</button>
+    <button type="button" class="btn-modal-danger" id="btnUartDisconnect" onclick="handleUartDisconnect()" disabled>Disconnect</button>
+    <button type="button" class="btn-modal-primary" id="btnUartConnect" onclick="handleUartConnect()">Connect UART</button>
+  </div>
+</div>
+
+<!-- BCI Gesture & Keyboard Cheat Sheet Modal -->
+<div class="modal-dialog modal-dialog-wide" id="cheatSheetModal" role="dialog" aria-modal="true" aria-labelledby="cheatSheetTitle" hidden>
+  <div class="modal-header">
+    <div class="modal-title" id="cheatSheetTitle">
+      <span class="modal-icon">📖</span> Neural Gestures &amp; Arrow Key Mappings
+    </div>
+    <button type="button" class="modal-close-btn" onclick="closeModals()" aria-label="Close modal">✕</button>
+  </div>
+  <div class="modal-body">
+    <p class="modal-intro">MasterHub maps 4 primary mental commands and manual arrow keys across all workflow phases:</p>
+    
+    <div class="cheatsheet-grid">
+      <div class="cheat-card">
+        <div class="cheat-header">
+          <span class="cheat-gesture">🧠 PUSH</span>
+          <span class="cheat-key"><kbd>↑ Up</kbd></span>
+        </div>
+        <div class="cheat-desc">Select domain · Confirm device · Move forward / accelerate</div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-header">
+          <span class="cheat-gesture">🧠 PULL</span>
+          <span class="cheat-key"><kbd>↓ Down</kbd></span>
+        </div>
+        <div class="cheat-desc">Step back one phase · Reverse mobility · Turn power off</div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-header">
+          <span class="cheat-gesture">🧠 LEFT</span>
+          <span class="cheat-key"><kbd>← Left</kbd></span>
+        </div>
+        <div class="cheat-desc">Previous item · Steer left · Volume down / prev track</div>
+      </div>
+
+      <div class="cheat-card">
+        <div class="cheat-header">
+          <span class="cheat-gesture">🧠 RIGHT</span>
+          <span class="cheat-key"><kbd>→ Right</kbd></span>
+        </div>
+        <div class="cheat-desc">Next item · Steer right · Volume up / next track</div>
+      </div>
+    </div>
+
+    <div class="cheat-combos-box">
+      <div class="combos-title">⚡ Ordered Multi-Step Combinations (Relax to Neutral Between Commands):</div>
+      <div class="combos-list">
+        <div><code>Left ➔ Right (← + →)</code> : Stop Action (Robot Car &amp; Wheelchair)</div>
+        <div><code>Pull ➔ Left (↓ + ←)</code> : Left 360 Spin (Robot Car &amp; Wheelchair)</div>
+        <div><code>Pull ➔ Right (↓ + →)</code> : Right 360 Spin (Robot Car &amp; Wheelchair)</div>
+        <div><code>Push ➔ Right (↑ + →)</code> : Instant Back to Previous Phase</div>
+        <div><code>Push ➔ Left (↑ + ←)</code> : Instant Return to Main Menu / Domain Selection</div>
+        <div><code>Right ➔ Push (→ + ↑)</code> : Media Volume Up</div>
+        <div><code>Right ➔ Pull (→ + ↓)</code> : Media Volume Down</div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn-modal-secondary" onclick="closeModals()">Close</button>
+  </div>
+</div>
+
+<!-- MasterHub User Guide Modal -->
+<div class="modal-dialog modal-dialog-wide modal-dialog-tall" id="userGuideModal" role="dialog" aria-modal="true" aria-labelledby="userGuideTitle" hidden>
+  <div class="modal-header">
+    <div class="modal-title" id="userGuideTitle">
+      <span class="modal-icon">📘</span> MasterHub User Guide &amp; Architecture
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="/docs/guide" target="_blank" rel="noopener noreferrer" class="btn-inline-action" style="text-decoration:none;">📄 View Raw .MD</a>
+      <button type="button" class="modal-close-btn" onclick="closeModals()" aria-label="Close modal">✕</button>
+    </div>
+  </div>
+  <div class="modal-body" style="max-height:65vh;overflow-y:auto;">
+    <div class="guide-content-box" id="guideContentBox">
+      <h3>1. System Overview</h3>
+      <p>MasterHub is an intelligent routing hub connecting EMOTIV Cortex BCI Headsets, IoT Smart Relays, PC Desktop Automation Agents, and Robotics mobility platforms into an integrated state-machine architecture.</p>
+      
+      <h3>2. Quick Start Steps</h3>
+      <ol style="margin-left:20px;line-height:1.8;">
+        <li><strong>Open EMOTIV Launcher:</strong> Ensure EmotivBCI / Cortex service is running on your machine.</li>
+        <li><strong>Connect Headset:</strong> Open the BCI Headset drawer from the sidebar or click the header <code>[BCI]</code> pill.</li>
+        <li><strong>Load Trained Profile:</strong> Select your trained profile to begin streaming live EEG mental commands.</li>
+        <li><strong>Enable Control Mode:</strong> Click "Enable Control" in the Neural HUD or drawer to route actions.</li>
+      </ol>
+
+      <h3>3. Supported Domains</h3>
+      <ul style="margin-left:20px;line-height:1.8;">
+        <li><strong>🏠 IoT Smart Home:</strong> Relays, Lights, Fans, Temperature &amp; Environmental telemetry.</li>
+        <li><strong>💻 PC Agent:</strong> Chrome browsing, Gmail composing, Notepad, Media controls via <code>agent_H</code>.</li>
+        <li><strong>🤖 Embedded Robotics:</strong> 4WD Smart Car, Wheelchair mobility commands over MQTT &amp; UART.</li>
+        <li><strong>🧠 AI / ML Pipeline:</strong> Vision, Speech, and Neural Gesture routing.</li>
+      </ul>
+
+      <h3>4. Safety &amp; Temporal Windows</h3>
+      <p>MasterHub uses temporal countdown windows (2s, 4s, 8s) to prevent accidental firing. For headset commands, Stop Control cancels the pending frame. Neutral readies the next gesture and stops motion; it does not cancel a navigation combination.</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="/docs/user-guide.md" download="MasterHub_User_Guide.md" class="btn-modal-secondary" style="text-decoration:none;">💾 Download .MD File</a>
+    <button type="button" class="btn-modal-primary" onclick="closeModals()">Done Reading</button>
+  </div>
+</div>
+
+<script src="/static/masterhub.js"></script>
+<script src="/static/bci-panel.js"></script>
+<script src="/static/jiosaavn-mobile.js"></script>
+</body>
+</html>

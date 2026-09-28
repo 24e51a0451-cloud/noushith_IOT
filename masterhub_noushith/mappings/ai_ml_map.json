@@ -1,0 +1,43 @@
+{
+  "_comment": "Maps AI/ML action identifiers to their media-control payload definitions.",
+  "play": {
+    "kind": "media_key",
+    "key": "playpause"
+  },
+  "pause": {
+    "kind": "media_key",
+    "key": "playpause"
+  },
+  "next_track": {
+    "kind": "media_key",
+    "key": "nexttrack"
+  },
+  "previous_track": {
+    "kind": "media_key",
+    "key": "prevtrack"
+  },
+  "volume_up": {
+    "kind": "media_key",
+    "key": "volumeup"
+  },
+  "volume_down": {
+    "kind": "media_key",
+    "key": "volumedown"
+  },
+  "album_search": {
+    "kind": "stub",
+    "provider": "music_api"
+  },
+  "mute": {
+    "kind": "media_key",
+    "key": "volumemute"
+  },
+  "open_jiosaavn": {
+    "kind": "jiosaavn",
+    "app": "jiosaavn"
+  },
+  "search_jiosaavn": {
+    "kind": "jiosaavn",
+    "app": "jiosaavn"
+  }
+}

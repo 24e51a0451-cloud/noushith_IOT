@@ -1,0 +1,8 @@
+# MasterHub Automated Gesture Validation — dependencies
+#
+# requests supports the live API harness. pytest runs the offline regression
+# suites; coverage produces the Python XML report consumed by SonarQube.
+
+requests>=2.31.0
+pytest>=8.0
+coverage>=7.0

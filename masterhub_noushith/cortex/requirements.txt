@@ -1,0 +1,10 @@
+# Cortex module dependencies
+#
+# websocket-client: JSON-RPC-over-WebSocket connection to the local
+#   Cortex service (wss://localhost:6868).
+# Flask: only needed if you choose to register the optional
+#   dashboard.py blueprint. MasterHub's own requirements.txt already
+#   pins Flask, so this is almost certainly already installed.
+
+websocket-client>=1.7.0
+Flask>=3.0.3

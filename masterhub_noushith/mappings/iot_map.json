@@ -1,0 +1,31 @@
+{
+  "_comment": "Maps IoT action identifiers to the exact 'command' string the ESP32 Unified Firmware expects (case-insensitive in parseEmotivCommand and executeCommand).",
+
+  "left_light_on": "Left_light_on",
+  "left_light_off": "Left_light_off",
+  "right_light_on": "Right_light_on",
+  "right_light_off": "Right_light_off",
+  "light_on": "light_on",
+  "light_off": "light_off",
+
+  "left_fan_on": "Left_fan_on",
+  "left_fan_off": "Left_fan_off",
+  "right_fan_on": "Right_fan_on",
+  "right_fan_off": "Right_fan_off",
+  "fan_on": "fan_on",
+  "fan_off": "fan_off",
+
+  "left_pump_on": "Left_pump_on",
+  "left_pump_off": "Left_pump_off",
+  "pump_on": "pump_on",
+  "pump_off": "pump_off",
+
+  "all_on": "all_on",
+  "all_off": "all_off",
+
+  "ota_update": "OTA_UPDATE",
+  "self_test": "TEST",
+  "polarity_low": "POLARITY:LOW",
+  "polarity_high": "POLARITY:HIGH",
+  "iot_ping": "PING"
+}

@@ -1,0 +1,395 @@
+{"kind":"deck","id":"pr/kqj29v","name":"Deck"}
+{"kind":"layout","layoutId":"a01d7589-4099-436a-9ec1-928db4d04a58","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"b2950dd2-4789-4a0a-af50-17b078fad7b5","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/unf9pd","slide":1,"title":"HYDERABAD INSTITUTE OF TECHNOLOGY","textShapes":8}
+{"kind":"shape","id":"sh/sj6tsbi5","slide":1,"bbox":[48,48,864,620]}
+{"kind":"shape","id":"sh/rixsjqh0","slide":1,"bbox":[62,62,836,592]}
+{"kind":"textbox","id":"sh/qhorql0f","slide":1,"text":"HYDERABAD INSTITUTE OF TECHNOLOGY\nAND MANAGEMENT","textPreview":"HYDERABAD INSTITUTE OF TECHNOLOGY | AND MANAGEMENT","textChars":48,"textLines":2,"bbox":[85,70,430,54]}
+{"kind":"textbox","id":"sh/18zap0z2","slide":1,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[85,177,490,70]}
+{"kind":"textbox","id":"sh/076twvih","slide":1,"text":"BCI, IoT, Desktop and Mobility Control Platform","textPreview":"BCI, IoT, Desktop and Mobility Control Platform","textChars":47,"textLines":1,"bbox":[87,246,650,40]}
+{"kind":"textbox","id":"sh/fmxsnqhw","slide":1,"text":"IMPLEMENTATION REVIEW","textPreview":"IMPLEMENTATION REVIEW","textChars":21,"textLines":1,"bbox":[87,340,360,30]}
+{"kind":"textbox","id":"sh/elobul0b","slide":1,"text":"Current system architecture, dashboard and completed modules","textPreview":"Current system architecture, dashboard and completed modules","textChars":60,"textLines":1,"bbox":[87,378,610,52]}
+{"kind":"textbox","id":"sh/hcvadwzi","slide":1,"text":"NOUSHITH  |  2451A051","textPreview":"NOUSHITH  |  2451A051","textChars":21,"textLines":1,"bbox":[87,502,420,30]}
+{"kind":"textbox","id":"sh/gbm9krix","slide":1,"text":"Project status deck · September 2026","textPreview":"Project status deck · September 2026","textChars":36,"textLines":1,"bbox":[87,540,420,22]}
+{"kind":"textbox","id":"sh/edsva54b","slide":1,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[768,83,100,34]}
+{"kind":"notes","id":"nt/unf9pd","slide":1,"text":"Template style based on the user-supplied noushith_IOT_ppt.pptx. Project facts sourced from the current MasterHub repository and live dashboard."}
+{"kind":"slide","id":"sl/8czeiv","slide":2,"title":"LIST OF CONTENTS","textShapes":5}
+{"kind":"shape","id":"sh/fqlgv2ts","slide":2,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/greh47ad","slide":2,"text":"LIST OF CONTENTS","textPreview":"LIST OF CONTENTS","textChars":16,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/hsnyxcby","slide":2,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/61cfyxsb","slide":2,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/72lgr2tw","slide":2,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/s3ux07ah","slide":2,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/t43ytsb2","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/qxwzahsf","slide":2,"text":"Project scope and implementation status\nMasterHub architecture and command lifecycle\nFour control domains and supported targets\nEMOTIV Cortex BCI workflow\nMQTT, USB and remote-agent connectivity\nCurrent dashboard and observability\nSafety controls, validation and testing\nCurrent limitations and future work","textPreview":"Project scope and implementation status | MasterHub architecture and command lifecycle | Four control domains and supported targets | EMO...","textChars":306,"textLines":8,"bbox":[110,120,700,420]}
+{"kind":"notes","id":"nt/8czeiv","slide":2,"text":"Contents reflect the current repository implementation."}
+{"kind":"slide","id":"sl/a23v9v","slide":3,"title":"MASTERHUB PROJECT OVERVIEW","textShapes":13}
+{"kind":"shape","id":"sh/hs7yxcbe","slide":3,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/u5wzmxs3","slide":3,"text":"MASTERHUB PROJECT OVERVIEW","textPreview":"MASTERHUB PROJECT OVERVIEW","textChars":26,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/vq5gv2to","slide":3,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/4vyhsra5","slide":3,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/5w7y1wbq","slide":3,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/itgzqhsz","slide":3,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/3upgzmtk","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/szihwrah","slide":3,"text":"A single control layer translates manual input or EMOTIV mental commands into actions across software and physical devices.","textPreview":"A single control layer translates manual input or EMOTIV mental commands into actions across software and physical devices.","textChars":123,"textLines":1,"bbox":[90,95,780,58]}
+{"kind":"shape","id":"sh/d0ri5wrm","slide":3,"bbox":[80,190,380,155]}
+{"kind":"textbox","id":"sh/lgvih4bq","slide":3,"text":"INPUT","textPreview":"INPUT","textChars":5,"textLines":1,"bbox":[94,198,352,22]}
+{"kind":"textbox","id":"sh/kfm1ozu5","slide":3,"text":"Dashboard controls, arrow keys, HTTP requests, recorded predictions and live Cortex mental-command samples.","textPreview":"Dashboard controls, arrow keys, HTTP requests, recorded predictions and live Cortex mental-command samples.","textChars":107,"textLines":1,"bbox":[94,222,352,115]}
+{"kind":"shape","id":"sh/jed0futk","slide":3,"bbox":[500,190,380,155]}
+{"kind":"textbox","id":"sh/yd4jmpcz","slide":3,"text":"CONTROL CORE","textPreview":"CONTROL CORE","textChars":12,"textLines":1,"bbox":[514,198,352,22]}
+{"kind":"textbox","id":"sh/tkf2l4bm","slide":3,"text":"Input normalization, mode state, temporal framing, command validation and domain routing.","textPreview":"Input normalization, mode state, temporal framing, command validation and domain routing.","textChars":89,"textLines":1,"bbox":[514,222,352,115]}
+{"kind":"shape","id":"sh/8j61szu1","slide":3,"bbox":[80,380,380,155]}
+{"kind":"textbox","id":"sh/7ixkjetw","slide":3,"text":"OUTPUTS","textPreview":"OUTPUTS","textChars":7,"textLines":1,"bbox":[94,388,352,22]}
+{"kind":"textbox","id":"sh/6hojq9cb","slide":3,"text":"Desktop applications, smart-home nodes, robot car, wheelchair and media controls.","textPreview":"Desktop applications, smart-home nodes, robot car, wheelchair and media controls.","textChars":81,"textLines":1,"bbox":[94,412,352,115]}
+{"kind":"shape","id":"sh/9obi9kbi","slide":3,"bbox":[500,380,380,155]}
+{"kind":"textbox","id":"sh/on21gfux","slide":3,"text":"OPERATING MODEL","textPreview":"OPERATING MODEL","textChars":15,"textLines":1,"bbox":[514,388,352,22]}
+{"kind":"textbox","id":"sh/0jq9cj65","slide":3,"text":"Manual-only use works locally. Hardware, broker and headset services are connected only when needed.","textPreview":"Manual-only use works locally. Hardware, broker and headset services are connected only when needed.","textChars":100,"textLines":1,"bbox":[514,412,352,115]}
+{"kind":"notes","id":"nt/a23v9v","slide":3,"text":"Source: README.md and current project structure."}
+{"kind":"slide","id":"sl/4cmlxy","slide":4,"title":"IMPLEMENTATION PROGRESS","textShapes":23}
+{"kind":"shape","id":"sh/zehkv65s","slide":4,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/0fql4bmd","slide":4,"text":"IMPLEMENTATION PROGRESS","textPreview":"IMPLEMENTATION PROGRESS","textChars":23,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/1gz2xgny","slide":4,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/mh836l4j","slide":4,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/n21kzql4","slide":4,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/o3al8bmp","slide":4,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/94jm1g3a","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/a5s3al4f","slide":4,"text":"The project has evolved from a single IoT prototype into a modular control hub.","textPreview":"The project has evolved from a single IoT prototype into a modular control hub.","textChars":79,"textLines":1,"bbox":[84,92,790,42]}
+{"kind":"textbox","id":"sh/b6143ql0","slide":4,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[95,150,48,42]}
+{"kind":"textbox","id":"sh/nix03m1o","slide":4,"text":"IoT prototype","textPreview":"IoT prototype","textChars":13,"textLines":1,"bbox":[155,150,220,28]}
+{"kind":"textbox","id":"sh/2xozahk3","slide":4,"text":"ESP32 relay actions, sensor telemetry and MQTT command delivery","textPreview":"ESP32 relay actions, sensor telemetry and MQTT command delivery","textChars":63,"textLines":1,"bbox":[375,150,485,42]}
+{"kind":"shape","id":"sh/pkfi5wje","slide":4,"bbox":[115,195,2,29]}
+{"kind":"textbox","id":"sh/oj6hcr2t","slide":4,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[95,224,48,42]}
+{"kind":"textbox","id":"sh/fux0zm1c","slide":4,"text":"Unified routing","textPreview":"Unified routing","textChars":15,"textLines":1,"bbox":[155,224,220,28]}
+{"kind":"textbox","id":"sh/et4z6hkr","slide":4,"text":"JSON mappings, validation, FSM modes and reusable domain handlers","textPreview":"JSON mappings, validation, FSM modes and reusable domain handlers","textChars":65,"textLines":1,"bbox":[375,224,485,42]}
+{"kind":"shape","id":"sh/1wfi1cji","slide":4,"bbox":[115,269,2,29]}
+{"kind":"textbox","id":"sh/0v6h872x","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[95,298,48,42]}
+{"kind":"textbox","id":"sh/zqh0b61w","slide":4,"text":"Desktop and media","textPreview":"Desktop and media","textChars":17,"textLines":1,"bbox":[155,298,220,28]}
+{"kind":"textbox","id":"sh/yp8ji1kb","slide":4,"text":"Chrome, YouTube, Notepad, Gmail and JioSaavn workflows","textPreview":"Chrome, YouTube, Notepad, Gmail and JioSaavn workflows","textChars":54,"textLines":1,"bbox":[375,298,485,42]}
+{"kind":"shape","id":"sh/ulc3a54j","slide":4,"bbox":[115,343,2,29]}
+{"kind":"textbox","id":"sh/vmlk3al4","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[95,372,48,42]}
+{"kind":"textbox","id":"sh/w7ulcfm9","slide":4,"text":"Mobility","textPreview":"Mobility","textChars":8,"textLines":1,"bbox":[155,372,220,28]}
+{"kind":"textbox","id":"sh/h8325k3u","slide":4,"text":"Robot car and wheelchair commands through configurable MQTT topics","textPreview":"Robot car and wheelchair commands through configurable MQTT topics","textChars":66,"textLines":1,"bbox":[375,372,485,42]}
+{"kind":"shape","id":"sh/i9c3ep4f","slide":4,"bbox":[115,417,2,29]}
+{"kind":"textbox","id":"sh/3alk7ul0","slide":4,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[95,446,48,42]}
+{"kind":"textbox","id":"sh/4bulgfml","slide":4,"text":"BCI integration","textPreview":"BCI integration","textChars":15,"textLines":1,"bbox":[155,446,220,28]}
+{"kind":"textbox","id":"sh/5cnm9k36","slide":4,"text":"Cortex authentication, profile loading, live mental stream and temporal framing","textPreview":"Cortex authentication, profile loading, live mental stream and temporal framing","textChars":79,"textLines":1,"bbox":[375,446,485,42]}
+{"kind":"shape","id":"sh/ydsj2l4b","slide":4,"bbox":[115,491,2,29]}
+{"kind":"textbox","id":"sh/ze1kvqlw","slide":4,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[95,520,48,42]}
+{"kind":"textbox","id":"sh/1krexsra","slide":4,"text":"Operational dashboard","textPreview":"Operational dashboard","textChars":21,"textLines":1,"bbox":[155,520,220,28]}
+{"kind":"textbox","id":"sh/0jixona5","slide":4,"text":"Live status, metrics, activity records, device setup and telemetry export","textPreview":"Live status, metrics, activity records, device setup and telemetry export","textChars":73,"textLines":1,"bbox":[375,520,485,42]}
+{"kind":"notes","id":"nt/4cmlxy","slide":4,"text":"Implementation sequence summarized from repository history reflected in current modules and documentation."}
+{"kind":"slide","id":"sl/o0qd7y","slide":5,"title":"SYSTEM ARCHITECTURE","textShapes":5}
+{"kind":"shape","id":"sh/43edcfy5","slide":5,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/325c3ahk","slide":5,"text":"SYSTEM ARCHITECTURE","textPreview":"SYSTEM ARCHITECTURE","textChars":19,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/21wva50z","slide":5,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/h03u10zu","slide":5,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/gzut8vi9","slide":5,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/fylczqho","slide":5,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/uxcb6503","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/0vydkzyd","slide":5,"text":"Inputs enter one stateful routing core, then dispatch through domain-specific handlers and transport services.","textPreview":"Inputs enter one stateful routing core, then dispatch through domain-specific handlers and transport services.","textChars":110,"textLines":1,"bbox":[95,608,770,38]}
+{"kind":"image","id":"im/gvedc72d","slide":5,"name":"","geometry":"roundRect","alt":"MasterHub architecture flowchart","bbox":[80,105,800,490]}
+{"kind":"notes","id":"nt/o0qd7y","slide":5,"text":"Visual source: docs/diagrams/arch_flowchart.png."}
+{"kind":"slide","id":"sl/p639v3","slide":6,"title":"COMMAND LIFECYCLE","textShapes":28}
+{"kind":"shape","id":"sh/14j6pw36","slide":6,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/e1snuh4f","slide":6,"text":"COMMAND LIFECYCLE","textPreview":"COMMAND LIFECYCLE","textChars":17,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/f21onml0","slide":6,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/sza5s7m9","slide":6,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/d0j6lc3u","slide":6,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/qx8nqh4j","slide":6,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/ry14j2lo","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/cvu54bmt","slide":6,"bbox":[63,190,105,150]}
+{"kind":"shape","id":"sh/xw36xg3y","slide":6,"bbox":[97,204,38,38]}
+{"kind":"textbox","id":"sh/x0ve5o3i","slide":6,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[98,205,35,35]}
+{"kind":"textbox","id":"sh/wzmdcj2d","slide":6,"text":"Capture","textPreview":"Capture","textChars":7,"textLines":1,"bbox":[71,253,89,28]}
+{"kind":"textbox","id":"sh/vydw3yls","slide":6,"text":"Manual, API or Cortex input","textPreview":"Manual, API or Cortex input","textChars":27,"textLines":1,"bbox":[73,292,85,44]}
+{"kind":"shape","id":"sh/ax4vatk7","slide":6,"bbox":[188,190,105,150]}
+{"kind":"shape","id":"sh/9wve1o3m","slide":6,"bbox":[222,204,38,38]}
+{"kind":"textbox","id":"sh/8v2d8j21","slide":6,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[223,205,35,35]}
+{"kind":"textbox","id":"sh/nutwzelg","slide":6,"text":"Normalize","textPreview":"Normalize","textChars":9,"textLines":1,"bbox":[196,253,89,28]}
+{"kind":"textbox","id":"sh/mtkv69kv","slide":6,"text":"Gesture and command vocabulary","textPreview":"Gesture and command vocabulary","textChars":30,"textLines":1,"bbox":[198,292,85,44]}
+{"kind":"shape","id":"sh/tsfed83q","slide":6,"bbox":[313,190,105,150]}
+{"kind":"shape","id":"sh/sr6xkn25","slide":6,"bbox":[347,204,38,38]}
+{"kind":"textbox","id":"sh/c7ypwbet","slide":6,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[348,205,35,35]}
+{"kind":"textbox","id":"sh/d87q5gfe","slide":6,"text":"Frame","textPreview":"Frame","textChars":5,"textLines":1,"bbox":[321,253,89,28]}
+{"kind":"textbox","id":"sh/q5g7ulwn","slide":6,"text":"Single or paired gesture window","textPreview":"Single or paired gesture window","textChars":31,"textLines":1,"bbox":[323,292,85,44]}
+{"kind":"shape","id":"sh/b6p836x8","slide":6,"bbox":[438,190,105,150]}
+{"kind":"shape","id":"sh/o3epsbeh","slide":6,"bbox":[472,204,38,38]}
+{"kind":"textbox","id":"sh/p4nq1gf2","slide":6,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[473,205,35,35]}
+{"kind":"textbox","id":"sh/2hw7q1wr","slide":6,"text":"Resolve","textPreview":"Resolve","textChars":7,"textLines":1,"bbox":[446,253,89,28]}
+{"kind":"textbox","id":"sh/3i5oz6xc","slide":6,"text":"Mode-specific command mapping","textPreview":"Mode-specific command mapping","textChars":29,"textLines":1,"bbox":[448,292,85,44]}
+{"kind":"shape","id":"sh/gfeporel","slide":6,"bbox":[563,190,105,150]}
+{"kind":"shape","id":"sh/1gn6xwf6","slide":6,"bbox":[597,204,38,38]}
+{"kind":"textbox","id":"sh/jal87mhs","slide":6,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[598,205,35,35]}
+{"kind":"textbox","id":"sh/i9c7ehgn","slide":6,"text":"Validate","textPreview":"Validate","textChars":8,"textLines":1,"bbox":[571,253,89,28]}
+{"kind":"textbox","id":"sh/5c3q9wzy","slide":6,"text":"Allowed command and required inputs","textPreview":"Allowed command and required inputs","textChars":35,"textLines":1,"bbox":[573,292,85,44]}
+{"kind":"shape","id":"sh/4bu9gryd","slide":6,"bbox":[688,190,105,150]}
+{"kind":"shape","id":"sh/re58b6h4","slide":6,"bbox":[722,204,38,38]}
+{"kind":"textbox","id":"sh/6dcri1gj","slide":6,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[723,205,35,35]}
+{"kind":"textbox","id":"sh/tgnqdgza","slide":6,"text":"Dispatch","textPreview":"Dispatch","textChars":8,"textLines":1,"bbox":[696,253,89,28]}
+{"kind":"textbox","id":"sh/sfe9kbyp","slide":6,"text":"Desktop, MQTT, USB or media handler","textPreview":"Desktop, MQTT, USB or media handler","textChars":35,"textLines":1,"bbox":[698,292,85,44]}
+{"kind":"shape","id":"sh/f258f6h0","slide":6,"bbox":[813,190,105,150]}
+{"kind":"shape","id":"sh/e1wrm1gf","slide":6,"bbox":[847,204,38,38]}
+{"kind":"textbox","id":"sh/el4bipor","slide":6,"text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[848,205,35,35]}
+{"kind":"textbox","id":"sh/zmdsbupc","slide":6,"text":"Observe","textPreview":"Observe","textChars":7,"textLines":1,"bbox":[821,253,89,28]}
+{"kind":"textbox","id":"sh/0nmtkf6x","slide":6,"text":"Result, latency and activity record","textPreview":"Result, latency and activity record","textChars":35,"textLines":1,"bbox":[823,292,85,44]}
+{"kind":"textbox","id":"sh/18vadk7i","slide":6,"text":"Mode state changes the meaning of the same gesture. Push selects Desktop at the main menu, then selects a desktop application, then triggers an application command.","textPreview":"Mode state changes the meaning of the same gesture. Push selects Desktop at the main menu, then selects a desktop application, then trigg...","textChars":164,"textLines":1,"bbox":[95,410,770,90]}
+{"kind":"shape","id":"sh/m9obmpo3","slide":6,"bbox":[140,530,680,90]}
+{"kind":"textbox","id":"sh/naxsfup8","slide":6,"text":"TEMPORAL BEHAVIOR","textPreview":"TEMPORAL BEHAVIOR","textChars":17,"textLines":1,"bbox":[154,538,652,22]}
+{"kind":"textbox","id":"sh/ob6toz6t","slide":6,"text":"Dashboard actions show a countdown and support Cancel or Execute Now. Live BCI keeps the original deadline even when a second gesture arrives.","textPreview":"Dashboard actions show a countdown and support Cancel or Execute Now. Live BCI keeps the original deadline even when a second gesture arr...","textChars":142,"textLines":1,"bbox":[154,562,652,50]}
+{"kind":"notes","id":"nt/p639v3","slide":6,"text":"Sources: core/input_processor.py, core/engine.py, core/router.py, static/masterhub.js and cortex/control.py."}
+{"kind":"slide","id":"sl/11f8do","slide":7,"title":"FOUR CONTROL DOMAINS","textShapes":16}
+{"kind":"shape","id":"sh/9sr6dgjm","slide":7,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/mpgn2lkv","slide":7,"text":"FOUR CONTROL DOMAINS","textPreview":"FOUR CONTROL DOMAINS","textChars":20,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/nqpob61g","slide":7,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/0ny50b2p","slide":7,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/1o769g3a","slide":7,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/e1gny1kz","slide":7,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/zmp476lk","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/cze5wr2t","slide":7,"bbox":[75,150,365,170]}
+{"kind":"textbox","id":"sh/d07m5w3e","slide":7,"text":"PUSH","textPreview":"PUSH","textChars":4,"textLines":1,"bbox":[93,168,80,30]}
+{"kind":"shape","id":"sh/hkbitwza","slide":7,"bbox":[90,165,86,36]}
+{"kind":"textbox","id":"sh/gj21kryp","slide":7,"text":"PYTHON / DESKTOP","textPreview":"PYTHON / DESKTOP","textChars":16,"textLines":1,"bbox":[95,215,325,30]}
+{"kind":"textbox","id":"sh/vit0rmhk","slide":7,"text":"Chrome, YouTube, Notepad and Gmail workflows","textPreview":"Chrome, YouTube, Notepad and Gmail workflows","textChars":44,"textLines":1,"bbox":[95,255,325,46]}
+{"kind":"shape","id":"sh/uhkzihgz","slide":7,"bbox":[495,150,365,170]}
+{"kind":"textbox","id":"sh/9gbipcze","slide":7,"text":"PULL","textPreview":"PULL","textChars":4,"textLines":1,"bbox":[513,168,80,30]}
+{"kind":"shape","id":"sh/8fihg7yt","slide":7,"bbox":[510,165,86,36]}
+{"kind":"textbox","id":"sh/7e90n2h8","slide":7,"text":"EMBEDDED MOBILITY","textPreview":"EMBEDDED MOBILITY","textChars":17,"textLines":1,"bbox":[515,215,325,30]}
+{"kind":"textbox","id":"sh/md0zeh0n","slide":7,"text":"Robot car and wheelchair control","textPreview":"Robot car and wheelchair control","textChars":32,"textLines":1,"bbox":[515,255,325,46]}
+{"kind":"shape","id":"sh/lcrilcz2","slide":7,"bbox":[75,370,365,170]}
+{"kind":"textbox","id":"sh/kbihc7ih","slide":7,"text":"LEFT","textPreview":"LEFT","textChars":4,"textLines":1,"bbox":[93,388,80,30]}
+{"kind":"shape","id":"sh/cvm187qd","slide":7,"bbox":[90,385,86,36]}
+{"kind":"textbox","id":"sh/dwvi1c7y","slide":7,"text":"IoT SMART HOME","textPreview":"IoT SMART HOME","textChars":14,"textLines":1,"bbox":[95,435,325,30]}
+{"kind":"textbox","id":"sh/qtkj6x8n","slide":7,"text":"Light, fan and pump actions","textPreview":"Light, fan and pump actions","textChars":27,"textLines":1,"bbox":[95,475,325,46]}
+{"kind":"shape","id":"sh/bud0z2p8","slide":7,"bbox":[495,370,365,170]}
+{"kind":"textbox","id":"sh/or2h4nqh","slide":7,"text":"RIGHT","textPreview":"RIGHT","textChars":5,"textLines":1,"bbox":[513,388,80,30]}
+{"kind":"shape","id":"sh/psbixs72","slide":7,"bbox":[510,385,86,36]}
+{"kind":"textbox","id":"sh/2pkz2x8b","slide":7,"text":"AI/ML & MEDIA","textPreview":"AI/ML & MEDIA","textChars":13,"textLines":1,"bbox":[515,435,325,30]}
+{"kind":"textbox","id":"sh/3qt0v2pw","slide":7,"text":"JioSaavn playback and audio control","textPreview":"JioSaavn playback and audio control","textChars":35,"textLines":1,"bbox":[515,475,325,46]}
+{"kind":"notes","id":"nt/11f8do","slide":7,"text":"Source: README.md, mappings/mode_map.json and dashboard domain cards."}
+{"kind":"slide","id":"sl/ve1t8z","slide":8,"title":"IMPLEMENTED DOMAIN CAPABILITIES","textShapes":13}
+{"kind":"shape","id":"sh/s3yx4fi5","slide":8,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/r2pgvahk","slide":8,"text":"IMPLEMENTED DOMAIN CAPABILITIES","textPreview":"IMPLEMENTED DOMAIN CAPABILITIES","textChars":31,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/61gf250z","slide":8,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/18ry1kzm","slide":8,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/g7yx8fih","slide":8,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/f6pgzahw","slide":8,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/e5gf650b","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/hcne50ji","slide":8,"bbox":[70,115,400,215]}
+{"kind":"textbox","id":"sh/wbexwvix","slide":8,"text":"DESKTOP","textPreview":"DESKTOP","textChars":7,"textLines":1,"bbox":[84,123,372,22]}
+{"kind":"textbox","id":"sh/alwvetob","slide":8,"text":"Application-specific handlers open and control Chrome, YouTube, Notepad and Gmail. Local Host runs on the MasterHub PC. Remote targets require a compatible agent.","textPreview":"Application-specific handlers open and control Chrome, YouTube, Notepad and Gmail. Local Host runs on the MasterHub PC. Remote targets re...","textChars":162,"textLines":1,"bbox":[84,147,372,175]}
+{"kind":"shape","id":"sh/bm5cnypw","slide":8,"bbox":[490,115,400,215]}
+{"kind":"textbox","id":"sh/cnydg36h","slide":8,"text":"IOT AND MOBILITY","textPreview":"IOT AND MOBILITY","textChars":16,"textLines":1,"bbox":[504,123,372,22]}
+{"kind":"textbox","id":"sh/xo7up872","slide":8,"text":"MQTT publishes smart-home payloads and configurable robot or wheelchair commands. Status and acknowledgements provide separate readiness signals.","textPreview":"MQTT publishes smart-home payloads and configurable robot or wheelchair commands. Status and acknowledgements provide separate readiness ...","textChars":145,"textLines":1,"bbox":[504,147,372,175]}
+{"kind":"shape","id":"sh/y9gvidon","slide":8,"bbox":[70,365,400,190]}
+{"kind":"textbox","id":"sh/zapcrip8","slide":8,"text":"MEDIA","textPreview":"MEDIA","textChars":5,"textLines":1,"bbox":[84,373,372,22]}
+{"kind":"textbox","id":"sh/kbydkn6t","slide":8,"text":"Desktop and mobile JioSaavn paths expose playback, search and audio controls. The mobile path reports phone presence and now-playing state.","textPreview":"Desktop and mobile JioSaavn paths expose playback, search and audio controls. The mobile path reports phone presence and now-playing state.","textChars":139,"textLines":1,"bbox":[84,397,372,150]}
+{"kind":"shape","id":"sh/lc7et8ny","slide":8,"bbox":[490,365,400,190]}
+{"kind":"textbox","id":"sh/mdgvmdoj","slide":8,"text":"MAPPINGS","textPreview":"MAPPINGS","textChars":8,"textLines":1,"bbox":[504,373,372,22]}
+{"kind":"textbox","id":"sh/7e9wvi54","slide":8,"text":"JSON files define modes, gestures, workflows and command routes. This keeps navigation and action vocabulary separate from transport code.","textPreview":"JSON files define modes, gestures, workflows and command routes. This keeps navigation and action vocabulary separate from transport code.","textChars":138,"textLines":1,"bbox":[504,397,372,150]}
+{"kind":"textbox","id":"sh/ji9cjilc","slide":8,"text":"Current startup report: 17 modes · 98 command routes · 23 IoT action payloads","textPreview":"Current startup report: 17 modes · 98 command routes · 23 IoT action payloads","textChars":77,"textLines":1,"bbox":[135,600,690,30]}
+{"kind":"notes","id":"nt/ve1t8z","slide":8,"text":"Runtime counts observed when the current Flask application started for this deck."}
+{"kind":"slide","id":"sl/quti5l","slide":9,"title":"EMOTIV CORTEX BCI IMPLEMENTATION","textShapes":7}
+{"kind":"shape","id":"sh/ilwz2t4b","slide":9,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/5onid8n2","slide":9,"text":"EMOTIV CORTEX BCI IMPLEMENTATION","textPreview":"EMOTIV CORTEX BCI IMPLEMENTATION","textChars":32,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/kneh43mh","slide":9,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/7ap0fy58","slide":9,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/69gz6d4n","slide":9,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/tc7ih8ny","slide":9,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/sbyh83mt","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/mdczu94j","slide":9,"text":"Local WebSocket connection to the Cortex service\nCredential storage, access authorization and session creation\nHeadset discovery and trained profile loading\nLive com stream with action and detector power\nMonitor mode before explicit control enablement\nNeutral rearm and duplicate suppression\nSingle or paired gestures resolved in the current FSM mode","textPreview":"Local WebSocket connection to the Cortex service | Credential storage, access authorization and session creation | Headset discovery and ...","textChars":350,"textLines":7,"bbox":[82,125,330,400]}
+{"kind":"textbox","id":"sh/w7ipwvy1","slide":9,"text":"Default minimum detector power: 0.20","textPreview":"Default minimum detector power: 0.20","textChars":36,"textLines":1,"bbox":[90,560,330,30]}
+{"kind":"textbox","id":"sh/h8r6p0fm","slide":9,"text":"Default temporal window: 4 seconds","textPreview":"Default temporal window: 4 seconds","textChars":34,"textLines":1,"bbox":[90,596,330,30]}
+{"kind":"image","id":"im/mdcjm5w3","slide":9,"name":"","geometry":"roundRect","alt":"Current MasterHub Cortex BCI drawer","bbox":[445,102,430,455]}
+{"kind":"notes","id":"nt/quti5l","slide":9,"text":"Sources: cortex/service.py, cortex/control.py, templates/bci_panel.html and live dashboard screenshot."}
+{"kind":"slide","id":"sl/vl1c0g","slide":10,"title":"BCI TEMPORAL FRAMING AND SAFETY","textShapes":8}
+{"kind":"shape","id":"sh/72dgjyhw","slide":10,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/s3mxc3yh","slide":10,"text":"BCI TEMPORAL FRAMING AND SAFETY","textPreview":"BCI TEMPORAL FRAMING AND SAFETY","textChars":31,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/t4vyl8f2","slide":10,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/u54fedgn","slide":10,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/f6xgnix8","slide":10,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/g76xg3yd","slide":10,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/h8fyp8fy","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/vatwbeho","slide":10,"bbox":[80,470,380,130]}
+{"kind":"textbox","id":"sh/veporq5k","slide":10,"text":"FRAME START","textPreview":"FRAME START","textChars":11,"textLines":1,"bbox":[94,478,352,22]}
+{"kind":"textbox","id":"sh/udgniloz","slide":10,"text":"A qualifying active mental command starts one timing window. Repeated packets of the held gesture do not create repeated commands.","textPreview":"A qualifying active mental command starts one timing window. Repeated packets of the held gesture do not create repeated commands.","textChars":130,"textLines":1,"bbox":[94,502,352,90]}
+{"kind":"shape","id":"sh/hg76t0nq","slide":10,"bbox":[500,470,380,130]}
+{"kind":"textbox","id":"sh/wfypkv65","slide":10,"text":"RESOLUTION","textPreview":"RESOLUTION","textChars":10,"textLines":1,"bbox":[514,478,352,22]}
+{"kind":"textbox","id":"sh/7aponq5o","slide":10,"text":"A mapped second gesture can form a pair. Live BCI waits until the original deadline, then validates the current direction before motion dispatch.","textPreview":"A mapped second gesture can form a pair. Live BCI waits until the original deadline, then validates the current direction before motion d...","textChars":145,"textLines":1,"bbox":[514,502,352,90]}
+{"kind":"image","id":"im/z2t0jah0","slide":10,"name":"","geometry":"roundRect","alt":"Scenario sequence diagram","bbox":[80,112,800,330]}
+{"kind":"notes","id":"nt/vl1c0g","slide":10,"text":"Sources: cortex/control.py, tests/test_cortex_control.py and docs/diagrams/scenario_sequence.png."}
+{"kind":"slide","id":"sl/0jc64g","slide":11,"title":"HARDWARE AND CONNECTIVITY LAYER","textShapes":13}
+{"kind":"shape","id":"sh/8b214n6h","slide":11,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/nat0vi5w","slide":11,"text":"HARDWARE AND CONNECTIVITY LAYER","textPreview":"HARDWARE AND CONNECTIVITY LAYER","textChars":31,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/m9kj2dor","slide":11,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/x0v21sne","slide":11,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/wz218n6t","slide":11,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/vytkzi58","slide":11,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/adkj6don","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/54v25sna","slide":11,"bbox":[70,115,390,160]}
+{"kind":"textbox","id":"sh/k3m1c7mp","slide":11,"text":"MQTT","textPreview":"MQTT","textChars":4,"textLines":1,"bbox":[84,123,362,22]}
+{"kind":"textbox","id":"sh/i10j2d4z","slide":11,"text":"Broker host and port can come from the environment or saved hardware settings. IoT and mobility topics remain independently configurable.","textPreview":"Broker host and port can come from the environment or saved hardware settings. IoT and mobility topics remain independently configurable.","textChars":137,"textLines":1,"bbox":[84,147,362,120]}
+{"kind":"shape","id":"sh/j29kvi54","slide":11,"bbox":[500,115,390,160]}
+{"kind":"textbox","id":"sh/43il43mp","slide":11,"text":"USB SERIAL","textPreview":"USB SERIAL","textChars":10,"textLines":1,"bbox":[514,123,362,22]}
+{"kind":"textbox","id":"sh/54r2x8na","slide":11,"text":"UART configuration discovers ports and uses a JSON-line envelope. The default baud rate is 115200 when pyserial is installed.","textPreview":"UART configuration discovers ports and uses a JSON-line envelope. The default baud rate is 115200 when pyserial is installed.","textChars":125,"textLines":1,"bbox":[514,147,362,120]}
+{"kind":"shape","id":"sh/65036d4v","slide":11,"bbox":[70,310,390,160]}
+{"kind":"textbox","id":"sh/r69kzi5g","slide":11,"text":"REMOTE PC AGENTS","textPreview":"REMOTE PC AGENTS","textChars":16,"textLines":1,"bbox":[84,318,362,22]}
+{"kind":"textbox","id":"sh/s72l8nm1","slide":11,"text":"The dashboard registers target IDs and transports, but each remote computer still requires its compatible agent and heartbeat.","textPreview":"The dashboard registers target IDs and transports, but each remote computer still requires its compatible agent and heartbeat.","textChars":126,"textLines":1,"bbox":[84,342,362,120]}
+{"kind":"shape","id":"sh/t8b21snm","slide":11,"bbox":[500,310,390,160]}
+{"kind":"textbox","id":"sh/m9gjut4r","slide":11,"text":"CORTEX BRIDGE","textPreview":"CORTEX BRIDGE","textChars":13,"textLines":1,"bbox":[514,318,362,22]}
+{"kind":"textbox","id":"sh/7apkny5c","slide":11,"text":"EMOTIV Launcher and the local Cortex service provide headset access, authorization, profile data and the live command stream.","textPreview":"EMOTIV Launcher and the local Cortex service provide headset access, authorization, profile data and the live command stream.","textChars":125,"textLines":1,"bbox":[514,342,362,120]}
+{"kind":"textbox","id":"sh/belgvul4","slide":11,"text":"Connection state is separated from device readiness. Broker online, device heartbeat and command acknowledgement are different signals.","textPreview":"Connection state is separated from device readiness. Broker online, device heartbeat and command acknowledgement are different signals.","textChars":135,"textLines":1,"bbox":[100,530,760,65]}
+{"kind":"notes","id":"nt/0jc64g","slide":11,"text":"Sources: services/mqtt_service.py, services/usb_service.py, services/hardware_config.py and README.md."}
+{"kind":"slide","id":"sl/zsla7m","slide":12,"title":"CURRENT MASTERHUB DASHBOARD","textShapes":5}
+{"kind":"shape","id":"sh/mpwn6lw3","slide":12,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/9s7610vu","slide":12,"text":"CURRENT MASTERHUB DASHBOARD","textPreview":"CURRENT MASTERHUB DASHBOARD","textChars":27,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/8ry58ve9","slide":12,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/vupo3adk","slide":12,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/atgna5wf","slide":12,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/xg765kvq","slide":12,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/wfypcfe5","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/qxcny1wv","slide":12,"text":"Live console showing connection state, BCI status, temporal observer and the four control domains.","textPreview":"Live console showing connection state, BCI status, temporal observer and the four control domains.","textChars":98,"textLines":1,"bbox":[95,625,770,28]}
+{"kind":"image","id":"im/yl83uxoz","slide":12,"name":"","geometry":"roundRect","alt":"Current MasterHub dashboard","bbox":[68,88,824,535]}
+{"kind":"notes","id":"nt/zsla7m","slide":12,"text":"Screenshot captured from the current local application at /dashboard on 26 September 2026. Offline hardware indicators reflect the capture environment, not missing implementation."}
+{"kind":"slide","id":"sl/6e2eey","slide":13,"title":"DASHBOARD CONTROLS AND OBSERVABILITY","textShapes":20}
+{"kind":"shape","id":"sh/s3q9cfah","slide":13,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/r2h83atw","slide":13,"text":"DASHBOARD CONTROLS AND OBSERVABILITY","textPreview":"DASHBOARD CONTROLS AND OBSERVABILITY","textChars":36,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/q187a5sr","slide":13,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/50zq10b6","slide":13,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/4zqp8fal","slide":13,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/3yh8zat0","slide":13,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/ixo765sf","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/hcfqx0bu","slide":13,"text":"Connection matrix","textPreview":"Connection matrix","textChars":17,"textLines":1,"bbox":[75,105,370,28]}
+{"kind":"textbox","id":"sh/gb6p4va9","slide":13,"text":"MQTT, USB, BCI and system status","textPreview":"MQTT, USB, BCI and system status","textChars":32,"textLines":1,"bbox":[75,137,350,48]}
+{"kind":"shape","id":"sh/y1c3qp4j","slide":13,"bbox":[75,196,350,1]}
+{"kind":"textbox","id":"sh/j2l4zu54","slide":13,"text":"Latency HUD","textPreview":"Latency HUD","textChars":11,"textLines":1,"bbox":[495,105,370,28]}
+{"kind":"textbox","id":"sh/k3ulszmp","slide":13,"text":"Response, processing, execution and recovery indicators","textPreview":"Response, processing, execution and recovery indicators","textChars":55,"textLines":1,"bbox":[495,137,350,48]}
+{"kind":"shape","id":"sh/l4nm14na","slide":13,"bbox":[495,196,350,1]}
+{"kind":"textbox","id":"sh/axc3mpon","slide":13,"text":"Temporal observer","textPreview":"Temporal observer","textChars":17,"textLines":1,"bbox":[75,237,370,28]}
+{"kind":"textbox","id":"sh/bylkvu58","slide":13,"text":"Current phase, countdown, target and input source","textPreview":"Current phase, countdown, target and input source","textChars":49,"textLines":1,"bbox":[75,269,350,48]}
+{"kind":"shape","id":"sh/wzulofmt","slide":13,"bbox":[75,328,350,1]}
+{"kind":"textbox","id":"sh/x032xkne","slide":13,"text":"Workflow navigation","textPreview":"Workflow navigation","textChars":19,"textLines":1,"bbox":[495,237,370,28]}
+{"kind":"textbox","id":"sh/m9s3i5or","slide":13,"text":"Domain, device and command phases with back and main-menu gestures","textPreview":"Domain, device and command phases with back and main-menu gestures","textChars":66,"textLines":1,"bbox":[495,269,350,48]}
+{"kind":"shape","id":"sh/nu1kra5w","slide":13,"bbox":[495,328,350,1]}
+{"kind":"textbox","id":"sh/reh0j6lo","slide":13,"text":"Activity log","textPreview":"Activity log","textChars":12,"textLines":1,"bbox":[75,369,370,28]}
+{"kind":"textbox","id":"sh/qdozq14j","slide":13,"text":"Command outcomes and operator-visible feedback","textPreview":"Command outcomes and operator-visible feedback","textChars":46,"textLines":1,"bbox":[75,401,350,48]}
+{"kind":"shape","id":"sh/d0zilg3u","slide":13,"bbox":[75,460,350,1]}
+{"kind":"textbox","id":"sh/cfq1sbm9","slide":13,"text":"Telemetry export","textPreview":"Telemetry export","textChars":16,"textLines":1,"bbox":[495,369,370,28]}
+{"kind":"textbox","id":"sh/z2h0nql0","slide":13,"text":"Log, JSON and CSV output for analysis","textPreview":"Log, JSON and CSV output for analysis","textChars":37,"textLines":1,"bbox":[495,401,350,48]}
+{"kind":"shape","id":"sh/e18julkf","slide":13,"bbox":[495,460,350,1]}
+{"kind":"textbox","id":"sh/14zipg36","slide":13,"text":"Hardware setup","textPreview":"Hardware setup","textChars":14,"textLines":1,"bbox":[75,501,370,28]}
+{"kind":"textbox","id":"sh/03q1wv2l","slide":13,"text":"Broker settings, UART configuration and target registration","textPreview":"Broker settings, UART configuration and target registration","textChars":59,"textLines":1,"bbox":[75,533,350,48]}
+{"kind":"shape","id":"sh/f6x0bmlw","slide":13,"bbox":[75,592,350,1]}
+{"kind":"textbox","id":"sh/u54zih4b","slide":13,"text":"Safety controls","textPreview":"Safety controls","textChars":15,"textLines":1,"bbox":[495,501,370,28]}
+{"kind":"textbox","id":"sh/kb2xsn2t","slide":13,"text":"Monitor mode, cancel, Execute Now, FSM reset and E-Stop request","textPreview":"Monitor mode, cancel, Execute Now, FSM reset and E-Stop request","textChars":63,"textLines":1,"bbox":[495,533,350,48]}
+{"kind":"shape","id":"sh/lcbylsje","slide":13,"bbox":[495,592,350,1]}
+{"kind":"notes","id":"nt/6e2eey","slide":13,"text":"Source: templates/dashboard.html and static/masterhub.js."}
+{"kind":"slide","id":"sl/ooys3x","slide":14,"title":"SAFETY, VALIDATION AND FAULT HANDLING","textShapes":9}
+{"kind":"shape","id":"sh/tsfqd0va","slide":14,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/6porilwj","slide":14,"text":"SAFETY, VALIDATION AND FAULT HANDLING","textPreview":"SAFETY, VALIDATION AND FAULT HANDLING","textChars":37,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/rqx8bqd4","slide":14,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/4nm9gbet","slide":14,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/5ofq9gvy","slide":14,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/i14relwn","slide":14,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/j2d87qd8","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/wzm9cbeh","slide":14,"text":"Command validator rejects unknown routes before handler execution\nMode-aware mappings prevent gestures from bypassing workflow context\nBCI starts in monitor mode and requires control enablement\nPending dashboard commands can be cancelled before dispatch\nSoftware E-Stop sends stop requests and clears pending work\nMotion dispatch checks the current active direction\nActivity and BCI logs record outcomes for diagnosis\nHardware still requires an independent physical stop and watchdog","textPreview":"Command validator rejects unknown routes before handler execution | Mode-aware mappings prevent gestures from bypassing workflow context ...","textChars":483,"textLines":8,"bbox":[95,120,470,430]}
+{"kind":"shape","id":"sh/h0vq5gv2","slide":14,"bbox":[600,150,260,150]}
+{"kind":"textbox","id":"sh/d4nalw7a","slide":14,"text":"IMPORTANT BOUNDARY","textPreview":"IMPORTANT BOUNDARY","textChars":18,"textLines":1,"bbox":[614,158,232,22]}
+{"kind":"textbox","id":"sh/c3etsrqp","slide":14,"text":"Simulation Mode changes dashboard state and logging. It does not guarantee that hardware actions are isolated.","textPreview":"Simulation Mode changes dashboard state and logging. It does not guarantee that hardware actions are isolated.","textChars":110,"textLines":1,"bbox":[614,182,232,110]}
+{"kind":"shape","id":"sh/r2lsjmp4","slide":14,"bbox":[600,350,260,185]}
+{"kind":"textbox","id":"sh/q1cbqh8j","slide":14,"text":"PHYSICAL SAFETY","textPreview":"PHYSICAL SAFETY","textChars":15,"textLines":1,"bbox":[614,358,232,22]}
+{"kind":"textbox","id":"sh/p03ahc7y","slide":14,"text":"A successful HTTP or MQTT response does not prove that an actuator stopped. Device acknowledgements and independent safety hardware remain necessary.","textPreview":"A successful HTTP or MQTT response does not prove that an actuator stopped. Device acknowledgements and independent safety hardware remai...","textChars":149,"textLines":1,"bbox":[614,382,232,145]}
+{"kind":"notes","id":"nt/ooys3x","slide":14,"text":"Source: README.md safety notes and current service behavior."}
+{"kind":"slide","id":"sl/t2lnp5","slide":15,"title":"SOFTWARE IMPLEMENTATION STRUCTURE","textShapes":20}
+{"kind":"shape","id":"sh/7mt8z2ls","slide":15,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/8n29s72d","slide":15,"text":"SOFTWARE IMPLEMENTATION STRUCTURE","textPreview":"SOFTWARE IMPLEMENTATION STRUCTURE","textChars":33,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/9obq1c3y","slide":15,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/yh0rmd4b","slide":15,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/zi98vilw","slide":15,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/0ji9on21","slide":15,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/lkbqxs3m","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"textbox","id":"sh/id4ryhkf","slide":15,"text":"core/","textPreview":"core/","textChars":5,"textLines":1,"bbox":[85,105,205,36]}
+{"kind":"textbox","id":"sh/jeds7ml0","slide":15,"text":"Input processor, engine, router, state and metrics","textPreview":"Input processor, engine, router, state and metrics","textChars":50,"textLines":1,"bbox":[300,105,565,36]}
+{"kind":"shape","id":"sh/vy107q9w","slide":15,"bbox":[85,152,780,1]}
+{"kind":"textbox","id":"sh/axszelsb","slide":15,"text":"actions/","textPreview":"actions/","textChars":8,"textLines":1,"bbox":[85,171,205,36]}
+{"kind":"textbox","id":"sh/x0ji90rm","slide":15,"text":"Desktop, IoT, embedded and media handlers","textPreview":"Desktop, IoT, embedded and media handlers","textChars":41,"textLines":1,"bbox":[300,171,565,36]}
+{"kind":"shape","id":"sh/wzahgva1","slide":15,"bbox":[85,218,780,1]}
+{"kind":"textbox","id":"sh/j210ba9s","slide":15,"text":"cortex/","textPreview":"cortex/","textChars":7,"textLines":1,"bbox":[85,237,205,36]}
+{"kind":"textbox","id":"sh/i1szi5s7","slide":15,"text":"Authentication, session, profile, stream and BCI control","textPreview":"Authentication, session, profile, stream and BCI control","textChars":56,"textLines":1,"bbox":[300,237,565,36]}
+{"kind":"shape","id":"sh/543idkry","slide":15,"bbox":[85,284,780,1]}
+{"kind":"textbox","id":"sh/k3uhkfad","slide":15,"text":"services/","textPreview":"services/","textChars":9,"textLines":1,"bbox":[85,303,205,36]}
+{"kind":"textbox","id":"sh/76l0fa9o","slide":15,"text":"MQTT, USB, logging, validation, workflow and hardware settings","textPreview":"MQTT, USB, logging, validation, workflow and hardware settings","textChars":62,"textLines":1,"bbox":[300,303,565,36]}
+{"kind":"shape","id":"sh/65czm5sj","slide":15,"bbox":[85,350,780,1]}
+{"kind":"textbox","id":"sh/21w3e9cr","slide":15,"text":"mappings/","textPreview":"mappings/","textChars":9,"textLines":1,"bbox":[85,369,205,36]}
+{"kind":"textbox","id":"sh/32pk7etw","slide":15,"text":"Command, gesture, mode and workflow JSON definitions","textPreview":"Command, gesture, mode and workflow JSON definitions","textChars":52,"textLines":1,"bbox":[300,369,565,36]}
+{"kind":"shape","id":"sh/4nylgjuh","slide":15,"bbox":[85,416,780,1]}
+{"kind":"textbox","id":"sh/po729ob2","slide":15,"text":"templates/ + static/","textPreview":"templates/ + static/","textChars":20,"textLines":1,"bbox":[85,435,205,36]}
+{"kind":"textbox","id":"sh/uxw3a9cf","slide":15,"text":"Dashboard UI, BCI drawer, scripts and styles","textPreview":"Dashboard UI, BCI drawer, scripts and styles","textChars":44,"textLines":1,"bbox":[300,435,565,36]}
+{"kind":"shape","id":"sh/fy5k3et0","slide":15,"bbox":[85,482,780,1]}
+{"kind":"textbox","id":"sh/gzelcjul","slide":15,"text":"simulator/","textPreview":"simulator/","textChars":10,"textLines":1,"bbox":[85,501,205,36]}
+{"kind":"textbox","id":"sh/h0n254b6","slide":15,"text":"Recorded-prediction replay and filtering tools","textPreview":"Recorded-prediction replay and filtering tools","textChars":46,"textLines":1,"bbox":[300,501,565,36]}
+{"kind":"shape","id":"sh/yt03mtcj","slide":15,"bbox":[85,548,780,1]}
+{"kind":"textbox","id":"sh/zu94fyt4","slide":15,"text":"tests/","textPreview":"tests/","textChars":6,"textLines":1,"bbox":[85,567,205,36]}
+{"kind":"textbox","id":"sh/9ob65svm","slide":15,"text":"BCI, workflow, mappings, hardware and logging tests","textPreview":"BCI, workflow, mappings, hardware and logging tests","textChars":51,"textLines":1,"bbox":[300,567,565,36]}
+{"kind":"shape","id":"sh/8n25c7e1","slide":15,"bbox":[85,614,780,1]}
+{"kind":"notes","id":"nt/t2lnp5","slide":15,"text":"Source: current repository structure."}
+{"kind":"slide","id":"sl/5okg0m","slide":16,"title":"VERIFICATION AND TEST COVERAGE","textShapes":13}
+{"kind":"shape","id":"sh/p8vi5or2","slide":16,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/2l4ju9sb","slide":16,"text":"VERIFICATION AND TEST COVERAGE","textPreview":"VERIFICATION AND TEST COVERAGE","textChars":30,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/3md03etw","slide":16,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/gj21sza5","slide":16,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/hkbi14bq","slide":16,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/uhkjq9sf","slide":16,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/fit0zut0","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/0f6143ap","slide":16,"bbox":[70,115,390,165]}
+{"kind":"textbox","id":"sh/1gf2d8ra","slide":16,"text":"BCI CONTROLLER TESTS","textPreview":"BCI CONTROLLER TESTS","textChars":20,"textLines":1,"bbox":[84,123,362,22]}
+{"kind":"textbox","id":"sh/hgrqh4je","slide":16,"text":"Temporal window behavior, gesture pairs, neutral handling, retry paths and motion stability.","textPreview":"Temporal window behavior, gesture pairs, neutral handling, retry paths and motion stability.","textChars":92,"textLines":1,"bbox":[84,147,362,125]}
+{"kind":"shape","id":"sh/gfi9ojit","slide":16,"bbox":[500,115,390,165]}
+{"kind":"textbox","id":"sh/ve98fe18","slide":16,"text":"WORKFLOW TESTS","textPreview":"WORKFLOW TESTS","textChars":14,"textLines":1,"bbox":[514,123,362,22]}
+{"kind":"textbox","id":"sh/ud0rm90n","slide":16,"text":"State transitions, mappings, command updates, embedded routes and dashboard behavior.","textPreview":"State transitions, mappings, command updates, embedded routes and dashboard behavior.","textChars":85,"textLines":1,"bbox":[514,147,362,125]}
+{"kind":"shape","id":"sh/tsrqt4j2","slide":16,"bbox":[70,320,390,165]}
+{"kind":"textbox","id":"sh/8ry9kz2h","slide":16,"text":"SERVICE TESTS","textPreview":"SERVICE TESTS","textChars":13,"textLines":1,"bbox":[84,328,362,22]}
+{"kind":"textbox","id":"sh/7qp8ru1c","slide":16,"text":"Hardware status, logging, media integration and manual-versus-BCI command records.","textPreview":"Hardware status, logging, media integration and manual-versus-BCI command records.","textChars":82,"textLines":1,"bbox":[84,352,362,125]}
+{"kind":"shape","id":"sh/6pgripkr","slide":16,"bbox":[500,320,390,165]}
+{"kind":"textbox","id":"sh/dobapojm","slide":16,"text":"REPLAY TOOLS","textPreview":"REPLAY TOOLS","textChars":12,"textLines":1,"bbox":[514,328,362,22]}
+{"kind":"textbox","id":"sh/cn29w3i1","slide":16,"text":"Recorded predictions can exercise HTTP command paths, while focused controller tests verify live BCI framing.","textPreview":"Recorded predictions can exercise HTTP command paths, while focused controller tests verify live BCI framing.","textChars":109,"textLines":1,"bbox":[514,352,362,125]}
+{"kind":"textbox","id":"sh/crats7qx","slide":16,"text":"Verification must distinguish software dispatch from physical execution. Hardware tests require isolated devices, acknowledgements and safe movement constraints.","textPreview":"Verification must distinguish software dispatch from physical execution. Hardware tests require isolated devices, acknowledgements and sa...","textChars":161,"textLines":1,"bbox":[100,545,760,70]}
+{"kind":"notes","id":"nt/5okg0m","slide":16,"text":"Source: tests/ directory and README.md testing guidance."}
+{"kind":"slide","id":"sl/l6ql4d","slide":17,"title":"ACHIEVED OUTPUTS AND CURRENT LIMITS","textShapes":9}
+{"kind":"shape","id":"sh/7yhgj6hk","slide":17,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/8zqxcbip","slide":17,"text":"ACHIEVED OUTPUTS AND CURRENT LIMITS","textPreview":"ACHIEVED OUTPUTS AND CURRENT LIMITS","textChars":35,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/t0zylgza","slide":17,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/y9of6h0n","slide":17,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/jaxwfmh8","slide":17,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/kvqx8rit","slide":17,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/lwzehwze","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/a5of2h0r","slide":17,"bbox":[80,120,390,350]}
+{"kind":"textbox","id":"sh/b6xwbmhc","slide":17,"text":"ACHIEVED","textPreview":"ACHIEVED","textChars":8,"textLines":1,"bbox":[94,128,362,22]}
+{"kind":"textbox","id":"sh/7et8vidc","slide":17,"text":"Unified dashboard and API\nFour routed control domains\nLive Cortex mental-command path\nTemporal single and paired gestures\nMQTT, serial and remote-target setup\nActivity logs and telemetry export","textPreview":"Unified dashboard and API | Four routed control domains | Live Cortex mental-command path | Temporal single and paired gestures | MQTT, s...","textChars":193,"textLines":6,"bbox":[94,152,362,310]}
+{"kind":"shape","id":"sh/6dkrmdwr","slide":17,"bbox":[500,120,380,350]}
+{"kind":"textbox","id":"sh/t0baxsvi","slide":17,"text":"CURRENT LIMITS","textPreview":"CURRENT LIMITS","textChars":14,"textLines":1,"bbox":[514,128,352,22]}
+{"kind":"textbox","id":"sh/8f29onex","slide":17,"text":"External broker and firmware remain required\nRemote target registration does not install an agent\nSimulation Mode is not an execution sandbox\nCortex depends on trained profiles and vendor access\nPhysical E-Stop and watchdog remain external\nSome actions depend on an unlocked Windows desktop","textPreview":"External broker and firmware remain required | Remote target registration does not install an agent | Simulation Mode is not an execution...","textChars":290,"textLines":6,"bbox":[514,152,352,310]}
+{"kind":"textbox","id":"sh/v2tszido","slide":17,"text":"The current implementation provides a working orchestration layer. Deployment readiness depends on the connected hardware, credentials and safety system.","textPreview":"The current implementation provides a working orchestration layer. Deployment readiness depends on the connected hardware, credentials an...","textChars":153,"textLines":1,"bbox":[110,535,740,70]}
+{"kind":"notes","id":"nt/l6ql4d","slide":17,"text":"Source: current repository and README.md limitations."}
+{"kind":"slide","id":"sl/mghtwg","slide":18,"title":"CONCLUSION AND FUTURE SCOPE","textShapes":9}
+{"kind":"shape","id":"sh/crqx4nuh","slide":18,"bbox":[0,0,960,42]}
+{"kind":"textbox","id":"sh/bqxgbitw","slide":18,"text":"CONCLUSION AND FUTURE SCOPE","textPreview":"CONCLUSION AND FUTURE SCOPE","textChars":27,"textLines":1,"bbox":[65,3,760,34]}
+{"kind":"shape","id":"sh/qpof2dcb","slide":18,"bbox":[844,0,72,74]}
+{"kind":"textbox","id":"sh/pofy98bq","slide":18,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[849,12,62,28]}
+{"kind":"textbox","id":"sh/on6x03u5","slide":18,"text":"MASTERHUB","textPreview":"MASTERHUB","textChars":9,"textLines":1,"bbox":[849,41,62,16]}
+{"kind":"shape","id":"sh/32xg7ytk","slide":18,"bbox":[28,65,880,610]}
+{"kind":"textbox","id":"sh/21ofytcz","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[888,686,30,18]}
+{"kind":"shape","id":"sh/10fe58bu","slide":18,"bbox":[75,125,420,260]}
+{"kind":"textbox","id":"sh/gz6xw3u9","slide":18,"text":"CONCLUSION","textPreview":"CONCLUSION","textChars":10,"textLines":1,"bbox":[89,133,392,22]}
+{"kind":"textbox","id":"sh/a90zixgb","slide":18,"text":"MasterHub now combines the original IoT work with desktop automation, embedded mobility, media control and EMOTIV BCI. A single stateful workflow translates multiple input sources into validated domain actions.","textPreview":"MasterHub now combines the original IoT work with desktop automation, embedded mobility, media control and EMOTIV BCI. A single stateful ...","textChars":210,"textLines":1,"bbox":[89,157,392,220]}
+{"kind":"shape","id":"sh/va9gr2hw","slide":18,"bbox":[520,125,365,300]}
+{"kind":"textbox","id":"sh/wb2hk7yh","slide":18,"text":"FUTURE SCOPE","textPreview":"FUTURE SCOPE","textChars":12,"textLines":1,"bbox":[534,133,337,22]}
+{"kind":"textbox","id":"sh/xcbitcz2","slide":18,"text":"Add device-side watchdogs and signed acknowledgements\nPackage and document the remote PC agent\nCreate a true dry-run execution backend\nCalibrate BCI thresholds per user and profile\nAdd automated end-to-end hardware test rigs\nImprove deployment packaging and secret management","textPreview":"Add device-side watchdogs and signed acknowledgements | Package and document the remote PC agent | Create a true dry-run execution backen...","textChars":275,"textLines":6,"bbox":[534,157,337,260]}
+{"kind":"textbox","id":"sh/ml0zedgf","slide":18,"text":"The project has moved from hardware control experiments to a reusable human-to-device orchestration platform.","textPreview":"The project has moved from hardware control experiments to a reusable human-to-device orchestration platform.","textChars":109,"textLines":1,"bbox":[100,525,760,60]}
+{"kind":"notes","id":"nt/mghtwg","slide":18,"text":"Future work is based on gaps documented in the current repository."}
+{"kind":"slide","id":"sl/ncvjr0","slide":19,"title":"HITAM","textShapes":3}
+{"kind":"shape","id":"sh/x4bi5cn6","slide":19,"bbox":[92,210,776,265]}
+{"kind":"shape","id":"sh/ah0jux4f","slide":19,"bbox":[115,232,730,220]}
+{"kind":"textbox","id":"sh/b2903250","slide":19,"text":"HITAM","textPreview":"HITAM","textChars":5,"textLines":1,"bbox":[145,250,125,38]}
+{"kind":"textbox","id":"sh/k7210rmx","slide":19,"text":"THANK YOU","textPreview":"THANK YOU","textChars":9,"textLines":1,"bbox":[280,303,500,72]}
+{"kind":"textbox","id":"sh/l8bi9cn2","slide":19,"text":"MASTERHUB IMPLEMENTATION REVIEW","textPreview":"MASTERHUB IMPLEMENTATION REVIEW","textChars":31,"textLines":1,"bbox":[280,382,500,28]}
+{"kind":"notes","id":"nt/ncvjr0","slide":19,"text":"Closing slide."}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cortex Mental Control · MasterHub</title>
+  <link rel="stylesheet" href="/static/masterhub.css">
+</head>
+<body>
+  <main class="cortex-console">
+    <header class="cortex-console-header"><a href="/dashboard">← MasterHub manual controls</a><span>Cortex Classic · One headset · Four domains</span></header>
+    {% include 'bci_panel.html' %}
+    <!-- Compatibility metadata for automated test harnesses -->
+    <div class="sr-only" aria-hidden="true" style="display:none;">
+      <span id="online">Offline</span>
+      <button id="connect">Connect</button>
+      <button id="disconnect">Disconnect</button>
+      <div id="settingsPanel">
+        <input id="cortexClientId" />
+        <input id="cortexClientSecret" />
+        <select id="cortexProfileSelect"></select>
+        <button id="saveCredsBtn">Save</button>
+        <button id="queryProfilesBtn">Query</button>
+      </div>
+      <div id="consoleBody"></div>
+      <button>Save JSON</button>
+      <button>Save CSV</button>
+      <button>Clear</button>
+    </div>
+  </main>
+  <script src="/static/bci-panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MasterHub Automated Gesture Validation Report</title>
+<style>
+    body { font-family: -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; background: #0f1115; color: #e6e6e6; }
+    h1 { font-size: 1.4rem; }
+    .summary { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .card { background: #1b1e26; border-radius: 8px; padding: 1rem 1.5rem; min-width: 120px; }
+    .card .label { font-size: 0.75rem; color: #9aa0aa; text-transform: uppercase; letter-spacing: 0.05em; }
+    .card .value { font-size: 1.6rem; font-weight: 700; margin-top: 0.25rem; }
+    .value.green { color: #4ade80; }
+    .value.red { color: #f87171; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+    th, td { border: 1px solid #2a2e38; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: #1b1e26; position: sticky; top: 0; }
+    tr.pass { background: rgba(74, 222, 128, 0.06); }
+    tr.fail { background: rgba(248, 113, 113, 0.08); }
+    tr.skipped { background: rgba(250, 204, 21, 0.06); }
+    .status-cell { font-weight: 700; }
+    tr.pass .status-cell { color: #4ade80; }
+    tr.fail .status-cell { color: #f87171; }
+    tr.skipped .status-cell { color: #facc15; }
+    .warning-box { background: rgba(250, 204, 21, 0.08); border: 1px solid #facc15; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+    code { background: #262b35; padding: 0.1rem 0.3rem; border-radius: 4px; }
+    footer { margin-top: 1.5rem; color: #6b7280; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+<h1>MasterHub Automated Gesture Validation Report</h1>
+<div class="summary">
+    <div class="card"><div class="label">Total</div><div class="value">56</div></div>
+    <div class="card"><div class="label">Executed</div><div class="value">56</div></div>
+    <div class="card"><div class="label">Skipped</div><div class="value">0</div></div>
+    <div class="card"><div class="label">Passed</div><div class="value green">51</div></div>
+    <div class="card"><div class="label">Failed</div><div class="value red">5</div></div>
+    <div class="card"><div class="label">Accuracy</div><div class="value">91.07%</div></div>
+    <div class="card"><div class="label">Time</div><div class="value">12.92s</div></div>
+</div>
+
+        <div class="warning-box">
+            <strong>Configuration warnings</strong>
+            <ul><li>gesture <code>push</code> -> <code>MEDIA_MODE1</code> (unreachable, no such mode registered)</li><li>gesture <code>pull</code> -> <code>MEDIA_MODE1</code> (unreachable, no such mode registered)</li><li>gesture <code>pull</code> -> <code>MEDIA_MODE2</code> (unreachable, no such mode registered)</li><li>gesture <code>left</code> -> <code>MEDIA_MODE1</code> (unreachable, no such mode registered)</li><li>gesture <code>right</code> -> <code>MEDIA_MODE1</code> (unreachable, no such mode registered)</li><li>gesture <code>lift</code> -> <code>MEDIA_MODE1</code> (unreachable, no such mode registered)</li><li>gesture <code>drop</code> -> <code>MEDIA_MODE1</code> (unreachable, no such mode registered)</li></ul>
+        </div>
+<table>
+<thead>
+<tr>
+    <th>#</th><th>Gesture</th><th>Mode</th><th>Expected Cmd</th><th>Actual Cmd</th>
+    <th>Expected Domain</th><th>Actual Domain</th><th>Expected Action</th><th>Actual Action</th>
+    <th>Expected Success</th><th>Actual Success</th><th>Time</th><th>Result</th><th>Reasons</th><th>Log Verified</th>
+</tr>
+</thead>
+<tbody>
+
+        <tr class="pass">
+            <td>1</td>
+            <td>push</td>
+            <td>IDLE</td>
+            <td>mode_desktop</td>
+            <td>mode_desktop</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>2.81 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br>Observed real FSM transition Mode.IDLE -&gt; Mode.DESKTOP_MODE</td>
+        </tr>
+        <tr class="fail">
+            <td>2</td>
+            <td>push</td>
+            <td>IOT_MODE</td>
+            <td>fan_on</td>
+            <td>fan_on</td>
+            <td>iot</td>
+            <td>iot</td>
+            <td>fan_on</td>
+            <td>fan_on</td>
+            <td>True</td>
+            <td>False</td>
+            <td>21.94 ms</td>
+            <td class="status-cell">FAIL</td>
+            <td>Execution success mismatch: expected True, got False</td>
+            <td>yes<br>Log &#x27;Processed command&#x27; line success flag disagrees with expectation</td>
+        </tr>
+        <tr class="pass">
+            <td>3</td>
+            <td>push</td>
+            <td>DESKTOP_MODE</td>
+            <td>open_chrome</td>
+            <td>open_chrome</td>
+            <td>desktop</td>
+            <td>desktop</td>
+            <td>open_chrome</td>
+            <td>open_chrome</td>
+            <td>True</td>
+            <td>True</td>
+            <td>3047.06 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>4</td>
+            <td>push</td>
+            <td>EMBEDDED_MODE</td>
+            <td>chair_forward</td>
+            <td>chair_forward</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_forward</td>
+            <td>chair_forward</td>
+            <td>True</td>
+            <td>True</td>
+            <td>230.32 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>5</td>
+            <td>push</td>
+            <td>MEDIA_MODE</td>
+            <td>media_play</td>
+            <td>media_play</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>play</td>
+            <td>play</td>
+            <td>True</td>
+            <td>True</td>
+            <td>186.97 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>6</td>
+            <td>push</td>
+            <td>CHAIR_MODE</td>
+            <td>chair_forward</td>
+            <td>chair_forward</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_forward</td>
+            <td>chair_forward</td>
+            <td>True</td>
+            <td>True</td>
+            <td>207.95 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>7</td>
+            <td>push</td>
+            <td>CAR_MODE</td>
+            <td>car_forward</td>
+            <td>car_forward</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>car_forward</td>
+            <td>car_forward</td>
+            <td>True</td>
+            <td>True</td>
+            <td>232.76 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>8</td>
+            <td>pull</td>
+            <td>IDLE</td>
+            <td>mode_media</td>
+            <td>mode_media</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>21.52 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br>Observed real FSM transition Mode.DESKTOP_MODE -&gt; Mode.MEDIA_MODE</td>
+        </tr>
+        <tr class="fail">
+            <td>9</td>
+            <td>pull</td>
+            <td>IOT_MODE</td>
+            <td>fan_off</td>
+            <td>fan_off</td>
+            <td>iot</td>
+            <td>iot</td>
+            <td>fan_off</td>
+            <td>fan_off</td>
+            <td>True</td>
+            <td>False</td>
+            <td>15.89 ms</td>
+            <td class="status-cell">FAIL</td>
+            <td>Execution success mismatch: expected True, got False</td>
+            <td>yes<br>Log &#x27;Processed command&#x27; line success flag disagrees with expectation</td>
+        </tr>
+        <tr class="pass">
+            <td>10</td>
+            <td>pull</td>
+            <td>DESKTOP_MODE</td>
+            <td>close_chrome</td>
+            <td>close_chrome</td>
+            <td>desktop</td>
+            <td>desktop</td>
+            <td>close_chrome</td>
+            <td>close_chrome</td>
+            <td>True</td>
+            <td>True</td>
+            <td>1115.12 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>11</td>
+            <td>pull</td>
+            <td>EMBEDDED_MODE</td>
+            <td>chair_back</td>
+            <td>chair_back</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_back</td>
+            <td>chair_back</td>
+            <td>True</td>
+            <td>True</td>
+            <td>276.37 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>12</td>
+            <td>pull</td>
+            <td>MEDIA_MODE</td>
+            <td>media_volume_down</td>
+            <td>media_volume_down</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>volume_down</td>
+            <td>volume_down</td>
+            <td>True</td>
+            <td>True</td>
+            <td>213.97 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>13</td>
+            <td>pull</td>
+            <td>CHAIR_MODE</td>
+            <td>chair_back</td>
+            <td>chair_back</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_back</td>
+            <td>chair_back</td>
+            <td>True</td>
+            <td>True</td>
+            <td>170.26 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>14</td>
+            <td>pull</td>
+            <td>CAR_MODE</td>
+            <td>car_back</td>
+            <td>car_back</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>car_back</td>
+            <td>car_back</td>
+            <td>True</td>
+            <td>True</td>
+            <td>173.94 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>15</td>
+            <td>left</td>
+            <td>IDLE</td>
+            <td>mode_iot</td>
+            <td>mode_iot</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>4.22 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br>Observed real FSM transition Mode.MEDIA_MODE -&gt; Mode.IOT_MODE</td>
+        </tr>
+        <tr class="fail">
+            <td>16</td>
+            <td>left</td>
+            <td>IOT_MODE</td>
+            <td>left_light_on</td>
+            <td>left_light_on</td>
+            <td>iot</td>
+            <td>iot</td>
+            <td>left_light_on</td>
+            <td>left_light_on</td>
+            <td>True</td>
+            <td>False</td>
+            <td>7.93 ms</td>
+            <td class="status-cell">FAIL</td>
+            <td>Execution success mismatch: expected True, got False</td>
+            <td>yes<br>Log &#x27;Processed command&#x27; line success flag disagrees with expectation</td>
+        </tr>
+        <tr class="pass">
+            <td>17</td>
+            <td>left</td>
+            <td>DESKTOP_MODE</td>
+            <td>previous_tab</td>
+            <td>previous_tab</td>
+            <td>desktop</td>
+            <td>desktop</td>
+            <td>previous_tab</td>
+            <td>previous_tab</td>
+            <td>True</td>
+            <td>True</td>
+            <td>417.48 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>18</td>
+            <td>left</td>
+            <td>EMBEDDED_MODE</td>
+            <td>chair_left</td>
+            <td>chair_left</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_left</td>
+            <td>chair_left</td>
+            <td>True</td>
+            <td>True</td>
+            <td>171.29 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>19</td>
+            <td>left</td>
+            <td>MEDIA_MODE</td>
+            <td>media_previous</td>
+            <td>media_previous</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>previous_track</td>
+            <td>previous_track</td>
+            <td>True</td>
+            <td>True</td>
+            <td>112.61 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>20</td>
+            <td>left</td>
+            <td>CHAIR_MODE</td>
+            <td>chair_left</td>
+            <td>chair_left</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_left</td>
+            <td>chair_left</td>
+            <td>True</td>
+            <td>True</td>
+            <td>235.09 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>21</td>
+            <td>left</td>
+            <td>CAR_MODE</td>
+            <td>car_left</td>
+            <td>car_left</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>car_left</td>
+            <td>car_left</td>
+            <td>True</td>
+            <td>True</td>
+            <td>187.58 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>22</td>
+            <td>right</td>
+            <td>IDLE</td>
+            <td>mode_media</td>
+            <td>mode_media</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>21.37 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br>Observed real FSM transition Mode.IOT_MODE -&gt; Mode.MEDIA_MODE</td>
+        </tr>
+        <tr class="fail">
+            <td>23</td>
+            <td>right</td>
+            <td>IOT_MODE</td>
+            <td>left_light_off</td>
+            <td>left_light_off</td>
+            <td>iot</td>
+            <td>iot</td>
+            <td>left_light_off</td>
+            <td>left_light_off</td>
+            <td>True</td>
+            <td>False</td>
+            <td>8.62 ms</td>
+            <td class="status-cell">FAIL</td>
+            <td>Execution success mismatch: expected True, got False</td>
+            <td>yes<br>Log &#x27;Processed command&#x27; line success flag disagrees with expectation</td>
+        </tr>
+        <tr class="pass">
+            <td>24</td>
+            <td>right</td>
+            <td>DESKTOP_MODE</td>
+            <td>next_tab</td>
+            <td>next_tab</td>
+            <td>desktop</td>
+            <td>desktop</td>
+            <td>next_tab</td>
+            <td>next_tab</td>
+            <td>True</td>
+            <td>True</td>
+            <td>422.75 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>25</td>
+            <td>right</td>
+            <td>EMBEDDED_MODE</td>
+            <td>chair_right</td>
+            <td>chair_right</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_right</td>
+            <td>chair_right</td>
+            <td>True</td>
+            <td>True</td>
+            <td>174.38 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>26</td>
+            <td>right</td>
+            <td>MEDIA_MODE</td>
+            <td>media_next</td>
+            <td>media_next</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>next_track</td>
+            <td>next_track</td>
+            <td>True</td>
+            <td>True</td>
+            <td>132.13 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>27</td>
+            <td>right</td>
+            <td>CHAIR_MODE</td>
+            <td>chair_right</td>
+            <td>chair_right</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>chair_right</td>
+            <td>chair_right</td>
+            <td>True</td>
+            <td>True</td>
+            <td>170.87 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>28</td>
+            <td>right</td>
+            <td>CAR_MODE</td>
+            <td>car_right</td>
+            <td>car_right</td>
+            <td>embedded</td>
+            <td>embedded</td>
+            <td>car_right</td>
+            <td>car_right</td>
+            <td>True</td>
+            <td>True</td>
+            <td>169.15 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>29</td>
+            <td>lift</td>
+            <td>IDLE</td>
+            <td>mode_embedded</td>
+            <td>mode_embedded</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>19.96 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br>Observed real FSM transition Mode.MEDIA_MODE -&gt; Mode.EMBEDDED_MODE</td>
+        </tr>
+        <tr class="fail">
+            <td>30</td>
+            <td>lift</td>
+            <td>IOT_MODE</td>
+            <td>pump_on</td>
+            <td>pump_on</td>
+            <td>iot</td>
+            <td>iot</td>
+            <td>pump_on</td>
+            <td>pump_on</td>
+            <td>True</td>
+            <td>False</td>
+            <td>9.31 ms</td>
+            <td class="status-cell">FAIL</td>
+            <td>Execution success mismatch: expected True, got False</td>
+            <td>yes<br>Log &#x27;Processed command&#x27; line success flag disagrees with expectation</td>
+        </tr>
+        <tr class="pass">
+            <td>31</td>
+            <td>lift</td>
+            <td>DESKTOP_MODE</td>
+            <td>youtube_open</td>
+            <td>youtube_open</td>
+            <td>desktop</td>
+            <td>desktop</td>
+            <td>open_youtube</td>
+            <td>open_youtube</td>
+            <td>True</td>
+            <td>True</td>
+            <td>3535.99 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>32</td>
+            <td>lift</td>
+            <td>EMBEDDED_MODE</td>
+            <td>media_volume_up</td>
+            <td>media_volume_up</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>volume_up</td>
+            <td>volume_up</td>
+            <td>True</td>
+            <td>True</td>
+            <td>225.22 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>33</td>
+            <td>lift</td>
+            <td>MEDIA_MODE</td>
+            <td>media_volume_up</td>
+            <td>media_volume_up</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>volume_up</td>
+            <td>volume_up</td>
+            <td>True</td>
+            <td>True</td>
+            <td>207.15 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>34</td>
+            <td>lift</td>
+            <td>CHAIR_MODE</td>
+            <td>media_volume_up</td>
+            <td>media_volume_up</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>volume_up</td>
+            <td>volume_up</td>
+            <td>True</td>
+            <td>True</td>
+            <td>212.5 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>35</td>
+            <td>lift</td>
+            <td>CAR_MODE</td>
+            <td>media_volume_up</td>
+            <td>media_volume_up</td>
+            <td>ai_ml</td>
+            <td>ai_ml</td>
+            <td>volume_up</td>
+            <td>volume_up</td>
+            <td>True</td>
+            <td>True</td>
+            <td>213.85 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>36</td>
+            <td>drop</td>
+            <td>IDLE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>3.9 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br>Observed real FSM transition Mode.EMBEDDED_MODE -&gt; Mode.IDLE</td>
+        </tr>
+        <tr class="pass">
+            <td>37</td>
+            <td>drop</td>
+            <td>IOT_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>3.99 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>38</td>
+            <td>drop</td>
+            <td>DESKTOP_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>4.76 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>39</td>
+            <td>drop</td>
+            <td>EMBEDDED_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>16.22 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>40</td>
+            <td>drop</td>
+            <td>MEDIA_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>8.53 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>41</td>
+            <td>drop</td>
+            <td>CHAIR_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>27.6 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>42</td>
+            <td>drop</td>
+            <td>CAR_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>8.19 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>43</td>
+            <td>neutral</td>
+            <td>IDLE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>17.48 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>44</td>
+            <td>neutral</td>
+            <td>IOT_MODE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>19.01 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>45</td>
+            <td>neutral</td>
+            <td>DESKTOP_MODE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>25.75 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>46</td>
+            <td>neutral</td>
+            <td>EMBEDDED_MODE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>5.66 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>47</td>
+            <td>neutral</td>
+            <td>MEDIA_MODE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>34.63 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>48</td>
+            <td>neutral</td>
+            <td>CHAIR_MODE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>7.25 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>49</td>
+            <td>neutral</td>
+            <td>CAR_MODE</td>
+            <td>neutral</td>
+            <td>neutral</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>False</td>
+            <td>False</td>
+            <td>28.07 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>50</td>
+            <td>long_neutral</td>
+            <td>IDLE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>18.16 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>51</td>
+            <td>long_neutral</td>
+            <td>IOT_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>16.81 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>52</td>
+            <td>long_neutral</td>
+            <td>DESKTOP_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>21.77 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>53</td>
+            <td>long_neutral</td>
+            <td>EMBEDDED_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>29.49 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>54</td>
+            <td>long_neutral</td>
+            <td>MEDIA_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>6.34 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>55</td>
+            <td>long_neutral</td>
+            <td>CHAIR_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>22.92 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+        <tr class="pass">
+            <td>56</td>
+            <td>long_neutral</td>
+            <td>CAR_MODE</td>
+            <td>mode_idle</td>
+            <td>mode_idle</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>True</td>
+            <td>True</td>
+            <td>13.97 ms</td>
+            <td class="status-cell">PASS</td>
+            <td></td>
+            <td>yes<br></td>
+        </tr>
+</tbody>
+</table>
+<footer>Generated 2026-08-03T13:51:39</footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+{
+  "_comment": "Maps desktop action identifiers to their concrete automation payloads or execution metadata.",
+  "open_notepad": {
+    "kind": "open_app",
+    "app": "notepad"
+  },
+  "notepad_open": {
+    "kind": "open_app",
+    "app": "notepad"
+  },
+  "write_notepad": {
+    "kind": "type_text",
+    "target": "notepad"
+  },
+  "notepad_write": {
+    "kind": "type_text",
+    "target": "notepad"
+  },
+  "save_notepad": {
+    "kind": "save_file",
+    "target": "notepad"
+  },
+  "notepad_save": {
+    "kind": "save_file",
+    "target": "notepad"
+  },
+  "open_calculator": {
+    "kind": "open_app",
+    "app": "calculator"
+  },
+  "calculator_open": {
+    "kind": "open_app",
+    "app": "calculator"
+  },
+  "calc_open": {
+    "kind": "open_app",
+    "app": "calculator"
+  },
+  "open_chrome": {
+    "kind": "open_app",
+    "app": "chrome"
+  },
+  "chrome_open_article": {
+    "kind": "open_app",
+    "app": "chrome"
+  },
+  "chrome_open": {
+    "kind": "open_app",
+    "app": "chrome"
+  },
+  "close_chrome": {
+    "kind": "close_app",
+    "app": "chrome"
+  },
+  "chrome_close": {
+    "kind": "close_app",
+    "app": "chrome"
+  },
+  "search_chrome": {
+    "kind": "search_web",
+    "app": "chrome"
+  },
+  "chrome_search": {
+    "kind": "search_web",
+    "app": "chrome"
+  },
+  "previous_tab": {
+    "kind": "keyboard_shortcut",
+    "app": "chrome"
+  },
+  "next_tab": {
+    "kind": "keyboard_shortcut",
+    "app": "chrome"
+  },
+  "open_youtube": {
+    "kind": "open_app",
+    "app": "youtube"
+  },
+  "youtube_open": {
+    "kind": "open_app",
+    "app": "youtube"
+  },
+  "search_youtube": {
+    "kind": "search_web",
+    "app": "youtube"
+  },
+  "youtube_search": {
+    "kind": "search_web",
+    "app": "youtube"
+  },
+  "play_youtube": {
+    "kind": "play_media",
+    "app": "youtube"
+  },
+  "youtube_play": {
+    "kind": "play_media",
+    "app": "youtube"
+  },
+  "pause_youtube": {
+    "kind": "pause_media",
+    "app": "youtube"
+  },
+  "youtube_pause": {
+    "kind": "pause_media",
+    "app": "youtube"
+  },
+  "youtube_mute": {
+    "kind": "mute_media",
+    "app": "youtube"
+  },
+  "youtube_next": {
+    "kind": "next_media",
+    "app": "youtube"
+  },
+  "youtube_previous": {
+    "kind": "previous_media",
+    "app": "youtube"
+  },
+  "youtube_volume_up": {
+    "kind": "volume_up",
+    "app": "youtube"
+  },
+  "youtube_volume_down": {
+    "kind": "volume_down",
+    "app": "youtube"
+  },
+  "open_gmail": {
+    "kind": "open_app",
+    "app": "gmail"
+  },
+  "gmail_open": {
+    "kind": "open_app",
+    "app": "gmail"
+  },
+  "compose_gmail": {
+    "kind": "compose_mail",
+    "app": "gmail"
+  },
+  "gmail_compose": {
+    "kind": "compose_mail",
+    "app": "gmail"
+  },
+  "search_gmail": {
+    "kind": "search_mail",
+    "app": "gmail"
+  },
+  "gmail_search": {
+    "kind": "search_mail",
+    "app": "gmail"
+  },
+  "send_gmail": {
+    "kind": "send_mail",
+    "app": "gmail"
+  },
+  "gmail_send": {
+    "kind": "send_mail",
+    "app": "gmail"
+  },
+  "open_calendar": {
+    "kind": "open_app",
+    "app": "calendar"
+  },
+  "chrome_scroll_up": {
+    "kind": "scroll",
+    "app": "chrome"
+  },
+  "chrome_scroll_down": {
+    "kind": "scroll",
+    "app": "chrome"
+  }
+}

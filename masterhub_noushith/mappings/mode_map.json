@@ -1,0 +1,73 @@
+{
+  "_comment": "Registers every mode the FSM (core/state.py) knows about. Each mode has a 'switch_command' — the normalized command (dashboard button or resolved gesture) that transitions the StateManager into it. To add a brand new mode: add an entry here, add its gesture rules to gesture_map.json, add its domain commands to command_map.json, and implement the action handler(s). No changes to core/state.py, core/engine.py, or core/router.py are required.",
+  "modes": {
+    "IDLE": {
+      "switch_command": "mode_idle",
+      "description": "Default mode. No domain has focus. Gestures here are interpreted as mode-selection gestures, not domain actions."
+    },
+    "IOT_MODE": {
+      "switch_command": "mode_iot",
+      "description": "Lights / fans / pumps control (MQTT to ESP32)."
+    },
+    "DESKTOP_MODE": {
+      "switch_command": "mode_desktop",
+      "description": "Desktop automation (Chrome, tabs, apps)."
+    },
+    "EMBEDDED_MODE": {
+      "switch_command": "mode_embedded",
+      "description": "Embedded device selection mode. Choose Wheelchair or Robot Car."
+    },
+    "MEDIA_MODE": {
+      "switch_command": "mode_media",
+      "description": "AI/ML media playback control."
+    },
+    "CHAIR_MODE": {
+      "switch_command": "mode_chair",
+      "description": "Wheelchair movement commands."
+    },
+    "CAR_MODE": {
+      "switch_command": "mode_car",
+      "description": "Robot car movement commands."
+    },
+    "YOUTUBE_MODE": {
+      "switch_command": "mode_youtube",
+      "description": "YouTube BCI controls"
+    },
+    "CHROME_MODE": {
+      "switch_command": "mode_chrome",
+      "description": "Chrome BCI controls"
+    },
+    "GMAIL_MODE": {
+      "switch_command": "mode_gmail",
+      "description": "Gmail BCI controls"
+    },
+    "NOTEPAD_MODE": {
+      "switch_command": "mode_notepad",
+      "description": "Notepad BCI controls"
+    },
+    "LIGHT_MODE": {
+      "switch_command": "mode_light",
+      "description": "Light BCI controls"
+    },
+    "FAN_MODE": {
+      "switch_command": "mode_fan",
+      "description": "Fan BCI controls"
+    },
+    "PUMP_MODE": {
+      "switch_command": "mode_pump",
+      "description": "Pump BCI controls"
+    },
+    "JIOSAAVN_MODE": {
+      "switch_command": "mode_jiosaavn",
+      "description": "JioSaavn BCI controls"
+    },
+    "MOBILE_JIOSAAVN_MODE": {
+      "switch_command": "mode_mobile_jiosaavn",
+      "description": "Mobile JioSaavn BCI controls"
+    },
+    "DESKTOP_JIOSAAVN_MODE": {
+      "switch_command": "mode_desktop_jiosaavn",
+      "description": "Desktop JioSaavn BCI controls"
+    }
+  }
+}

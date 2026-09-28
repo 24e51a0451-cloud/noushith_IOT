@@ -1,0 +1,6302 @@
+[
+  {
+    "timestamp": "2026-07-31 13:36:38.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:38.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:56.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:57.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:57.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:57.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:57.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:36:58.103",
+    "command": "right",
+    "confidence": 0.6
+  },
+  {
+    "timestamp": "2026-07-31 13:37:01.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:01.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:17.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:17.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:26.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:26.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:36.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:37:36.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:11.978",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:38:12.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:12.478",
+    "command": "lift",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 13:38:12.728",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:38:12.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:38:13.228",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:38:14.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:15.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:15.478",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:38:15.728",
+    "command": "lift",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 13:38:15.978",
+    "command": "lift",
+    "confidence": 0.84
+  },
+  {
+    "timestamp": "2026-07-31 13:38:16.228",
+    "command": "push",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 13:38:16.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:16.728",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:38:16.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:17.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:17.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:38:17.728",
+    "command": "lift",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:41:08.603",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:41:08.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:41:09.103",
+    "command": "lift",
+    "confidence": 0.65
+  },
+  {
+    "timestamp": "2026-07-31 13:41:09.353",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:41:09.603",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:41:09.853",
+    "command": "lift",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 13:41:10.103",
+    "command": "lift",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 13:41:22.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:43:11.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:43:12.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:43:12.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:43:12.728",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:43:12.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:43:13.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:43:37.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:31.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:31.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:32.103",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 13:44:32.353",
+    "command": "right",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 13:44:32.603",
+    "command": "right",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 13:44:32.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:33.103",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:44:33.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:33.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:33.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:44:34.103",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:45:29.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:46:06.853",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:46:07.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:46:07.353",
+    "command": "right",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 13:46:07.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:46:07.853",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:46:08.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:46:08.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:46:08.603",
+    "command": "right",
+    "confidence": 0.83
+  },
+  {
+    "timestamp": "2026-07-31 13:48:47.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:47.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:48.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:48.728",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:48:49.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:49.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:49.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:50.228",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:48:50.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:50.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:50.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:51.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:51.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:51.728",
+    "command": "right",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 13:48:51.978",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:48:52.228",
+    "command": "right",
+    "confidence": 0.77
+  },
+  {
+    "timestamp": "2026-07-31 13:48:52.478",
+    "command": "right",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 13:48:52.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:48:52.978",
+    "command": "right",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 13:48:53.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:50:49.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:50:57.853",
+    "command": "right",
+    "confidence": 0.63
+  },
+  {
+    "timestamp": "2026-07-31 13:50:58.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:02.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:03.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:03.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:03.728",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:51:03.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:37.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:38.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:40.603",
+    "command": "lift",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 13:51:42.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:42.478",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:51:42.728",
+    "command": "lift",
+    "confidence": 0.51
+  },
+  {
+    "timestamp": "2026-07-31 13:51:48.103",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:51:48.353",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:51:48.603",
+    "command": "lift",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 13:51:48.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:49.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:49.353",
+    "command": "lift",
+    "confidence": 0.53
+  },
+  {
+    "timestamp": "2026-07-31 13:51:49.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:51.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:51.353",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:51:51.603",
+    "command": "lift",
+    "confidence": 0.64
+  },
+  {
+    "timestamp": "2026-07-31 13:51:51.853",
+    "command": "lift",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 13:51:52.103",
+    "command": "lift",
+    "confidence": 0.64
+  },
+  {
+    "timestamp": "2026-07-31 13:51:52.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:55.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:55.603",
+    "command": "push",
+    "confidence": 0.64
+  },
+  {
+    "timestamp": "2026-07-31 13:51:55.853",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:51:56.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:51:56.353",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 13:51:56.603",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:51:56.853",
+    "command": "lift",
+    "confidence": 0.74
+  },
+  {
+    "timestamp": "2026-07-31 13:51:57.103",
+    "command": "lift",
+    "confidence": 0.58
+  },
+  {
+    "timestamp": "2026-07-31 13:51:59.228",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:51:59.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:59.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:51:59.978",
+    "command": "lift",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 13:52:00.228",
+    "command": "lift",
+    "confidence": 0.63
+  },
+  {
+    "timestamp": "2026-07-31 13:52:00.478",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:52:00.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:00.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:01.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:01.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:01.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:01.978",
+    "command": "lift",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:52:02.978",
+    "command": "lift",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 13:52:04.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:04.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:04.853",
+    "command": "lift",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 13:52:05.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:52:07.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:07.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:07.978",
+    "command": "lift",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 13:52:08.228",
+    "command": "lift",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 13:52:08.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:08.728",
+    "command": "push",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 13:52:08.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:52:24.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:25.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:28.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:28.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:28.603",
+    "command": "lift",
+    "confidence": 0.75
+  },
+  {
+    "timestamp": "2026-07-31 13:52:28.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:29.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:29.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:29.853",
+    "command": "lift",
+    "confidence": 0.56
+  },
+  {
+    "timestamp": "2026-07-31 13:52:33.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:33.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:33.728",
+    "command": "lift",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:52:33.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:52:34.228",
+    "command": "lift",
+    "confidence": 0.66
+  },
+  {
+    "timestamp": "2026-07-31 13:52:34.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:04.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:04.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:04.853",
+    "command": "lift",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 13:53:05.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:15.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:16.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:16.353",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:53:16.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:16.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:17.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:17.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:17.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:17.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:23.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:23.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:23.978",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:53:26.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:26.603",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:42.103",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:42.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:42.603",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:42.853",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:43.103",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:43.353",
+    "command": "left",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 13:53:43.603",
+    "command": "left",
+    "confidence": 0.65
+  },
+  {
+    "timestamp": "2026-07-31 13:53:43.853",
+    "command": "left",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 13:53:44.103",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:44.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:44.603",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:44.853",
+    "command": "left",
+    "confidence": 0.64
+  },
+  {
+    "timestamp": "2026-07-31 13:53:45.103",
+    "command": "left",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:53:54.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:53:54.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:10.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:10.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:13.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:13.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:14.103",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:54:14.353",
+    "command": "right",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 13:54:14.603",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:54:14.853",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:54:15.103",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:54:16.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:16.978",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:54:17.228",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:54:17.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:17.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:17.978",
+    "command": "right",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 13:54:18.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:18.478",
+    "command": "right",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 13:54:18.728",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 13:54:20.853",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 13:54:21.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:21.353",
+    "command": "right",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 13:54:22.103",
+    "command": "right",
+    "confidence": 0.53
+  },
+  {
+    "timestamp": "2026-07-31 13:54:22.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:27.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:27.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:27.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:28.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:28.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:28.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:28.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:29.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:29.353",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:54:29.603",
+    "command": "right",
+    "confidence": 0.82
+  },
+  {
+    "timestamp": "2026-07-31 13:54:29.853",
+    "command": "right",
+    "confidence": 0.74
+  },
+  {
+    "timestamp": "2026-07-31 13:54:30.103",
+    "command": "right",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 13:54:30.353",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:54:30.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:30.853",
+    "command": "right",
+    "confidence": 0.61
+  },
+  {
+    "timestamp": "2026-07-31 13:54:31.103",
+    "command": "right",
+    "confidence": 0.5
+  },
+  {
+    "timestamp": "2026-07-31 13:54:31.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:31.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:31.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:32.103",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:54:32.353",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:54:32.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:32.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:33.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:33.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:33.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:33.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:54:34.603",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:54:34.853",
+    "command": "push",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 13:55:20.603",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:55:23.728",
+    "command": "left",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 13:55:23.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:26.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:26.603",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:26.853",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:28.853",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:35.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:35.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:38.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:38.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:38.728",
+    "command": "lift",
+    "confidence": 0.54
+  },
+  {
+    "timestamp": "2026-07-31 13:55:43.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:44.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:44.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:52.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:53.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:53.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:53.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:53.978",
+    "command": "lift",
+    "confidence": 0.53
+  },
+  {
+    "timestamp": "2026-07-31 13:55:57.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:57.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:58.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:55:59.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:00.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:00.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:00.728",
+    "command": "left",
+    "confidence": 0.74
+  },
+  {
+    "timestamp": "2026-07-31 13:56:00.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:01.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:01.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:01.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:01.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:02.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:02.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:02.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:02.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:03.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:03.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:03.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:03.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:04.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:04.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:04.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:04.978",
+    "command": "left",
+    "confidence": 0.6
+  },
+  {
+    "timestamp": "2026-07-31 13:56:05.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:05.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:05.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:05.978",
+    "command": "left",
+    "confidence": 0.62
+  },
+  {
+    "timestamp": "2026-07-31 13:56:06.228",
+    "command": "left",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:56:06.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:06.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:07.603",
+    "command": "left",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:56:07.853",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:09.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:09.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:10.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:10.478",
+    "command": "left",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 13:56:10.728",
+    "command": "left",
+    "confidence": 0.88
+  },
+  {
+    "timestamp": "2026-07-31 13:56:10.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:11.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:11.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:11.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:11.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:12.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:12.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:12.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:12.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:13.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:13.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:13.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:13.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:14.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:14.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:14.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:14.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:15.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:15.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:15.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:15.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:16.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:16.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:16.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:16.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:17.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:17.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:17.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:17.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:18.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:18.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:29.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:30.228",
+    "command": "right",
+    "confidence": 0.6
+  },
+  {
+    "timestamp": "2026-07-31 13:56:30.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:35.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:36.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:41.353",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:56:41.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:41.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:51.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:52.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:52.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:53.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:53.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:53.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:56.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:57.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:57.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:57.603",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 13:56:57.853",
+    "command": "right",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 13:56:58.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:56:58.603",
+    "command": "right",
+    "confidence": 0.7
+  },
+  {
+    "timestamp": "2026-07-31 13:57:00.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:00.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:00.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:01.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:01.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:01.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:01.853",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:57:03.853",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:57:04.103",
+    "command": "right",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 13:57:34.853",
+    "command": "lift",
+    "confidence": 0.82
+  },
+  {
+    "timestamp": "2026-07-31 13:57:35.103",
+    "command": "lift",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 13:57:52.853",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 13:57:53.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:53.353",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:57:53.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:53.853",
+    "command": "lift",
+    "confidence": 0.73
+  },
+  {
+    "timestamp": "2026-07-31 13:57:54.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:57:54.353",
+    "command": "lift",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 13:57:54.603",
+    "command": "lift",
+    "confidence": 0.76
+  },
+  {
+    "timestamp": "2026-07-31 13:57:54.853",
+    "command": "lift",
+    "confidence": 0.54
+  },
+  {
+    "timestamp": "2026-07-31 13:57:55.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:57:55.353",
+    "command": "lift",
+    "confidence": 0.66
+  },
+  {
+    "timestamp": "2026-07-31 13:58:07.353",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 13:58:07.603",
+    "command": "right",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 13:58:11.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:11.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:11.728",
+    "command": "right",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 13:58:12.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:13.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:13.353",
+    "command": "right",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 13:58:13.603",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 13:58:13.853",
+    "command": "right",
+    "confidence": 0.64
+  },
+  {
+    "timestamp": "2026-07-31 13:58:14.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:14.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:14.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:15.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:15.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:16.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:16.603",
+    "command": "right",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 13:58:16.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:17.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:20.353",
+    "command": "right",
+    "confidence": 0.6
+  },
+  {
+    "timestamp": "2026-07-31 13:58:20.603",
+    "command": "right",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 13:58:20.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:21.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:21.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:21.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:21.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:22.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:23.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:23.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:23.853",
+    "command": "right",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 13:58:24.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:24.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:58:25.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:15.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:16.103",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 13:59:16.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:28.728",
+    "command": "push",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 13:59:28.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:29.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:30.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:31.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:32.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:49.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 13:59:49.978",
+    "command": "push",
+    "confidence": 0.51
+  },
+  {
+    "timestamp": "2026-07-31 14:00:17.978",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:00:18.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:00:19.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:00:19.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:00:30.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:00:30.853",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:00:31.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:00:31.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:24.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:24.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:24.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:24.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:25.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:25.478",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:25.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:25.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:26.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:26.478",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:01:26.728",
+    "command": "push",
+    "confidence": 0.66
+  },
+  {
+    "timestamp": "2026-07-31 14:01:26.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:27.228",
+    "command": "push",
+    "confidence": 0.75
+  },
+  {
+    "timestamp": "2026-07-31 14:01:27.478",
+    "command": "push",
+    "confidence": 0.76
+  },
+  {
+    "timestamp": "2026-07-31 14:01:27.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:27.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:28.228",
+    "command": "push",
+    "confidence": 0.79
+  },
+  {
+    "timestamp": "2026-07-31 14:01:28.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:28.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:28.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:29.228",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:29.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:29.728",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:01:29.978",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:01:30.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:30.478",
+    "command": "push",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 14:01:30.728",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:01:30.978",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:01:31.228",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:31.478",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:31.728",
+    "command": "push",
+    "confidence": 0.68
+  },
+  {
+    "timestamp": "2026-07-31 14:01:31.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:41.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:41.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:42.103",
+    "command": "push",
+    "confidence": 0.81
+  },
+  {
+    "timestamp": "2026-07-31 14:01:42.353",
+    "command": "push",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:01:42.603",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:01:42.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:43.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:43.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:43.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:43.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:44.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:44.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:44.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:44.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:45.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:45.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:45.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:45.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:46.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:46.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:46.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:46.853",
+    "command": "push",
+    "confidence": 0.54
+  },
+  {
+    "timestamp": "2026-07-31 14:01:47.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:47.353",
+    "command": "push",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 14:01:47.603",
+    "command": "push",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 14:01:47.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:48.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:48.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:48.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:48.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:49.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:58.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:58.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:59.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:01:59.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:01:59.603",
+    "command": "push",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:01:59.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:00.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:00.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:00.603",
+    "command": "push",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:02:00.853",
+    "command": "push",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:02:01.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:01.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:01.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:01.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:02.103",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:02.353",
+    "command": "push",
+    "confidence": 0.61
+  },
+  {
+    "timestamp": "2026-07-31 14:02:02.603",
+    "command": "push",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:02:02.853",
+    "command": "push",
+    "confidence": 0.7
+  },
+  {
+    "timestamp": "2026-07-31 14:02:03.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:03.353",
+    "command": "push",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 14:02:03.603",
+    "command": "push",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:02:03.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:04.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:04.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:04.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:04.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:05.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:05.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:05.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:05.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:13.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:13.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:13.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:14.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:14.478",
+    "command": "push",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:02:14.728",
+    "command": "push",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 14:02:14.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:15.228",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:15.478",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:15.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:15.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:16.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:16.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:16.728",
+    "command": "push",
+    "confidence": 0.73
+  },
+  {
+    "timestamp": "2026-07-31 14:02:16.978",
+    "command": "push",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:02:17.228",
+    "command": "push",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 14:02:17.478",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:17.728",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:17.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:18.228",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:02:19.228",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:02:19.478",
+    "command": "push",
+    "confidence": 0.76
+  },
+  {
+    "timestamp": "2026-07-31 14:02:19.728",
+    "command": "push",
+    "confidence": 0.7
+  },
+  {
+    "timestamp": "2026-07-31 14:02:19.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:20.228",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:02:20.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:20.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:20.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:21.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:28.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:28.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:29.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:29.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:29.603",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:02:29.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:30.103",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:30.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:30.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:30.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:31.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:31.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:31.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:32.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:32.603",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:32.853",
+    "command": "push",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 14:02:33.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:33.353",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:02:33.603",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:02:33.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:34.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:34.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:34.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:34.853",
+    "command": "push",
+    "confidence": 0.65
+  },
+  {
+    "timestamp": "2026-07-31 14:02:35.103",
+    "command": "push",
+    "confidence": 0.7
+  },
+  {
+    "timestamp": "2026-07-31 14:02:35.353",
+    "command": "push",
+    "confidence": 0.53
+  },
+  {
+    "timestamp": "2026-07-31 14:02:35.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:35.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:36.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:36.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:36.603",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:36.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:37.103",
+    "command": "push",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:02:37.353",
+    "command": "push",
+    "confidence": 0.83
+  },
+  {
+    "timestamp": "2026-07-31 14:02:37.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:37.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:38.103",
+    "command": "push",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:02:38.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:38.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:38.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:39.103",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:39.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:39.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:39.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:40.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:02:40.353",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:40.603",
+    "command": "push",
+    "confidence": 0.79
+  },
+  {
+    "timestamp": "2026-07-31 14:02:40.853",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:02:41.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:02:41.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:15.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:15.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:16.853",
+    "command": "push",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:03:17.728",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:18.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:18.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:18.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:19.103",
+    "command": "push",
+    "confidence": 0.6
+  },
+  {
+    "timestamp": "2026-07-31 14:03:19.353",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:19.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:21.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:22.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:22.853",
+    "command": "push",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 14:03:23.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:24.603",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:03:26.978",
+    "command": "lift",
+    "confidence": 0.62
+  },
+  {
+    "timestamp": "2026-07-31 14:03:27.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:29.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:29.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:29.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:29.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:30.228",
+    "command": "push",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:03:31.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:32.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:33.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:34.103",
+    "command": "lift",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 14:03:34.353",
+    "command": "lift",
+    "confidence": 0.82
+  },
+  {
+    "timestamp": "2026-07-31 14:03:34.603",
+    "command": "push",
+    "confidence": 0.72
+  },
+  {
+    "timestamp": "2026-07-31 14:03:34.853",
+    "command": "push",
+    "confidence": 0.84
+  },
+  {
+    "timestamp": "2026-07-31 14:03:35.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:35.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:35.603",
+    "command": "lift",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:03:35.853",
+    "command": "lift",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:03:36.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:36.353",
+    "command": "lift",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 14:03:36.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:36.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:37.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:37.353",
+    "command": "lift",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 14:03:37.603",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:03:37.853",
+    "command": "lift",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:03:38.103",
+    "command": "lift",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 14:03:38.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:38.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:38.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:39.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:39.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:39.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:39.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:40.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:40.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:40.603",
+    "command": "lift",
+    "confidence": 0.61
+  },
+  {
+    "timestamp": "2026-07-31 14:03:40.853",
+    "command": "lift",
+    "confidence": 0.51
+  },
+  {
+    "timestamp": "2026-07-31 14:03:41.103",
+    "command": "lift",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:03:41.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:41.603",
+    "command": "lift",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 14:03:41.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:42.103",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:03:42.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:42.603",
+    "command": "lift",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:03:42.853",
+    "command": "push",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 14:03:43.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:43.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:43.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:43.853",
+    "command": "lift",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:03:44.103",
+    "command": "lift",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:03:44.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:44.603",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:44.853",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:03:45.103",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:03:45.353",
+    "command": "lift",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:03:48.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:48.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:49.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:49.478",
+    "command": "right",
+    "confidence": 0.65
+  },
+  {
+    "timestamp": "2026-07-31 14:03:49.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:49.978",
+    "command": "right",
+    "confidence": 0.63
+  },
+  {
+    "timestamp": "2026-07-31 14:03:50.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:50.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:50.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:50.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:51.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:51.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:51.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:51.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:52.228",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:52.478",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:03:52.728",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:52.978",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:53.228",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:03:53.478",
+    "command": "right",
+    "confidence": 0.73
+  },
+  {
+    "timestamp": "2026-07-31 14:03:53.728",
+    "command": "right",
+    "confidence": 0.76
+  },
+  {
+    "timestamp": "2026-07-31 14:03:53.978",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:03:54.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:54.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:54.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:55.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:03:55.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:04:43.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:04:43.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:04:43.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:00.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:03.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:03.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:03.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:03.853",
+    "command": "lift",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:05:04.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:04.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:04.603",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:05:04.853",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:05:07.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:07.603",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:07.853",
+    "command": "left",
+    "confidence": 0.6
+  },
+  {
+    "timestamp": "2026-07-31 14:05:10.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:10.478",
+    "command": "left",
+    "confidence": 0.79
+  },
+  {
+    "timestamp": "2026-07-31 14:05:10.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:10.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:11.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:11.478",
+    "command": "left",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:05:11.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:11.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:12.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:12.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:12.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:12.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:13.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:13.478",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:05:13.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:13.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:14.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:14.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:14.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:14.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:15.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:15.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:15.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:15.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:16.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:16.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:16.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:16.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:17.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:17.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:17.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:17.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:18.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:18.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:18.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:18.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:19.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:19.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:19.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:19.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:20.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:20.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:20.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:20.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:21.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:21.478",
+    "command": "left",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:05:21.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:21.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:27.103",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:05:27.353",
+    "command": "right",
+    "confidence": 0.66
+  },
+  {
+    "timestamp": "2026-07-31 14:05:27.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:29.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:29.603",
+    "command": "right",
+    "confidence": 0.62
+  },
+  {
+    "timestamp": "2026-07-31 14:05:29.853",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:05:30.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:30.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:30.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:30.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:31.103",
+    "command": "right",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:05:31.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:31.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:31.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:32.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:32.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:32.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:32.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:33.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:33.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:33.603",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:05:33.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:34.103",
+    "command": "right",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:05:45.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:46.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:05:46.353",
+    "command": "lift",
+    "confidence": 0.71
+  },
+  {
+    "timestamp": "2026-07-31 14:05:48.978",
+    "command": "lift",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 14:05:49.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:53.103",
+    "command": "lift",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:05:53.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:53.603",
+    "command": "lift",
+    "confidence": 0.77
+  },
+  {
+    "timestamp": "2026-07-31 14:05:53.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:54.103",
+    "command": "lift",
+    "confidence": 0.75
+  },
+  {
+    "timestamp": "2026-07-31 14:05:54.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:54.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:55.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:55.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:05:55.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:12.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:12.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:12.728",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:12.978",
+    "command": "lift",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 14:06:13.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:13.478",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:06:13.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:13.978",
+    "command": "push",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 14:06:14.228",
+    "command": "lift",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 14:06:15.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:15.978",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:27.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:27.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:28.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:28.478",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:06:28.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:28.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:29.228",
+    "command": "push",
+    "confidence": 0.51
+  },
+  {
+    "timestamp": "2026-07-31 14:06:29.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:29.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:29.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:30.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:30.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:32.978",
+    "command": "push",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 14:06:33.228",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:06:33.478",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:06:33.728",
+    "command": "push",
+    "confidence": 0.63
+  },
+  {
+    "timestamp": "2026-07-31 14:06:36.353",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:06:36.603",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:06:36.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:37.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:37.353",
+    "command": "push",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 14:06:37.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:38.228",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:06:38.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:38.728",
+    "command": "push",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 14:06:38.978",
+    "command": "push",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 14:06:39.228",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:06:39.478",
+    "command": "push",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 14:06:39.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:39.978",
+    "command": "push",
+    "confidence": 0.73
+  },
+  {
+    "timestamp": "2026-07-31 14:06:40.228",
+    "command": "push",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 14:06:40.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:40.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:40.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:41.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:41.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:44.103",
+    "command": "lift",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 14:06:44.353",
+    "command": "lift",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 14:06:44.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:44.853",
+    "command": "lift",
+    "confidence": 0.83
+  },
+  {
+    "timestamp": "2026-07-31 14:06:45.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:45.353",
+    "command": "lift",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:06:45.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:45.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:46.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:46.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:46.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:46.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:47.103",
+    "command": "lift",
+    "confidence": 0.71
+  },
+  {
+    "timestamp": "2026-07-31 14:06:47.353",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:06:47.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:47.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:48.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:06:48.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:48.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:48.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:49.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:49.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:49.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:06:49.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:00.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:00.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:00.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:03.353",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:21.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:21.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:22.228",
+    "command": "left",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:07:22.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:22.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:22.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:23.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:23.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:23.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:23.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:24.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:24.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:24.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:24.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:25.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:25.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:25.728",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:07:32.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:32.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:33.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:34.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:34.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:07:34.603",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:07:34.853",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:07:35.103",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:07:35.728",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:07:35.978",
+    "command": "right",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 14:07:36.228",
+    "command": "right",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 14:07:36.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:39.228",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:39.478",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:39.728",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:08:39.978",
+    "command": "lift",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:08:40.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:41.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:41.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:41.603",
+    "command": "lift",
+    "confidence": 0.53
+  },
+  {
+    "timestamp": "2026-07-31 14:08:41.853",
+    "command": "lift",
+    "confidence": 0.7
+  },
+  {
+    "timestamp": "2026-07-31 14:08:42.103",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:08:42.353",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:08:42.603",
+    "command": "lift",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:08:42.853",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:08:43.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:08:43.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:43.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:43.853",
+    "command": "lift",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 14:08:44.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:44.353",
+    "command": "lift",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 14:08:44.603",
+    "command": "lift",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:08:44.853",
+    "command": "lift",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:08:45.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:45.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:45.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:45.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:46.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:46.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:46.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:46.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:47.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:47.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:47.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:47.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:48.103",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:08:48.353",
+    "command": "lift",
+    "confidence": 0.88
+  },
+  {
+    "timestamp": "2026-07-31 14:08:48.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:48.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:49.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:49.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:49.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:49.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:50.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:50.353",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:50.603",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:50.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:51.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:51.353",
+    "command": "lift",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:08:56.478",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:08:56.728",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:08:56.978",
+    "command": "push",
+    "confidence": 0.78
+  },
+  {
+    "timestamp": "2026-07-31 14:08:57.228",
+    "command": "push",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 14:08:57.478",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:08:57.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:57.978",
+    "command": "push",
+    "confidence": 0.56
+  },
+  {
+    "timestamp": "2026-07-31 14:08:59.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:08:59.853",
+    "command": "push",
+    "confidence": 0.69
+  },
+  {
+    "timestamp": "2026-07-31 14:09:00.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:00.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:00.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:00.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:01.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:01.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:01.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:01.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:02.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:02.353",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:02.603",
+    "command": "push",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 14:09:02.853",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:09:04.728",
+    "command": "push",
+    "confidence": 0.63
+  },
+  {
+    "timestamp": "2026-07-31 14:09:04.978",
+    "command": "push",
+    "confidence": 0.74
+  },
+  {
+    "timestamp": "2026-07-31 14:09:05.228",
+    "command": "push",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:09:05.478",
+    "command": "push",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 14:09:05.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:05.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:06.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:08.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:08.353",
+    "command": "push",
+    "confidence": 0.58
+  },
+  {
+    "timestamp": "2026-07-31 14:09:09.728",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:10.978",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:11.228",
+    "command": "push",
+    "confidence": 0.81
+  },
+  {
+    "timestamp": "2026-07-31 14:09:11.478",
+    "command": "lift",
+    "confidence": 0.43
+  },
+  {
+    "timestamp": "2026-07-31 14:09:12.603",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:12.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:13.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:13.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:13.603",
+    "command": "push",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:09:13.853",
+    "command": "push",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 14:09:14.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:14.353",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:14.603",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:09:14.853",
+    "command": "push",
+    "confidence": 0.77
+  },
+  {
+    "timestamp": "2026-07-31 14:09:15.103",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:09:15.353",
+    "command": "push",
+    "confidence": 0.57
+  },
+  {
+    "timestamp": "2026-07-31 14:09:15.603",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:09:15.853",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:16.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:16.353",
+    "command": "push",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 14:09:16.603",
+    "command": "push",
+    "confidence": 0.52
+  },
+  {
+    "timestamp": "2026-07-31 14:09:16.853",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:17.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:17.353",
+    "command": "push",
+    "confidence": 0.73
+  },
+  {
+    "timestamp": "2026-07-31 14:09:17.603",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:17.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:18.103",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:18.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:18.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:18.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:19.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:19.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:19.603",
+    "command": "push",
+    "confidence": 0.77
+  },
+  {
+    "timestamp": "2026-07-31 14:09:19.853",
+    "command": "push",
+    "confidence": 0.82
+  },
+  {
+    "timestamp": "2026-07-31 14:09:20.103",
+    "command": "push",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 14:09:20.353",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:09:20.603",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:20.853",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:21.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:21.353",
+    "command": "push",
+    "confidence": 0.57
+  },
+  {
+    "timestamp": "2026-07-31 14:09:21.603",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:21.853",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:09:22.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:22.353",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:22.603",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:22.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:23.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:23.353",
+    "command": "push",
+    "confidence": 0.84
+  },
+  {
+    "timestamp": "2026-07-31 14:09:23.603",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:23.853",
+    "command": "push",
+    "confidence": 0.88
+  },
+  {
+    "timestamp": "2026-07-31 14:09:24.728",
+    "command": "lift",
+    "confidence": 0.83
+  },
+  {
+    "timestamp": "2026-07-31 14:09:24.978",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:30.853",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:09:31.103",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:09:31.353",
+    "command": "right",
+    "confidence": 0.67
+  },
+  {
+    "timestamp": "2026-07-31 14:09:31.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:33.353",
+    "command": "right",
+    "confidence": 0.71
+  },
+  {
+    "timestamp": "2026-07-31 14:09:33.603",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:09:37.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:38.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:38.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:38.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:39.103",
+    "command": "right",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 14:09:39.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:39.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:39.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:40.103",
+    "command": "right",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:09:42.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:47.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:48.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:49.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:49.728",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:09:49.978",
+    "command": "right",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:09:54.853",
+    "command": "right",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:09:55.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:55.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:09:55.603",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:09:55.853",
+    "command": "right",
+    "confidence": 0.93
+  },
+  {
+    "timestamp": "2026-07-31 14:09:56.103",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:09:56.353",
+    "command": "right",
+    "confidence": 0.73
+  },
+  {
+    "timestamp": "2026-07-31 14:10:00.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:01.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:01.478",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:01.728",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:01.978",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:02.978",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:03.228",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:03.853",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:04.103",
+    "command": "right",
+    "confidence": 0.94
+  },
+  {
+    "timestamp": "2026-07-31 14:10:04.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:04.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:04.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:05.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:05.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:05.603",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:10:05.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:06.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:06.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:06.603",
+    "command": "left",
+    "confidence": 0.46
+  },
+  {
+    "timestamp": "2026-07-31 14:10:06.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:07.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:07.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:07.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:07.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:08.103",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:10:08.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:08.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:08.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:09.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:09.353",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:09.603",
+    "command": "right",
+    "confidence": 0.64
+  },
+  {
+    "timestamp": "2026-07-31 14:10:09.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:10.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:10.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:10.603",
+    "command": "right",
+    "confidence": 0.56
+  },
+  {
+    "timestamp": "2026-07-31 14:10:10.853",
+    "command": "right",
+    "confidence": 0.75
+  },
+  {
+    "timestamp": "2026-07-31 14:10:11.103",
+    "command": "right",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:10:11.353",
+    "command": "right",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:10:11.603",
+    "command": "right",
+    "confidence": 0.51
+  },
+  {
+    "timestamp": "2026-07-31 14:10:11.853",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:12.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:12.353",
+    "command": "right",
+    "confidence": 0.75
+  },
+  {
+    "timestamp": "2026-07-31 14:10:12.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:12.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:13.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:13.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:13.603",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:13.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:14.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:14.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:14.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:14.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:15.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:15.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:15.603",
+    "command": "right",
+    "confidence": 0.72
+  },
+  {
+    "timestamp": "2026-07-31 14:10:15.853",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:16.103",
+    "command": "right",
+    "confidence": 0.71
+  },
+  {
+    "timestamp": "2026-07-31 14:10:16.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:16.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:16.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:17.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:17.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:17.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:17.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:18.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:18.353",
+    "command": "right",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:10:18.603",
+    "command": "right",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:10:18.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:19.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:19.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:19.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:19.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:20.103",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:20.353",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:20.603",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:20.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:21.103",
+    "command": "right",
+    "confidence": 0.95
+  },
+  {
+    "timestamp": "2026-07-31 14:10:21.353",
+    "command": "right",
+    "confidence": 0.91
+  },
+  {
+    "timestamp": "2026-07-31 14:10:21.603",
+    "command": "right",
+    "confidence": 0.71
+  },
+  {
+    "timestamp": "2026-07-31 14:10:21.853",
+    "command": "right",
+    "confidence": 0.83
+  },
+  {
+    "timestamp": "2026-07-31 14:10:22.103",
+    "command": "right",
+    "confidence": 0.87
+  },
+  {
+    "timestamp": "2026-07-31 14:10:22.353",
+    "command": "right",
+    "confidence": 0.8
+  },
+  {
+    "timestamp": "2026-07-31 14:10:58.228",
+    "command": "left",
+    "confidence": 0.52
+  },
+  {
+    "timestamp": "2026-07-31 14:10:58.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:10:58.728",
+    "command": "left",
+    "confidence": 0.61
+  },
+  {
+    "timestamp": "2026-07-31 14:10:59.978",
+    "command": "left",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:11:00.228",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:11:00.478",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:11:01.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:01.478",
+    "command": "left",
+    "confidence": 0.74
+  },
+  {
+    "timestamp": "2026-07-31 14:11:01.728",
+    "command": "left",
+    "confidence": 0.86
+  },
+  {
+    "timestamp": "2026-07-31 14:11:01.978",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:11:02.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:02.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:02.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:02.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:03.228",
+    "command": "left",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:11:03.478",
+    "command": "left",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:11:03.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:03.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:04.228",
+    "command": "left",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:11:04.478",
+    "command": "left",
+    "confidence": 0.92
+  },
+  {
+    "timestamp": "2026-07-31 14:11:04.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:04.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:05.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:05.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:05.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:05.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:06.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:06.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:06.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:06.978",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:11:07.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:07.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:07.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:07.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:08.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:08.478",
+    "command": "left",
+    "confidence": 0.63
+  },
+  {
+    "timestamp": "2026-07-31 14:11:08.728",
+    "command": "left",
+    "confidence": 0.83
+  },
+  {
+    "timestamp": "2026-07-31 14:11:08.978",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:11:09.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:09.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:09.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:09.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:10.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:10.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:10.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:10.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:11.228",
+    "command": "left",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:11:11.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:11.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:11.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:12.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:12.478",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:12.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:12.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:13.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:13.478",
+    "command": "left",
+    "confidence": 0.88
+  },
+  {
+    "timestamp": "2026-07-31 14:11:13.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:13.978",
+    "command": "left",
+    "confidence": 0.9
+  },
+  {
+    "timestamp": "2026-07-31 14:11:14.228",
+    "command": "right",
+    "confidence": 0.81
+  },
+  {
+    "timestamp": "2026-07-31 14:11:14.478",
+    "command": "right",
+    "confidence": 0.85
+  },
+  {
+    "timestamp": "2026-07-31 14:11:14.728",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:14.978",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:15.228",
+    "command": "left",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:11:15.478",
+    "command": "left",
+    "confidence": 0.55
+  },
+  {
+    "timestamp": "2026-07-31 14:11:15.728",
+    "command": "left",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 14:11:15.978",
+    "command": "left",
+    "confidence": 0.53
+  },
+  {
+    "timestamp": "2026-07-31 14:11:16.228",
+    "command": "left",
+    "confidence": 0.72
+  },
+  {
+    "timestamp": "2026-07-31 14:13:11.603",
+    "command": "right",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:11.853",
+    "command": "right",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:18.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:18.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:19.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:19.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:20.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:20.478",
+    "command": "push",
+    "confidence": 0.89
+  },
+  {
+    "timestamp": "2026-07-31 14:13:20.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:20.978",
+    "command": "push",
+    "confidence": 0.88
+  },
+  {
+    "timestamp": "2026-07-31 14:13:21.228",
+    "command": "push",
+    "confidence": 0.79
+  },
+  {
+    "timestamp": "2026-07-31 14:13:21.478",
+    "command": "push",
+    "confidence": 0.72
+  },
+  {
+    "timestamp": "2026-07-31 14:13:21.728",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:13:21.978",
+    "command": "push",
+    "confidence": 0.88
+  },
+  {
+    "timestamp": "2026-07-31 14:13:22.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:22.478",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:13:22.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:22.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:23.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:23.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:23.728",
+    "command": "push",
+    "confidence": 0.76
+  },
+  {
+    "timestamp": "2026-07-31 14:13:29.853",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:30.103",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:30.853",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:31.103",
+    "command": "lift",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:31.728",
+    "command": "lift",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:13:31.978",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:32.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:32.478",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:32.728",
+    "command": "push",
+    "confidence": 0.58
+  },
+  {
+    "timestamp": "2026-07-31 14:13:33.853",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:13:34.103",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:13:34.353",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:13:34.603",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:34.853",
+    "command": "push",
+    "confidence": 0.66
+  },
+  {
+    "timestamp": "2026-07-31 14:13:35.728",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:35.978",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:36.228",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:36.478",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:36.728",
+    "command": "push",
+    "confidence": 1.0
+  },
+  {
+    "timestamp": "2026-07-31 14:13:36.978",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:37.228",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:13:37.478",
+    "command": "push",
+    "confidence": 0.96
+  },
+  {
+    "timestamp": "2026-07-31 14:13:37.728",
+    "command": "push",
+    "confidence": 0.97
+  },
+  {
+    "timestamp": "2026-07-31 14:13:37.978",
+    "command": "push",
+    "confidence": 0.98
+  },
+  {
+    "timestamp": "2026-07-31 14:13:38.228",
+    "command": "push",
+    "confidence": 0.99
+  },
+  {
+    "timestamp": "2026-07-31 14:13:38.478",
+    "command": "push",
+    "confidence": 0.99
+  }
+]

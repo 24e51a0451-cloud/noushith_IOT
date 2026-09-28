@@ -1,0 +1,1 @@
+Stop the agent, extract into the pc_agent folder, replacing matching files, then restart with start_agent.bat. This update adds Chrome scrolling and JioSaavn search. Device identity and MQTT settings are unchanged.

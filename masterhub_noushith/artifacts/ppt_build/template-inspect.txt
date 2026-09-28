@@ -1,0 +1,174 @@
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","placeholders":[{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster2.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"Title and Content","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster3.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"Two Content"}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"HYDERABAD INSTITUTE OF TECHNOLOGY AND MANAGEMENT","textShapes":5}
+{"kind":"textbox","id":"sh/547294r6","slide":1,"name":"TextBox 1","text":"HYDERABAD INSTITUTE OF TECHNOLOGY AND MANAGEMENT","textPreview":"HYDERABAD INSTITUTE OF TECHNOLOGY AND MANAGEMENT","textChars":48,"textLines":1,"bbox":[31.2,67.2,696,74.32]}
+{"kind":"textbox","id":"sh/k3yl0zql","slide":1,"name":"TextBox 2","text":"SYNAPTIMESH —\n\t\t\t\t IOT TEAM","textPreview":"SYNAPTIMESH — | \t\t\t\t IOT TEAM","textChars":27,"textLines":2,"bbox":[-39.28,199.25,563.67,80.78]}
+{"kind":"textbox","id":"sh/7qp4be9c","slide":1,"name":"TextBox 3","text":"INTERNSHIP PROJECT REVIEW\nS NOUSHITH – 24E51A0451\n","textPreview":"INTERNSHIP PROJECT REVIEW | S NOUSHITH – 24E51A0451 |","textChars":50,"textLines":3,"bbox":[67.72,373.29,468.03,101.78]}
+{"kind":"textbox","id":"sh/sryl4zqx","slide":1,"name":"TextBox 6","text":"IoT Hardware  •  MasterHub  •  Embedded Systems","textPreview":"IoT Hardware  •  MasterHub  •  Embedded Systems","textChars":47,"textLines":1,"bbox":[86.4,544.34,768,38.4]}
+{"kind":"textbox","id":"sh/fu94fe98","slide":1,"name":"TextBox 7","text":"INTERNSHIP REVIEW  •  2026–2027","textPreview":"INTERNSHIP REVIEW  •  2026–2027","textChars":31,"textLines":1,"bbox":[31.2,568.34,844.8,28.8]}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"LIST OF CONTENTS","textShapes":3}
+{"kind":"textbox","id":"sh/9072xkry","slide":2,"name":"TextBox 1","text":"LIST OF CONTENTS","textPreview":"LIST OF CONTENTS","textChars":16,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/ozy1ofad","slide":2,"name":"TextBox 2","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"textbox","id":"sh/b29kza94","slide":2,"name":"TextBox 3","text":"• Abstract\n• Motivation & Problem Statement\n• Objectives\n• System Flowchart\n• IoT Hardware & Connections\n• Project Progress\n• Achieved Outputs\n• MasterHub & Embedded Systems\n• Learnings & Skills\n• Conclusion & Future Scope","textPreview":"• Abstract | • Motivation & Problem Statement | • Objectives | • System Flowchart | • IoT Hardware & Connections | • Project Progress | •...","textChars":222,"textLines":10,"bbox":[127.69,151.33,569.08,381.29]}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"ABSTRACT","textShapes":4}
+{"kind":"textbox","id":"sh/cza94vmx","slide":3,"name":"TextBox 1","text":"ABSTRACT","textPreview":"ABSTRACT","textChars":8,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/d0jax03i","slide":3,"name":"TextBox 2","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/298ryl4v","slide":3,"name":"Rounded Rectangle 3","bbox":[52.8,113.69,835.2,433.51]}
+{"kind":"textbox","id":"sh/3ah8rqlg","slide":3,"name":"TextBox 4","text":"PROJECT OVERVIEW","textPreview":"PROJECT OVERVIEW","textChars":16,"textLines":1,"bbox":[76.8,129.6,806.4,36.48]}
+{"kind":"textbox","id":"sh/obq90bml","slide":3,"name":"TextBox 5","text":"SynaptiMesh is a multi-domain automation platform in which a central MasterHub receives BCI, REST and MQTT inputs, validates them, and routes commands to the correct execution domain.\n\nMy internship work focused on the IoT / Smart-Home domain: ESP32 gateway development, Arduino Nano sensing, LoRa communication, MQTT command handling, relay-based device control and end-to-end validation.\n\nThe work progressed from individual hardware testing to integrated MasterHub operation and embedded-system testing.","textPreview":"SynaptiMesh is a multi-domain automation platform in which a central MasterHub receives BCI, REST and MQTT inputs, validates them, and ro...","textChars":506,"textLines":5,"bbox":[76.8,172.8,806.4,412.8]}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"MOTIVATION & PROBLEM STATEMENT","textShapes":8}
+{"kind":"textbox","id":"sh/1cj2d8b6","slide":4,"name":"TextBox 1","text":"MOTIVATION & PROBLEM STATEMENT","textPreview":"MOTIVATION & PROBLEM STATEMENT","textChars":30,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/0ba143al","slide":4,"name":"TextBox 2","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/rm1k7yt4","slide":4,"name":"Rounded Rectangle 3","bbox":[62.4,120,388.8,470.4]}
+{"kind":"textbox","id":"sh/ql8jytsj","slide":4,"name":"TextBox 4","text":"MOTIVATION","textPreview":"MOTIVATION","textChars":10,"textLines":1,"bbox":[76.8,129.6,360,36.48]}
+{"kind":"textbox","id":"sh/doj29oba","slide":4,"name":"TextBox 5","text":"Modern automation combines many inputs:\n• BCI / gesture signals\n• Dashboard / REST commands\n• Distributed IoT sensor data\n\nA common routing layer is needed to send the right command to the right hardware safely.","textPreview":"Modern automation combines many inputs: | • BCI / gesture signals | • Dashboard / REST commands | • Distributed IoT sensor data |  | A co...","textChars":211,"textLines":6,"bbox":[76.8,172.8,360,408]}
+{"kind":"shape","id":"sh/sna103ap","slide":4,"name":"Rounded Rectangle 6","bbox":[475.2,120,388.8,470.4]}
+{"kind":"textbox","id":"sh/3ihk3et8","slide":4,"name":"TextBox 7","text":"PROBLEM","textPreview":"PROBLEM","textChars":7,"textLines":1,"bbox":[489.6,129.6,360,36.48]}
+{"kind":"textbox","id":"sh/ih8ju9sn","slide":4,"name":"TextBox 8","text":"Single-purpose controllers become difficult to scale when the same command pipeline must coordinate lights, fans, pumps, sensors and mobility devices.\n\nThe system therefore needs reliable communication, validation, acknowledgement and hardware execution.","textPreview":"Single-purpose controllers become difficult to scale when the same command pipeline must coordinate lights, fans, pumps, sensors and mobi...","textChars":254,"textLines":3,"bbox":[489.6,172.8,360,408]}
+{"kind":"shape","id":"sh/kbm987y5","slide":4,"name":"Rounded Rectangle 9","bbox":[62.4,604.32,801.6,52.8]}
+{"kind":"textbox","id":"sh/5cva1cfq","slide":4,"name":"TextBox 10","text":"GOAL","textPreview":"GOAL","textChars":4,"textLines":1,"bbox":[76.8,612.48,772.8,36.48]}
+{"kind":"textbox","id":"sh/i94r6xgz","slide":4,"name":"TextBox 11","text":"Build and validate a modular command-to-hardware pipeline.","textPreview":"Build and validate a modular command-to-hardware pipeline.","textChars":58,"textLines":1,"bbox":[140.7,612.48,621.01,29.08]}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"OBJECTIVES & REQUIREMENTS","textShapes":6}
+{"kind":"textbox","id":"sh/dgbulwnm","slide":5,"name":"TextBox 1","text":"OBJECTIVES & REQUIREMENTS","textPreview":"OBJECTIVES & REQUIREMENTS","textChars":25,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/cf2tcr61","slide":5,"name":"TextBox 2","text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/z2tcnm5s","slide":5,"name":"Rounded Rectangle 3","bbox":[62.4,115.2,388.8,532.8]}
+{"kind":"textbox","id":"sh/yhkbe1o7","slide":5,"name":"TextBox 4","text":"OBJECTIVES","textPreview":"OBJECTIVES","textChars":10,"textLines":1,"bbox":[76.8,124.8,360,36.48]}
+{"kind":"textbox","id":"sh/l4bupwny","slide":5,"name":"TextBox 5","text":"1. Understand the MasterHub architecture\n2. Wire ESP32 gateway and Nano sensor node\n3. Implement MQTT relay control\n4. Build LoRa sensor telemetry\n5. Integrate with MasterHub dashboard\n6. Validate end-to-end commands and ACKs","textPreview":"1. Understand the MasterHub architecture | 2. Wire ESP32 gateway and Nano sensor node | 3. Implement MQTT relay control | 4. Build LoRa s...","textChars":225,"textLines":6,"bbox":[76.8,168,374.4,364.57]}
+{"kind":"shape","id":"sh/032tgr6d","slide":5,"name":"Rounded Rectangle 6","bbox":[475.2,115.2,388.8,532.8]}
+{"kind":"textbox","id":"sh/n6dcr65o","slide":5,"name":"TextBox 7","text":"HARDWARE","textPreview":"HARDWARE","textChars":8,"textLines":1,"bbox":[489.6,124.8,360,36.48]}
+{"kind":"textbox","id":"sh/m5kbi1oj","slide":5,"name":"TextBox 8","text":"ESP32 DevKit\nArduino Nano\nSX1278 / RA-02 LoRa\n4-channel Relay\nDF Player Mini + Speaker\nAJ-SR04M Ultrasonic Sensor\nFloat Switch\nBLE Button\nLight • Fan • Pump","textPreview":"ESP32 DevKit | Arduino Nano | SX1278 / RA-02 LoRa | 4-channel Relay | DF Player Mini + Speaker | AJ-SR04M Ultrasonic Sensor | Float Switc...","textChars":156,"textLines":9,"bbox":[489.6,168,360,409.81]}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"SYSTEM FLOWCHART","textShapes":15}
+{"kind":"textbox","id":"sh/yhg7epsj","slide":6,"name":"TextBox 1","text":"SYSTEM FLOWCHART","textPreview":"SYSTEM FLOWCHART","textChars":16,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/zi98nu94","slide":6,"name":"TextBox 2","text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/87ipkzal","slide":6,"name":"Rounded Rectangle 3","bbox":[52.8,124.8,139.2,96]}
+{"kind":"textbox","id":"sh/98rqt4r6","slide":6,"name":"TextBox 4","text":"BCI / REST /\nMQTT INPUT","textPreview":"BCI / REST / | MQTT INPUT","textChars":23,"textLines":2,"bbox":[58.56,129.6,127.68,86.4]}
+{"kind":"shape","id":"sh/ml07i9sv","slide":6,"name":"Connector 5","bbox":[192,172.8,28.8,0]}
+{"kind":"shape","id":"sh/7m98ru9g","slide":6,"name":"Rounded Rectangle 6","bbox":[220.8,124.8,139.2,96]}
+{"kind":"textbox","id":"sh/oryp8fah","slide":6,"name":"TextBox 7","text":"DEDUPLICATION /\nDEBOUNCE","textPreview":"DEDUPLICATION / | DEBOUNCE","textChars":24,"textLines":2,"bbox":[226.56,129.6,127.68,86.4]}
+{"kind":"shape","id":"sh/pc76hkr2","slide":6,"name":"Connector 8","bbox":[360,172.8,28.8,0]}
+{"kind":"shape","id":"sh/h4bupgn6","slide":6,"name":"Rounded Rectangle 9","bbox":[388.8,124.8,139.2,96]}
+{"kind":"textbox","id":"sh/w32twb6l","slide":6,"name":"TextBox 10","text":"PRIORITY +\nSAFETY CHECK","textPreview":"PRIORITY + | SAFETY CHECK","textChars":23,"textLines":2,"bbox":[394.56,129.6,127.68,86.4]}
+{"kind":"shape","id":"sh/v2tcn650","slide":6,"name":"Connector 11","bbox":[528,172.8,28.8,0]}
+{"kind":"shape","id":"sh/u1kbu1ov","slide":6,"name":"Rounded Rectangle 12","bbox":[556.8,124.8,139.2,96]}
+{"kind":"textbox","id":"sh/5svutgni","slide":6,"name":"TextBox 13","text":"DOMAIN\nROUTER","textPreview":"DOMAIN | ROUTER","textChars":13,"textLines":2,"bbox":[562.56,129.6,127.68,86.4]}
+{"kind":"shape","id":"sh/47mt0b6x","slide":6,"name":"Connector 14","bbox":[696,172.8,28.8,0]}
+{"kind":"shape","id":"sh/j6dcr65c","slide":6,"name":"Rounded Rectangle 15","bbox":[724.8,124.8,139.2,96]}
+{"kind":"textbox","id":"sh/i54bylor","slide":6,"name":"TextBox 16","text":"IoT / SMART-HOME\nEXECUTION","textPreview":"IoT / SMART-HOME | EXECUTION","textChars":26,"textLines":2,"bbox":[730.56,129.6,127.68,86.4]}
+{"kind":"shape","id":"sh/twfux0ne","slide":6,"name":"Rounded Rectangle 17","bbox":[52.8,312,139.2,96]}
+{"kind":"textbox","id":"sh/svmt4v6t","slide":6,"name":"TextBox 18","text":"Arduino Nano\nSensors","textPreview":"Arduino Nano | Sensors","textChars":20,"textLines":2,"bbox":[58.56,316.8,127.68,86.4]}
+{"kind":"shape","id":"sh/cbe5g3ih","slide":6,"name":"Connector 19","bbox":[192,360,28.8,0]}
+{"kind":"shape","id":"sh/dcnm98zm","slide":6,"name":"Rounded Rectangle 20","bbox":[220.8,312,139.2,96]}
+{"kind":"textbox","id":"sh/qpwnet0b","slide":6,"name":"TextBox 21","text":"LoRa\nLink","textPreview":"LoRa | Link","textChars":9,"textLines":2,"bbox":[226.56,316.8,127.68,86.4]}
+{"kind":"shape","id":"sh/bq547yhw","slide":6,"name":"Connector 22","bbox":[360,360,28.8,0]}
+{"kind":"shape","id":"sh/0fy5k3id","slide":6,"name":"Rounded Rectangle 23","bbox":[388.8,312,139.2,96]}
+{"kind":"textbox","id":"sh/lg76d8zy","slide":6,"name":"TextBox 24","text":"ESP32\nGateway","textPreview":"ESP32 | Gateway","textChars":13,"textLines":2,"bbox":[394.56,316.8,127.68,86.4]}
+{"kind":"shape","id":"sh/ydgnit07","slide":6,"name":"Connector 25","bbox":[528,360,28.8,0]}
+{"kind":"shape","id":"sh/zep4byhs","slide":6,"name":"Rounded Rectangle 26","bbox":[556.8,312,139.2,96]}
+{"kind":"textbox","id":"sh/gju58ji9","slide":6,"name":"TextBox 27","text":"MQTT / Wi-Fi\nMasterHub","textPreview":"MQTT / Wi-Fi | MasterHub","textChars":22,"textLines":2,"bbox":[562.56,316.8,127.68,86.4]}
+{"kind":"shape","id":"sh/1k3mhozu","slide":6,"name":"Connector 28","bbox":[696,360,28.8,0]}
+{"kind":"shape","id":"sh/jet8nm1c","slide":6,"name":"Rounded Rectangle 29","bbox":[724.8,312,139.2,96]}
+{"kind":"textbox","id":"sh/idk7ehkr","slide":6,"name":"TextBox 30","text":"Relay / DFPlayer\nOutputs","textPreview":"Relay / DFPlayer | Outputs","textChars":24,"textLines":2,"bbox":[730.56,316.8,127.68,86.4]}
+{"kind":"shape","id":"sh/50bqpcj2","slide":6,"name":"Connector 31","bbox":[793.92,220.8,0,91.2]}
+{"kind":"textbox","id":"sh/4f2pgr2h","slide":6,"name":"TextBox 32","text":"Sensor telemetry returns to the gateway and dashboard","textPreview":"Sensor telemetry returns to the gateway and dashboard","textChars":53,"textLines":1,"bbox":[96,446.4,700.8,38.4]}
+{"kind":"shape","id":"sh/va98j210","slide":6,"name":"Rounded Rectangle 33","bbox":[62.4,499.2,801.6,110.4]}
+{"kind":"textbox","id":"sh/u907axkf","slide":6,"name":"TextBox 34","text":"WORKING","textPreview":"WORKING","textChars":7,"textLines":1,"bbox":[76.8,508.8,772.8,36.48]}
+{"kind":"textbox","id":"sh/hcrqlcj6","slide":6,"name":"TextBox 35","text":"Command: Dashboard → MQTT → ESP32 → Relay / Audio → ACK.  |  Sensing: Nano → LoRa → ESP32 → MasterHub.","textPreview":"Command: Dashboard → MQTT → ESP32 → Relay / Audio → ACK.  |  Sensing: Nano → LoRa → ESP32 → MasterHub.","textChars":102,"textLines":1,"bbox":[76.8,552,772.8,48]}
+{"kind":"slide","id":"sl/gnmp4jqx","slide":7,"title":"IoT HARDWARE & CONNECTIONS","textShapes":8}
+{"kind":"textbox","id":"sh/cb2tkvap","slide":7,"name":"TextBox 1","text":"IoT HARDWARE & CONNECTIONS","textPreview":"IoT HARDWARE & CONNECTIONS","textChars":26,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/dcbud0ra","slide":7,"name":"TextBox 2","text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/zedcfa9g","slide":7,"name":"Rounded Rectangle 4","bbox":[52.8,108.96,292.8,148.8]}
+{"kind":"textbox","id":"sh/kzmdova1","slide":7,"name":"TextBox 5","text":"ESP32 OUTPUTS","textPreview":"ESP32 OUTPUTS","textChars":13,"textLines":1,"bbox":[67.2,118.56,264,36.48]}
+{"kind":"textbox","id":"sh/l0vuh0rm","slide":7,"name":"TextBox 6","text":"GPIO 25 → Pump relay\nGPIO 21 → Light relay\nGPIO 32 → Fan relay","textPreview":"GPIO 25 → Pump relay | GPIO 21 → Light relay | GPIO 32 → Fan relay","textChars":62,"textLines":3,"bbox":[52.8,154.43,264,93.35]}
+{"kind":"shape","id":"sh/eh0ba1sr","slide":7,"name":"Rounded Rectangle 7","bbox":[316.8,268.69,292.8,139.2]}
+{"kind":"textbox","id":"sh/fi9c369c","slide":7,"name":"TextBox 8","text":"LoRa / DFPLAYER","textPreview":"LoRa / DFPLAYER","textChars":15,"textLines":1,"bbox":[331.2,278.29,264,36.48]}
+{"kind":"textbox","id":"sh/baxkjqlk","slide":7,"name":"TextBox 9","text":"LoRa uses SPI.\nDF Player uses UART2 for audio.","textPreview":"LoRa uses SPI. | DF Player uses UART2 for audio.","textChars":46,"textLines":2,"bbox":[316.8,319.11,278.4,64.27]}
+{"kind":"shape","id":"sh/a9ojq5kz","slide":7,"name":"Rounded Rectangle 10","bbox":[589.11,416.16,307.2,160.22]}
+{"kind":"textbox","id":"sh/xcz2l03q","slide":7,"name":"TextBox 11","text":"NANO SENSORS","textPreview":"NANO SENSORS","textChars":12,"textLines":1,"bbox":[603.51,426.13,264,36.48]}
+{"kind":"textbox","id":"sh/cbq1sv25","slide":7,"name":"TextBox 12","text":"Ultrasonic sensor measures distance.\nFloat switch detects liquid presence.\nData is sent as JSON over LoRa.","textPreview":"Ultrasonic sensor measures distance. | Float switch detects liquid presence. | Data is sent as JSON over LoRa.","textChars":106,"textLines":3,"bbox":[589.11,462.61,308.49,93.35]}
+{"kind":"slide","id":"sl/fu1gfa1s","slide":8,"title":"PROJECT PROGRESS","textShapes":16}
+{"kind":"textbox","id":"sh/18byd4zy","slide":8,"name":"TextBox 1","text":"PROJECT PROGRESS","textPreview":"PROJECT PROGRESS","textChars":16,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/g72x4zyd","slide":8,"name":"TextBox 2","text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/ri9g7uhw","slide":8,"name":"Rounded Rectangle 3","bbox":[67.2,110.4,120,69.12]}
+{"kind":"textbox","id":"sh/6h0fypgb","slide":8,"name":"TextBox 4","text":"SPRINT 1","textPreview":"SPRINT 1","textChars":8,"textLines":1,"bbox":[72.96,131.07,108.48,25.85]}
+{"kind":"textbox","id":"sh/tkby9kzm","slide":8,"name":"TextBox 5","text":"IoT Hardware","textPreview":"IoT Hardware","textChars":12,"textLines":1,"bbox":[201.6,108.48,216,33.6]}
+{"kind":"textbox","id":"sh/sjix0zy1","slide":8,"name":"TextBox 6","text":"Studied components and wiring; tested relay-based Light, Fan and Pump control.","textPreview":"Studied components and wiring; tested relay-based Light, Fan and Pump control.","textChars":78,"textLines":1,"bbox":[201.6,144,628.8,69.12]}
+{"kind":"shape","id":"sh/je9g3ahk","slide":8,"name":"Connector 7","bbox":[127.68,179.52,0,55.68]}
+{"kind":"shape","id":"sh/id0fu50z","slide":8,"name":"Rounded Rectangle 8","bbox":[67.2,240,120,69.12]}
+{"kind":"textbox","id":"sh/o7ydoret","slide":8,"name":"TextBox 9","text":"SPRINT 2","textPreview":"SPRINT 2","textChars":8,"textLines":1,"bbox":[72.96,261.63,108.48,25.85]}
+{"kind":"textbox","id":"sh/98rehwve","slide":8,"name":"TextBox 10","text":"Communication","textPreview":"Communication","textChars":13,"textLines":1,"bbox":[201.6,238.08,216,33.6]}
+{"kind":"textbox","id":"sh/m5gvmhwn","slide":8,"name":"TextBox 11","text":"Implemented MQTT command handling, LoRa telemetry, BLE provisioning and OTA support.","textPreview":"Implemented MQTT command handling, LoRa telemetry, BLE provisioning and OTA support.","textChars":84,"textLines":1,"bbox":[201.6,273.6,628.8,69.12]}
+{"kind":"shape","id":"sh/n6pwfmd8","slide":8,"name":"Connector 12","bbox":[127.68,309.12,0,55.68]}
+{"kind":"shape","id":"sh/0jydkreh","slide":8,"name":"Rounded Rectangle 13","bbox":[67.2,369.6,120,69.12]}
+{"kind":"textbox","id":"sh/1k7edwv2","slide":8,"name":"TextBox 14","text":"SPRINT 3","textPreview":"SPRINT 3","textChars":8,"textLines":1,"bbox":[72.96,391.23,108.48,25.85]}
+{"kind":"textbox","id":"sh/ehgvihwr","slide":8,"name":"TextBox 15","text":"MasterHub","textPreview":"MasterHub","textChars":9,"textLines":1,"bbox":[201.6,367.68,216,33.6]}
+{"kind":"textbox","id":"sh/zipwbmdc","slide":8,"name":"TextBox 16","text":"Connected the ESP32 gateway to the MasterHub MQTT/REST pipeline and dashboard.","textPreview":"Connected the ESP32 gateway to the MasterHub MQTT/REST pipeline and dashboard.","textChars":78,"textLines":1,"bbox":[201.6,403.2,628.8,69.12]}
+{"kind":"shape","id":"sh/kfixwbe1","slide":8,"name":"Connector 17","bbox":[127.68,438.72,0,55.68]}
+{"kind":"shape","id":"sh/lgbepgvm","slide":8,"name":"Rounded Rectangle 18","bbox":[67.2,499.2,120,69.12]}
+{"kind":"textbox","id":"sh/tw7e9gnq","slide":8,"name":"TextBox 19","text":"SPRINT 4","textPreview":"SPRINT 4","textChars":8,"textLines":1,"bbox":[72.96,520.83,108.48,25.85]}
+{"kind":"textbox","id":"sh/svydgb65","slide":8,"name":"TextBox 20","text":"Embedded Systems","textPreview":"Embedded Systems","textChars":16,"textLines":1,"bbox":[201.6,497.28,244.34,35.54]}
+{"kind":"textbox","id":"sh/7u5w765k","slide":8,"name":"TextBox 21","text":"Worked toward integrated embedded-system operation and robot-car command testing.","textPreview":"Worked toward integrated embedded-system operation and robot-car command testing.","textChars":81,"textLines":1,"bbox":[201.6,528.96,628.8,69.12]}
+{"kind":"shape","id":"sh/6twve1oz","slide":8,"name":"Rounded Rectangle 22","bbox":[67.2,601.92,763.2,46.08]}
+{"kind":"textbox","id":"sh/5sne5wne","slide":8,"name":"TextBox 23","text":"PROGRESS","textPreview":"PROGRESS","textChars":8,"textLines":1,"bbox":[72.96,607.4,734.4,36.48]}
+{"kind":"textbox","id":"sh/kredcr6t","slide":8,"name":"TextBox 24","text":"Individual modules → Integrated gateway → MasterHub validation → Embedded-system testing.","textPreview":"Individual modules → Integrated gateway → MasterHub validation → Embedded-system testing.","textChars":89,"textLines":1,"bbox":[211.2,608.76,564.03,42.01]}
+{"kind":"slide","id":"sl/udsvah03","slide":9,"title":"ACHIEVED OUTPUTS","textShapes":14}
+{"kind":"textbox","id":"sh/1cfmhgne","slide":9,"name":"TextBox 1","text":"ACHIEVED OUTPUTS","textPreview":"ACHIEVED OUTPUTS","textChars":16,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/0b65obm9","slide":9,"name":"TextBox 2","text":"9","textPreview":"9","textChars":1,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/nex4jq5k","slide":9,"name":"Rounded Rectangle 3","bbox":[57.6,110.4,254.4,124.8]}
+{"kind":"textbox","id":"sh/mdonql4z","slide":9,"name":"TextBox 4","text":"LIGHT","textPreview":"LIGHT","textChars":5,"textLines":1,"bbox":[72,120,225.6,36.48]}
+{"kind":"textbox","id":"sh/9gzml0nq","slide":9,"name":"TextBox 5","text":"ON / OFF\nRelay-controlled output","textPreview":"ON / OFF | Relay-controlled output","textChars":32,"textLines":2,"bbox":[72,163.2,225.6,62.4]}
+{"kind":"shape","id":"sh/ofq5svm5","slide":9,"name":"Rounded Rectangle 6","bbox":[340.8,110.4,254.4,124.8]}
+{"kind":"textbox","id":"sh/bih4na5w","slide":9,"name":"TextBox 7","text":"FAN","textPreview":"FAN","textChars":3,"textLines":1,"bbox":[355.2,120,225.6,36.48]}
+{"kind":"textbox","id":"sh/ah8nu54b","slide":9,"name":"TextBox 8","text":"ON / OFF\n24 V DC fan control","textPreview":"ON / OFF | 24 V DC fan control","textChars":28,"textLines":2,"bbox":[355.2,163.2,225.6,62.4]}
+{"kind":"shape","id":"sh/oza1gfyh","slide":9,"name":"Rounded Rectangle 9","bbox":[624,110.4,254.4,124.8]}
+{"kind":"textbox","id":"sh/p0ji9kf2","slide":9,"name":"TextBox 10","text":"PUMP","textPreview":"PUMP","textChars":4,"textLines":1,"bbox":[638.4,120,225.6,36.48]}
+{"kind":"textbox","id":"sh/2xsjepgb","slide":9,"name":"TextBox 11","text":"ON / OFF\nPump switching through relay","textPreview":"ON / OFF | Pump switching through relay","textChars":37,"textLines":2,"bbox":[638.4,163.2,225.6,62.4]}
+{"kind":"shape","id":"sh/3y107axw","slide":9,"name":"Rounded Rectangle 12","bbox":[57.6,268.8,254.4,124.8]}
+{"kind":"textbox","id":"sh/cnu1kzyd","slide":9,"name":"TextBox 13","text":"SENSOR","textPreview":"SENSOR","textChars":6,"textLines":1,"bbox":[72,278.4,225.6,36.48]}
+{"kind":"textbox","id":"sh/do3id4fy","slide":9,"name":"TextBox 14","text":"JSON\nDistance + float telemetry","textPreview":"JSON | Distance + float telemetry","textChars":31,"textLines":2,"bbox":[72,321.6,225.6,62.4]}
+{"kind":"shape","id":"sh/qlcjipgn","slide":9,"name":"Rounded Rectangle 15","bbox":[340.8,268.8,254.4,124.8]}
+{"kind":"textbox","id":"sh/bml0buxs","slide":9,"name":"TextBox 16","text":"AUDIO","textPreview":"AUDIO","textChars":5,"textLines":1,"bbox":[355.2,278.4,225.6,36.48]}
+{"kind":"textbox","id":"sh/0ru1ozyp","slide":9,"name":"TextBox 17","text":"PLAY\nDFPlayer status/audio output","textPreview":"PLAY | DFPlayer status/audio output","textChars":33,"textLines":2,"bbox":[355.2,321.6,225.6,62.4]}
+{"kind":"shape","id":"sh/lsn2h4fa","slide":9,"name":"Rounded Rectangle 18","bbox":[624,268.8,254.4,124.8]}
+{"kind":"textbox","id":"sh/98ji147e","slide":9,"name":"TextBox 19","text":"ACK","textPreview":"ACK","textChars":3,"textLines":1,"bbox":[638.4,278.4,225.6,36.48]}
+{"kind":"textbox","id":"sh/87a18zqt","slide":9,"name":"TextBox 20","text":"LOGGED\nCommand acknowledgement","textPreview":"LOGGED | Command acknowledgement","textChars":30,"textLines":2,"bbox":[638.4,321.6,225.6,62.4]}
+{"kind":"slide","id":"sl/m90b6t0r","slide":10,"title":"Slide 10","textShapes":0}
+{"kind":"shape","id":"sh/xc3mho32","slide":10,"name":"Title 1","placeholder":"title","bbox":[0,0,0,0]}
+{"kind":"image","id":"im/5w7a5032","slide":10,"name":"Picture 3","bbox":[0,0,960,720]}
+{"kind":"slide","id":"sl/jetc3ut0","slide":11,"title":"Slide 11","textShapes":0}
+{"kind":"shape","id":"sh/xcryxg7y","slide":11,"name":"Title 1","placeholder":"title","bbox":[0,0,0,0]}
+{"kind":"image","id":"im/dw3y5wz6","slide":11,"name":"Picture 3","bbox":[0,0,960,720]}
+{"kind":"slide","id":"sl/8f2psfyx","slide":12,"title":"LEARNINGS & SKILLS GAINED","textShapes":14}
+{"kind":"textbox","id":"sh/1gbm9s3a","slide":12,"name":"TextBox 1","text":"LEARNINGS & SKILLS GAINED","textPreview":"LEARNINGS & SKILLS GAINED","textChars":25,"textLines":1,"bbox":[52.8,19.2,844.8,43.2]}
+{"kind":"textbox","id":"sh/0f2lgnmp","slide":12,"name":"TextBox 2","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[916.8,679.68,28.8,19.2]}
+{"kind":"shape","id":"sh/ra943il8","slide":12,"name":"Rounded Rectangle 3","bbox":[62.4,110.4,244.8,216]}
+{"kind":"textbox","id":"sh/q903ad4n","slide":12,"name":"TextBox 4","text":"EMBEDDED","textPreview":"EMBEDDED","textChars":8,"textLines":1,"bbox":[76.8,120,216,36.48]}
+{"kind":"textbox","id":"sh/dcbm583y","slide":12,"name":"TextBox 5","text":"ESP32 / Arduino firmware\nC / C++\nGPIO & peripheral control\nUART / SPI","textPreview":"ESP32 / Arduino firmware | C / C++ | GPIO & peripheral control | UART / SPI","textChars":69,"textLines":4,"bbox":[76.8,163.2,216,153.6]}
+{"kind":"shape","id":"sh/sb2lcnmd","slide":12,"name":"Rounded Rectangle 6","bbox":[326.4,110.4,244.8,216]}
+{"kind":"textbox","id":"sh/b6d4f2lc","slide":12,"name":"TextBox 7","text":"COMMUNICATION","textPreview":"COMMUNICATION","textChars":13,"textLines":1,"bbox":[340.8,120,216,36.48]}
+{"kind":"textbox","id":"sh/a543mx4r","slide":12,"name":"TextBox 8","text":"MQTT\nLoRa\nBLE provisioning\nWi-Fi networking","textPreview":"MQTT | LoRa | BLE provisioning | Wi-Fi networking","textChars":43,"textLines":4,"bbox":[340.8,163.2,216,153.6]}
+{"kind":"shape","id":"sh/wvupgz6t","slide":12,"name":"Rounded Rectangle 9","bbox":[590.4,110.4,244.8,216]}
+{"kind":"textbox","id":"sh/xw3q94ne","slide":12,"name":"TextBox 10","text":"INTEGRATION","textPreview":"INTEGRATION","textChars":11,"textLines":1,"bbox":[604.8,120,216,36.48]}
+{"kind":"textbox","id":"sh/atc7epon","slide":12,"name":"TextBox 11","text":"MasterHub routing\nREST + MQTT\nCommand ACKs\nDashboard testing","textPreview":"MasterHub routing | REST + MQTT | Command ACKs | Dashboard testing","textChars":60,"textLines":4,"bbox":[604.8,163.2,216,153.6]}
+{"kind":"shape","id":"sh/bulo7u58","slide":12,"name":"Rounded Rectangle 12","bbox":[62.4,360,244.8,216]}
+{"kind":"textbox","id":"sh/orapcf6h","slide":12,"name":"TextBox 13","text":"HARDWARE","textPreview":"HARDWARE","textChars":8,"textLines":1,"bbox":[76.8,369.6,216,36.48]}
+{"kind":"textbox","id":"sh/9sj65kn2","slide":12,"name":"TextBox 14","text":"Relay modules\nSensors\nDFPlayer\nWiring & testing","textPreview":"Relay modules | Sensors | DFPlayer | Wiring & testing","textChars":47,"textLines":4,"bbox":[76.8,412.8,216,153.6]}
+{"kind":"shape","id":"sh/mps7a5or","slide":12,"name":"Rounded Rectangle 15","bbox":[326.4,360,244.8,216]}
+{"kind":"textbox","id":"sh/nq1o3a5w","slide":12,"name":"TextBox 16","text":"DEBUGGING","textPreview":"DEBUGGING","textChars":9,"textLines":1,"bbox":[340.8,369.6,216,36.48]}
+{"kind":"textbox","id":"sh/0nap8f6l","slide":12,"name":"TextBox 17","text":"Firmware vs wiring faults\nAPI/version issues\nOTA problems\nSystematic testing","textPreview":"Firmware vs wiring faults | API/version issues | OTA problems | Systematic testing","textChars":76,"textLines":4,"bbox":[340.8,412.8,216,153.6]}
+{"kind":"shape","id":"sh/1oj61kn6","slide":12,"name":"Rounded Rectangle 18","bbox":[590.4,360,244.8,216]}
+{"kind":"textbox","id":"sh/hkbm5wzu","slide":12,"name":"TextBox 19","text":"TEAMWORK","textPreview":"TEAMWORK","textChars":8,"textLines":1,"bbox":[604.8,369.6,216,36.48]}
+{"kind":"textbox","id":"sh/gj25cry9","slide":12,"name":"TextBox 20","text":"Technical communication\nDocumentation\nCross-domain coordination\nProblem solving","textPreview":"Technical communication | Documentation | Cross-domain coordination | Problem solving","textChars":79,"textLines":4,"bbox":[604.8,412.8,216,153.6]}
+{"kind":"slide","id":"sl/hgzapcr6","slide":13,"title":"CONCLUSION & FUTURE SCOPE","textShapes":5}
+{"kind":"textbox","id":"sh/q50nydsj","slide":13,"name":"Title 1","placeholder":"title","text":"CONCLUSION & FUTURE SCOPE","textPreview":"CONCLUSION & FUTURE SCOPE","textChars":25,"textLines":1,"bbox":[0,0,0,0]}
+{"kind":"shape","id":"sh/21gnuts7","slide":13,"name":"Rounded Rectangle 3","bbox":[76.94,125.29,388.8,523.2]}
+{"kind":"textbox","id":"sh/gzy5s3a1","slide":13,"name":"TextBox 7","text":"CONCLUSION","textPreview":"CONCLUSION","textChars":10,"textLines":1,"bbox":[91.34,134.89,360,36.48]}
+{"kind":"textbox","id":"sh/hcfy9k3u","slide":13,"name":"TextBox 9","text":"The internship converted individual IoT hardware modules into a working execution domain integrated with the SynaptiMesh MasterHub.\n\nKey achievement:\n• ESP32 gateway + Nano sensor node\n• MQTT command path\n• LoRa telemetry\n• Light / Fan / Pump relay outputs\n• Audio and acknowledgement handling\n• End-to-end dashboard validation\n\nThe experience strengthened practical embedded, IoT and debugging skills.","textPreview":"The internship converted individual IoT hardware modules into a working execution domain integrated with the SynaptiMesh MasterHub. |  | ...","textChars":402,"textLines":11,"bbox":[91.34,178.09,360,460.8]}
+{"kind":"shape","id":"sh/vaxg7ulo","slide":13,"name":"Rounded Rectangle 6","bbox":[494.26,120.98,388.8,523.2]}
+{"kind":"textbox","id":"sh/t8fy5k3i","slide":13,"name":"TextBox 13","text":"FUTURE SCOPE","textPreview":"FUTURE SCOPE","textChars":12,"textLines":1,"bbox":[508.66,130.58,360,36.48]}
+{"kind":"textbox","id":"sh/7mdg3als","slide":13,"name":"TextBox 15","text":"• Improve OTA robustness\n• Calibrate ultrasonic readings\n• Extend multi-sensor automation rules\n• Improve device-health monitoring\n• Expand relay-controlled devices\n• Combine IoT with BCI and Embedded Mobility\n• Further test robot-car and multi-domain scenarios","textPreview":"• Improve OTA robustness | • Calibrate ultrasonic readings | • Extend multi-sensor automation rules | • Improve device-health monitoring ...","textChars":261,"textLines":7,"bbox":[508.66,173.78,360,460.8]}
+{"kind":"slide","id":"sl/6lsnupw7","slide":14,"title":"THANK \t\t\t\t\tYOU","textShapes":1}
+{"kind":"textbox","id":"sh/a1wze9g7","slide":14,"name":"TextBox 11","text":"THANK \t\t\t\t\tYOU","textPreview":"THANK \t\t\t\t\tYOU","textChars":14,"textLines":1,"bbox":[276.65,216.77,586.32,222.96]}

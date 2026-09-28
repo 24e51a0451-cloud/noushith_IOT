@@ -1,0 +1,54 @@
+{
+  "_comment": "Master catalog of all valid commands the system recognizes. Used by command_validator.py to reject unknown commands early.",
+  "desktop": [
+    "notepad_open",
+    "notepad_write",
+    "notepad_save",
+    "calculator_open",
+    "chrome_open",
+    "chrome_search",
+    "youtube_open",
+    "youtube_search",
+    "youtube_play",
+    "calendar_open"
+  ],
+  "iot": [
+    "left_light_on",
+    "left_light_off",
+    "left_fan_on",
+    "left_fan_off",
+    "left_pump_on",
+    "left_pump_off",
+    "right_light_on",
+    "right_light_off",
+    "right_fan_on",
+    "right_fan_off",
+    "ota_update"
+  ],
+  "embedded": [
+    "chair_forward",
+    "chair_back",
+    "chair_left",
+    "chair_right",
+    "chair_left360",
+    "chair_right360",
+    "chair_stop",
+    "car_forward",
+    "car_back",
+    "car_left",
+    "car_right",
+    "car_left360",
+    "car_right360",
+    "car_stop"
+  ],
+  "ai_ml": [
+    "media_play",
+    "media_pause",
+    "media_next",
+    "media_previous",
+    "media_volume_up",
+    "media_volume_down",
+    "media_album_search",
+    "jiosaavn_open"
+  ]
+}

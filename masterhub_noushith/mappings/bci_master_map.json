@@ -1,0 +1,399 @@
+{
+  "_title": "MasterHub BCI Architecture & Command Mapping",
+  "_version": "2.5.0",
+  "_description": "Unified 3-Phase BCI mental command & keyboard arrow mapping tree with temporal window framing specifications.",
+  "navigation": {
+    "back": {
+      "gesture": "push+right",
+      "keys": "ArrowUp+ArrowRight",
+      "description": "Return to previous stage / device selection"
+    },
+    "main_menu": {
+      "gesture": "push+left",
+      "keys": "ArrowUp+ArrowLeft",
+      "description": "Return to domain selection (IDLE state)"
+    }
+  },
+  "temporal_framing": {
+    "default_window_seconds": 4.0,
+    "presets": [
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "chording_enabled": true,
+    "description": "Every command execution waits for the temporal window hold timer before dispatching to hardware/PC, enabling live observation, cancellation, or combination formation."
+  },
+  "phase_1_domains": {
+    "desktop": {
+      "gesture": "push",
+      "arrow": "ArrowUp",
+      "mode": "DESKTOP_MODE",
+      "switch_command": "mode_desktop",
+      "label": "Python / Desktop",
+      "icon": "💻",
+      "description": "YouTube, Chrome, Notepad, Gmail"
+    },
+    "embedded": {
+      "gesture": "pull",
+      "arrow": "ArrowDown",
+      "mode": "EMBEDDED_MODE",
+      "switch_command": "mode_embedded",
+      "label": "Embedded Mobility",
+      "icon": "🕹️",
+      "description": "Robot car and Wheelchair"
+    },
+    "iot": {
+      "gesture": "left",
+      "arrow": "ArrowLeft",
+      "mode": "IOT_MODE",
+      "switch_command": "mode_iot",
+      "label": "IoT Smart Home",
+      "icon": "💡",
+      "description": "Lights, Fans, Pumps"
+    },
+    "ai_ml": {
+      "gesture": "right",
+      "arrow": "ArrowRight",
+      "mode": "MEDIA_MODE",
+      "switch_command": "mode_media",
+      "label": "AI/ML & Media",
+      "icon": "🎵",
+      "description": "Mobile JioSaavn & Desktop JioSaavn"
+    }
+  },
+  "phase_2_and_3_workflows": {
+    "desktop": {
+      "youtube": {
+        "selection_gesture": "push",
+        "arrow": "ArrowUp",
+        "mode": "YOUTUBE_MODE",
+        "switch_command": "mode_youtube",
+        "commands": {
+          "youtube_previous": {
+            "label": "Previous video",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "youtube_next": {
+            "label": "Next video",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          },
+          "youtube_pause": {
+            "label": "Play / Pause",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          },
+          "youtube_search": {
+            "label": "Search & play",
+            "gesture": "right",
+            "arrow": "ArrowRight",
+            "parameters": [
+              "query"
+            ]
+          }
+        }
+      },
+      "chrome": {
+        "selection_gesture": "pull",
+        "arrow": "ArrowDown",
+        "mode": "CHROME_MODE",
+        "switch_command": "mode_chrome",
+        "commands": {
+          "chrome_open_article": {
+            "label": "Open article",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "chrome_scroll_up": {
+            "label": "Scroll up",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          },
+          "chrome_scroll_down": {
+            "label": "Scroll down",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          },
+          "chrome_search": {
+            "label": "Google search",
+            "gesture": "right",
+            "arrow": "ArrowRight",
+            "parameters": [
+              "query"
+            ]
+          }
+        }
+      },
+      "notepad": {
+        "selection_gesture": "left",
+        "arrow": "ArrowLeft",
+        "mode": "NOTEPAD_MODE",
+        "switch_command": "mode_notepad",
+        "commands": {
+          "notepad_open": {
+            "label": "Open",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "notepad_save": {
+            "label": "Save file",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          }
+        }
+      },
+      "gmail": {
+        "selection_gesture": "right",
+        "arrow": "ArrowRight",
+        "mode": "GMAIL_MODE",
+        "switch_command": "mode_gmail",
+        "commands": {
+          "gmail_compose": {
+            "label": "Compose",
+            "gesture": "push",
+            "arrow": "ArrowUp",
+            "parameters": [
+              "to",
+              "subject",
+              "body"
+            ]
+          },
+          "gmail_send": {
+            "label": "Send",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          }
+        }
+      }
+    },
+    "embedded": {
+      "robot_car": {
+        "selection_gesture": "push",
+        "arrow": "ArrowUp",
+        "mode": "CAR_MODE",
+        "switch_command": "mode_car",
+        "commands": {
+          "car_forward": {
+            "label": "Forward",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "car_back": {
+            "label": "Backward",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          },
+          "car_left": {
+            "label": "Left",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          },
+          "car_right": {
+            "label": "Right",
+            "gesture": "right",
+            "arrow": "ArrowRight"
+          },
+          "car_stop": {
+            "label": "Stop",
+            "gesture": "left+right",
+            "arrow": "ArrowLeft+ArrowRight"
+          },
+          "car_left360": {
+            "label": "Left 360",
+            "gesture": "pull+left",
+            "arrow": "ArrowDown+ArrowLeft"
+          },
+          "car_right360": {
+            "label": "Right 360",
+            "gesture": "pull+right",
+            "arrow": "ArrowDown+ArrowRight"
+          }
+        }
+      },
+      "wheelchair": {
+        "selection_gesture": "pull",
+        "arrow": "ArrowDown",
+        "mode": "CHAIR_MODE",
+        "switch_command": "mode_chair",
+        "commands": {
+          "chair_forward": {
+            "label": "Forward",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "chair_back": {
+            "label": "Backward",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          },
+          "chair_left": {
+            "label": "Left",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          },
+          "chair_right": {
+            "label": "Right",
+            "gesture": "right",
+            "arrow": "ArrowRight"
+          },
+          "chair_stop": {
+            "label": "Stop",
+            "gesture": "left+right",
+            "arrow": "ArrowLeft+ArrowRight"
+          },
+          "chair_left360": {
+            "label": "Left 360",
+            "gesture": "pull+left",
+            "arrow": "ArrowDown+ArrowLeft"
+          },
+          "chair_right360": {
+            "label": "Right 360",
+            "gesture": "pull+right",
+            "arrow": "ArrowDown+ArrowRight"
+          }
+        }
+      }
+    },
+    "ai_ml": {
+      "mobile_jiosaavn": {
+        "selection_gesture": "push",
+        "arrow": "ArrowUp",
+        "mode": "MOBILE_JIOSAAVN_MODE",
+        "switch_command": "mode_mobile_jiosaavn",
+        "commands": {
+          "mobile_jiosaavn_next": {
+            "label": "Next song",
+            "gesture": "right",
+            "arrow": "ArrowRight"
+          },
+          "mobile_jiosaavn_previous": {
+            "label": "Previous song",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          },
+          "mobile_jiosaavn_play_pause": {
+            "label": "Play / Pause",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "mobile_jiosaavn_home": {
+            "label": "Android home",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          },
+          "mobile_jiosaavn_volume_up": {
+            "label": "Volume up",
+            "gesture": "right+push",
+            "arrow": "ArrowRight+ArrowUp"
+          },
+          "mobile_jiosaavn_volume_down": {
+            "label": "Volume down",
+            "gesture": "right+pull",
+            "arrow": "ArrowRight+ArrowDown"
+          }
+        }
+      },
+      "desktop_jiosaavn": {
+        "selection_gesture": "pull",
+        "arrow": "ArrowDown",
+        "mode": "DESKTOP_JIOSAAVN_MODE",
+        "switch_command": "mode_desktop_jiosaavn",
+        "commands": {
+          "media_next": {
+            "label": "Next track",
+            "gesture": "push",
+            "arrow": "ArrowUp"
+          },
+          "media_previous": {
+            "label": "Previous track",
+            "gesture": "pull",
+            "arrow": "ArrowDown"
+          },
+          "media_play": {
+            "label": "Play / Pause",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          },
+          "media_volume_up": {
+            "label": "Volume up",
+            "gesture": "right+push",
+            "arrow": "ArrowRight+ArrowUp"
+          },
+          "media_volume_down": {
+            "label": "Volume down",
+            "gesture": "right+pull",
+            "arrow": "ArrowRight+ArrowDown"
+          },
+          "jiosaavn_search": {
+            "label": "Search",
+            "gesture": "right",
+            "arrow": "ArrowRight",
+            "parameters": [
+              "query"
+            ]
+          }
+        }
+      }
+    },
+    "iot": {
+      "light": {
+        "selection_gesture": "push",
+        "arrow": "ArrowUp",
+        "mode": "LIGHT_MODE",
+        "switch_command": "mode_light",
+        "commands": {
+          "left_light_on": {
+            "label": "On",
+            "gesture": "right",
+            "arrow": "ArrowRight"
+          },
+          "left_light_off": {
+            "label": "Off",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          }
+        }
+      },
+      "fan": {
+        "selection_gesture": "pull",
+        "arrow": "ArrowDown",
+        "mode": "FAN_MODE",
+        "switch_command": "mode_fan",
+        "commands": {
+          "left_fan_on": {
+            "label": "On",
+            "gesture": "right",
+            "arrow": "ArrowRight"
+          },
+          "left_fan_off": {
+            "label": "Off",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          }
+        }
+      },
+      "pump": {
+        "selection_gesture": "left",
+        "arrow": "ArrowLeft",
+        "mode": "PUMP_MODE",
+        "switch_command": "mode_pump",
+        "commands": {
+          "left_pump_on": {
+            "label": "On",
+            "gesture": "right",
+            "arrow": "ArrowRight"
+          },
+          "left_pump_off": {
+            "label": "Off",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
+          }
+        }
+      }
+    }
+  }
+}
