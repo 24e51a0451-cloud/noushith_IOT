@@ -248,7 +248,10 @@ class LiveRunner:
         # diagnostics check and the mental-command subscription that
         # follows -- Cortex sessions are per-headset-per-token, so
         # there is no need (and no benefit) to create a second one.
-        session = self.sessions.create_session(token, self.headset_info.id, activate=True)
+        # Mental commands (com) and diagnostics (dev) work with an open
+        # session. Activation spends licensed quota and can fail with
+        # -32019 even though the headset and app authorization are ready.
+        session = self.sessions.create_session(token, self.headset_info.id, activate=False)
         dashboard.update_session(session_id=session.id, status=session.status, headset_id=self.headset_info.id)
 
         bat_pct = None

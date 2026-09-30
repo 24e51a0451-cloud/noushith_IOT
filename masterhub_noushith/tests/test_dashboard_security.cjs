@@ -68,3 +68,23 @@ test('UART errors and user-entered ports render as text', async () => {
   await context.handleUartConnect();
   assert.equal(nodes.uartModalFeedback.children[0].textContent, 'Connection failed: ' + payload);
 });
+
+test('UART registration selects the registered node before refreshing targets', async () => {
+  const { context, nodes } = dashboard();
+  nodes.regDeviceId = { value: 'PC_UART_001' };
+  nodes.regDeviceTransport = { value: 'usb' };
+  const calls = [];
+  context.post = async (url, body) => {
+    calls.push({ url, body });
+    return { success: true, active_target: body.target };
+  };
+  context.addActivityLog = () => {};
+  context.refreshConnections = async () => calls.push({ url: 'refresh' });
+  context.renderPcAgentCard = () => {};
+  await context.submitRegisterDevice();
+  assert.equal(calls[0].url, '/api/devices/register');
+  assert.equal(calls[0].body.transport, 'usb');
+  assert.equal(calls[1].url, '/api/devices/target');
+  assert.equal(calls[1].body.target, 'PC_UART_001');
+  assert.equal(calls[2].url, 'refresh');
+});

@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
 <title>MasterHub</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
-<link href="/static/masterhub.css" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='masterhub.css', v=dashboard_asset_version) }}" rel="stylesheet"/>
 <style>
   html { background-color: var(--bg-base); }
   /* Hidden elements kept for backward compatibility with test suite */
@@ -235,6 +235,18 @@
       </div>
     </div>
 
+    <div class="neural-cube-panel" aria-label="Live Cortex command preview">
+      <span class="neural-hud-label">COMMAND CUBE</span>
+      <div class="neural-cube-stage" role="img" id="hudBciCubeStage" aria-label="Cube preview — headset not connected">
+        <div class="neural-cube" id="hudBciCube">
+          <span class="cube-face cube-front"></span><span class="cube-face cube-back"></span>
+          <span class="cube-face cube-right"></span><span class="cube-face cube-left"></span>
+          <span class="cube-face cube-top"></span><span class="cube-face cube-bottom"></span>
+        </div>
+      </div>
+      <span class="neural-cube-status" id="hudBciCubeStatus">Preview · connect Cortex for live movement</span>
+    </div>
+
     <div class="neural-hud-center">
       <div class="neural-ack-box" id="hudBciAckBox">
         <div class="neural-ack-header">
@@ -279,8 +291,8 @@
       <button class="phase-btn active" id="phase1Btn" onclick="goToPhase(1)">01 · Domain</button>
       <button class="phase-btn" id="phase2Btn" onclick="goToPhase(2)" disabled>02 · Device</button>
       <button class="phase-btn" id="phase3Btn" onclick="goToPhase(3)" disabled>03 · Command Execution</button>
-      <button class="phase-btn workflow-nav-btn" id="workflowBackBtn" onclick="workflowBack()">Push + Right · Back</button>
-      <button class="phase-btn workflow-nav-btn" id="workflowMainBtn" onclick="workflowMainMenu()">Push + Left · Main Menu</button>
+      <button class="phase-btn workflow-nav-btn" id="workflowBackBtn" title="Push + Right: press Up, then Right within the temporal window" onclick="workflowBack()">↑ + → · Back</button>
+      <button class="phase-btn workflow-nav-btn" id="workflowMainBtn" title="Push + Left: press Up, then Left within the temporal window" onclick="workflowMainMenu()">↑ + ← · Main Menu</button>
     </nav>
 
 
@@ -398,6 +410,9 @@
               <button type="button" class="btn-agent-action" id="btnUartConfig" onclick="openUartConfigModal()">
                 <span>⚙️ UART Configuration</span>
               </button>
+              <button type="button" class="btn-agent-action" id="btnRegisterUart" onclick="openRegisterDeviceModal('usb')">
+                <span>➕ Register UART Node</span>
+              </button>
             </div>
           </div>
         </div>
@@ -514,7 +529,7 @@
       <div class="form-group">
         <label for="regDeviceId" class="form-label">Device ID <span class="required">*</span></label>
         <input type="text" id="regDeviceId" class="form-input" placeholder="e.g. PC_001, PC_002, PC_003" required autocomplete="off" />
-        <span class="form-hint">Must match the <code>device_id</code> in your target machine's <code>config/agent_config.json</code></span>
+        <span class="form-hint">Must match the agent's effective Device ID (.env or config/agent_config.json). UART registration selects this node for commands.</span>
       </div>
       <div class="form-group">
         <label for="regDeviceName" class="form-label">Device Name / Label</label>
@@ -711,8 +726,8 @@
   </div>
 </div>
 
-<script src="/static/masterhub.js"></script>
-<script src="/static/bci-panel.js"></script>
+<script src="{{ url_for('static', filename='masterhub.js', v=dashboard_asset_version) }}"></script>
+<script src="{{ url_for('static', filename='bci-panel.js', v=dashboard_asset_version) }}"></script>
 <script src="/static/jiosaavn-mobile.js"></script>
 </body>
 </html>

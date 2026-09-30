@@ -154,6 +154,9 @@
     var actName = data.streaming && latest ? latest.action : s.connected ? 'Waiting' : 'Offline';
     var icon = gestureIcons[actName.toLowerCase()] || '🧠';
     
+    if (typeof updateCortexCube === 'function') {
+      updateCortexCube(!!s.connected && !!data.streaming, actName, power);
+    }
     var hudIcon = $('hudBciGestureIcon');
     if (hudIcon) hudIcon.textContent = icon;
     
@@ -264,6 +267,7 @@
   events.onmessage = function (event) { lastEvent = Date.now(); render(JSON.parse(event.data)); };
   events.onerror = function () { offline(); };
   function offline() {
+    if (typeof updateCortexCube === 'function') updateCortexCube(false, 'offline', 0);
     text('bciStreamStatus', 'Reconnecting…'); $('bciStreamStatus').classList.remove('live');
     text('bciAction', 'Unavailable'); $('bciPower').value = 0; text('bciPowerLabel', '—');
     text('bciPending', 'Connection interrupted');

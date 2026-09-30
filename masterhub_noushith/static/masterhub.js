@@ -198,8 +198,8 @@ function updatePhaseButtons() {
   var p2 = byId('phase2Btn');
   var p3 = byId('phase3Btn');
   if (p1) { p1.className = 'phase-btn' + (ui.phase === 1 ? ' active' : ''); p1.disabled = false; }
-  if (p2) { p2.className = 'phase-btn' + (ui.phase === 2 ? ' active' : ''); p2.disabled = false; }
-  if (p3) { p3.className = 'phase-btn' + (ui.phase === 3 ? ' active' : ''); p3.disabled = false; }
+  if (p2) { p2.className = 'phase-btn' + (ui.phase === 2 ? ' active' : ''); p2.disabled = ui.busy || !ui.domain; }
+  if (p3) { p3.className = 'phase-btn' + (ui.phase === 3 ? ' active' : ''); p3.disabled = ui.busy || !ui.device; }
 
   var phase1 = byId('phase1');
   var phase2 = byId('phase2');
@@ -222,154 +222,79 @@ function updatePhaseButtons() {
   }
 }
 
-async function goToPhase(phase) {
-  if (!ui.catalog) return;
-  cancelFrame();
-  
-  if (phase === 2 && !ui.domain && ui.catalog.domains && ui.catalog.domains.length > 0) {
-    ui.domain = ui.catalog.domains[0].id;
-  }
-  if (phase === 3) {
-    if (!ui.domain && ui.catalog.domains && ui.catalog.domains.length > 0) {
-      ui.domain = ui.catalog.domains[0].id;
-    }
-    var dom = currentDomain();
-    if (!ui.device && dom && dom.devices && dom.devices.length > 0) {
-      ui.device = dom.devices[0].id;
-    }
-  }
-
-  ui.phase = phase;
-  renderChoices();
-
-  var command = phase === 1 ? ui.catalog.reset_command : phase === 2 ? (currentDomain() ? currentDomain().switch_command : null) : (currentDevice() ? currentDevice().switch_command : null);
-  var mode = phase === 1 ? 'IDLE' : phase === 2 ? (currentDomain() ? currentDomain().mode : 'IDLE') : (currentDevice() ? (currentDevice().mode || currentDomain().mode) : 'IDLE');
-
-  if (command && mode !== lastServerMode) {
-    lastServerMode = mode;
-    post('/api/command', { command: command }).catch(function() {});
-  }
-
-  updateTemporalObserverState(phase, 'ARMED', {
-    desc: 'Navigated to ' + (phase === 1 ? 'Domain Selection' : phase === 2 ? 'Device Selection' : 'Command Execution') + '.'
-  });
+/* Every manual phase change uses the same cancellable temporal frame. */
+function frameTransition(label, commit) {
+  if (ui.busy) return;
+  startTemporalFraming({ command: label }, (ui.catalog && ui.catalog.active_target) || 'Local Host', label, 'Manual UI');
+  pendingExecution.commit = commit;
+}
+function goToPhase(phase) {
+  if (!ui.catalog || phase === ui.phase || (phase === 2 && !ui.domain) || (phase === 3 && !ui.device)) return;
+  frameTransition('Phase ' + phase, function() { return commitGoToPhase(phase); });
+}
+function workflowBack() { frameTransition('Back', commitWorkflowBack); }
+function workflowMainMenu() { frameTransition('Main Menu', commitWorkflowMainMenu); }
+function selectDomain(id) {
+  var domain = ui.catalog && ui.catalog.domains.find(function(d) { return d.id === id; });
+  if (domain) frameTransition('Domain: ' + domain.label, function() { return commitSelectDomain(id); });
+}
+function selectDevice(id) {
+  var domain = currentDomain();
+  var device = domain && domain.devices.find(function(d) { return d.id === id; });
+  if (device) frameTransition('Device: ' + device.label, function() { return commitSelectDevice(id); });
 }
 
-async function workflowBack() {
-  cancelFrame();
-  if (ui.phase === 3) {
+async function commitWorkflowState(phase, domain, device, command, mode) {
+  if (ui.busy) return;
+  ui.busy = true;
+  updateTemporalObserverState(ui.phase, 'EXECUTING', {label: 'Changing workflow phase'});
+  try {
+    if (command) {
+      var result = await post('/api/command', {command: command});
+      if (result.success === false) throw new Error(result.error || 'Phase change failed');
+    }
+    ui.phase = phase;
+    ui.domain = domain;
+    ui.device = device;
     ui.command = null;
-    ui.phase = 2;
-    var dom = currentDomain();
-    if (dom && dom.switch_command) {
-      lastServerMode = dom.mode;
-      post('/api/command', { command: dom.switch_command }).catch(function() {});
-    }
-  } else if (ui.phase === 2) {
-    ui.device = null;
-    ui.phase = 1;
-    lastServerMode = 'IDLE';
-    if (ui.catalog && ui.catalog.reset_command) {
-      post('/api/command', { command: ui.catalog.reset_command }).catch(function() {});
-    }
-  }
-  updateTemporalObserverState(ui.phase, 'ARMED', {
-    desc: 'Returned back to ' + (ui.phase === 1 ? 'Domain Selection' : 'Device Selection') + '.'
-  });
-  renderChoices();
-}
-
-async function workflowMainMenu() {
-  cancelFrame();
-  lastServerMode = 'IDLE';
-  ui.domain = null;
-  ui.device = null;
-  ui.command = null;
-  ui.phase = 1;
-  var fields = byId('commandParams');
-  if (fields) fields.replaceChildren();
-  if (ui.catalog && ui.catalog.reset_command) {
-    post('/api/command', { command: ui.catalog.reset_command }).catch(function() {});
-  }
-  updateTemporalObserverState(1, 'ARMED', {
-    label: 'Ready · Select Domain or Action',
-    id: 'IDLE',
-    domain: 'None',
-    device: 'None',
-    desc: 'Reset to Main Menu (IDLE). Select domain to begin workflow.'
-  });
-  renderChoices();
-}
-
-/* --- Selection (Instant Single Click) --- */
-async function selectDomain(id) {
-  cancelFrame();
-  var d = ui.catalog ? ui.catalog.domains.find(function(dom) { return dom.id === id; }) : null;
-  if (!d) return;
-
-  // Instantly open Phase 2 on single click
-  ui.domain = id;
-  ui.device = null;
-  ui.command = null;
-  ui.phase = 2;
-  lastServerMode = d.mode;
-
-  var paramsEl = byId('commandParams');
-  if (paramsEl) paramsEl.replaceChildren();
-  text('executionResult', '');
-
-  renderChoices();
-
-  updateTemporalObserverState(2, 'ARMED', {
-    label: 'Domain Armed: ' + d.label,
-    id: d.id,
-    domain: d.label,
-    device: 'None',
-    target: (ui.catalog && ui.catalog.active_target) || 'Local Host',
-    source: 'Manual UI',
-    desc: 'Domain selected. Proceed to select target device/node.'
-  });
-
-  if (d.switch_command) {
-    post('/api/command', { command: d.switch_command }).catch(function(e) {
-      addActivityLog('SYSTEM', 'error', e.message);
+    lastServerMode = mode;
+    var fields = byId('commandParams');
+    if (fields) fields.replaceChildren();
+    text('executionResult', '');
+    updateTemporalObserverState(phase, 'ARMED', {
+      desc: 'Ready. Every selection executes after the configured temporal window.'
     });
+  } catch (error) {
+    updateTemporalObserverState(ui.phase, 'FAILED', {desc: error.message});
+    addActivityLog('SYSTEM', 'error', error.message);
+  } finally {
+    ui.busy = false;
+    renderChoices();
   }
 }
-
-async function selectDevice(id) {
-  cancelFrame();
-  var dom = currentDomain();
-  var dev = dom ? dom.devices.find(function(dv) { return dv.id === id; }) : null;
-  if (!dev) return;
-
-  // Instantly open Phase 3 on single click
-  ui.device = id;
-  ui.command = null;
-  ui.phase = 3;
-  lastServerMode = dev.mode || dom.mode;
-
-  var paramsEl = byId('commandParams');
-  if (paramsEl) paramsEl.replaceChildren();
-  text('executionResult', '');
-
-  renderChoices();
-
-  updateTemporalObserverState(3, 'ARMED', {
-    label: 'Device Armed: ' + dev.label,
-    id: dev.id,
-    domain: dom ? dom.label : 'None',
-    device: dev.label,
-    target: (ui.catalog && ui.catalog.active_target) || 'Local Host',
-    source: 'Manual UI',
-    desc: 'Device armed. Select command below to execute.'
-  });
-
-  if (dev.switch_command) {
-    post('/api/command', { command: dev.switch_command }).catch(function(e) {
-      addActivityLog('SYSTEM', 'error', e.message);
-    });
-  }
+async function commitGoToPhase(phase) {
+  if (!ui.catalog) return;
+  if (phase === 1) return commitWorkflowMainMenu();
+  var domain = currentDomain();
+  var device = currentDevice();
+  if (phase === 2 && domain) return commitWorkflowState(2, domain.id, null, domain.switch_command, domain.mode);
+  if (phase === 3 && domain && device) return commitWorkflowState(3, domain.id, device.id, device.switch_command, device.mode || domain.mode);
+}
+async function commitWorkflowBack() {
+  if (ui.phase === 3) return commitGoToPhase(2);
+  if (ui.phase === 2) return commitWorkflowMainMenu();
+}
+async function commitWorkflowMainMenu() {
+  if (ui.catalog) return commitWorkflowState(1, null, null, ui.catalog.reset_command, 'IDLE');
+}
+async function commitSelectDomain(id) {
+  var domain = ui.catalog && ui.catalog.domains.find(function(d) { return d.id === id; });
+  if (domain) return commitWorkflowState(2, domain.id, null, domain.switch_command, domain.mode);
+}
+async function commitSelectDevice(id) {
+  var domain = currentDomain();
+  var device = domain && domain.devices.find(function(d) { return d.id === id; });
+  if (device) return commitWorkflowState(3, domain.id, device.id, device.switch_command, device.mode || domain.mode);
 }
 
 async function selectCommand(id) {
@@ -516,7 +441,7 @@ function updateTemporalObserverState(phase, status, info) {
     if (info.desc) {
       desc.textContent = info.desc;
     } else if (status === 'FRAMING') {
-      desc.textContent = 'Delay before command is sent. Cancel or change selection to abort, or click Execute Now.';
+      desc.textContent = 'Delay before command is sent. Cancel or change selection to abort. Executes when the window ends.';
     } else if (status === 'SUCCESS') {
       desc.textContent = 'Command executed successfully · Acknowledged by controller (' + (info.latency || 'OK') + ').';
     } else {
@@ -526,16 +451,17 @@ function updateTemporalObserverState(phase, status, info) {
 
   var execNowBtn = byId('twExecuteNowBtn');
   var abortBtn = byId('twAbortBtn');
-  if (execNowBtn) execNowBtn.style.display = status === 'FRAMING' ? 'inline-block' : 'none';
+  if (execNowBtn) execNowBtn.style.display = 'none';
   if (abortBtn) abortBtn.style.display = status === 'FRAMING' ? 'inline-block' : 'none';
 }
 
 function startTemporalFraming(payload, target, commandLabel, sourceName) {
-  cancelFrame(true);
+  cancelFrame();
   var duration = (ui.temporalWindow !== null ? ui.temporalWindow : 4.0);
   var deadline = performance.now() + duration * 1000;
   
   pendingExecution = {
+    deadline: deadline,
     payload: payload,
     target: target,
     label: commandLabel,
@@ -544,7 +470,7 @@ function startTemporalFraming(payload, target, commandLabel, sourceName) {
     device: currentDevice() ? currentDevice().label : 'None'
   };
 
-  updateTemporalObserverState(3, 'FRAMING', {
+  updateTemporalObserverState(ui.phase, 'FRAMING', {
     label: 'Pending: ' + commandLabel,
     id: payload.command,
     domain: pendingExecution.domain,
@@ -554,7 +480,7 @@ function startTemporalFraming(payload, target, commandLabel, sourceName) {
     desc: 'Framing window active (' + duration.toFixed(1) + 's). Observing command before dispatch.'
   });
 
-  text('executionResult', 'Pending: ' + commandLabel + '. Cancel to abort or click Execute Now.');
+  text('executionResult', 'Pending: ' + commandLabel + '. Cancel to abort. Executes when the window ends.');
   text('twDisplay', duration.toFixed(1) + 's');
   
   var gauge = byId('twGaugeFill');
@@ -578,13 +504,16 @@ function startTemporalFraming(payload, target, commandLabel, sourceName) {
 
 async function executePendingImmediately() {
   if (pendingExecution) {
+    if (performance.now() < pendingExecution.deadline) return;
     var exec = pendingExecution;
     pendingExecution = null;
     cancelFrame(true);
-    await sendCommand(exec.payload, exec.target, exec.label, exec.source);
+    if (exec.commit) await exec.commit();
+    else await sendCommand(exec.payload, exec.target, exec.label, exec.source);
     return;
   }
   if (pendingTemporalGesture) {
+    if (performance.now() < pendingTemporalGesture.deadline) return;
     var execG = pendingTemporalGesture.gesture;
     var execK = pendingTemporalGesture.keys;
     var execS = pendingTemporalGesture.source;
@@ -768,12 +697,15 @@ var lastServerMode = null;
 function syncBciMode(catalog) {
   var mode = catalog.state_mode;
   if (!mode || mode === lastServerMode || ui.busy) return;
+  if (lastServerMode !== null) cancelFrame(true);
+  pendingExecution = null;
+  pendingTemporalGesture = null;
   lastServerMode = mode;
   
   if (mode === 'IDLE') {
-    // Only reset to phase 1 if we are not actively in Phase 2 or Phase 3
-    if (!ui.domain) {
+    {
       ui.phase = 1;
+      ui.domain = null;
       ui.device = null;
       ui.command = null;
       renderChoices();
@@ -783,6 +715,8 @@ function syncBciMode(catalog) {
   
   var matched = catalog.domains.some(function(domain) {
     if (domain.mode === mode) {
+      ui.device = null;
+      ui.command = null;
       ui.domain = domain.id;
       ui.phase = 2;
       return true;
@@ -1100,6 +1034,7 @@ function resolveArrowCombo(k1, k2) {
 }
 
 function triggerTemporalGesture(gesture, keyName, source) {
+  if (ui.busy) return;
   var duration = (ui.temporalWindow !== null ? ui.temporalWindow : 4.0);
   var deadline = performance.now() + duration * 1000;
   var src = source || 'manual_keyboard';
@@ -1114,26 +1049,19 @@ function triggerTemporalGesture(gesture, keyName, source) {
     var combo = resolveArrowCombo(k1, k2) || (g1 + '+' + g2);
     var comboKeys = (k1 && k2 && k1 !== g1) ? (k1 + '+' + k2) : combo;
 
-    // Form combination and cancel the pending single timer
-    cancelFrame(true);
-    pendingTemporalGesture = null;
-
-    updateTemporalObserverState(ui.phase, 'EXECUTING', {
-      label: '⚡ Combination Formed: ' + gestureLabel(combo),
-      id: combo,
-      domain: currentDomain() ? currentDomain().label : 'Combination Router',
-      device: currentDevice() ? currentDevice().label : 'Active Domain',
-      target: (ui.catalog && ui.catalog.active_target) || 'Local Host',
-      source: (src === 'bci' ? '🧠 BCI' : '⌨️ Keyboard') + ' [' + comboKeys + ']',
-      desc: 'Formed combination command (' + g1 + ' + ' + g2 + ' within ' + duration.toFixed(1) + 's window).'
+    // Keep the original deadline; a second gesture never bypasses framing.
+    if (g1 === g2 || g1.indexOf('+') !== -1) return;
+    pendingTemporalGesture.gesture = combo;
+    pendingTemporalGesture.keys = comboKeys;
+    updateTemporalObserverState(ui.phase, 'FRAMING', {
+      label: 'Pending: ' + gestureLabel(combo), id: combo,
+      source: src, desc: 'Combination captured. Executes when this window ends.'
     });
-
-    dispatchDirectGesture(combo, comboKeys, src);
     return;
   }
 
-  // If no pending gesture, open the temporal window for this single gesture
-  cancelFrame(true);
+  // A new frame replaces any pending click or keyboard selection.
+  cancelFrame();
 
   pendingTemporalGesture = {
     gesture: gesture,
@@ -1187,6 +1115,11 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
   var glabel = gestureLabel(gesture);
   var src = source || 'manual_keyboard';
   var isBci = src === 'bci' || src === 'cortex' || src === 'bci_mental';
+  // The frame already elapsed. Use the same committed navigation as the buttons;
+  // do not let a concurrent server refresh change the phase twice.
+  if (!isBci && gesture === 'push+right') return commitWorkflowBack();
+  if (!isBci && gesture === 'push+left') return commitWorkflowMainMenu();
+  ui.busy = true;
   text('executionResult', (isBci ? 'BCI' : 'Keyboard') + ' gesture: ' + glabel + ' [' + keysPressed + ']');
 
   updateTemporalObserverState(ui.phase, 'EXECUTING', {
@@ -1224,6 +1157,8 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
       desc: 'Executed ' + res.command + ' in ' + latency
     });
 
+    if (!res.success) return;
+    if (res.state && res.state.mode) lastServerMode = res.state.mode;
     if (gesture === 'push+left' || res.command === 'mode_idle') {
       ui.domain = null;
       ui.device = null;
@@ -1277,11 +1212,14 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
       source: (isBci ? '🧠 BCI Headset' : '⌨️ Keyboard') + ' [' + keysPressed + ']',
       desc: 'Execution failed: ' + err.message
     });
+  } finally {
+    ui.busy = false;
+    updatePhaseButtons();
   }
 }
 
 function handleArrowKeyDown(e) {
-  if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+  if (document.activeElement && (document.activeElement.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName))) {
     return;
   }
   
@@ -1297,54 +1235,9 @@ function handleArrowKeyDown(e) {
     keySequence.push(key);
   }
 
-  // Check simultaneous dual-key chord combination first
-  if (keySequence.length >= 2 || activeKeys.size >= 2) {
-    var k1 = keySequence[0];
-    var k2 = keySequence[1] || Array.from(activeKeys).find(function(k) { return k !== k1; });
-    var combo = resolveArrowCombo(k1, k2);
-    if (combo) {
-      keySequence = [];
-      activeKeys.clear();
-      cancelFrame(true);
-      pendingTemporalGesture = null;
-      dispatchDirectGesture(combo, [k1, k2].join('+'), 'manual_keyboard');
-      return;
-    }
-  }
+  if (e.repeat) return;
+  // All phases and ordered combinations share the same window.
 
-  // Phase 1: Single arrow selects Domain
-  if (ui.phase === 1) {
-    var domainMap = {
-      'ArrowUp': 'desktop',
-      'ArrowDown': 'embedded',
-      'ArrowLeft': 'iot',
-      'ArrowRight': 'ai_ml'
-    };
-    var targetDomain = domainMap[key];
-    if (targetDomain) {
-      activeKeys.clear();
-      keySequence = [];
-      selectDomain(targetDomain);
-      return;
-    }
-  }
-
-  // Phase 2: Single arrow selects Device
-  if (ui.phase === 2) {
-    var dom = currentDomain();
-    if (dom && dom.devices && dom.devices.length > 0) {
-      var singleG = resolveSingleArrow(key);
-      var matchedDevice = dom.devices.find(function(dv) { return dv.gesture === singleG; });
-      if (matchedDevice) {
-        activeKeys.clear();
-        keySequence = [];
-        selectDevice(matchedDevice.id);
-        return;
-      }
-    }
-  }
-
-  // Phase 3: Trigger single gesture into temporal window buffer
   var singleGesture = resolveSingleArrow(key);
   if (singleGesture) {
     triggerTemporalGesture(singleGesture, key, 'manual_keyboard');
@@ -1454,6 +1347,8 @@ window.toggleBciControlMode = toggleBciControlMode;
 
 /* --- PC Agent & Transport Management for Python Domain --- */
 async function renderPcAgentCard() {
+  var usbData = {};
+  try { usbData = await getJson('/api/usb/status'); } catch (e) {}
   var activeTarget = (ui.catalog && ui.catalog.active_target) || 'Local Host';
   text('activeTargetBadge', activeTarget);
 
@@ -1473,6 +1368,7 @@ async function renderPcAgentCard() {
     }
 
     targets.forEach(function(tgt) {
+      var isUart = ['usb', 'uart', 'serial'].includes(tgt.transport);
       var isSelected = tgt.device_id === activeTarget;
       var pill = document.createElement('button');
       pill.type = 'button';
@@ -1490,10 +1386,11 @@ async function renderPcAgentCard() {
 
       var type = document.createElement('span');
       type.className = 'target-pill-type';
-      type.textContent = (tgt.transport || 'mqtt').toUpperCase();
+      type.textContent = isUart ? 'UART' : (tgt.transport || 'mqtt').toUpperCase();
 
       var statusDot = document.createElement('span');
-      statusDot.className = 'target-status-dot ' + (tgt.status === 'ONLINE' ? 'online' : 'offline');
+      statusDot.className = 'target-status-dot ' + ((isUart ? usbData.connected : tgt.status === 'ONLINE') ? 'online' : 'offline');
+      if (isUart) statusDot.title = usbData.connected ? 'Serial port open: ' + usbData.port + ' (agent response not verified)' : 'Serial port disconnected';
 
       pill.append(icon, name, type, statusDot);
       pill.addEventListener('click', function() {
@@ -1520,7 +1417,6 @@ async function renderPcAgentCard() {
 
   // Update UART link status
   try {
-    var usbData = await getJson('/api/usb/status');
     var uartTag = byId('agentUartTag');
     var uartDesc = byId('agentUartDesc');
     if (uartTag) {
@@ -1550,13 +1446,15 @@ async function selectTargetNode(targetId) {
 }
 
 /* --- Modals Management --- */
-function openRegisterDeviceModal() {
+function openRegisterDeviceModal(transport) {
   var modal = byId('registerDeviceModal');
   var backdrop = byId('modalBackdrop');
   var feedback = byId('regModalFeedback');
   if (feedback) feedback.textContent = '';
   var idInput = byId('regDeviceId');
-  if (idInput && !idInput.value) idInput.value = 'PC_002';
+  var transportInput = byId('regDeviceTransport');
+  if (transportInput) transportInput.value = transport || 'mqtt';
+  if (idInput && !idInput.value) idInput.value = transport === 'usb' ? 'PC_UART_001' : 'PC_002';
   if (modal) modal.hidden = false;
   if (backdrop) backdrop.classList.add('open');
 }
@@ -1677,6 +1575,10 @@ async function submitRegisterDevice() {
     });
 
     if (res.success) {
+      if (['usb', 'uart', 'serial'].includes(transport)) {
+        var selected = await post('/api/devices/target', { target: deviceId });
+        if (ui.catalog) ui.catalog.active_target = selected.active_target;
+      }
       if (feedback) setFeedback(feedback, 'success-msg', 'Device ' + deviceId + ' registered successfully!');
       addActivityLog('AGENT', 'success', 'Registered PC Agent: ' + deviceId + ' (' + transport.toUpperCase() + ')');
       await refreshConnections();
@@ -1796,3 +1698,29 @@ async function handleUartDisconnect() {
   }
 }
 
+
+/* Visual feedback only: never dispatch commands from the cube. */
+function updateCortexCube(live, action, power) {
+  var cube = byId('hudBciCube');
+  if (!cube) return;
+  var p = Number.isFinite(power) ? Math.max(0, Math.min(1, power)) : 0;
+  var name = live ? String(action || 'neutral').toLowerCase() : 'offline';
+  var x = 0, y = 0, z = 0, rx = -22, ry = 35, rz = 0;
+  if (name === 'left') x = -42 * p;
+  if (name === 'right') x = 42 * p;
+  if (name === 'push') z = -100 * p;
+  if (name === 'pull') z = 65 * p;
+  if (name === 'lift' || name === 'up') y = -28 * p;
+  if (name === 'drop' || name === 'down') y = 28 * p;
+  if (name === 'rotateleft') ry -= 100 * p;
+  if (name === 'rotateright') ry += 100 * p;
+  if (name === 'rotateclockwise') rz = 90 * p;
+  if (name === 'rotatecounterclockwise') rz = -90 * p;
+  if (name === 'rotateforwards') rx -= 100 * p;
+  if (name === 'rotatereverse') rx += 100 * p;
+  cube.style.transform = 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) rotateZ(' + rz + 'deg)';
+  cube.style.setProperty('--cube-opacity', !live ? '1' : name === 'disappear' ? String(1 - p) : '1');
+  text('hudBciCubeStatus', live ? gestureLabel(name) + ' · ' + Math.round(p * 100) + '%' : 'Preview · connect Cortex for live movement');
+  var stage = byId('hudBciCubeStage');
+  if (stage) stage.setAttribute('aria-label', live ? 'Live cube: ' + name + ', power ' + Math.round(p * 100) + '%' : 'Cube preview — headset not connected');
+}

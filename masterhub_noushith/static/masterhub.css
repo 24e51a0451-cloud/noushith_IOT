@@ -3032,3 +3032,61 @@ body.light-mode .guide-content-box pre {
 .bci-frame-guide .bci-frame-note { font-size:12px; border-top:1px solid var(--border); padding-top:12px; }
 #bciFrameProgress { display:block; width:100%; height:7px; accent-color:var(--accent); margin-bottom:12px; }
 @media(max-width:650px) { .bci-frame-guide ol { grid-template-columns:1fr; gap:10px; } .bci-frame-shortcuts > span { width:100%; } }
+
+/* Compact metrics leave more space for live Cortex feedback. */
+.metrics-hud { gap: 10px; }
+.metrics-hud .hud-card { padding: 9px 14px; gap: 1px; }
+.metrics-hud .hud-label, .metrics-hud .hud-sub { font-size: .62rem; }
+.metrics-hud .hud-val { font-size: 1.02rem; }
+.neural-hud {
+  grid-template-columns: minmax(160px, .8fr) 210px minmax(300px, 1.7fr);
+  grid-template-areas: "gesture cube stream" "gesture cube controls";
+  min-height: 220px; padding: 24px 28px; gap: 18px 28px;
+}
+.neural-hud-left { grid-area: gesture; padding-right: 24px; gap: 16px; }
+.neural-hud-center { grid-area: stream; min-width: 0; align-self: end; }
+.neural-hud-right { grid-area: controls; align-self: start; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.neural-ack-box { padding: 16px 18px; gap: 10px; }
+.neural-ack-header { flex-wrap: wrap; gap: 10px; }
+.neural-status-indicator { flex-shrink: 0; }
+.neural-ack-title { white-space: nowrap; }
+.neural-mode-chip { white-space: nowrap; }
+.neural-ack-message { white-space: normal; overflow: visible; overflow-wrap: anywhere; line-height: 1.6; }
+.neural-power-header { gap: 14px; }
+.neural-hud-actions, .neural-telemetry-pill { flex-wrap: wrap; }
+.neural-cube-panel { grid-area: cube; display: flex; flex-direction: column; align-items: center; min-width: 0; gap: 12px; padding: 12px 0; }
+.neural-cube-stage { width: 180px; height: 125px; perspective: 420px; display: grid; place-items: center; }
+.neural-cube { width: 64px; height: 64px; position: relative; transform-style: preserve-3d; transform: rotateX(-22deg) rotateY(35deg); transition: transform 180ms ease-out; --cube-opacity: 1; }
+.cube-face { opacity: var(--cube-opacity); transition: opacity 180ms linear; position: absolute; inset: 0; display: grid; place-items: center; border: 1px solid #bec5d1; border-radius: 7px; background: #e4e7eb; backface-visibility: hidden; }
+.cube-face::after { content: ''; width: 39px; height: 39px; border-radius: 50%; background: #69b6be; }
+.cube-front { transform: translateZ(32px); }
+.cube-back { transform: rotateY(180deg) translateZ(32px); }
+.cube-right { transform: rotateY(90deg) translateZ(32px); background: #cbd2d8; }
+.cube-left { transform: rotateY(-90deg) translateZ(32px); background: #d6dce2; }
+.cube-left::after, .cube-right::after { background: #80bd94; }
+.cube-top { transform: rotateX(90deg) translateZ(32px); background: #f1f2f5; }
+.cube-bottom { transform: rotateX(-90deg) translateZ(32px); }
+.cube-top::after, .cube-bottom::after { background: #a291cd; }
+.neural-cube-status { font-size: .68rem; color: var(--text-secondary); text-align: center; }
+@media (max-width: 1000px) {
+  .neural-hud { grid-template-columns: minmax(0, 1fr) 210px; grid-template-areas: "gesture cube" "stream stream" "controls controls"; padding: 22px; gap: 20px; }
+  .neural-hud-left { border-right: 0; }
+}
+@media (max-width: 480px) {
+  .neural-hud { grid-template-columns: minmax(0, 1fr) 160px; padding: 16px; gap: 16px 8px; }
+  .neural-hud-left { padding-right: 0; }
+  .neural-cube-stage { width: 155px; }
+  .neural-hud-right { align-items: flex-start; }
+  .neural-ack-title { white-space: normal; }
+  .neural-hud .neural-gesture-name { font-size: 1rem; }
+}
+@media (max-width: 340px) {
+  .neural-hud { grid-template-columns: 1fr; grid-template-areas: "gesture" "cube" "stream" "controls"; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .neural-cube, .cube-face { transition: none; }
+}
+
+/* Closed drawers must not extend the visible dashboard canvas. */
+.bci-drawer:not(.open) { visibility: hidden; }
+.cortex-console .bci-drawer { visibility: visible; }

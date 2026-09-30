@@ -103,8 +103,8 @@ STREAM_NAME = os.environ.get("CORTEX_STREAM_NAME", "com")
 # ---------------------------------------------------------------------------
 # SESSION
 # ---------------------------------------------------------------------------
-# "active" sessions are required to subscribe to most data streams;
-# "open" sessions only allow raw/lightweight access. See session.py.
+# "active" sessions enable licensed features such as raw EEG and recording.
+# The mental-command live runner explicitly uses "open" (no session debit).
 SESSION_STATUS = os.environ.get("CORTEX_SESSION_STATUS", "active")
 
 # ---------------------------------------------------------------------------

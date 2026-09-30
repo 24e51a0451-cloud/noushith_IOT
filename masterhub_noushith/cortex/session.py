@@ -51,10 +51,11 @@ class SessionManager:
     def create_session(self, cortex_token: str, headset_id: str, activate: bool = True) -> SessionInfo:
         """
         Create a new session for `headset_id`. If `activate` is True
-        (the default, and required before subscribing to most streams
-        including "com"), the session is created directly with status
-        "active"; otherwise it's created "open" and left inactive until
-        `activate_session` is called.
+        (the default), the session uses the configured SESSION_STATUS;
+        otherwise it's created "open". Mental commands ("com") and device
+        diagnostics ("dev") do not require activation. Activation is for
+        licensed features such as raw EEG, recording, and high-resolution
+        performance metrics, and may consume session quota.
         If a session conflict or stale session exists, queries and closes stale sessions first.
         """
         status = SESSION_STATUS if activate else "open"

@@ -25,6 +25,7 @@ log = get_logger("app")
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config["JSON_SORT_KEYS"] = False
+    app.config["TEMPLATES_AUTO_RELOAD"] = True
     app.before_request(reject_cross_origin_mutation)
 
     app.register_blueprint(api_bp)
@@ -47,7 +48,13 @@ def create_app() -> Flask:
 
     @app.route("/dashboard")
     def dashboard():
-        return render_template("dashboard.html")
+        # Keep a cached stylesheet/script from mismatching an updated template.
+        paths = [os.path.join(app.root_path, folder, name) for folder, name in (
+            ('templates', 'dashboard.html'), ('static', 'masterhub.css'),
+            ('static', 'masterhub.js'), ('static', 'bci-panel.js'))]
+        version = str(max(os.stat(path).st_mtime_ns for path in paths))
+        return Response(render_template("dashboard.html", dashboard_asset_version=version),
+                        headers={"Cache-Control": "no-cache"}, mimetype="text/html")
 
     @app.route("/docs/guide")
     @app.route("/docs/user-guide.md")

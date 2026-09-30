@@ -363,6 +363,8 @@ Replay uses `/api/command` and can execute real mapped actions. Its confidence f
 
 **Cortex will not connect.** Confirm EMOTIV Launcher and its local service are running, check credentials and application approval, and inspect `/cortex/` for the connection error. MasterHub's HTTP port `5000` is separate from the default Cortex WebSocket port `6868`.
 
+**Cortex reports session limit error `-32019`.** This means the license has no local quota for activating a session. MasterHub's live mental-command (`com`) and diagnostic (`dev`) streams use an `open` session, which does not need activation or a quota debit. Restart MasterHub after updating, then connect again. For a separate workflow that requires licensed activation (such as raw EEG or recording), check `getLicenseInfo` and replenish local quota using `authorize` with a positive `debit`, subject to the license's available sessions. See [EMOTIV session activation](https://emotiv.gitbook.io/cortex-api/session) and [error -32019](https://emotiv.gitbook.io/cortex-api/error-codes#id-32019).
+
 **Predictions appear but commands do not run.** Load the correct profile, wait for fresh samples, enable control, return to neutral, and check power and the current mode's mapping. Save required action inputs before using those commands.
 
 **A command runs after returning to neutral.** That is possible for a pending nonmotion BCI action. Neutral rearms control and stops active motion; use Stop Control to cancel pending BCI work.
