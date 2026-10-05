@@ -1,0 +1,18 @@
+........................................................................ [ 33%]
+........................................................................ [ 66%]
+.......................................................................  [100%]
+============================== warnings summary ===============================
+tests\test_generator.py:44
+  D:\GALATICX\masterhub_iot_noushith\tests\test_generator.py:44: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/test_generator.py)
+    class TestCase:
+
+tests\test_generator.py:77
+  D:\GALATICX\masterhub_iot_noushith\tests\test_generator.py:77: PytestCollectionWarning: cannot collect test class 'TestGenerator' because it has a __init__ constructor (from: tests/test_generator.py)
+    class TestGenerator:
+
+tests\test_modernization.py:26
+  D:\GALATICX\masterhub_iot_noushith\tests\test_modernization.py:26: UserWarning: MasterHub modernization test suite initialized with high-precision telemetry.
+    warnings.warn("MasterHub modernization test suite initialized with high-precision telemetry.", UserWarning)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+215 passed, 3 warnings in 6.88s

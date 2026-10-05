@@ -1,0 +1,24 @@
+2026-10-05 10:45:34 | INFO     | MANUAL_COMMAND | Source: 'keyboard_arrow' [Keys: ArrowLeft] | Gesture: 'left' | Mapped: 'media_play' [ai_ml · play] | Mode: 'JIOSAAVN_MODE' | Outcome: SUCCESS | Latency: 101.1ms
+2026-10-05 10:45:34 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mobile_jiosaavn_search' [ai_ml · mobile_jiosaavn_search] | Mode: 'JIOSAAVN_MODE' | Outcome: SUCCESS | Latency: 0.7ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_desktop' [system · mode_desktop] | Mode: 'DESKTOP_MODE' | Outcome: SUCCESS | Latency: 0.6ms
+2026-10-05 10:45:36 | WARNING  | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'unknown_nonexistent_action' [system · unknown_nonexistent_action] | Mode: 'IDLE' | Outcome: FAILED | Latency: 0.3ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_idle' [system · mode_idle] | Mode: 'IDLE' | Outcome: SUCCESS | Latency: 0.6ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_idle' [system · mode_idle] | Mode: 'IDLE' | Outcome: SUCCESS | Latency: 0.9ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_media' [system · mode_media] | Mode: 'MEDIA_MODE' | Outcome: SUCCESS | Latency: 0.5ms
+2026-10-05 10:45:36 | WARNING  | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'invalid_command_xyz' [system · invalid_command_xyz] | Mode: 'IDLE' | Outcome: FAILED | Latency: 0.4ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_iot' [system · mode_iot] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.7ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'notepad_open' [desktop · open_notepad] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.4ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'media_next' [ai_ml · next_track] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.7ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'notepad_open' [desktop · open_notepad] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.6ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'open_gmail' [desktop · open_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.5ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'gmail_open' [desktop · open_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.3ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'compose_gmail' [desktop · compose_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.3ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'gmail_compose' [desktop · compose_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.4ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'search_gmail' [desktop · search_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.2ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'gmail_search' [desktop · search_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.2ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'send_gmail' [desktop · send_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.3ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'gmail_send' [desktop · send_gmail] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.2ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'car_left360' [embedded · LIFTCARLEFT360] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.6ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'car_right360' [embedded · LIFTCARRIGHT360] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.5ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'chair_left360' [embedded · CHAIRLEFT360] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.5ms
+2026-10-05 10:45:36 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'chair_right360' [embedded · CHAIRRIGHT360] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 0.4ms

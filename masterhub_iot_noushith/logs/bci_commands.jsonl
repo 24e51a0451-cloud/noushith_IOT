@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-05T05:15:34.763531+00:00", "event": "MENTAL_COMMAND", "headset_id": "EPOCX-ABC12345", "session_id": "session-xyz-789", "gesture": "right+push", "confidence": 0.98, "confidence_percent": "98.0%", "accepted": true, "routed_command": "media_volume_up", "domain": "ai_ml", "action": "volume_up", "status": "SUCCESS", "response_time_ms": 201.19, "reason": ""}

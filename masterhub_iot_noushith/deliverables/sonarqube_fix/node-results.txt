@@ -1,0 +1,22 @@
+✔ sidebar statuses refresh on success and clear stale values on failure (6.386ms)
+✔ mobile registration sends the category and media capabilities (2.4647ms)
+✔ dynamic labels, feedback and status preserve markup as literal text (2.2772ms)
+✔ device registration renders hostile device IDs without HTML parsing (1.2906ms)
+✔ UART errors and user-entered ports render as text (1.4171ms)
+✔ UART registration selects the registered node before refreshing targets (1.1255ms)
+✔ domain, device, and command each require their own full window (7.7541ms)
+✔ cancel and replacement cannot dispatch stale phase selections (4.6612ms)
+✔ keyboard combinations preserve the first deadline in all phases (4.4879ms)
+✔ failed phase change retains the existing phase (1.9398ms)
+✔ cube reflects gesture power and resets on neutral or disconnect (1.5792ms)
+✔ Up then Right returns exactly one phase after the window, despite server polling (6.8801ms)
+✔ arrow Back does not change phase when the server rejects navigation (1.9176ms)
+✔ arrow Main Menu waits once and clears all selections (1.3138ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.9641

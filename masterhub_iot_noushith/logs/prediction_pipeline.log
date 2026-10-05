@@ -1,0 +1,330 @@
+2026-08-13 09:33:53 | INFO     | Confidence filter initialized with threshold=0.8
+2026-08-13 09:33:53 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-08-13 11:09:38 | INFO     | Confidence filter initialized with threshold=0.8
+2026-08-13 11:09:38 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-08-13 14:06:16 | INFO     | Confidence filter initialized with threshold=0.8
+2026-08-13 14:06:16 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-02 09:53:36 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-02 09:53:36 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-05 12:19:42 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-05 12:19:42 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-05 12:19:53 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-05 12:19:53 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 12:11:09 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 12:11:09 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 13:10:12 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 13:10:12 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 13:34:10 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 13:34:10 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 15:05:43 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 15:05:43 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 15:23:47 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 15:23:47 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 15:24:15 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 15:24:15 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 15:24:46 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 15:24:46 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 15:25:16 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 15:25:16 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 18:04:54 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 18:04:54 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 18:38:08 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 18:38:08 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 18:44:09 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 18:44:09 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 21:00:23 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 21:00:23 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 21:16:39 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 21:16:39 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 21:19:50 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 21:19:50 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 21:28:28 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 21:28:28 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 21:38:39 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 21:38:39 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 21:39:48 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 21:39:48 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:21:05 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:21:05 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:21:14 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:21:14 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:21:23 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:21:23 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:22:52 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:22:52 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:23:17 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:23:17 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:25:00 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:25:00 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:33:31 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:33:31 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:33:54 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:33:54 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-22 23:35:15 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-22 23:35:15 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 09:58:16 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 09:58:16 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 09:58:35 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 09:58:35 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 10:08:38 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 10:08:38 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 10:08:57 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 10:08:57 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 13:32:23 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 13:32:23 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 13:34:53 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 13:34:53 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 13:47:38 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 13:47:38 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:17:29 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:17:29 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:17:41 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:17:41 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:18:10 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:18:10 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:21:35 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:21:35 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:21:47 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:21:47 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:23:37 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:23:37 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:34:32 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:34:32 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:35:03 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:35:03 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:36:42 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:36:42 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:37:18 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:37:18 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:46:05 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:46:05 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:46:29 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:46:29 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:58:28 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:58:28 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 14:58:58 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 14:58:58 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:11:55 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:11:55 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:14:04 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:14:04 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:14:24 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:14:24 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:15:36 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:15:36 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:15:37 | INFO     | Prediction received: index=? gesture='neutral' confidence=0.0000
+2026-09-23 15:15:37 | INFO     | #? REJECTED (confidence 0.00 < threshold 0.80) gesture='neutral'
+2026-09-23 15:15:37 | INFO     | Confidence rejected: index=? gesture='neutral' confidence=0.0000 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:15:37 | INFO     | Completed: index=? gesture='neutral' accepted=False reason=below_confidence_threshold
+2026-09-23 15:22:11 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:22:11 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:22:25 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:22:25 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:23:25 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:23:25 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:24:28 | INFO     | Prediction received: index=? gesture='neutral' confidence=0.0000
+2026-09-23 15:24:28 | INFO     | #? REJECTED (confidence 0.00 < threshold 0.80) gesture='neutral'
+2026-09-23 15:24:28 | INFO     | Confidence rejected: index=? gesture='neutral' confidence=0.0000 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:24:28 | INFO     | Completed: index=? gesture='neutral' accepted=False reason=below_confidence_threshold
+2026-09-23 15:25:36 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:25:36 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:25:38 | INFO     | Prediction received: index=? gesture='push' confidence=0.5175
+2026-09-23 15:25:38 | INFO     | #? REJECTED (confidence 0.52 < threshold 0.80) gesture='push'
+2026-09-23 15:25:38 | INFO     | Confidence rejected: index=? gesture='push' confidence=0.5175 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:25:38 | INFO     | Completed: index=? gesture='push' accepted=False reason=below_confidence_threshold
+2026-09-23 15:27:41 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:27:41 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:27:43 | INFO     | Prediction received: index=? gesture='neutral' confidence=0.0000
+2026-09-23 15:27:43 | INFO     | #? REJECTED (confidence 0.00 < threshold 0.80) gesture='neutral'
+2026-09-23 15:27:43 | INFO     | Confidence rejected: index=? gesture='neutral' confidence=0.0000 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:27:43 | INFO     | Completed: index=? gesture='neutral' accepted=False reason=below_confidence_threshold
+2026-09-23 15:28:45 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:28:45 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:28:52 | INFO     | Prediction received: index=? gesture='neutral' confidence=0.0000
+2026-09-23 15:28:52 | INFO     | #? REJECTED (confidence 0.00 < threshold 0.80) gesture='neutral'
+2026-09-23 15:28:52 | INFO     | Confidence rejected: index=? gesture='neutral' confidence=0.0000 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:28:52 | INFO     | Completed: index=? gesture='neutral' accepted=False reason=below_confidence_threshold
+2026-09-23 15:34:54 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:34:54 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:36:20 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:36:20 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:36:21 | INFO     | Prediction received: index=? gesture='pull' confidence=0.6448
+2026-09-23 15:36:21 | INFO     | #? REJECTED (confidence 0.64 < threshold 0.80) gesture='pull'
+2026-09-23 15:36:21 | INFO     | Confidence rejected: index=? gesture='pull' confidence=0.6448 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:36:21 | INFO     | Completed: index=? gesture='pull' accepted=False reason=below_confidence_threshold
+2026-09-23 15:37:12 | INFO     | Confidence filter initialized with threshold=0.8
+2026-09-23 15:37:12 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:37:22 | INFO     | Prediction received: index=? gesture='pull' confidence=0.3134
+2026-09-23 15:37:22 | INFO     | #? REJECTED (confidence 0.31 < threshold 0.80) gesture='pull'
+2026-09-23 15:37:22 | INFO     | Confidence rejected: index=? gesture='pull' confidence=0.3134 threshold=0.8000 reason=below_confidence_threshold
+2026-09-23 15:37:22 | INFO     | Completed: index=? gesture='pull' accepted=False reason=below_confidence_threshold
+2026-09-23 15:41:04 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:41:04 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:41:22 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:41:22 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:41:22 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:41:50 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:41:50 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 15:41:50 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:41:50 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:42:47 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:42:47 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:42:55 | INFO     | Prediction received: index=? gesture='pull' confidence=0.3512
+2026-09-23 15:42:55 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 15:42:55 | INFO     | Confidence rejected: index=? gesture='pull' confidence=0.3512 threshold=0.4000 reason=below_confidence_threshold
+2026-09-23 15:42:55 | INFO     | Completed: index=? gesture='pull' accepted=False reason=below_confidence_threshold
+2026-09-23 15:43:41 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:43:41 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:43:42 | INFO     | Prediction received: index=? gesture='push' confidence=0.3418
+2026-09-23 15:43:42 | INFO     | #? REJECTED (confidence 0.34 < threshold 0.40) gesture='push'
+2026-09-23 15:43:42 | INFO     | Confidence rejected: index=? gesture='push' confidence=0.3418 threshold=0.4000 reason=below_confidence_threshold
+2026-09-23 15:43:42 | INFO     | Completed: index=? gesture='push' accepted=False reason=below_confidence_threshold
+2026-09-23 15:47:16 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:47:16 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 15:47:16 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:47:16 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:49:18 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:49:18 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:49:25 | INFO     | Prediction received: index=? gesture='pull' confidence=0.8579
+2026-09-23 15:49:25 | INFO     | Confidence accepted: index=? gesture='pull' confidence=0.8579 threshold=0.4000
+2026-09-23 15:49:25 | INFO     | Gesture stabilized: index=? gesture='pull' accepted=True
+2026-09-23 15:49:25 | INFO     | Command sent: index=? gesture='pull'
+2026-09-23 15:49:25 | INFO     | #? SENT gesture='pull' -> HTTP 200 success=True (21.3ms)
+2026-09-23 15:49:25 | INFO     | HTTP response: index=? gesture='pull' status=200 success=True elapsed_ms=21.27
+2026-09-23 15:49:25 | INFO     | Completed: index=? gesture='pull' accepted=True reason=
+2026-09-23 15:50:59 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:50:59 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:51:12 | INFO     | Prediction received: index=? gesture='pull' confidence=0.4138
+2026-09-23 15:51:12 | INFO     | Confidence accepted: index=? gesture='pull' confidence=0.4138 threshold=0.4000
+2026-09-23 15:51:12 | INFO     | Gesture stabilized: index=? gesture='pull' accepted=True
+2026-09-23 15:51:12 | INFO     | Command sent: index=? gesture='pull'
+2026-09-23 15:51:12 | INFO     | #? SENT gesture='pull' -> HTTP 200 success=True (32.9ms)
+2026-09-23 15:51:12 | INFO     | HTTP response: index=? gesture='pull' status=200 success=True elapsed_ms=32.87
+2026-09-23 15:51:12 | INFO     | Completed: index=? gesture='pull' accepted=True reason=
+2026-09-23 15:55:40 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:55:40 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 15:55:40 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:55:40 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:55:51 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:55:51 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 15:55:51 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:55:51 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:56:58 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:56:58 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:57:01 | INFO     | Prediction received: index=? gesture='push' confidence=0.3881
+2026-09-23 15:57:01 | INFO     | #? REJECTED (confidence 0.39 < threshold 0.40) gesture='push'
+2026-09-23 15:57:01 | INFO     | Confidence rejected: index=? gesture='push' confidence=0.3881 threshold=0.4000 reason=below_confidence_threshold
+2026-09-23 15:57:01 | INFO     | Completed: index=? gesture='push' accepted=False reason=below_confidence_threshold
+2026-09-23 15:57:36 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 15:57:36 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 15:57:44 | INFO     | Prediction received: index=? gesture='pull' confidence=0.3163
+2026-09-23 15:57:44 | INFO     | #? REJECTED (confidence 0.32 < threshold 0.40) gesture='pull'
+2026-09-23 15:57:44 | INFO     | Confidence rejected: index=? gesture='pull' confidence=0.3163 threshold=0.4000 reason=below_confidence_threshold
+2026-09-23 15:57:44 | INFO     | Completed: index=? gesture='pull' accepted=False reason=below_confidence_threshold
+2026-09-23 16:00:32 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 16:00:32 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 16:01:20 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 16:01:20 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 16:01:27 | INFO     | Prediction received: index=? gesture='pull' confidence=0.3273
+2026-09-23 16:01:27 | INFO     | #? REJECTED (confidence 0.33 < threshold 0.40) gesture='pull'
+2026-09-23 16:01:27 | INFO     | Confidence rejected: index=? gesture='pull' confidence=0.3273 threshold=0.4000 reason=below_confidence_threshold
+2026-09-23 16:01:27 | INFO     | Completed: index=? gesture='pull' accepted=False reason=below_confidence_threshold
+2026-09-23 20:20:52 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:20:52 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 20:20:52 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:20:52 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 20:27:01 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:27:01 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 20:27:01 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:27:01 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 20:28:09 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:28:09 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 20:28:18 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:28:18 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 20:28:18 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:28:18 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 20:28:46 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:28:46 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 20:28:46 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 20:28:46 | INFO     | Sender configured for http://127.0.0.1:5000/api/command
+2026-09-23 22:31:47 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 22:31:47 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 23:20:58 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 23:20:58 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 23:31:33 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 23:31:33 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-23 23:42:49 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-23 23:42:49 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 09:57:13 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 09:57:13 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 09:57:38 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 09:57:38 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 09:58:32 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 09:58:32 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 09:59:20 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 09:59:20 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:05:05 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:05:05 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:05:22 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:05:22 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:07:37 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:07:37 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:08:24 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:08:24 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:09:14 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:09:14 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:09:23 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:09:23 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:09:54 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:09:54 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:30:33 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:30:33 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:54:34 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:54:34 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:55:01 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:55:01 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:56:55 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:56:55 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:57:27 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:57:27 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:57:51 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:57:51 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:58:10 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:58:10 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 10:58:29 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 10:58:29 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 11:50:08 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 11:50:08 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 11:51:38 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 11:51:38 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 11:54:35 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 11:54:35 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 11:55:07 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 11:55:07 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 12:16:39 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 12:16:39 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 12:21:38 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 12:21:38 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 12:25:16 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 12:25:16 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 13:34:55 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 13:34:55 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 13:42:15 | INFO     | Confidence filter initialized with threshold=0.4
+2026-09-24 13:42:15 | INFO     | #? REJECTED (confidence 0.35 < threshold 0.40) gesture='pull'
+2026-09-24 13:49:45 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 13:55:24 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 13:55:24 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-09-24 14:07:49 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 14:07:49 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-09-24 14:26:31 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 14:26:31 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-09-24 14:28:16 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 14:28:16 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-09-24 17:31:49 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 17:31:49 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-09-24 17:43:53 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-24 17:43:53 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-09-29 11:35:42 | INFO     | Confidence filter initialized with threshold=0.2
+2026-09-29 11:35:42 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-10-05 10:45:33 | INFO     | Confidence filter initialized with threshold=0.2
+2026-10-05 10:45:33 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'

@@ -1,0 +1,257 @@
+--- before/.env.example
++++ .env.example
+@@ -6,3 +6,6 @@
+ CORTEX_STREAM_NAME=com
+ CORTEX_SESSION_STATUS=active
+ PREDICTION_SOURCE=cortex
++
++# Default to this computer only. Set an explicit LAN address for remote devices.
++MASTERHUB_HOST=127.0.0.1
+--- before/app.py
++++ app.py
+@@ -8,7 +8,7 @@
+ 
+ Or with the Flask CLI:
+     set FLASK_APP=app.py   (Windows)
+-    flask run --host=0.0.0.0 --port=5000
++    flask run --host=127.0.0.1 --port=5000
+ """
+ import os
+ from flask import Flask, jsonify, render_template, Response
+@@ -101,5 +101,6 @@
+     except Exception as exc:
+         log.warning(f"Could not pre-connect to MQTT broker at startup: {exc}")
+ 
+-    log.info("Starting MasterHub Flask server on http://0.0.0.0:5000")
+-    app.run(host="0.0.0.0", port=5000, debug=False, use_reloader=False)
++    host = os.environ.get("MASTERHUB_HOST", "127.0.0.1").strip() or "127.0.0.1"
++    log.info("Starting MasterHub Flask server on http://%s:5000", host)
++    app.run(host=host, port=5000, debug=False, use_reloader=False)
+--- before/core\devices.py
++++ core\devices.py
+@@ -195,10 +195,8 @@
+     def set_active_target(self, target: str) -> str:
+         with self._lock:
+             target = str(target).strip()
+-            if target in self._devices:
+-                self._active_target = target
+-            else:
+-                self._active_target = target
++            # Explicit remote targets may be selected before discovery completes.
++            self._active_target = target
+             return self._active_target
+ 
+ 
+--- before/docs\generate_robotics_iot_diagrams.py
++++ docs\generate_robotics_iot_diagrams.py
+@@ -33,7 +33,7 @@
+             ax.text(x + w/2, y + h*0.30, subtitle, ha="center", va="center", fontsize=7.8, color=text_color)
+ 
+     def draw_arrow(x1, y1, x2, y2, label="", color="#475569", rad=0.0):
+-        connectionstyle = f"arc3,rad={rad}" if rad != 0.0 else None
++        connectionstyle = f"arc3,rad={rad}"
+         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                     arrowprops=dict(arrowstyle="->", lw=2, color=color, shrinkA=4, shrinkB=4,
+                                     connectionstyle=connectionstyle))
+--- before/static\masterhub.css
++++ static\masterhub.css
+@@ -3090,3 +3090,13 @@
+ /* Closed drawers must not extend the visible dashboard canvas. */
+ .bci-drawer:not(.open) { visibility: hidden; }
+ .cortex-console .bci-drawer { visibility: visible; }
++
++/* Native controls retain the full row and backdrop geometry. */
++button.matrix-row { width: 100%; text-align: left; }
++button.sidebar-backdrop, button.bci-drawer-backdrop, button.modal-backdrop {
++  width: 100%; height: 100%; padding: 0;
++}
++button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
++
++.sidebar-backdrop, .bci-drawer-backdrop { visibility: hidden; }
++.sidebar-backdrop.open, .bci-drawer-backdrop.open { visibility: visible; }
+--- before/static\masterhub.js
++++ static\masterhub.js
+@@ -744,6 +744,7 @@
+       try {
+         var d = await getJson('/api/workflow');
+         syncBciMode(d);
++        text('sideActiveFsmMode', d.state_mode || 'IDLE');
+         if (!ui.catalog) {
+           ui.catalog = d;
+           renderChoices();
+@@ -754,6 +755,7 @@
+         }
+         var iotReady = d.domains.find(function(dm) { return dm.id === 'iot'; }) && d.domains.find(function(dm) { return dm.id === 'iot'; }).connection.ready;
+       } catch (e) {
++        text('sideActiveFsmMode', 'Unavailable');
+         if (!ui.catalog) text('executionResult', 'Unable to load domains.');
+       }
+     })(),
+@@ -762,12 +764,14 @@
+       try {
+         var d = await getJson('/api/iot/status');
+         var online = d.mqtt_connected;
++        text('sideMqttStatus', online ? 'Connected' : 'Offline');
+         var pill = byId('pillMqtt');
+         if (pill) {
+           pill.className = 'status-pill ' + (online ? 'online' : 'error');
+           setStatusText(pill, 'MQTT ' + (online ? 'Connected' : 'Offline'));
+         }
+       } catch (e) {
++        text('sideMqttStatus', 'Unavailable');
+         var pill = byId('pillMqtt');
+         if (pill) { pill.className = 'status-pill error'; setStatusText(pill, 'MQTT Unavailable'); }
+       }
+@@ -777,12 +781,14 @@
+       try {
+         var d = await getJson('/api/usb/status');
+         var connected = d.connected;
++        text('sideUartStatus', connected ? (d.port || 'Connected') : 'Disconnected');
+         var pill = byId('pillUsb');
+         if (pill) {
+           pill.className = 'status-pill ' + (connected ? 'online' : 'error');
+           setStatusText(pill, 'USB ' + (connected ? (d.port || 'Connected') : 'Disconnected'));
+         }
+       } catch (e) {
++        text('sideUartStatus', 'Unavailable');
+         var pill = byId('pillUsb');
+         if (pill) { pill.className = 'status-pill error'; setStatusText(pill, 'USB Unavailable'); }
+       }
+@@ -792,12 +798,14 @@
+       try {
+         var d = await getJson('/cortex/state');
+         var connected = d.state && d.state.status && d.state.status.connected;
++        text('sideBciStatus', connected ? 'Connected' : 'Disconnected');
+         var pill = byId('pillBci');
+         if (pill) {
+           pill.className = 'status-pill ' + (connected ? 'online' : 'error');
+           setStatusText(pill, 'BCI ' + (connected ? 'Connected' : 'Disconnected'));
+         }
+       } catch (e) {
++        text('sideBciStatus', 'Unavailable');
+         var pill = byId('pillBci');
+         if (pill) { pill.className = 'status-pill error'; setStatusText(pill, 'BCI Unavailable'); }
+       }
+@@ -806,9 +814,11 @@
+     (async function() {
+       try {
+         await getJson('/api/health');
++        text('sideHealthStatus', 'OK');
+         var pill = byId('pillSystem');
+         if (pill) { pill.className = 'status-pill online'; setStatusText(pill, 'System OK'); }
+       } catch (e) {
++        text('sideHealthStatus', 'Unavailable');
+         var pill = byId('pillSystem');
+         if (pill) { pill.className = 'status-pill error'; setStatusText(pill, 'System Error'); }
+       }
+--- before/templates\cortex_classic.html
++++ templates\cortex_classic.html
+@@ -4,7 +4,6 @@
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Cortex Classic · SYNAPTI MESH</title>
+-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+   <style>
+     :root {
+       color-scheme: dark;
+--- before/templates\dashboard.html
++++ templates\dashboard.html
+@@ -2,9 +2,8 @@
+ <html lang="en">
+ <head>
+ <meta charset="utf-8"/>
+-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
++<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+ <title>MasterHub</title>
+-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+ <link href="{{ url_for('static', filename='masterhub.css', v=dashboard_asset_version) }}" rel="stylesheet"/>
+ <style>
+   html { background-color: var(--bg-base); }
+@@ -23,10 +22,10 @@
+ </script>
+ 
+ <!-- Sidebar Backdrop -->
+-<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()" aria-hidden="true"></div>
++<button type="button" class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()" aria-label="Close sidebar"></button>
+ 
+ <!-- BCI Drawer Backdrop -->
+-<div class="bci-drawer-backdrop" id="bciDrawerBackdrop" onclick="closeBciDrawer()" aria-hidden="true"></div>
++<button type="button" class="bci-drawer-backdrop" id="bciDrawerBackdrop" onclick="closeBciDrawer()" aria-label="Close BCI drawer"></button>
+ 
+ <!-- Sidebar Drawer -->
+ <aside class="sidebar-drawer" id="sidebarDrawer" aria-label="MasterHub Sidebar Navigation" aria-hidden="true">
+@@ -46,22 +45,22 @@
+     <div class="sidebar-section">
+       <div class="sidebar-section-title">📡 Live Connection Matrix</div>
+       <div class="sidebar-status-matrix" id="sidebar-status-matrix">
+-        <div class="matrix-row matrix-row-interactive" onclick="refreshConnections()" title="Click to refresh connection status">
++        <button type="button" class="matrix-row matrix-row-interactive" onclick="refreshConnections()" title="Click to refresh connection status">
+           <span class="matrix-label"><span class="matrix-dot dot-mqtt"></span>MQTT Transport:</span>
+           <span class="matrix-val" id="sideMqttStatus">CHECKING</span>
+-        </div>
+-        <div class="matrix-row matrix-row-interactive" onclick="openUartConfigModal(); closeSidebar();" title="Click to configure UART / Serial link">
++        </button>
++        <button type="button" class="matrix-row matrix-row-interactive" onclick="openUartConfigModal(); closeSidebar();" title="Click to configure UART / Serial link">
+           <span class="matrix-label"><span class="matrix-dot dot-uart"></span>UART / USB:</span>
+           <span class="matrix-val" id="sideUartStatus">CHECKING</span>
+-        </div>
++        </button>
+         <a href="#bciPanel" id="cortexDashboardBtn" onclick="openBciDrawer(); closeSidebar(); return false;" class="matrix-row matrix-row-interactive matrix-link" title="Open Cortex Dashboard &amp; Headset Controls">
+           <span class="matrix-label"><span class="matrix-dot dot-bci"></span>BCI Headset (Cortex Dashboard):</span>
+           <span class="matrix-val" id="sideBciStatus">CHECKING</span>
+         </a>
+-        <div class="matrix-row matrix-row-interactive" onclick="window.open('/api/health', '_blank')" title="View JSON health telemetry">
++        <button type="button" class="matrix-row matrix-row-interactive" onclick="window.open('/api/health', '_blank')" title="View JSON health telemetry">
+           <span class="matrix-label"><span class="matrix-dot dot-health"></span>System Health:</span>
+           <span class="matrix-val" id="sideHealthStatus">CHECKING</span>
+-        </div>
++        </button>
+         <div class="matrix-row">
+           <span class="matrix-label">Active FSM Mode:</span>
+           <span class="matrix-val badge-fsm" id="sideActiveFsmMode">IDLE</span>
+@@ -169,25 +168,16 @@
+       </div>
+     </div>
+     <div class="header-status">
+-      <!-- Persistent status matrix (test compatibility) -->
+-      <div class="sidebar-status-matrix sr-only" id="sidebar-status-matrix">
+-        <div class="matrix-title">Connections status</div>
+-        <div class="matrix-row"><span class="matrix-label">MQTT Transport:</span><span class="matrix-val" id="sideMqttStatus">CHECKING</span></div>
+-        <div class="matrix-row"><span class="matrix-label">UART / USB:</span><span class="matrix-val" id="sideUartStatus">CHECKING</span></div>
+-        <div class="matrix-row"><span class="matrix-label">BCI Headset:</span><span class="matrix-val" id="sideBciStatus">CHECKING</span></div>
+-        <div class="matrix-row"><span class="matrix-label">System Health:</span><span class="matrix-val" id="sideHealthStatus">CHECKING</span></div>
+-        <div class="matrix-row"><span class="matrix-label">Active FSM Mode:</span><span class="matrix-val" id="sideActiveFsmMode">IDLE</span></div>
+-      </div>
+       <!-- Visible status pills -->
+       <span class="status-pill" id="pillMqtt"><span class="dot"></span>MQTT</span>
+       <span class="status-pill" id="pillUsb"><span class="dot"></span>USB</span>
+-      <span class="status-pill status-pill-interactive" id="pillBci" onclick="toggleBciDrawer()" role="button" tabindex="0" title="Click to open Cortex BCI settings & diagnostics"><span class="dot"></span>BCI</span>
++      <button type="button" class="status-pill status-pill-interactive" id="pillBci" onclick="toggleBciDrawer()" title="Click to open Cortex BCI settings & diagnostics"><span class="dot"></span>BCI</button>
+       <span class="status-pill" id="pillSystem"><span class="dot"></span>System</span>
+     </div>
+-    <div class="theme-toggle" id="themeToggleBtn" role="button" tabindex="0" aria-label="Toggle theme">
++    <button type="button" class="theme-toggle" id="themeToggleBtn" aria-label="Toggle theme">
+       <span class="theme-icon" id="themeIcon">🌙</span>
+       <span class="theme-label" id="themeLabel">Dark</span>
+-    </div>
++    </button>
+   </header>
+ 
+   <!-- Metrics HUD -->
+@@ -506,15 +496,12 @@
+     document.body.classList.toggle('light-mode');
+     apply();
+   });
+-  toggle.addEventListener('keydown', function(e){
+-    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle.click();}
+-  });
+   apply();
+ })();
+ </script>
+ 
+ <!-- Modal Backdrop -->
+-<div class="modal-backdrop" id="modalBackdrop" onclick="closeModals()" aria-hidden="true"></div>
++<button type="button" class="modal-backdrop" id="modalBackdrop" onclick="closeModals()" aria-label="Close modal"></button>
+ 
+ <!-- Register Device ID Modal -->
+ <div class="modal-dialog" id="registerDeviceModal" role="dialog" aria-modal="true" aria-labelledby="regModalTitle" hidden>
