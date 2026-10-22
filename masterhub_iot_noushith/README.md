@@ -2,6 +2,15 @@
 
 **One control hub for desktop applications, IoT devices, mobility hardware, and BCI mental commands.**
 
+Microsoft Excel, Word and PowerPoint are available under Python / Desktop. They
+can run locally or on the Office client through the existing MQTT/UART protocol.
+See [Office client setup](office_client/README.md) for the target-PC configuration,
+safe document behavior, build instructions and verification limits. Restart
+Masterhub after updating its mappings. The Office client is separate from the
+existing browser/JioSaavn agent and must use its own device identity.
+
+For production startup, operator authentication, the test pipeline and compact release packaging, see [Deployment](docs/DEPLOYMENT.md). The active PostgreSQL configuration is the single database source; obsolete Neon migration tooling has been retired. Use `python serve.py` after production setup. Local development remains available through `python app.py`.
+
 MasterHub is a Python and Flask application that converts manual input or EMOTIV Cortex mental-command predictions into actions. You choose a domain, choose an application or device, and then issue commands through a browser dashboard. A state machine keeps track of the current menu so the same gesture can perform different actions in different contexts.
 
 You can start with **manual controls on your own computer**. An EEG headset, MQTT broker, and external hardware are only needed for the features that use them.
@@ -65,15 +74,11 @@ python -m venv .venv
 
 These commands call the virtual environment directly, so PowerShell script activation is unnecessary. Continue using that same Python executable for subsequent commands.
 
-For **USB serial support**, install the optional dependency that is not currently listed in `requirements.txt`:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install pyserial
-```
+USB serial support is included. Desktop automation dependencies install only on Windows. Unused NumPy and OpenCV packages are not required.
 
 ### 3 Configure your local installation
 
-Create a file named `.env` beside `app.py`. For a local manual-only start, use:
+Create a file named `.env` beside `app.py`. Configure PostgreSQL first using [the database setup guide](docs/POSTGRESQL_WINDOWS_SETUP.md). PostgreSQL is required for accounts, saved devices and history. Add your `DATABASE_URL` or `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER` and `PGPASSWORD` settings. For local MQTT, use:
 
 ```dotenv
 MQTT_HOST=127.0.0.1
@@ -105,14 +110,14 @@ Open **[http://127.0.0.1:5000/dashboard](http://127.0.0.1:5000/dashboard)**.
 
 Useful pages:
 
-- `/dashboard` — main control console.
-- `/cortex/` — headset setup and BCI monitoring, using the default Cortex URL prefix.
-- `/api/health` — API health check.
-- `/api/state` — current mode and state.
-- `/api/commands` — recognized commands.
-- `/` — JSON application information; it is not the dashboard.
+- `/dashboard` â€” main control console.
+- `/cortex/` â€” headset setup and BCI monitoring, using the default Cortex URL prefix.
+- `/api/health` â€” API health check.
+- `/api/state` â€” current mode and state.
+- `/api/commands` â€” recognized commands.
+- `/` â€” JSON application information; it is not the dashboard.
 
-The project also supports `.\.venv\Scripts\python.exe app.py`. That entry point attempts MQTT connection at startup and runs Flask with **debug enabled on `0.0.0.0:5000`**, exposing the listener on available network interfaces. Use it only in a trusted development environment. The localhost command above avoids that default network binding.
+The project also supports `.\.venv\Scripts\python.exe app.py`. That entry point attempts MQTT connection at startup. Review `MASTERHUB_HOST` and the startup settings before exposing the listener to other devices.
 
 Press **Ctrl+C** in the server terminal to stop it. Stop connected actuators before shutting down the host.
 
@@ -134,7 +139,7 @@ For commands with input fields, fill in the required values and submit using the
 
 ## Manual controls and timing
 
-The dashboard follows **Domain → Device or Application → Command**. Prefer mouse controls while learning the menus; the available choices show what each action means in the current context.
+The dashboard follows **Domain â†’ Device or Application â†’ Command**. Prefer mouse controls while learning the menus; the available choices show what each action means in the current context.
 
 ### Arrow keys
 
@@ -147,10 +152,10 @@ At the main menu, these select Desktop, Embedded Mobility, IoT, and AI/ML & Medi
 
 Ordered combinations have their own meanings:
 
-- `push+right` — Back.
-- `push+left` — Main menu.
-- `right+push` — Volume up in applicable media modes.
-- `right+pull` — Volume down in applicable media modes.
+- `push+right` â€” Back.
+- `push+left` â€” Main menu.
+- `right+push` â€” Volume up in applicable media modes.
+- `right+pull` â€” Volume down in applicable media modes.
 
 **Order matters:** `push+right` and `right+push` are different commands. Consult the displayed choices and [gesture mappings](mappings/gesture_map.json) for the current mode.
 
@@ -245,7 +250,7 @@ The default IoT action topic is `iot/esp32/action`. Mobility uses the configured
 
 **Local Host** executes desktop actions on the MasterHub computer. A remote target requires a compatible agent running on that other computer; registering a target in the dashboard does not install or start the agent.
 
-Use **Register Device ID**, choose **Laptop** or **Mobile**, enter the device ID used by the agent or app, choose the transport, and wait for it to become online. Then select it as the active target. Both categories are saved in SQLite (`data/masterhub.db`) and restored when MasterHub restarts. Existing `data/devices.json` registrations are imported once; the JSON file is preserved as the migration input, not a second live store. Laptop is the default for existing PC agents; mobile registrations default to Android and media control. Agent setup and protocol compatibility must be completed separately; an offline placeholder such as `PC_001` is not a connected machine.
+Use **Register Device ID**, choose **Laptop** or **Mobile**, enter the device ID used by the agent or app, choose the transport, and wait for it to become online. Then select it as the active target. Both categories are saved in PostgreSQL and restored when MasterHub restarts. See [Windows database setup and data transfer](docs/POSTGRESQL_WINDOWS_SETUP.md) before starting the upgraded application. Existing `data/devices.json` registrations are imported once; the JSON file is preserved as the migration input, not a second live store. Laptop is the default for existing PC agents; mobile registrations default to Android and media control. Agent setup and protocol compatibility must be completed separately; an offline placeholder such as `PC_001` is not a connected machine.
 
 Android 0.5 registers phones directly through MQTT using a persistent UUID and a unique username. See [MQTT phone registration](docs/mobile_mqtt_registration.md) for setup and topics. No HTTPS server address or account password is needed by the mobile app.
 
@@ -399,13 +404,42 @@ The separate Kotlin project is at `D:\GALATICX\BCI_remotecontroll_jiosaavn`.
 Its debug APK is `app/build/outputs/apk/debug/app-debug.apk` within that project.
 Install it on your phone, grant notification/media access and accessibility access,
 open JioSaavn and start playback, then tap **Start remote control** in the companion.
-Restart MasterHub and select **AI/ML & Media → Mobile JioSaavn**.
+Restart MasterHub and select **AI/ML & Media â†’ Mobile JioSaavn**.
 
 The mobile client uses its own broker connection; hardware MQTT settings are unchanged.
 Optional settings are listed in [.env.mobile.example](.env.mobile.example).
 See [the shared protocol and setup guide](docs/mqtt_protocol.md) for ACK semantics,
-gesture mappings, private broker configuration, and the current search/launch limitations.
+gesture mappings, private broker configuration, and playback requirements.
 The dashboard phone panel shows live status, now-playing and correlated command results.
+
+#### AI/ML command mapping
+
+Select Mobile JioSaavn with Push or Desktop JioSaavn with Pull. Both menus use:
+
+- Left: Play / Pause
+- Push: Next track
+- Pull: Previous track
+- Right: Open the song search chat; enter a song and artist, then Send & play
+- Right then Push: Volume up
+- Right then Pull: Volume down
+- Push then Right: Back
+- Push then Left: Main menu
+
+Combination order matters. Android Home and manual Launch are no longer in the
+AI/ML command menu. A headset Right command opens the same search dialog as the
+keyboard. Every search asks for fresh text; sending starts playback without another
+gesture or a manual result selection. Changing the menu or target invalidates an
+open search dialog.
+
+Restart MasterHub and reload the dashboard after changing mappings. Install the
+updated `deliverables/ai-media-search/masterhub-jiosaavn-search.apk` on the phone
+for automatic mobile search playback. Desktop search requires Chrome on the target
+PC and uses MasterHub's controlled browser. Update remote PC code too if applicable.
+Android tries the JioSaavn media-session search action, then its play-from-search
+intent, then accessibility. Site/app changes, login and unavailable tracks can
+prevent playback; failures or unconfirmed playback are reported rather than
+treated as successful playback. Physical phone and live-site validation is still
+required.
 # SonarQube checks and deployment safety
 
 The root `sonar-project.properties` excludes backup snapshots, bundled dependencies,
@@ -440,3 +474,12 @@ requests and native clients without browser headers remain supported. This check
 is not authentication; deploy the control API only behind appropriate access
 controls. Reverse proxies must preserve the public request scheme and host.
 
+## PostgreSQL and Android companion
+
+Masterhub stores accounts, sessions, phone ownership, device registrations and MQTT identities in PostgreSQL. SQLite and Supabase are no longer runtime stores. Follow [PostgreSQL setup on Windows](docs/POSTGRESQL_WINDOWS_SETUP.md) to configure the database before starting Masterhub.
+
+The companion at `D:\GALATICX\ANDROID_SOURCE` continues to use username-based MQTT discovery and media control. Its execution results remain unconfirmed when acknowledgements omit command IDs. Use the PostgreSQL guide for current storage configuration.
+
+## Saved operational activity
+
+New device messages, connection events, command results and acknowledgements are saved in PostgreSQL and shown in the dashboard's **Saved Activity** panel. Pending events are queued locally during database outages and retried automatically. See [event storage and DevOps setup](docs/POSTGRESQL_EVENT_STORAGE.md).

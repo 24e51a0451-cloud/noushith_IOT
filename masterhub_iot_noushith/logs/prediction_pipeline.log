@@ -328,3 +328,12 @@
 2026-09-29 11:35:42 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
 2026-10-05 10:45:33 | INFO     | Confidence filter initialized with threshold=0.2
 2026-10-05 10:45:33 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-10-13 21:32:33 | INFO     | Confidence filter initialized with threshold=0.2
+2026-10-13 21:32:33 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-10-13 21:34:20 | INFO     | Confidence filter initialized with threshold=0.2
+2026-10-13 21:34:20 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-10-15 23:12:15 | INFO     | Confidence filter initialized with threshold=0.2
+2026-10-15 23:12:15 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-10-15 23:16:26 | INFO     | Confidence filter initialized with threshold=0.2
+2026-10-15 23:16:26 | INFO     | #? REJECTED (confidence 0.19 < threshold 0.20) gesture='pull'
+2026-10-15 23:16:39 | INFO     | Sender configured for http://127.0.0.1:5000/api/command

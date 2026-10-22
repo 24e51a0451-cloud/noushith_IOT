@@ -83,7 +83,7 @@
     "notepad": {
       "label": "Notepad",
       "mode": "NOTEPAD_MODE",
-      "gesture": "left",
+      "gesture": "left+right",
       "domain": "desktop",
       "launch_command": null
     },
@@ -114,6 +114,37 @@
       "gesture": "left",
       "domain": "iot",
       "launch_command": null
+    },
+    "office_excel": {
+      "label": "Microsoft Excel",
+      "mode": "OFFICE_EXCEL_MODE",
+      "gesture": "push",
+      "domain": "desktop",
+      "launch_command": null,
+      "parent": "office"
+    },
+    "office_powerpoint": {
+      "label": "Microsoft PowerPoint",
+      "mode": "OFFICE_POWERPOINT_MODE",
+      "gesture": "pull",
+      "domain": "desktop",
+      "launch_command": null,
+      "parent": "office"
+    },
+    "office_word": {
+      "label": "Microsoft Word",
+      "mode": "OFFICE_WORD_MODE",
+      "gesture": "right",
+      "domain": "desktop",
+      "launch_command": null,
+      "parent": "office"
+    },
+    "office": {
+      "label": "Microsoft Office",
+      "mode": "OFFICE_MODE",
+      "gesture": "left",
+      "domain": "desktop",
+      "launch_command": null
     }
   },
   "parameters": {
@@ -136,6 +167,51 @@
     ],
     "mobile_jiosaavn_search": [
       "query"
+    ],
+    "office_excel_save": [
+      "filename"
+    ],
+    "office_excel_edit": [
+      "sheet",
+      "confirm"
+    ],
+    "office_excel_delete": [
+      "sheet",
+      "confirm"
+    ],
+    "office_excel_close": [
+      "discard"
+    ],
+    "office_powerpoint_save": [
+      "filename"
+    ],
+    "office_powerpoint_edit": [
+      "slide",
+      "confirm"
+    ],
+    "office_powerpoint_delete": [
+      "slide",
+      "confirm"
+    ],
+    "office_powerpoint_close": [
+      "discard"
+    ],
+    "office_word_save": [
+      "filename"
+    ],
+    "office_word_insert": [
+      "text"
+    ],
+    "office_word_replace": [
+      "find",
+      "replacement",
+      "confirm"
+    ],
+    "office_word_delete": [
+      "confirm"
+    ],
+    "office_word_close": [
+      "discard"
     ]
   },
   "heartbeat_timeout_seconds": 90,
@@ -321,23 +397,18 @@
     "mobile_jiosaavn": [
       {
         "id": "mobile_jiosaavn_next",
-        "label": "Next song",
-        "gesture": "right"
+        "label": "Next track",
+        "gesture": "push"
       },
       {
         "id": "mobile_jiosaavn_previous",
-        "label": "Previous song",
-        "gesture": "left"
+        "label": "Previous track",
+        "gesture": "pull"
       },
       {
         "id": "mobile_jiosaavn_play_pause",
         "label": "Play / Pause",
-        "gesture": "push"
-      },
-      {
-        "id": "mobile_jiosaavn_home",
-        "label": "Android home",
-        "gesture": "pull"
+        "gesture": "left"
       },
       {
         "id": "mobile_jiosaavn_volume_up",
@@ -351,13 +422,8 @@
       },
       {
         "id": "mobile_jiosaavn_search",
-        "label": "Search JioSaavn",
-        "gesture": null
-      },
-      {
-        "id": "mobile_jiosaavn_launch",
-        "label": "Launch JioSaavn",
-        "gesture": null
+        "label": "Search & play",
+        "gesture": "right"
       }
     ],
     "desktop_jiosaavn": [
@@ -388,10 +454,117 @@
       },
       {
         "id": "jiosaavn_search",
-        "label": "Search",
+        "label": "Search & play",
         "gesture": "right"
       }
-    ]
+    ],
+    "office_excel": [
+      {
+        "id": "office_excel_open",
+        "label": "Open workbook",
+        "gesture": "push"
+      },
+      {
+        "id": "office_excel_sheet1",
+        "label": "Stock example sheet",
+        "gesture": "pull"
+      },
+      {
+        "id": "office_excel_sheet2",
+        "label": "Degree information sheet",
+        "gesture": "left"
+      },
+      {
+        "id": "office_excel_save",
+        "label": "Save workbook",
+        "gesture": "right"
+      },
+      {
+        "id": "office_excel_edit",
+        "label": "Refresh a sheet",
+        "gesture": null
+      },
+      {
+        "id": "office_excel_delete",
+        "label": "Delete a sheet",
+        "gesture": null
+      },
+      {
+        "id": "office_excel_close",
+        "label": "Close workbook",
+        "gesture": null
+      }
+    ],
+    "office_powerpoint": [
+      {
+        "id": "office_powerpoint_open",
+        "label": "Open presentation",
+        "gesture": "push"
+      },
+      {
+        "id": "office_powerpoint_title",
+        "label": "Add project title",
+        "gesture": "pull"
+      },
+      {
+        "id": "office_powerpoint_slide",
+        "label": "Add Python domain slide",
+        "gesture": "left"
+      },
+      {
+        "id": "office_powerpoint_save",
+        "label": "Save presentation",
+        "gesture": "right"
+      },
+      {
+        "id": "office_powerpoint_edit",
+        "label": "Replace slide with technical approach",
+        "gesture": null
+      },
+      {
+        "id": "office_powerpoint_delete",
+        "label": "Delete a slide",
+        "gesture": null
+      },
+      {
+        "id": "office_powerpoint_close",
+        "label": "Close presentation",
+        "gesture": null
+      }
+    ],
+    "office_word": [
+      {
+        "id": "office_word_open",
+        "label": "Create project document",
+        "gesture": "push"
+      },
+      {
+        "id": "office_word_save",
+        "label": "Save document",
+        "gesture": "pull"
+      },
+      {
+        "id": "office_word_insert",
+        "label": "Append text",
+        "gesture": null
+      },
+      {
+        "id": "office_word_replace",
+        "label": "Find and replace text",
+        "gesture": null
+      },
+      {
+        "id": "office_word_delete",
+        "label": "Clear document text",
+        "gesture": null
+      },
+      {
+        "id": "office_word_close",
+        "label": "Close document",
+        "gesture": null
+      }
+    ],
+    "office": []
   },
   "navigation": {
     "back": "push+right",

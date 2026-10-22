@@ -16,9 +16,13 @@
     "FAN_MODE": "neutral",
     "PUMP_MODE": "neutral",
     "JIOSAAVN_MODE": "media_next",
-    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_play_pause",
+    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_next",
     "DESKTOP_JIOSAAVN_MODE": "media_next",
-    "default": "neutral"
+    "default": "neutral",
+    "OFFICE_EXCEL_MODE": "office_excel_open",
+    "OFFICE_POWERPOINT_MODE": "office_powerpoint_open",
+    "OFFICE_WORD_MODE": "office_word_open",
+    "OFFICE_MODE": "mode_office_excel"
   },
   "pull": {
     "IDLE": "mode_embedded",
@@ -36,14 +40,18 @@
     "FAN_MODE": "neutral",
     "PUMP_MODE": "neutral",
     "JIOSAAVN_MODE": "media_previous",
-    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_home",
+    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_previous",
     "DESKTOP_JIOSAAVN_MODE": "media_previous",
-    "default": "neutral"
+    "default": "neutral",
+    "OFFICE_EXCEL_MODE": "office_excel_sheet1",
+    "OFFICE_POWERPOINT_MODE": "office_powerpoint_title",
+    "OFFICE_WORD_MODE": "office_word_save",
+    "OFFICE_MODE": "mode_office_powerpoint"
   },
   "left": {
     "IDLE": "mode_iot",
     "IOT_MODE": "mode_pump",
-    "DESKTOP_MODE": "mode_notepad",
+    "DESKTOP_MODE": "mode_office",
     "EMBEDDED_MODE": "neutral",
     "MEDIA_MODE": "neutral",
     "CHAIR_MODE": "chair_left",
@@ -56,9 +64,12 @@
     "FAN_MODE": "left_fan_off",
     "PUMP_MODE": "left_pump_off",
     "JIOSAAVN_MODE": "media_play",
-    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_previous",
+    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_play_pause",
     "DESKTOP_JIOSAAVN_MODE": "media_play",
-    "default": "neutral"
+    "default": "neutral",
+    "OFFICE_EXCEL_MODE": "office_excel_sheet2",
+    "OFFICE_POWERPOINT_MODE": "office_powerpoint_slide",
+    "OFFICE_WORD_MODE": "neutral"
   },
   "right": {
     "IDLE": "mode_media",
@@ -76,9 +87,13 @@
     "FAN_MODE": "left_fan_on",
     "PUMP_MODE": "left_pump_on",
     "JIOSAAVN_MODE": "jiosaavn_search",
-    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_next",
+    "MOBILE_JIOSAAVN_MODE": "mobile_jiosaavn_search",
     "DESKTOP_JIOSAAVN_MODE": "jiosaavn_search",
-    "default": "neutral"
+    "default": "neutral",
+    "OFFICE_EXCEL_MODE": "office_excel_save",
+    "OFFICE_POWERPOINT_MODE": "office_powerpoint_save",
+    "OFFICE_WORD_MODE": "neutral",
+    "OFFICE_MODE": "mode_office_word"
   },
   "push+right": {
     "IDLE": "mode_idle",
@@ -98,7 +113,11 @@
     "JIOSAAVN_MODE": "mode_media",
     "MOBILE_JIOSAAVN_MODE": "mode_media",
     "DESKTOP_JIOSAAVN_MODE": "mode_media",
-    "default": "neutral"
+    "default": "neutral",
+    "OFFICE_EXCEL_MODE": "mode_office",
+    "OFFICE_POWERPOINT_MODE": "mode_office",
+    "OFFICE_WORD_MODE": "mode_office",
+    "OFFICE_MODE": "mode_desktop"
   },
   "push+left": {
     "IDLE": "mode_idle",
@@ -118,7 +137,11 @@
     "JIOSAAVN_MODE": "mode_idle",
     "MOBILE_JIOSAAVN_MODE": "mode_idle",
     "DESKTOP_JIOSAAVN_MODE": "mode_idle",
-    "default": "neutral"
+    "default": "neutral",
+    "OFFICE_EXCEL_MODE": "mode_idle",
+    "OFFICE_POWERPOINT_MODE": "mode_idle",
+    "OFFICE_WORD_MODE": "mode_idle",
+    "OFFICE_MODE": "mode_idle"
   },
   "right+push": {
     "IDLE": "neutral",
@@ -163,7 +186,7 @@
   "left+right": {
     "IDLE": "neutral",
     "IOT_MODE": "neutral",
-    "DESKTOP_MODE": "neutral",
+    "DESKTOP_MODE": "mode_notepad",
     "EMBEDDED_MODE": "car_stop",
     "MEDIA_MODE": "neutral",
     "CHAIR_MODE": "chair_stop",

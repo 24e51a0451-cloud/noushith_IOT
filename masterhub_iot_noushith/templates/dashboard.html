@@ -281,6 +281,7 @@
       <button class="phase-btn active" id="phase1Btn" onclick="goToPhase(1)">01 · Domain</button>
       <button class="phase-btn" id="phase2Btn" onclick="goToPhase(2)" disabled>02 · Device</button>
       <button class="phase-btn" id="phase3Btn" onclick="goToPhase(3)" disabled>03 · Command Execution</button>
+      <button class="phase-btn" id="phase4Btn" onclick="goToPhase(4)" hidden disabled>04 · Internal Commands</button>
       <button class="phase-btn workflow-nav-btn" id="workflowBackBtn" title="Push + Right: press Up, then Right within the temporal window" onclick="workflowBack()">↑ + → · Back</button>
       <button class="phase-btn workflow-nav-btn" id="workflowMainBtn" title="Push + Left: press Up, then Left within the temporal window" onclick="workflowMainMenu()">↑ + ← · Main Menu</button>
     </nav>
@@ -459,6 +460,25 @@
     <div class="console-card">
       <div class="console-body" id="consoleBody"></div>
     </div>
+  </section>
+
+  <section class="panel" aria-labelledby="savedActivityTitle">
+    <div class="panel-header">
+      <div class="panel-title" id="savedActivityTitle">Saved Activity</div>
+      <button type="button" class="btn-secondary" id="databaseRefresh">Refresh</button>
+    </div>
+    <div class="database-history-controls">
+      <label>Device <input id="databaseDevice" placeholder="All devices" maxlength="200"></label>
+      <label>Event <select id="databaseKind"><option value="">All events</option>
+        <option value="connection">Connections</option><option value="status">Device status</option>
+        <option value="command">Commands</option><option value="ack">Acknowledgements</option>
+        <option value="error">Errors</option><option value="activity">Dashboard activity</option>
+      </select></label>
+      <span id="databaseStorageStatus" role="status">Loading saved activity...</span>
+    </div>
+    <p class="database-history-note">Saved history from PostgreSQL. These are past events; use live device indicators for current availability.</p>
+    <div id="databaseHistory" class="database-history-list"></div>
+    <button type="button" class="btn-secondary" id="databaseOlder" hidden>Load older events</button>
   </section>
 
   <!-- Export -->
@@ -723,5 +743,6 @@
 <script src="{{ url_for('static', filename='masterhub.js', v=dashboard_asset_version) }}"></script>
 <script src="{{ url_for('static', filename='bci-panel.js', v=dashboard_asset_version) }}"></script>
 <script src="/static/jiosaavn-mobile.js"></script>
+<script src="{{ url_for('static', filename='database-history.js', v=dashboard_asset_version) }}"></script>
 </body>
 </html>

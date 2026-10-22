@@ -16,7 +16,7 @@ class MobileTests(unittest.TestCase):
             service = MobileMQTTService(Mock())
         self.assertEqual((service.host, service.port), ('52.21.249.6', 1883))
         self.assertEqual(service.topics['commands'], 'masterhub/mobile/MOBILE_001/command')
-        for channel in ('ack', 'error', 'status', 'media', 'heartbeat', 'control'):
+        for channel in ('ack', 'status', 'heartbeat'):
             self.assertEqual(service.topics[channel], 'masterhub/mobile/MOBILE_001/' + channel)
         self.assertTrue(all(not topic.startswith('masterhub/devices/') for topic in service.topics.values()))
 
@@ -27,11 +27,10 @@ class MobileTests(unittest.TestCase):
         self.assertEqual(publish.call_args.kwargs['topic'], 'masterhub/devices/PC_001/command')
         self.assertEqual(publish.call_args.args[0]['action'], 'next_track')
 
-    def test_phone_error_is_cached_separately(self):
-        self.message('error', {'command_id': 'one', 'status': 'FAILED', 'detail': 'No media session'})
-        self.assertEqual(self.service.snapshot()['last_error']['detail'], 'No media session')
-
     def setUp(self):
+        discovery = patch('services.mobile_registration.mobile_registration.start')
+        discovery.start()
+        self.addCleanup(discovery.stop)
         self.client = Mock()
         self.client.publish.return_value.rc = 0
         self.service = MobileMQTTService(self.client)
@@ -40,24 +39,24 @@ class MobileTests(unittest.TestCase):
         self.service.phone = {'control_enabled': True}
 
     def message(self, name, data, retained=False):
-        self.service._on_message(None, None, SimpleNamespace(topic=self.service.topics[name], payload=json.dumps(data).encode(), retain=retained))
+        self.service._on_message(None, None, SimpleNamespace(topic=self.service.topics[name], payload=json.dumps(dict(data, device_id=self.service.topic_device_id)).encode(), retain=retained))
 
     def test_contract_and_correlated_ack(self):
         result = self.service.publish_command('Right_Next_Song', 0.82)
         payload = json.loads(self.client.publish.call_args.args[1])
         self.assertEqual(payload['confidence'], 0.82)
-        self.assertIs(payload['Is_Actionable'], True)
+        self.assertEqual(set(payload), {'command_id', 'command', 'target_device', 'origin', 'confidence', 'query', 'expires_at', 'timestamp'})
         self.assertEqual(self.client.publish.call_args.kwargs, {'qos': 1, 'retain': False})
-        self.message('ack', {'command_id': 'wrong', 'status': 'EXECUTED'})
+        self.message('ack', {'command_id': 'wrong', 'status': 'SUCCESS'})
         self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'PENDING')
-        self.message('ack', {'command_id': result['command_id'], 'status': 'EXECUTED'})
-        self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'EXECUTED')
+        self.message('ack', {'command_id': result['command_id'], 'status': 'SUCCESS'})
+        self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'SUCCESS')
         self.message('ack', {'command_id': result['command_id'], 'status': 'FAILED'})
-        self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'EXECUTED')
+        self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'SUCCESS')
 
     def test_offline_and_retained_heartbeat(self):
         self.service.last_seen = 0
-        self.message('heartbeat', {'online': True}, retained=True)
+        self.message('heartbeat', {'status': 'alive'}, retained=True)
         self.assertFalse(self.service.snapshot()['online'])
         self.assertFalse(self.service.publish_command('NEXT', 1)['success'])
         self.client.publish.assert_not_called()
@@ -81,15 +80,26 @@ class MobileTests(unittest.TestCase):
         result = self.service.publish_command('NEXT', 1)
         self.service.commands[result['command_id']]['deadline'] = 0
         self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'TIMEOUT')
-        self.message('ack', {'command_id': result['command_id'], 'status': 'EXECUTED'})
-        self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'EXECUTED')
+        self.message('ack', {'command_id': result['command_id'], 'status': 'SUCCESS'})
+        self.assertEqual(self.service.snapshot()['commands'][0]['status'], 'SUCCESS')
+
+    def test_search_has_time_for_app_launch_and_playback_ack(self):
+        self.service.timeout = 8
+        result = self.service.publish_command('SEARCH', 1, 'Song')
+        payload = json.loads(self.client.publish.call_args.args[1])
+        self.assertEqual(payload['expires_at'] - payload['timestamp'], 45000)
+        self.assertAlmostEqual(self.service.commands[result['command_id']]['deadline'],
+                               payload['expires_at'] / 1000, places=2)
+        self.service.publish_command('NEXT', 1)
+        payload = json.loads(self.client.publish.call_args.args[1])
+        self.assertEqual(payload['expires_at'] - payload['timestamp'], 8000)
 
     def test_handlers_validate_and_preserve_parameters(self):
         with patch('actions.media_jiosaavn_mobile.mobile_mqtt_service') as service:
             execute('mobile_jiosaavn_search', {'query': 'A R Rahman', 'confidence': .73})
-            service.publish_command.assert_called_once_with('SEARCH', .73, 'A R Rahman')
+            service.publish_command.assert_called_once_with('SEARCH', .73, 'A R Rahman', origin='dashboard')
             service.reset_mock()
-            for params in ({'query': ''}, {'query': 'music', 'source': 'cortex'}, {'query': 'music', 'confidence': float('nan')}, {'query': 'music', 'Is_Actionable': False}):
+            for params in ({'query': ''}, {'query': 'music', 'confidence': float('nan')}, {'query': 'music', 'Is_Actionable': False}):
                 self.assertFalse(execute('mobile_jiosaavn_search', params)['success'])
             service.publish_command.assert_not_called()
 
@@ -99,7 +109,7 @@ class MobileTests(unittest.TestCase):
             service.publish_command.return_value = {'success': True, 'status': 'PENDING'}
             result = ai_ml_handler.execute('mobile_jiosaavn_next', {'target': 'PC_OTHER'})
             self.assertTrue(result['success'])
-            service.publish_command.assert_called_once_with('Right_Next_Song', 1.0, '')
+            service.publish_command.assert_called_once_with('Right_Next_Song', 1.0, '', origin='dashboard')
 
     def test_mappings_match_all_input_paths(self):
         root = Path(__file__).resolve().parents[1] / 'mappings'
@@ -111,7 +121,7 @@ class MobileTests(unittest.TestCase):
             self.assertEqual(routes[command], {'domain': 'ai_ml', 'action': command})
         for command, item in bci.items():
             self.assertEqual(gestures[item['gesture']]['MOBILE_JIOSAAVN_MODE'], command)
-        self.assertNotIn('mobile_jiosaavn_search', bci)
+        self.assertEqual(bci['mobile_jiosaavn_search']['gesture'], 'right')
         self.assertNotIn('mobile_jiosaavn_launch', bci)
         self.assertEqual(gestures['push+right']['MOBILE_JIOSAAVN_MODE'], 'mode_media')
         self.assertEqual(gestures['push+left']['MOBILE_JIOSAAVN_MODE'], 'mode_idle')
@@ -123,7 +133,7 @@ class MobileTests(unittest.TestCase):
             response = create_app().test_client().post('/api/command', json={
                 'command': 'mobile_jiosaavn_search', 'query': 'music', 'confidence': .9})
             self.assertEqual(response.status_code, 200)
-            service.publish_command.assert_called_once_with('SEARCH', .9, 'music')
+            service.publish_command.assert_called_once_with('SEARCH', .9, 'music', origin='dashboard')
 
     def test_status_endpoint_uses_mobile_cache(self):
         from app import create_app

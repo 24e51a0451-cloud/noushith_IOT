@@ -167,5 +167,105 @@
   "chrome_scroll_down": {
     "kind": "scroll",
     "app": "chrome"
+  },
+  "office_excel_open": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "open"
+  },
+  "office_excel_sheet1": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "sheet1"
+  },
+  "office_excel_sheet2": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "sheet2"
+  },
+  "office_excel_save": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "save"
+  },
+  "office_excel_edit": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "edit"
+  },
+  "office_excel_delete": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "delete"
+  },
+  "office_excel_close": {
+    "kind": "office",
+    "app": "excel",
+    "operation": "close"
+  },
+  "office_powerpoint_open": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "open"
+  },
+  "office_powerpoint_title": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "title"
+  },
+  "office_powerpoint_slide": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "slide"
+  },
+  "office_powerpoint_save": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "save"
+  },
+  "office_powerpoint_edit": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "edit"
+  },
+  "office_powerpoint_delete": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "delete"
+  },
+  "office_powerpoint_close": {
+    "kind": "office",
+    "app": "powerpoint",
+    "operation": "close"
+  },
+  "office_word_open": {
+    "kind": "office",
+    "app": "word",
+    "operation": "open"
+  },
+  "office_word_save": {
+    "kind": "office",
+    "app": "word",
+    "operation": "save"
+  },
+  "office_word_insert": {
+    "kind": "office",
+    "app": "word",
+    "operation": "insert"
+  },
+  "office_word_replace": {
+    "kind": "office",
+    "app": "word",
+    "operation": "replace"
+  },
+  "office_word_delete": {
+    "kind": "office",
+    "app": "word",
+    "operation": "delete"
+  },
+  "office_word_close": {
+    "kind": "office",
+    "app": "word",
+    "operation": "close"
   }
 }

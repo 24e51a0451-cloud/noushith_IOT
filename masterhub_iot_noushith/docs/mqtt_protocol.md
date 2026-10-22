@@ -1,91 +1,105 @@
-# MasterHub / BCI JioSaavn Remote — protocol v1
+# Mobile MQTT contract
 
-Android project: `D:\GALATICX\BCI_remotecontroll_jiosaavn`.
-This is a new companion protocol, not a claim of compatibility with an unexamined older APK.
+Registration and lifecycle are separate. All channels use QoS 1.
 
-## Transport
+## Registration
 
-Default broker: `52.21.249.6:1883`, keepalive 30 seconds, QoS 1.
-Default prefix: `masterhub/mobile/MOBILE_001`. Phone subscribes to `/command` and `/control`;
-MasterHub subscribes to `/ack`, `/error`, `/media`, `/status`, `/heartbeat`.
-Commands, ACKs, media, heartbeat and control messages are not retained.
-Status is retained with an offline last will. Every five seconds the phone sends
-a non-retained heartbeat and media snapshot. MasterHub expires liveness after 35 seconds;
-retained online status never proves a currently reachable phone.
-
-This uses the same broker as hardware and desktop MasterHub. Configure matching
-credentials if authentication is required. Do not retain commands. Failed/rejected ACKs
-are also published on `/error` for diagnostics; `/ack` remains authoritative.
-
-## Command envelope
+Phone publishes non-retained JSON to `masterhub/mobile/register`:
 
 ```json
-{"command":"Right_Next_Song","confidence":1.0,"Is_Actionable":true,"query":"","command_id":"UUID","issued_at":1790000000000,"expires_at":1790000008000}
+{"device_uuid":"c3a1d9b4-7d52-4a1e-8e31-2e6f5d8e7c10","requested_name":"vyshnavi","platform":"android","app_version":"1.0.0","capabilities":["media","jiosaavn"],"timestamp":1757400000000}
 ```
 
-Times are Unix milliseconds; synchronize PC and phone clocks. Expiry is eight seconds
-by default; the phone accepts at most a 60-second lifetime and 30 seconds future clock skew.
-Every command has a fresh UUID; transport retries keep the same UUID.
-Phone persists receipt before acting, then saves its final ACK. Duplicates return the cached
-ACK without performing the action again. A crash during execution produces UNCONFIRMED,
-not an automatic replay. At-most-once attempts are preferred to repeated toggles.
-
-Actions: `Right_Next_Song`, `Right_Previous_Song`, `Right_Play_Pause`,
-`Right_Volume_Up`, `Right_Volume_Down`, `Right_Return_to_Home`, `SEARCH`, `LAUNCH`.
-Home means Android Home. Search requires nonempty query, maximum 500 characters.
-Launch and Search are manual-only in MasterHub. Navigation combos affect MasterHub only.
-
-## Results
+Hub replies, non-retained, on `masterhub/mobile/{device_uuid}/register_ack`:
 
 ```json
-{"command_id":"UUID","command":"Right_Next_Song","status":"EXECUTED","method":"MediaController","detail":"Playback state change observed","timestamp":1790000001500}
+{"status":"APPROVED","device_id":"vyshnavi","device_uuid":"c3a1d9b4-7d52-4a1e-8e31-2e6f5d8e7c10","topic_prefix":"masterhub/mobile/vyshnavi","message":"Registered successfully in PostgreSQL"}
 ```
 
-`EXECUTED`: observed state change or action-specific success.
-`UNCONFIRMED`: action requested without confirming state change; do not auto-retry.
-`FAILED` / `REJECTED`: failure or invalid command.
-MasterHub additionally reports `PENDING` and `TIMEOUT`. HTTP success means accepted for
-delivery; only the phone ACK describes execution. A late ACK may replace TIMEOUT.
+A name conflict returns `status: REJECTED`, `device_uuid`, and
+`error: Username already taken`. Names accept 3–32 ASCII letters, digits or
+underscores and are normalized to lowercase. The phone must use the returned
+`device_id` and `topic_prefix`. PostgreSQL keeps the hardware UUID as the stable
+internal identity; renaming updates the same device. Capabilities are saved with
+the registry record; app_version and the registration timestamp are informational.
+Invalid UUIDs cannot receive a correlated reply. Retained requests are ignored.
+Status packets never register devices or produce registration replies.
 
-Media fields: title, artist, album, duration_ms, position_ms, playing,
-session_available, volume, max_volume, timestamp. Album art is not transferred in v1.
-Status/heartbeat fields: online, control_enabled, accessibility_enabled, timestamp.
+## Commands
 
-`{"request":"START"}` / `{"request":"STOP"}` on `/control` gates the already-running
-phone pipeline. It never starts a stopped Android service. Automatic Cortex lifecycle
-publishing is not enabled in this version.
-
-## MasterHub setup
-
-Copy settings from `.env.mobile.example` into the existing `.env` as needed; preserve
-hardware MQTT settings. Start MasterHub, open the dashboard (starts the dedicated client),
-then enable remote control in the phone app. API-only clients should GET
-`/api/jiosaavn/status` first and wait for a fresh heartbeat.
+Hub publishes non-retained commands to `masterhub/mobile/{device_id}/command`:
 
 ```json
-{"command":"mobile_jiosaavn_search","params":{"query":"A R Rahman","confidence":1.0}}
+{"command_id":"9f2c8d1e-3a4b-5c6d-7e8f-0a1b2c3d4e5f","command":"PLAY_PAUSE","target_device":"vyshnavi","origin":"bci_prediction","confidence":0.89,"query":"Kesariya","expires_at":1757400030000,"timestamp":1757400000000}
 ```
 
-POST commands to `/api/command`; GET `/api/jiosaavn/status` for recent command results
-and `/api/jiosaavn/media` for cached media. Mobile routes bypass selected desktop targets.
+Origin is `bci_prediction` for Cortex/BCI actions and `dashboard` for manual actions.
+Times are Unix milliseconds. Normal commands expire after the configured ACK
+timeout (8 seconds by default); SEARCH allows at least 45 seconds.
+Play/pause sends `PLAY_PAUSE`. Other existing command values remain unchanged:
+`Right_Next_Song`, `Right_Previous_Song`, `Right_Volume_Up`, `Right_Volume_Down`,
+`SEARCH`, and `Right_JioSaavn` for launch. Return to Home remains unsupported.
 
-## Device validation required
+## Receipts
 
-Playback uses JioSaavn's `com.jio.media.jiobeats` session with notification access.
-Accessibility fallback requires an unlocked screen and matching visible English button
-labels; JioSaavn UI/version/language changes may require selector updates.
-Search fills the visible search field; selecting/playing a result remains manual in v1.
-Launch is reported UNCONFIRMED because Android may restrict background activity starts.
-No global key-event fallback is used to avoid controlling a different music player.
-Start remote explicitly after process termination/reboot. Physical phone behavior,
-background battery restrictions and permissions must be tested before claiming reliability.
+Phone publishes results to `masterhub/mobile/{device_id}/ack`, not retained.
+A matching `command_id` with `status: SUCCESS` completes the command.
+`FAILED` or `REJECTED` preserves the phone's `code` and `error` details. The full
+receipt, including `device_id`, `command`, `tier_used`, and `timestamp`, is kept.
+Only `SUCCESS`, `FAILED`, and `REJECTED` receipts are accepted. Unknown IDs cannot
+confirm execution. Receipts must identify the target device and must not be retained. Late receipts may replace TIMEOUT; duplicates cannot overwrite
+terminal results. The dashboard recognizes SUCCESS.
 
-## Verified desktop topic separation
+## Status and heartbeat
 
-Desktop actions routed to PC agents use `masterhub/devices/<PC_ID>/command`, `/ack`,
-`/status`, `/error` (for example PC_001). Local Host actions bypass MQTT.
-The legacy workflow `jiosaavn_topic` label is unused by the desktop handler.
-Mobile uses `masterhub/mobile/MOBILE_001` so phone status is not consumed by the
-existing `masterhub/devices/+/status` PC discovery subscription. Channel names match
-the desktop convention; mobile retains its separate JSON contract and extra telemetry.
-The `/api/jiosaavn/status` endpoint exposes effective broker and topic configuration.
+The phone configures a retained LWT on `masterhub/mobile/{device_id}/status`
+at connection time:
+
+```json
+{"device_id":"vyshnavi","status":"OFFLINE","reason":"Connection lost / abrupt disconnect"}
+```
+
+On connect it publishes retained status:
+
+```json
+{"device_id":"vyshnavi","status":"ONLINE","remote_state":"ACTIVE","timestamp":1757400000000}
+```
+
+It publishes a non-retained heartbeat every 10–15 seconds on
+`masterhub/mobile/{device_id}/heartbeat`:
+
+```json
+{"device_id":"vyshnavi","status":"alive","battery_level":84,"timestamp":1757400015000}
+```
+
+The hub expires liveness after 35 seconds by default. Retained ONLINE alone cannot
+establish fresh presence; a fresh heartbeat can. OFFLINE clears presence and disables
+control immediately. ACTIVE enables remote control; STANDBY disables it.
+Registration alone does not enable control. The phone must configure its own LWT
+and heartbeat timer; the hub cannot configure a will for another MQTT client.
+
+## Setup and removal of old topics
+
+Only these topics are used:
+
+- `masterhub/mobile/register`
+- `masterhub/mobile/{device_uuid}/register_ack`
+- `masterhub/mobile/{device_id}/command`
+- `masterhub/mobile/{device_id}/ack`
+- `masterhub/mobile/{device_id}/status`
+- `masterhub/mobile/{device_id}/heartbeat`
+
+The old `bci/...` registration and command routes are removed. `/media`, `/error`,
+and `/control` are no longer subscribed to or published by the mobile transport.
+Failures belong on `/ack`. Playback telemetry is not part of this contract.
+Desktop agents remain on `masterhub/devices/{PC_ID}/...`.
+
+Configure the broker using `.env.mobile.example` and restart MasterHub.
+`BCI_MOBILE_DEVICE_ID` selects the default target (MOBILE_001 if unset).
+Registered devices use the approved username. Old topic-prefix and individual-topic
+environment overrides are ignored. Existing devices with old saved prefixes route
+through `masterhub/mobile/{saved_name}`; re-register the phone to save the new prefix.
+The hardware UUID stays the registry identity, so saved target selections survive.
+The phone must implement the same contract, including its LWT and heartbeat timer.
+GET `/api/jiosaavn/status` exposes current topics, presence and receipts.
+Broker authentication and ACLs are separate from unique-name registration.

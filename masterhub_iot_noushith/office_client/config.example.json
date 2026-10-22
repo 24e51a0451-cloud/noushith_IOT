@@ -1,0 +1,5 @@
+{
+  "device_id": "PC_OFFICE_001",
+  "mqtt": {"host": "", "port": 1883, "tls": false},
+  "uart": {"port": "COM3", "baudrate": 115200}
+}

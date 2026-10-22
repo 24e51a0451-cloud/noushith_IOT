@@ -16,7 +16,8 @@ def test_every_displayed_gesture_matches_its_context():
         assert processor.normalize({'gesture': domain['gesture'], 'mode': 'IDLE'}) == domain['switch_command']
         for device in domain['devices']:
             if device['gesture']:
-                assert processor.normalize({'gesture': device['gesture'], 'mode': domain['mode']}) == device['switch_command']
+                parent = next((d for d in domain['devices'] if d['id'] == device.get('parent')), None)
+                assert processor.normalize({'gesture': device['gesture'], 'mode': parent['mode'] if parent else domain['mode']}) == device['switch_command']
             for command in device['commands']:
                 if command['gesture']:
                     resolved = processor.normalize({'gesture': command['gesture'], 'mode': device['mode']})

@@ -227,6 +227,26 @@ class Engine:
         }
 
     def process(self, normalized_command: str, params: dict = None) -> dict:
+        from services.event_store import record_event
+        from core.devices import device_registry
+        import uuid
+        trace = str(uuid.uuid4())
+        values = params if isinstance(params, dict) else {}
+        target = values.get('target') or values.get('target_node') or device_registry.get_active_target()
+        record_event('command_request', target, 'REQUESTED',
+                     {'command': normalized_command, 'params': values, 'request_id': trace})
+        try:
+            result = self._process(normalized_command, params)
+        except Exception as error:
+            record_event('command_result', target, 'FAILED',
+                         {'command': normalized_command, 'request_id': trace, 'error_type': type(error).__name__})
+            raise
+        record_event('command_result', target, result.get('status') or ('ACCEPTED' if result.get('success') else 'FAILED'),
+                     {'command': normalized_command, 'request_id': trace, 'result': result},
+                     command_id=result.get('command_id'))
+        return result
+
+    def _process(self, normalized_command: str, params: dict = None) -> dict:
         """
         Main entry point used by the API layer. Takes an already-normalized
         command string (see core/input_processor.py) and runs it through

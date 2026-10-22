@@ -391,5 +391,85 @@
   "mobile_jiosaavn_launch": {
     "domain": "ai_ml",
     "action": "mobile_jiosaavn_launch"
+  },
+  "office_excel_open": {
+    "domain": "desktop",
+    "action": "office_excel_open"
+  },
+  "office_excel_sheet1": {
+    "domain": "desktop",
+    "action": "office_excel_sheet1"
+  },
+  "office_excel_sheet2": {
+    "domain": "desktop",
+    "action": "office_excel_sheet2"
+  },
+  "office_excel_save": {
+    "domain": "desktop",
+    "action": "office_excel_save"
+  },
+  "office_excel_edit": {
+    "domain": "desktop",
+    "action": "office_excel_edit"
+  },
+  "office_excel_delete": {
+    "domain": "desktop",
+    "action": "office_excel_delete"
+  },
+  "office_excel_close": {
+    "domain": "desktop",
+    "action": "office_excel_close"
+  },
+  "office_powerpoint_open": {
+    "domain": "desktop",
+    "action": "office_powerpoint_open"
+  },
+  "office_powerpoint_title": {
+    "domain": "desktop",
+    "action": "office_powerpoint_title"
+  },
+  "office_powerpoint_slide": {
+    "domain": "desktop",
+    "action": "office_powerpoint_slide"
+  },
+  "office_powerpoint_save": {
+    "domain": "desktop",
+    "action": "office_powerpoint_save"
+  },
+  "office_powerpoint_edit": {
+    "domain": "desktop",
+    "action": "office_powerpoint_edit"
+  },
+  "office_powerpoint_delete": {
+    "domain": "desktop",
+    "action": "office_powerpoint_delete"
+  },
+  "office_powerpoint_close": {
+    "domain": "desktop",
+    "action": "office_powerpoint_close"
+  },
+  "office_word_open": {
+    "domain": "desktop",
+    "action": "office_word_open"
+  },
+  "office_word_save": {
+    "domain": "desktop",
+    "action": "office_word_save"
+  },
+  "office_word_insert": {
+    "domain": "desktop",
+    "action": "office_word_insert"
+  },
+  "office_word_replace": {
+    "domain": "desktop",
+    "action": "office_word_replace"
+  },
+  "office_word_delete": {
+    "domain": "desktop",
+    "action": "office_word_delete"
+  },
+  "office_word_close": {
+    "domain": "desktop",
+    "action": "office_word_close"
   }
 }

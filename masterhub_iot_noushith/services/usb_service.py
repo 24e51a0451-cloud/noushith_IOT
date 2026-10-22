@@ -8,6 +8,7 @@ Exchanges JSON-line framed MasterHub Envelope packets over UART/Serial.
 """
 
 import json
+from services.event_store import record_event
 import threading
 import time
 import uuid
@@ -84,6 +85,7 @@ class USBService:
             if port.upper() in ("SIMULATED", "LOOPBACK", "TEST", "MOCK"):
                 self._connected = True
                 self._running = True
+                record_event("connection", port, "CONNECTED", {"transport": "usb", "simulated": port.upper() in ("SIMULATED", "LOOPBACK", "TEST", "MOCK")})
                 log.info(f"USB Serial connected in {port.upper()} mode @ {baudrate} baud")
                 return {"success": True, "port": port, "baudrate": baudrate, "connected": True, "simulated": True}
 
@@ -99,6 +101,7 @@ class USBService:
                 )
                 self._connected = True
                 self._running = True
+                record_event("connection", port, "CONNECTED", {"transport": "usb", "simulated": port.upper() in ("SIMULATED", "LOOPBACK", "TEST", "MOCK")})
                 self._rx_thread = threading.Thread(target=self._rx_worker, daemon=True)
                 self._rx_thread.start()
                 log.info(f"USB Serial opened successfully on {port} @ {baudrate} baud")
@@ -107,6 +110,7 @@ class USBService:
                 self._serial = None
                 self._connected = False
                 self._running = False
+                record_event("connection", port, "FAILED", {"transport": "usb", "error_type": type(exc).__name__})
                 log.error(f"Failed to open USB Serial port {port}: {exc}")
                 return {"success": False, "error": str(exc), "port": port, "connected": False}
 
@@ -117,6 +121,8 @@ class USBService:
 
     def _disconnect_locked(self) -> Dict[str, Any]:
         prev_port = self._port
+        if prev_port:
+            record_event("connection", prev_port, "DISCONNECTED", {"transport": "usb"})
         self._running = False
         self._connected = False
         if self._serial is not None:
@@ -129,7 +135,13 @@ class USBService:
         log.info(f"USB Serial disconnected from {prev_port}")
         return {"success": True, "message": f"Disconnected from {prev_port}"}
 
-    def send_command(
+    def send_command(self, target_device_id, domain, action, params=None, command_id=None):
+        result = self._send_command(target_device_id, domain, action, params, command_id)
+        state = 'SIMULATED' if result.get('simulated') else ('PUBLISHED' if result.get('success') else 'FAILED')
+        record_event('command_result', target_device_id, state, result, command_id=result.get('command_id'))
+        return result
+
+    def _send_command(
         self,
         target_device_id: str,
         domain: str,
@@ -154,6 +166,7 @@ class USBService:
             "timestamp": time.time(),
         }
 
+        record_event("command", target_device_id, "REQUESTED", envelope, command_id=cmd_id)
         line = json.dumps(envelope) + "\n"
         data_bytes = line.encode("utf-8")
 
@@ -235,6 +248,11 @@ class USBService:
                 try:
                     payload = json.loads(line_str)
                     self._last_rx = payload
+                    if isinstance(payload, dict):
+                        from services.office_results import receive
+                        receive(payload)
+                        record_event(payload.get("message_type", "usb_message"), payload.get("source") or self._port,
+                                     payload.get("status", "RECEIVED"), payload, command_id=payload.get("command_id"))
                     log.debug(f"[USB RX] {self._port} <- {payload}")
                 except Exception:
                     log.debug(f"[USB RX RAW] {self._port} <- {line_str}")

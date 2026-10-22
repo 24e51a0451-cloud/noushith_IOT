@@ -26,8 +26,8 @@ def execute(action, params=None):
         return {'success': False, 'error': 'confidence must be between 0 and 1'}
     if params.get('Is_Actionable', True) is not True:
         return {'success': False, 'error': 'Command is not actionable'}
-    if action.endswith(('_search', '_launch')) and str(params.get('source', '')).lower() in ('cortex', 'bci'):
-        return {'success': False, 'error': 'Search and Launch require manual input'}
+    if action.endswith('_launch') and str(params.get('source', '')).lower() in ('cortex', 'bci'):
+        return {'success': False, 'error': 'Launch requires manual input'}
     query = params.get('query', '')
     if not isinstance(query, str) or len(query) > 500:
         return {'success': False, 'error': 'query must be text of at most 500 characters'}
@@ -38,4 +38,5 @@ def execute(action, params=None):
     target = params.get('target') or params.get('target_node') or device_registry.get_active_target()
     device = device_registry.get(target)
     service = selected_mobile_service(target) if device and device.get('device_category') == 'mobile' else mobile_mqtt_service
-    return service.publish_command(COMMANDS[action], confidence, query.strip())
+    origin = 'bci_prediction' if str(params.get('source', '')).lower() in ('cortex', 'bci', 'bci_prediction') else 'dashboard'
+    return service.publish_command(COMMANDS[action], confidence, query.strip(), origin=origin)

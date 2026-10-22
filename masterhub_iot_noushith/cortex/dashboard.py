@@ -98,6 +98,9 @@ def update_status(
     global _control_enabled
     with _lock:
         if connected is not None:
+            if connected != _status.connected:
+                from services.event_store import record_event
+                record_event('connection', 'cortex', 'CONNECTED' if connected else 'DISCONNECTED')
             _status.connected = connected
             if connected and _status.started_at is None:
                 _status.started_at = time.time()
@@ -282,6 +285,8 @@ def log_command_event(
             "detail": detail,
         }
         _command_logs.append(entry)
+        from services.event_store import record_event
+        record_event("activity", domain, status, entry)
         log.info('[%s] gesture=%s power=%s command=%s domain=%s status=%s ACK=%s %s',
                  event_type, gesture, confidence, command, domain, status, acknowledgement, detail)
         return entry

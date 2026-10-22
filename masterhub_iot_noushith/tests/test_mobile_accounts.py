@@ -9,11 +9,11 @@ from core.devices import DeviceRegistry
 
 
 @pytest.fixture
-def client(tmp_path, monkeypatch):
+def client(tmp_path, monkeypatch, postgres_db):
     from app import create_app
     from api import accounts
     app = create_app()
-    database_path = tmp_path / 'masterhub.db'
+    database_path = postgres_db
     app.config.update(TESTING=True, MASTERHUB_DATABASE=database_path)
     monkeypatch.setattr(accounts, 'device_registry', DeviceRegistry(database_path=database_path))
     accounts._attempts.clear()
@@ -42,8 +42,8 @@ def test_registration_login_uniqueness_and_secret_storage(client):
     assert login.json['token'] != result['token']
     assert client.post('/api/auth/login', json=dict(username='test_user', password='wrong password')).status_code == 401
     with account_store.database(path) as db:
-        assert db.execute('SELECT password_hash FROM users').fetchone()[0] != 'test password 123'
-        assert db.execute('SELECT token_hash FROM sessions LIMIT 1').fetchone()[0] != result['token']
+        assert db.execute('SELECT password_hash FROM users').fetchone()['password_hash'] != 'test password 123'
+        assert db.execute('SELECT token_hash FROM sessions LIMIT 1').fetchone()['token_hash'] != result['token']
 
 
 def test_phone_id_is_stable_and_isolated_by_owner(client):
@@ -84,8 +84,8 @@ def test_bad_requests_and_throttling(client):
     assert client.post('/api/auth/login', json={}).status_code == 429
 
 
-def test_simultaneous_username_claims_have_one_winner(tmp_path):
-    path = tmp_path / 'accounts.db'
+def test_simultaneous_username_claims_have_one_winner(tmp_path, postgres_db):
+    path = postgres_db
     with account_store.database(path):
         pass
     def register(_):
@@ -98,9 +98,9 @@ def test_simultaneous_username_claims_have_one_winner(tmp_path):
         assert sorted(pool.map(register, range(2))) == [False, True]
 
 
-def test_json_migration_is_once_and_deletion_persists(tmp_path):
+def test_json_migration_is_once_and_deletion_persists(tmp_path, postgres_db):
     legacy = tmp_path / 'devices.json'
-    database_path = tmp_path / 'masterhub.db'
+    database_path = postgres_db
     registry = DeviceRegistry(legacy)
     registry.register('OLD_LAPTOP')
     migrated = DeviceRegistry(legacy, database_path)
@@ -122,7 +122,7 @@ def test_mobile_routing_preserves_command_contract(monkeypatch):
     with patch.object(transport, 'service_for_device', return_value=mock_service) as factory:
         execute('mobile_jiosaavn_next')
         factory.assert_called_once_with('MOBILE_TEST')
-        mock_service.publish_command.assert_called_once_with('Right_Next_Song', 1.0, '')
+        mock_service.publish_command.assert_called_once_with('Right_Next_Song', 1.0, '', origin='dashboard')
     service = transport.MobileMQTTService(client=Mock(), device_id='MOBILE_TEST')
     assert service.topics['commands'] == 'masterhub/mobile/MOBILE_TEST/command'
     assert service.topics['heartbeat'] == 'masterhub/mobile/MOBILE_TEST/heartbeat'

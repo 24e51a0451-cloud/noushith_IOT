@@ -33,6 +33,24 @@ function dashboard() {
 
 const payload = '<img src=x onerror="alert(1)">';
 
+test('dashboard polling waits for requests and pauses in hidden tabs', async () => {
+  const { context } = dashboard();
+  let calls = 0, timers = 0, finish;
+  context.setTimeout = () => { timers++; };
+  context.refreshConnections = () => { calls++; return new Promise(resolve => { finish = resolve; }); };
+  context.syncActivityLogs = async () => { calls++; };
+  const polling = context.pollDashboard();
+  assert.equal(calls, 2);
+  assert.equal(timers, 0);
+  finish();
+  await polling;
+  assert.equal(timers, 1);
+  context.document.hidden = true;
+  await context.pollDashboard();
+  assert.equal(calls, 2);
+  assert.equal(timers, 2);
+});
+
 test('sidebar statuses refresh on success and clear stale values on failure', async () => {
   const { context, nodes } = dashboard();
   for (const id of ['sideMqttStatus', 'sideUartStatus', 'sideBciStatus', 'sideHealthStatus', 'sideActiveFsmMode']) {
@@ -131,4 +149,49 @@ test('UART registration selects the registered node before refreshing targets', 
   assert.equal(calls[1].url, '/api/devices/target');
   assert.equal(calls[1].body.target, 'PC_UART_001');
   assert.equal(calls[2].url, 'refresh');
+});
+
+test('media Right opens search without dispatching an empty command', async () => {
+  const { context } = dashboard();
+  const device = {mode: 'MOBILE_JIOSAAVN_MODE', commands: [{id: 'mobile_jiosaavn_search', gesture: 'right'}]};
+  context.ui = {phase: 3, busy: false, catalog: {active_target: 'PHONE'}};
+  context.currentDevice = () => device;
+  let opened;
+  context.openMediaSearch = (...args) => { opened = args; };
+  context.post = () => { throw new Error('Empty search dispatched'); };
+  await context.dispatchDirectGesture('right', 'ArrowRight', 'manual_keyboard');
+  assert.deepEqual(opened, ['mobile_jiosaavn_search', 'MOBILE_JIOSAAVN_MODE', 'PHONE']);
+});
+
+test('search chat submits once to its captured target and rejects changed context', async () => {
+  const { context } = dashboard();
+  const created = [];
+  context.document.createElement = tag => {
+    const node = {tagName: tag, style: {}, value: '', disabled: false, children: [],
+      setAttribute() {}, append(...items) { this.children.push(...items); },
+      addEventListener(name, fn) { this[name] = fn; },
+      close() { this.closed = true; this.closeHandler?.(); }, remove() {}, showModal() {}, focus() {}};
+    node.addEventListener = (name, fn) => { if (name === 'close') node.closeHandler = fn; };
+    created.push(node); return node;
+  };
+  context.document.body = {append() {}};
+  context.ui = {busy: false};
+  context.cancelFrame = () => {};
+  context.getJson = async () => ({state_mode: 'MOBILE_JIOSAAVN_MODE', active_target: 'PHONE'});
+  const sent = [];
+  context.sendCommand = async payload => { sent.push(payload); };
+  context.openMediaSearch('mobile_jiosaavn_search', 'MOBILE_JIOSAAVN_MODE', 'PHONE');
+  const form = created.find(n => n.tagName === 'form');
+  created.find(n => n.tagName === 'input').value = '  Song name  ';
+  await Promise.all([form.onsubmit({preventDefault() {}}), form.onsubmit({preventDefault() {}})]);
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].target, 'PHONE');
+  assert.equal(sent[0].params.query, 'Song name');
+  created.length = 0;
+  context.openMediaSearch('mobile_jiosaavn_search', 'MOBILE_JIOSAAVN_MODE', 'PHONE');
+  context.getJson = async () => ({state_mode: 'IDLE', active_target: 'OTHER'});
+  created.find(n => n.tagName === 'input').value = 'Another song';
+  await created.find(n => n.tagName === 'form').onsubmit({preventDefault() {}});
+  assert.equal(sent.length, 1);
+  assert.match(created.find(n => n.tagName === 'p').textContent, /changed/);
 });

@@ -266,24 +266,19 @@
         "switch_command": "mode_mobile_jiosaavn",
         "commands": {
           "mobile_jiosaavn_next": {
-            "label": "Next song",
-            "gesture": "right",
-            "arrow": "ArrowRight"
-          },
-          "mobile_jiosaavn_previous": {
-            "label": "Previous song",
-            "gesture": "left",
-            "arrow": "ArrowLeft"
-          },
-          "mobile_jiosaavn_play_pause": {
-            "label": "Play / Pause",
+            "label": "Next track",
             "gesture": "push",
             "arrow": "ArrowUp"
           },
-          "mobile_jiosaavn_home": {
-            "label": "Android home",
+          "mobile_jiosaavn_previous": {
+            "label": "Previous track",
             "gesture": "pull",
             "arrow": "ArrowDown"
+          },
+          "mobile_jiosaavn_play_pause": {
+            "label": "Play / Pause",
+            "gesture": "left",
+            "arrow": "ArrowLeft"
           },
           "mobile_jiosaavn_volume_up": {
             "label": "Volume up",
@@ -294,6 +289,14 @@
             "label": "Volume down",
             "gesture": "right+pull",
             "arrow": "ArrowRight+ArrowDown"
+          },
+          "mobile_jiosaavn_search": {
+            "label": "Search & play",
+            "gesture": "right",
+            "arrow": "ArrowRight",
+            "parameters": [
+              "query"
+            ]
           }
         }
       },
@@ -329,7 +332,7 @@
             "arrow": "ArrowRight+ArrowDown"
           },
           "jiosaavn_search": {
-            "label": "Search",
+            "label": "Search & play",
             "gesture": "right",
             "arrow": "ArrowRight",
             "parameters": [

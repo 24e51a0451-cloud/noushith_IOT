@@ -10,6 +10,7 @@ read logs, validate output, generate reports."
 """
 
 import time
+import os
 
 import requests
 
@@ -19,13 +20,14 @@ class GestureSender:
         self.command_url = base_url.rstrip("/") + command_endpoint
         self.health_url = base_url.rstrip("/") + health_endpoint
         self.timeout = timeout
+        self.auth = (os.getenv('MASTERHUB_OPERATOR_USER', ''), os.environ['MASTERHUB_OPERATOR_PASSWORD']) if os.getenv('MASTERHUB_OPERATOR_PASSWORD') else None
 
     def check_health(self):
         """
         Pre-flight check. Returns (ok: bool, detail: str).
         """
         try:
-            resp = requests.get(self.health_url, timeout=self.timeout)
+            resp = requests.get(self.health_url, timeout=self.timeout, auth=self.auth)
         except requests.exceptions.RequestException as exc:
             return False, str(exc)
 
@@ -63,7 +65,7 @@ class GestureSender:
         payload = {"gesture": gesture, "mode": mode}
         start = time.perf_counter()
         try:
-            resp = requests.post(self.command_url, json=payload, timeout=self.timeout)
+            resp = requests.post(self.command_url, json=payload, timeout=self.timeout, auth=self.auth)
         except requests.exceptions.RequestException as exc:
             elapsed = time.perf_counter() - start
             return {

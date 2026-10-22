@@ -39,6 +39,13 @@ log = get_logger("api.routes")
 api_bp = Blueprint("api", __name__, url_prefix="/api")
 
 
+@api_bp.get('/office/results/<command_id>')
+def office_result(command_id):
+    from services.office_results import get
+    result = get(command_id)
+    return (jsonify(result), 200) if result else (jsonify(error='Unknown or expired Office command'), 404)
+
+
 @api_bp.route("/command", methods=["POST"])
 def handle_command():
     """
@@ -163,7 +170,7 @@ def handle_command():
 
         ack_msg = f"ACK_RECEIVED · {status_code} OK ({duration_ms:.1f}ms)" if success_bool else f"FAILED · {status_code} ({result.get('error', 'error')})"
         if result.get('status') == 'PENDING':
-            ack_msg = 'PENDING · Sent to phone; awaiting execution acknowledgement'
+            ack_msg = 'PENDING · Sent to target; awaiting execution acknowledgement'
         log_command_event(
             event_type="BCI" if is_bci else "COMMAND",
             gesture=gesture or (normalized_command if is_bci else "—"),
@@ -171,7 +178,7 @@ def handle_command():
             command=normalized_command,
             domain=domain,
             acknowledgement=ack_msg,
-            status="SUCCESS" if success_bool else "FAILED",
+            status=result.get('status') or ("SUCCESS" if success_bool else "FAILED"),
             detail=f"Mode: {result.get('state', {}).get('mode', 'IDLE')} · Action: {action}",
         )
 
@@ -184,7 +191,7 @@ def handle_command():
                 routed_command=normalized_command,
                 domain=domain,
                 action=action,
-                status="SUCCESS" if success_bool else "FAILED",
+                status=result.get('status') or ("SUCCESS" if success_bool else "FAILED"),
                 response_time_ms=duration_ms,
             )
         else:
@@ -197,7 +204,7 @@ def handle_command():
                 routed_command=normalized_command,
                 domain=domain,
                 action=action,
-                status="SUCCESS" if success_bool else "FAILED",
+                status=result.get('status') or ("SUCCESS" if success_bool else "FAILED"),
                 response_time_ms=duration_ms,
                 mode=result.get("state", {}).get("mode", "IDLE"),
             )
@@ -363,10 +370,11 @@ def control_robot_car():
 def list_devices():
     """Return all registered target PC devices and active target node."""
     from services.mobile_mqtt_service import mobile_mqtt_service
+    devices = device_registry.list_all()
     return jsonify({
         "success": True,
         "active_target": device_registry.get_active_target(),
-        "devices": mobile_mqtt_service.merge_target_presence(device_registry.list_all()),
+        "devices": mobile_mqtt_service.merge_target_presence(devices),
     }), 200
 
 

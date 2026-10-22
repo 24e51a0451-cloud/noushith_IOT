@@ -6,6 +6,7 @@ execute once when the configured workflow window ends, using fresh samples.
 import math
 import threading
 import time
+import uuid
 from copy import deepcopy
 from fnmatch import fnmatch
 
@@ -205,7 +206,11 @@ class CortexControl:
         with self.lock:
             params = dict(self.params.get(command, {}))
         missing = [f for f in choice.get('parameters', []) if not params.get(f, '').strip()]
-        if missing:
+        if command in ('jiosaavn_search', 'mobile_jiosaavn_search'):
+            result = {'success': True, 'command': command, 'type': 'input_required',
+                      'request_id': str(uuid.uuid4()), 'mode': item['mode'],
+                      'target': item['target'], 'message': 'Enter a song, then send to play.'}
+        elif missing:
             result = {'success': False, 'command': command, 'error': 'Save inputs first: ' + ', '.join(missing)}
         else:
             params.update(source='cortex', gesture=item['gesture'], target=item['target'],
@@ -221,7 +226,7 @@ class CortexControl:
             if result.get('success') and command in MOTION_COMMANDS:
                 self.motion_stop = 'car_stop' if command.startswith('car_') else 'chair_stop'
             self.last_result = dict(result, gesture=item['gesture'], command=command)
-            self.message = 'Command accepted by MasterHub.' if result.get('success') else result.get('error', 'Command failed.')
+            self.message = result.get('message', 'Command accepted by MasterHub.') if result.get('success') else result.get('error', 'Command failed.')
         sent = SendResult(prediction, bool(result.get('success')), 200 if result.get('success') else 422,
                           elapsed, dict(result, gesture=item['gesture'], power=item['power']))
         return PipelineResult(sent.success, prediction, send_result=sent)

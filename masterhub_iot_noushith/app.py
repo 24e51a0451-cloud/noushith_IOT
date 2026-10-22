@@ -16,9 +16,10 @@ from cortex.dashboard import cortex_bp
 from api.routes import api_bp
 from api.jiosaavn import jiosaavn_bp
 from api.accounts import accounts_bp
+from api.history import history_bp
 from services.logger_service import get_logger
 from services.mqtt_service import mqtt_service
-from services.web_security import reject_cross_origin_mutation
+from services.web_security import reject_cross_origin_mutation, require_operator, security_headers
 
 log = get_logger("app")
 
@@ -26,13 +27,23 @@ log = get_logger("app")
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config["JSON_SORT_KEYS"] = False
-    app.config["TEMPLATES_AUTO_RELOAD"] = True
+    app.config["TEMPLATES_AUTO_RELOAD"] = False
+    app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
+    app.config['MASTERHUB_OPERATOR_USER'] = os.getenv('MASTERHUB_OPERATOR_USER', '')
+    app.config['MASTERHUB_OPERATOR_PASSWORD'] = os.getenv('MASTERHUB_OPERATOR_PASSWORD', '')
     app.before_request(reject_cross_origin_mutation)
+    app.before_request(require_operator)
+    app.after_request(security_headers)
 
     app.register_blueprint(api_bp)
     app.register_blueprint(jiosaavn_bp)
     app.register_blueprint(accounts_bp)
+    app.register_blueprint(history_bp)
     app.register_blueprint(cortex_bp)
+
+    @app.get('/healthz')
+    def healthz():
+        return jsonify(status='ok')
 
     @app.before_request
     def ensure_mobile_discovery():
@@ -58,10 +69,13 @@ def create_app() -> Flask:
 
     @app.route("/dashboard")
     def dashboard():
+        from services.event_store import event_store
+        if not app.testing:
+            event_store.start()
         # Keep a cached stylesheet/script from mismatching an updated template.
         paths = [os.path.join(app.root_path, folder, name) for folder, name in (
             ('templates', 'dashboard.html'), ('static', 'masterhub.css'),
-            ('static', 'masterhub.js'), ('static', 'bci-panel.js'))]
+            ('static', 'masterhub.js'), ('static', 'database-history.js'), ('static', 'bci-panel.js'))]
         version = str(max(os.stat(path).st_mtime_ns for path in paths))
         return Response(render_template("dashboard.html", dashboard_asset_version=version),
                         headers={"Cache-Control": "no-cache"}, mimetype="text/html")

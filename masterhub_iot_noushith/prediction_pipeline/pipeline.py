@@ -180,6 +180,9 @@ class CommandSender:
         self.max_retries = max_retries
         self.retry_backoff = retry_backoff
         self._session = session or requests.Session()
+        if session is None and os.getenv('MASTERHUB_OPERATOR_PASSWORD'):
+            self._session.auth = (os.getenv('MASTERHUB_OPERATOR_USER', ''),
+                                  os.environ['MASTERHUB_OPERATOR_PASSWORD'])
         log.info(f"Sender configured for {self.url}")
 
     def send(self, prediction: Prediction, gesture_override: Optional[str] = None) -> SendResult:

@@ -14,7 +14,7 @@ import threading
 import time
 from typing import Any, Dict, List, Optional
 from core.account_store import database, DEFAULT_DATABASE
-import sqlite3
+import psycopg
 
 
 class DeviceRegistry:
@@ -22,6 +22,7 @@ class DeviceRegistry:
         self._lock = threading.Lock()
         self._storage_path = Path(storage_path) if storage_path is not None else None
         self._database_path = database_path
+        self._last_refresh = 0.0
         self._active_target = "Local Host"
         self._devices: Dict[str, Dict[str, Any]] = {
             "Local Host": {
@@ -65,11 +66,47 @@ class DeviceRegistry:
         if self._database_path is not None:
             self._save()
 
-    def _save(self):
+    @staticmethod
+    def _without_deleted_mqtt(devices, identities):
+        # MQTT-discovered phones have an identity row; manual/USB registrations do not.
+        return {key: value for key, value in devices.items()
+                if not (value.get('device_category') == 'mobile'
+                        and value.get('mqtt_prefix', '').startswith(('bci/', 'masterhub/mobile/'))
+                        and key not in identities)}
+
+    def _refresh_locked(self, force=False):
+        if self._database_path is None or (not force and time.monotonic() - self._last_refresh < 3):
+            return
+        with database(self._database_path) as db:
+            row = db.execute('SELECT payload FROM device_registry WHERE id=1').fetchone()
+            identities = {item['device_id'] for item in db.execute('SELECT device_id FROM mqtt_devices')}
+        records = json.loads(row['payload'])['devices'] if row else []
+        devices = {item['device_id']: item for item in records}
+        # Local Host is a built-in target, not a remotely registered device.
+        if 'Local Host' in self._devices:
+            devices.setdefault('Local Host', self._devices['Local Host'])
+        devices = self._without_deleted_mqtt(devices, identities)
+        for key, record in devices.items():
+            previous = self._devices.get(key)
+            record['status'] = previous.get('status', 'OFFLINE') if previous else 'OFFLINE'
+            if previous:
+                record['last_seen'] = previous.get('last_seen', 0)
+        self._devices = devices
+        if self._active_target not in devices:
+            self._active_target = 'Local Host'
+        self._last_refresh = time.monotonic()
+
+    def _save(self, remove_identity=None):
         """Atomically persist registrations while holding the registry lock."""
         if self._database_path is not None:
             with database(self._database_path) as db:
-                db.execute('INSERT INTO device_registry VALUES(1,?) ON CONFLICT(id) DO UPDATE SET payload=excluded.payload',
+                if remove_identity is not None:
+                    db.execute('DELETE FROM mqtt_devices WHERE device_id=%s', (remove_identity,))
+                identities = {item['device_id'] for item in db.execute('SELECT device_id FROM mqtt_devices')}
+                self._devices = self._without_deleted_mqtt(self._devices, identities)
+                if self._active_target not in self._devices:
+                    self._active_target = 'Local Host'
+                db.execute('INSERT INTO device_registry VALUES(1,%s) ON CONFLICT(id) DO UPDATE SET payload=excluded.payload',
                            (json.dumps({'devices': list(self._devices.values())}),))
             return
         if self._storage_path is None:
@@ -100,6 +137,7 @@ class DeviceRegistry:
         mqtt_prefix: Optional[str] = None,
     ) -> Dict[str, Any]:
         with self._lock:
+            self._refresh_locked(force=True)
             device_id = str(device_id).strip()
             if not device_id:
                 raise ValueError("device_id cannot be empty")
@@ -125,7 +163,7 @@ class DeviceRegistry:
                 record['mqtt_prefix'] = mqtt_prefix or existing['mqtt_prefix']
             try:
                 self._save()
-            except (OSError, sqlite3.Error):
+            except (OSError, psycopg.Error):
                 if existing:
                     self._devices[device_id] = existing
                 else:
@@ -135,13 +173,14 @@ class DeviceRegistry:
 
     def unregister(self, device_id: str) -> bool:
         with self._lock:
+            self._refresh_locked(force=True)
             if device_id in self._devices:
                 if device_id == "Local Host":
                     return False
                 removed = self._devices.pop(device_id)
                 try:
-                    self._save()
-                except (OSError, sqlite3.Error):
+                    self._save(remove_identity=device_id)
+                except (OSError, psycopg.Error):
                     self._devices[device_id] = removed
                     raise
                 if self._active_target == device_id:
@@ -186,6 +225,7 @@ class DeviceRegistry:
 
     def list_all(self) -> List[Dict[str, Any]]:
         with self._lock:
+            self._refresh_locked()
             return [dict(d) for d in self._devices.values()]
 
     def get_active_target(self) -> str:

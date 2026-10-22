@@ -55,7 +55,8 @@ def build_workflow():
     mobility = {}
     from services.mobile_mqtt_service import mobile_mqtt_service, selected_mobile_service
     mobile = selected_mobile_service().snapshot()
-    mobility['mobile_jiosaavn'] = connection(mobile['online'] and mobile['phone'].get('control_enabled'),
+    mobility['mobile_jiosaavn'] = connection(mobile.get('can_send', mobile['online'] and mobile['phone'].get('control_enabled')),
+        'Phone presence unknown; commands unconfirmed' if mobile.get('presence_unknown') else
         'Phone ready' if mobile['online'] and mobile['phone'].get('control_enabled') else 'Phone offline or control disabled')
     for name, state in [('robot_car', get_robot_car_state()), ('wheelchair', get_wheelchair_state())]:
         topic = hardware[config['devices'][name]['topic_setting']]
@@ -104,6 +105,7 @@ def build_workflow():
                 'label': dev_info.get('label', dev_id.replace('_', ' ').title()),
                 'gesture': dev_info.get('gesture'),
                 'mode': dev_mode,
+                'parent': dev_info.get('parent'),
                 'connection': mobility.get(dev_id, statuses[domain_id]),
                 'commands': commands,
                 'switch_command': switch_cmd,

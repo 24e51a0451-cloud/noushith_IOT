@@ -74,7 +74,7 @@ def login():
 @accounts_bp.post('/auth/logout')
 def logout():
     with account_store.database(path()) as db:
-        db.execute('DELETE FROM sessions WHERE token_hash=?', (account_store.token_hash(token()),))
+        db.execute('DELETE FROM sessions WHERE token_hash=%s', (account_store.token_hash(token()),))
     return jsonify(success=True)
 
 

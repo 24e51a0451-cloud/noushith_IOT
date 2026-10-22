@@ -304,6 +304,7 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Phase navigation ---------- */
 .phase-nav {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border-subtle);
@@ -3100,3 +3101,13 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 .sidebar-backdrop, .bci-drawer-backdrop { visibility: hidden; }
 .sidebar-backdrop.open, .bci-drawer-backdrop.open { visibility: visible; }
+
+.database-history-controls { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:12px; }
+.database-history-controls label { display:flex; align-items:center; gap:6px; }
+.database-history-controls input, .database-history-controls select { max-width:180px; padding:6px; }
+.database-history-note { padding:0 12px; color:var(--text-secondary); font-size:.8rem; }
+.database-history-list { max-height:360px; overflow:auto; padding:12px; }
+.database-history-list details { border-bottom:1px solid var(--border, #555); padding:8px 0; }
+.database-history-list summary { cursor:pointer; overflow-wrap:anywhere; }
+.database-history-list pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.75rem; }
+#databaseOlder { margin:12px; }

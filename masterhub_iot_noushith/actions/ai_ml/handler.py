@@ -142,13 +142,11 @@ class AIMLHandler:
         return {"success": open_url_robust("https://www.jiosaavn.com/"), "url": "https://www.jiosaavn.com/"}
 
     def _search_jiosaavn(self, params: dict) -> dict:
-        from urllib.parse import quote
-        from actions.desktop.gmail import open_url_robust
-        query = str(params.get('query', '')).strip()
-        if not query:
+        from actions.ai_ml.jiosaavn import search_and_play
+        query = params.get('query', '')
+        if not isinstance(query, str) or not query.strip() or len(query) > 500:
             raise ValueError('Enter a JioSaavn search query.')
-        url = 'https://www.jiosaavn.com/search/' + quote(query, safe='')
-        return {'success': open_url_robust(url), 'query': query, 'url': url}
+        return search_and_play(query.strip())
 
     def _play_pause(self, params: dict) -> dict:
         print("Executing AI/ML action: play/pause")

@@ -68,6 +68,22 @@
     "DESKTOP_JIOSAAVN_MODE": {
       "switch_command": "mode_desktop_jiosaavn",
       "description": "Desktop JioSaavn BCI controls"
+    },
+    "OFFICE_EXCEL_MODE": {
+      "switch_command": "mode_office_excel",
+      "description": "Microsoft Excel automation on the selected PC"
+    },
+    "OFFICE_POWERPOINT_MODE": {
+      "switch_command": "mode_office_powerpoint",
+      "description": "Microsoft PowerPoint automation on the selected PC"
+    },
+    "OFFICE_WORD_MODE": {
+      "switch_command": "mode_office_word",
+      "description": "Microsoft Word automation on the selected PC"
+    },
+    "OFFICE_MODE": {
+      "switch_command": "mode_office",
+      "description": "Microsoft Office application selection"
     }
   }
 }

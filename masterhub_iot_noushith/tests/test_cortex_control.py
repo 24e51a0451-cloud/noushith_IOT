@@ -57,7 +57,7 @@ def live():
     (['push', 'pull', 'left'], 'desktop', 'chrome_scroll_down'),
     (['left', 'push', 'right'], 'iot', 'left_light_on'),
     (['pull', 'push', 'left'], 'embedded', 'car_left'),
-    (['right', 'push', 'push'], 'ai_ml', 'mobile_jiosaavn_play_pause'),
+    (['right', 'push', 'left'], 'ai_ml', 'mobile_jiosaavn_play_pause'),
 ])
 def test_live_headset_reaches_each_domain(live, gestures, domain, action):
     from contextlib import ExitStack
@@ -443,3 +443,22 @@ def test_expired_connection_cannot_dispatch_pending_frame(live):
     sample('right', dt=5)
     assert state_manager.mode.value == 'IDLE'
     assert dashboard.live_snapshot()['metrics']['commands_sent'] == 0
+
+@pytest.mark.parametrize('mode,expected', [
+    ('mode_mobile_jiosaavn', 'mobile_jiosaavn_search'),
+    ('mode_desktop_jiosaavn', 'jiosaavn_search'),
+])
+def test_media_right_requests_fresh_query_without_dispatch(live, mode, expected):
+    client, sample, release, command = live
+    state_manager.maybe_switch_mode(mode)
+    control.params[expected] = {'query': 'stale song'}
+    with patch.object(_DOMAIN_HANDLERS['ai_ml'], 'execute') as handler:
+        command('right')
+        handler.assert_not_called()
+        result = control.last_result
+        assert result['type'] == 'input_required'
+        assert result['command'] == expected
+        assert result['mode'] == state_manager.mode.value
+        first_id = result['request_id']
+        command('right')
+        assert control.last_result['request_id'] != first_id

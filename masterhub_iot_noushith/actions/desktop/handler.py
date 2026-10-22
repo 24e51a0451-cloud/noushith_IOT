@@ -9,12 +9,16 @@ never needs to know which specific module/function implements it.
 
 import json
 import os
+import threading
+import uuid
 
 from actions.desktop import notepad, chrome, youtube, system_apps, gmail
 from core.devices import device_registry
 from services.logger_service import get_logger
 from services.mqtt_service import mqtt_service
 from services.usb_service import usb_service
+from office_client.office import OFFICE_ACTIONS, OfficeWorker, validate as validate_office
+from services import office_results
 
 log = get_logger("actions.desktop")
 
@@ -24,6 +28,8 @@ _DESKTOP_MAP_PATH = os.path.join(_BASE_DIR, "mappings", "desktop_map.json")
 
 class DesktopHandler:
     def __init__(self):
+        self._office_worker = None
+        self._office_lock = threading.Lock()
         self._map = self._load_map()
         # action_id -> callable(params: dict) -> dict
         self._dispatch = {
@@ -92,6 +98,11 @@ class DesktopHandler:
 
     def execute(self, action: str, params: dict = None) -> dict:
         params = params or {}
+        if action in OFFICE_ACTIONS:
+            try:
+                validate_office(action, params)
+            except ValueError as error:
+                return {'success': False, 'error': str(error)}
         mapping = self._map.get(action)
         if mapping is not None:
             params = dict(params)
@@ -105,6 +116,13 @@ class DesktopHandler:
             transport = (device.get("transport") if device else "mqtt") or "mqtt"
             transport = str(transport).strip().lower()
 
+            office_id = None
+            if action in OFFICE_ACTIONS:
+                if not device or transport not in ('mqtt', 'usb', 'serial', 'uart'):
+                    return {'success': False, 'error': 'Select a registered MQTT or UART desktop target'}
+                office_id = 'office_' + uuid.uuid4().hex
+                office_results.expect(office_id, target_str, action)
+
             if transport in ("usb", "serial", "uart"):
                 log.info(f"Routing desktop action '{action}' to node '{target_str}' via USB Serial")
                 result = usb_service.send_command(
@@ -112,6 +130,7 @@ class DesktopHandler:
                     domain="desktop",
                     action=action,
                     params=params,
+                    **({'command_id': office_id} if office_id else {}),
                 )
             else:
                 log.info(f"Routing desktop action '{action}' to remote node '{target_str}' via MQTT")
@@ -120,10 +139,20 @@ class DesktopHandler:
                     domain="desktop",
                     action=action,
                     params=params,
+                    **({'command_id': office_id} if office_id else {}),
                 )
             result.setdefault("domain", "desktop")
             result.setdefault("mapping", mapping)
+            if office_id and result.get('success') and not result.get('simulated'):
+                result['status'] = 'PENDING'
+                result['result_url'] = '/api/office/results/' + office_id
             return result
+
+        if action in OFFICE_ACTIONS:
+            with self._office_lock:
+                if self._office_worker is None:
+                    self._office_worker = OfficeWorker()
+            return {**self._office_worker.execute(action, params), 'domain': 'desktop', 'action': action}
 
         fn = self._dispatch.get(action)
         if fn is None:

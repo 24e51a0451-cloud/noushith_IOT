@@ -15,6 +15,8 @@ Features
 """
 
 import json
+import os
+from services.event_store import record_event, record_mqtt
 import uuid
 from services.hardware_config import read_config
 import threading
@@ -94,6 +96,11 @@ class MQTTService:
             client_id=self.client_id,
             clean_session=True
         )
+        if os.getenv('MASTERHUB_MQTT_USERNAME'):
+            self._client.username_pw_set(os.environ['MASTERHUB_MQTT_USERNAME'],
+                                         os.getenv('MASTERHUB_MQTT_PASSWORD'))
+        if os.getenv('MASTERHUB_MQTT_TLS', '').lower() in ('1', 'true'):
+            self._client.tls_set(ca_certs=os.getenv('MASTERHUB_MQTT_CA_FILE') or None)
 
         self._client.on_connect = self._on_connect
         self._client.on_disconnect = self._on_disconnect
@@ -110,6 +117,7 @@ class MQTTService:
     # -------------------------------------------------
 
     def _on_connect(self, client, userdata, flags, rc):
+        record_event("connection", "hardware-broker", "CONNECTED" if rc == 0 else "FAILED", {"return_code": rc})
         if rc == 0:
             self._connected = True
             log.info(f"Connected to MQTT Broker {self.host}:{self.port}")
@@ -141,6 +149,7 @@ class MQTTService:
             log.error(f"MQTT Connection Failed : {rc}")
 
     def _on_disconnect(self, client, userdata, rc):
+        record_event("connection", "hardware-broker", "DISCONNECTED", {"return_code": rc})
         self._connected = False
         log.warning(f"MQTT Disconnected : {rc}")
 
@@ -153,6 +162,8 @@ class MQTTService:
             data = json.loads(payload)
         except Exception:
             data = payload
+
+        record_mqtt(msg.topic, data, retained=getattr(msg, "retain", False))
 
         # Firmware may publish JSON or plain text; identify nodes from the topic.
         parts = msg.topic.split("/")
@@ -200,9 +211,13 @@ class MQTTService:
                             }
                         log.info(f"PC Agent Status Updated : {pc_device_id} -> {data}")
                     elif channel == "ack":
+                        from services.office_results import receive
+                        receive(data, pc_device_id)
                         LAST_ACKS[pc_device_id] = data
                         log.info(f"PC Agent ACK Received from {pc_device_id}: {data}")
                     elif channel == "error":
+                        from services.office_results import receive
+                        receive(data, pc_device_id)
                         LAST_ACKS[pc_device_id] = {"error": data}
                         log.warning(f"PC Agent ERROR from {pc_device_id}: {data}")
 
@@ -380,6 +395,7 @@ class MQTTService:
 
         if not self._connected:
             if not self.connect():
+                record_mqtt(target_topic, payload, outgoing=True, status="FAILED")
                 log.error("MQTT Not Connected")
                 return False
 
@@ -392,6 +408,7 @@ class MQTTService:
             result.wait_for_publish(timeout=5)
 
             if result.is_published():
+                record_mqtt(target_topic, payload, outgoing=True)
                 log.info(f"Published -> {target_topic} : {payload}")
                 return True
 
@@ -403,6 +420,7 @@ class MQTTService:
                     retry - 1
                 )
 
+            record_mqtt(target_topic, payload, outgoing=True, status="FAILED")
             return False
 
         except Exception as e:
@@ -414,6 +432,7 @@ class MQTTService:
                     qos,
                     retry - 1
                 )
+            record_mqtt(target_topic, payload, outgoing=True, status="FAILED")
             return False
 
     def publish_json(

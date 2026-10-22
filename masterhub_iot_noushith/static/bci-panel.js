@@ -12,9 +12,17 @@
   }
   function post(url, data) { return getJson(url, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)}); }
   function gestureLabel(value) { return value.split('+').map(function(v) { return v.toUpperCase(); }).join(' → '); }
-  var workflowKey = '', headsetFrameVisible = false;
+  var workflowKey = '', headsetFrameVisible = false, lastSearchRequest = '';
   function renderWorkflow(workflow) {
     if (!workflow) return;
+    var inputRequest = workflow.last_result;
+    if (snapshot.control_enabled && inputRequest && inputRequest.type === 'input_required' &&
+        inputRequest.request_id !== lastSearchRequest && typeof openMediaSearch === 'function') {
+      lastSearchRequest = inputRequest.request_id;
+      if (workflow.mode === inputRequest.mode && workflow.target === inputRequest.target) {
+        openMediaSearch(inputRequest.command, inputRequest.mode, inputRequest.target);
+      }
+    }
     var path = ['Main menu'];
     if (workflow.domain) path.push(workflow.domain.label);
     if (workflow.device) path.push(workflow.device.label);
@@ -30,7 +38,7 @@
     if (typeof updateTemporalObserverState === 'function' && (pending || headsetFrameVisible)) {
       var result = workflow.last_result;
       var completed = result && (workflow.message === 'Command accepted by MasterHub.' || workflow.message === result.error);
-      updateTemporalObserverState('Headset · Temporal frame', pending ? 'FRAMING' : completed ? (result.success ? 'SUCCESS' : 'FAILED') : 'CANCELLED', {
+      updateTemporalObserverState('Headset · Temporal frame', pending ? 'FRAMING' : result && result.type === 'input_required' ? 'ARMED' : completed ? (result.success ? 'SUCCESS' : 'FAILED') : 'CANCELLED', {
         label: pending ? gestureLabel(pending.gesture) + ' → ' + pending.label : workflow.message,
         id: pending ? pending.gesture : result ? result.command : 'No pending command',
         source: 'BCI headset', domain: workflow.domain ? workflow.domain.label : 'Main menu',
@@ -58,7 +66,7 @@
         var row = document.createElement('div'), gesture = document.createElement('strong'), label = document.createElement('span');
         gesture.textContent = gestureLabel(choice.gesture); label.textContent = choice.label;
         row.append(gesture, label); $('bciChoices').appendChild(row);
-        if (choice.parameters.length) {
+        if (choice.parameters.length && !['jiosaavn_search', 'mobile_jiosaavn_search'].includes(choice.command)) {
           var form = document.createElement('form'), title = document.createElement('h4');
           title.textContent = choice.label; form.appendChild(title);
           choice.parameters.forEach(function(name) {

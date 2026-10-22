@@ -126,7 +126,7 @@ function renderChoices() {
     deviceGrid.replaceChildren();
     var dom = currentDomain();
     if (dom && dom.devices) {
-      dom.devices.forEach(function(dv) {
+      dom.devices.filter(function(dv) { return !dv.parent; }).forEach(function(dv) {
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'choice-btn' + (ui.device === dv.id ? ' selected' : '');
@@ -152,6 +152,22 @@ function renderChoices() {
   if (commandGrid) {
     commandGrid.replaceChildren();
     var dev = currentDevice();
+    if (dev && currentDomain()) {
+      currentDomain().devices.filter(function(child) { return child.parent === dev.id; }).forEach(function(child) {
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'choice-btn';
+        button.disabled = ui.busy;
+        var label = document.createElement('span');
+        label.textContent = child.label;
+        var gesture = document.createElement('span');
+        gesture.className = 'bci-gesture';
+        gesture.textContent = gestureLabel(child.gesture);
+        button.append(label, gesture);
+        button.addEventListener('click', function() { selectDevice(child.id); });
+        commandGrid.appendChild(button);
+      });
+    }
     if (dev && dev.commands) {
       dev.commands.forEach(function(c) {
         var btn = document.createElement('button');
@@ -197,16 +213,27 @@ function updatePhaseButtons() {
   var p1 = byId('phase1Btn');
   var p2 = byId('phase2Btn');
   var p3 = byId('phase3Btn');
+  var p4 = byId('phase4Btn');
+  var device = currentDevice();
+  var office = device && (device.id === 'office' || device.parent === 'office');
   if (p1) { p1.className = 'phase-btn' + (ui.phase === 1 ? ' active' : ''); p1.disabled = false; }
   if (p2) { p2.className = 'phase-btn' + (ui.phase === 2 ? ' active' : ''); p2.disabled = ui.busy || !ui.domain; }
   if (p3) { p3.className = 'phase-btn' + (ui.phase === 3 ? ' active' : ''); p3.disabled = ui.busy || !ui.device; }
+  if (p3) p3.textContent = office ? '03 · Office Application' : '03 · Command Execution';
+  if (p4) { p4.hidden = !office; p4.className = 'phase-btn' + (ui.phase === 4 ? ' active' : ''); p4.disabled = ui.busy || !device || !device.parent; }
 
   var phase1 = byId('phase1');
   var phase2 = byId('phase2');
   var phase3 = byId('phase3');
   if (phase1) phase1.hidden = ui.phase !== 1;
   if (phase2) phase2.hidden = ui.phase !== 2;
-  if (phase3) phase3.hidden = ui.phase !== 3;
+  if (phase3) phase3.hidden = ui.phase < 3;
+  var commandForm = byId('commandForm');
+  if (commandForm) commandForm.hidden = !!(device && device.id === 'office');
+  text('twPhaseBadge', ui.phase === 4 ? 'Phase 4 · Internal Commands'
+    : ui.phase === 3 && office ? 'Phase 3 · Office Application Selection'
+    : ui.phase === 3 ? 'Phase 3 · Command Execution'
+    : ui.phase === 2 ? 'Phase 2 · Device Selection' : 'Phase 1 · Domain Selection');
 
   var pcCard = byId('pcAgentControlCard');
   if (pcCard) {
@@ -229,6 +256,7 @@ function frameTransition(label, commit) {
   pendingExecution.commit = commit;
 }
 function goToPhase(phase) {
+  if (phase === 4 && (!currentDevice() || !currentDevice().parent)) return;
   if (!ui.catalog || phase === ui.phase || (phase === 2 && !ui.domain) || (phase === 3 && !ui.device)) return;
   frameTransition('Phase ' + phase, function() { return commitGoToPhase(phase); });
 }
@@ -277,10 +305,13 @@ async function commitGoToPhase(phase) {
   if (phase === 1) return commitWorkflowMainMenu();
   var domain = currentDomain();
   var device = currentDevice();
+  if (phase === 3 && device && device.parent) return commitSelectDevice(device.parent);
+  if (phase === 4 && device && device.parent) return commitSelectDevice(device.id);
   if (phase === 2 && domain) return commitWorkflowState(2, domain.id, null, domain.switch_command, domain.mode);
   if (phase === 3 && domain && device) return commitWorkflowState(3, domain.id, device.id, device.switch_command, device.mode || domain.mode);
 }
 async function commitWorkflowBack() {
+  if (ui.phase === 4) return commitGoToPhase(3);
   if (ui.phase === 3) return commitGoToPhase(2);
   if (ui.phase === 2) return commitWorkflowMainMenu();
 }
@@ -294,11 +325,14 @@ async function commitSelectDomain(id) {
 async function commitSelectDevice(id) {
   var domain = currentDomain();
   var device = domain && domain.devices.find(function(d) { return d.id === id; });
-  if (device) return commitWorkflowState(3, domain.id, device.id, device.switch_command, device.mode || domain.mode);
+  if (device) return commitWorkflowState(device.parent ? 4 : 3, domain.id, device.id, device.switch_command, device.mode || domain.mode);
 }
 
 async function selectCommand(id) {
   if (ui.busy) return;
+  if (isMediaSearch(id)) {
+    return openMediaSearch(id, currentDevice().mode, ui.catalog.active_target);
+  }
   cancelFrame();
   ui.command = id;
   renderChoices();
@@ -315,12 +349,24 @@ async function selectCommand(id) {
       input.id = 'param-' + name;
       input.name = name;
       input.required = true;
+      if (id.indexOf('office_') === 0) {
+        if (name === 'confirm' || name === 'discard') {
+          input.type = 'checkbox';
+          input.required = name === 'confirm';
+          label.textContent = name === 'confirm' ? 'Confirm this edit or deletion' : 'Discard unsaved changes';
+        } else if (name === 'slide') {
+          input.type = 'number';
+          input.min = '1';
+          input.max = '1000';
+        }
+        if (name === 'replacement') input.required = false;
+      }
       input.style.cssText = 'width:100%;padding:8px 10px;background:var(--bg-input);border:1px solid var(--border-subtle);border-radius:6px;color:var(--text-primary);font-size:13px;';
       fields.append(label, input);
     });
   }
 
-  updateTemporalObserverState(3, 'ARMED', {
+  updateTemporalObserverState(ui.phase, 'ARMED', {
     label: cmd ? cmd.label : id,
     id: cmd ? cmd.id : id,
     domain: currentDomain() ? currentDomain().label : 'None',
@@ -356,6 +402,8 @@ function updateTemporalObserverState(phase, status, info) {
     if (typeof phase === 'number') {
       phaseBadge.textContent = phase === 1 ? 'Phase 1 · Domain Selection'
         : phase === 2 ? 'Phase 2 · Device Selection'
+        : phase === 4 ? 'Phase 4 · Internal Commands'
+        : currentDevice() && currentDevice().id === 'office' ? 'Phase 3 · Office Application Selection'
         : 'Phase 3 · Command Execution';
     } else if (phase) {
       phaseBadge.textContent = String(phase);
@@ -563,6 +611,13 @@ async function executeWorkflow() {
   var payload = { command: c.id, params: {} };
   var formData = new FormData(form);
   formData.forEach(function(val, key) { payload.params[key] = val; });
+  if (c.id.indexOf('office_') === 0) {
+    ['confirm', 'discard'].forEach(function(key) {
+      var field = byId('param-' + key);
+      if (field) payload.params[key] = field.checked;
+    });
+    if (payload.params.slide) payload.params.slide = Number(payload.params.slide);
+  }
 
   var dom = currentDomain();
   if (dom && dom.transport === 'target' && ui.catalog && ui.catalog.active_target) {
@@ -571,6 +626,20 @@ async function executeWorkflow() {
 
   var target = payload.target || (currentDevice() ? currentDevice().label : 'unknown');
   startTemporalFraming(payload, target, c.label, 'Manual Form');
+}
+
+async function awaitOfficeResult(result) {
+  if (!result.result_url || result.status !== 'PENDING') return result;
+  text('executionResult', 'Sent to client desktop · waiting for Office execution');
+  var url = result.result_url;
+  var deadline = performance.now() + 95000;
+  var original = result;
+  while (result.status === 'PENDING' && performance.now() < deadline) {
+    await new Promise(function(resolve) { setTimeout(resolve, 750); });
+    result = await getJson(url);
+  }
+  if (result.status !== 'SUCCESS') throw new Error(result.error || 'Execution unconfirmed; check the client before retrying');
+  return Object.assign({}, original, result);
 }
 
 async function sendCommand(payload, target, customLabel, sourceName) {
@@ -596,11 +665,14 @@ async function sendCommand(payload, target, customLabel, sourceName) {
 
   try {
     var d = await post('/api/command', payload);
+    d = await awaitOfficeResult(d);
     var latency = (performance.now() - t0).toFixed(1) + 'ms';
-    var message = d.simulated ? 'Simulation completed'
+    var message = d.status === 'PENDING' ? 'Sent to phone · waiting for playback confirmation'
+      : d.simulated ? 'Simulation completed'
+      : d.result_url && d.status === 'SUCCESS' ? d.message || 'Office command completed'
       : d.topic ? 'Published · awaiting acknowledgement'
       : d.transport === 'mqtt' ? 'Published · awaiting acknowledgement'
-      : 'Command completed';
+      : d.message || 'Command completed';
     text('executionResult', message);
     addActivityLog(d.domain || 'SYSTEM', 'success', payload.command + ': ' + message);
     recordExecutionEvent({
@@ -611,7 +683,7 @@ async function sendCommand(payload, target, customLabel, sourceName) {
       source: src.toUpperCase()
     });
 
-    updateTemporalObserverState(ui.phase, 'SUCCESS', {
+    updateTemporalObserverState(ui.phase, d.status === 'PENDING' ? 'EXECUTING' : 'SUCCESS', {
       label: label,
       id: payload.command,
       domain: d.domain ? d.domain.toUpperCase() : dom,
@@ -619,7 +691,7 @@ async function sendCommand(payload, target, customLabel, sourceName) {
       target: target,
       source: src,
       latency: latency,
-      desc: 'Command executed successfully in ' + latency + ' · ' + message
+      desc: d.status === 'PENDING' ? message : 'Command executed successfully in ' + latency + ' · ' + message
     });
   } catch (e) {
     text('executionResult', e.message);
@@ -725,7 +797,7 @@ function syncBciMode(catalog) {
     if (device) {
       ui.domain = domain.id;
       ui.device = device.id;
-      ui.phase = 3;
+      ui.phase = device.parent ? 4 : 3;
       return true;
     }
     return false;
@@ -976,8 +1048,7 @@ function downloadFile(content, filename, type) {
 
 /* --- Init --- */
 document.addEventListener('DOMContentLoaded', function() {
-  refreshConnections();
-  syncActivityLogs();
+  pollDashboard();
 
   /* Load temporal window config */
   getJson('/api/config/temporal-window').then(function(d) {
@@ -990,18 +1061,6 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
   }).catch(function() {});
-
-  /* Load hardware config */
-  getJson('/api/hardware/config').then(function(d) {
-    /* config loaded, available for future use */
-  }).catch(function() {});
-
-  /* Fast poll for activity logs and connection status */
-  setTimeout(function poll() {
-    refreshConnections();
-    syncActivityLogs();
-    setTimeout(poll, 1500);
-  }, 1500);
 
   /* Keyboard shortcuts: ESC to close drawers/modals, B to toggle BCI drawer */
   document.addEventListener('keydown', function(e) {
@@ -1022,6 +1081,16 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('keydown', handleArrowKeyDown);
   window.addEventListener('keyup', handleArrowKeyUp);
 });
+
+async function pollDashboard() {
+  try {
+    if (!document.hidden) {
+      await Promise.allSettled([refreshConnections(), syncActivityLogs()]);
+    }
+  } finally {
+    setTimeout(pollDashboard, 1500);
+  }
+}
 
 /* --- Keyboard Arrow & Temporal Combination Navigation --- */
 var activeKeys = new Set();
@@ -1121,6 +1190,15 @@ function triggerTemporalGesture(gesture, keyName, source) {
 
 async function dispatchDirectGesture(gesture, keysPressed, source) {
   if (ui.busy) return;
+  var selectedDevice = currentDevice();
+  var searchChoice = ui.phase === 3 && selectedDevice && selectedDevice.commands.find(function(c) {
+    return c.gesture === gesture && isMediaSearch(c.id);
+  });
+  if (searchChoice) return openMediaSearch(searchChoice.id, selectedDevice.mode, ui.catalog.active_target);
+  var officeChoice = ui.phase >= 3 && selectedDevice && selectedDevice.commands.find(function(c) {
+    return c.gesture === gesture && c.id.indexOf('office_') === 0 && c.parameters.length;
+  });
+  if (officeChoice) return selectCommand(officeChoice.id);
   
   var glabel = gestureLabel(gesture);
   var src = source || 'manual_keyboard';
@@ -1152,6 +1230,7 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
         keys: keysPressed
       }
     });
+    res = await awaitOfficeResult(res);
     var latency = (performance.now() - t0).toFixed(1) + 'ms';
     var msg = res.command + ': ' + (res.action || (res.success ? 'Executed' : res.error || 'Done'));
     addActivityLog(isBci ? 'BCI' : 'KEYBOARD', res.success ? 'success' : 'error', glabel + ' -> ' + msg);
@@ -1168,8 +1247,15 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
     });
 
     if (!res.success) return;
-    if (res.state && res.state.mode) lastServerMode = res.state.mode;
-    if (gesture === 'push+left' || res.command === 'mode_idle') {
+    if (res.state && res.state.mode && res.state.mode.indexOf('OFFICE_') === 0) {
+      var officeDevice = currentDomain() && currentDomain().devices.find(function(d) { return d.mode === res.state.mode; });
+      if (officeDevice) {
+        ui.device = officeDevice.id;
+        ui.command = null;
+        ui.phase = officeDevice.parent ? 4 : 3;
+        renderChoices();
+      }
+    } else if (gesture === 'push+left' || res.command === 'mode_idle') {
       ui.domain = null;
       ui.device = null;
       ui.command = null;
@@ -1202,7 +1288,7 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
     } else if (ui.phase === 2 && res.success) {
       var dom = currentDomain();
       if (dom && dom.devices) {
-        var dev = dom.devices.find(function(dv) { return dv.gesture === gesture || dv.switch_command === res.command; });
+        var dev = dom.devices.find(function(dv) { return !dv.parent && (dv.gesture === gesture || dv.switch_command === res.command); });
         if (dev) {
           ui.device = dev.id;
           ui.phase = 3;
@@ -1211,6 +1297,7 @@ async function dispatchDirectGesture(gesture, keysPressed, source) {
       }
     }
 
+    if (res.state && res.state.mode) lastServerMode = res.state.mode;
     await refreshConnections();
     await syncActivityLogs();
   } catch (err) {
@@ -1747,4 +1834,62 @@ function updateCortexCube(live, action, power) {
   text('hudBciCubeStatus', live ? gestureLabel(name) + ' · ' + Math.round(p * 100) + '%' : 'Preview · connect Cortex for live movement');
   var stage = byId('hudBciCubeStage');
   if (stage) stage.setAttribute('aria-label', live ? 'Live cube: ' + name + ', power ' + Math.round(p * 100) + '%' : 'Cube preview — headset not connected');
+}
+
+/* A search gesture requests fresh text; sending it performs search and playback once. */
+function isMediaSearch(command) {
+  return command === 'jiosaavn_search' || command === 'mobile_jiosaavn_search';
+}
+var mediaSearchDialog = null;
+function openMediaSearch(command, mode, target) {
+  if (!isMediaSearch(command) || ui.busy || mediaSearchDialog) return;
+  cancelFrame(true);
+  ui.command = command;
+  renderChoices();
+  updateTemporalObserverState(3, 'ARMED', {label: 'Search & play', id: command,
+    target: target, desc: 'Enter a song or album, then send to start playback.'});
+  var dialog = document.createElement('dialog');
+  mediaSearchDialog = dialog;
+  dialog.setAttribute('aria-label', 'Search and play a song');
+  dialog.style.cssText = 'position:fixed;inset:0;margin:auto;width:min(440px,90vw);padding:24px;border-radius:16px;border:1px solid #526079;background:#131c2d;color:#fff;';
+  var form = document.createElement('form');
+  var heading = document.createElement('h3');
+  heading.textContent = 'Search & play';
+  var label = document.createElement('label');
+  label.textContent = 'Which song would you like to hear?';
+  var input = document.createElement('input');
+  input.id = 'mediaSearchQuery';
+  label.htmlFor = input.id;
+  input.name = 'query'; input.required = true; input.maxLength = 500;
+  input.placeholder = 'Song title and artist';
+  input.style.cssText = 'display:block;box-sizing:border-box;width:100%;margin:14px 0;padding:12px;border-radius:8px;';
+  var status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  var send = document.createElement('button');
+  send.type = 'submit'; send.textContent = 'Send & play'; send.className = 'btn-primary';
+  var cancel = document.createElement('button');
+  cancel.type = 'button'; cancel.textContent = 'Cancel'; cancel.className = 'btn-secondary';
+  cancel.onclick = function() { dialog.close(); };
+  dialog.addEventListener('close', function() { mediaSearchDialog = null; dialog.remove(); });
+  form.onsubmit = async function(event) {
+    event.preventDefault();
+    var query = input.value.trim();
+    if (!query || send.disabled) return;
+    send.disabled = true;
+    try {
+      var latest = await getJson('/api/workflow');
+      if (latest.state_mode !== mode || latest.active_target !== target) {
+        status.textContent = 'The menu or target changed. Close this search and use Right again.';
+        return;
+      }
+      dialog.close();
+      await sendCommand({command: command, target: target, params: {query: query}}, target,
+        'Search & play: ' + query, 'Search chat');
+    } catch (error) {
+      status.textContent = error.message;
+    } finally { send.disabled = false; }
+  };
+  form.append(heading, label, input, status, send, cancel);
+  dialog.append(form); document.body.append(dialog);
+  dialog.showModal(); input.focus();
 }
