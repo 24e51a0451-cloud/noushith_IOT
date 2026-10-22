@@ -210,6 +210,8 @@ function updateConnectionLabels() {
 }
 
 function updatePhaseButtons() {
+  var tankPanel = byId('tankMonitor');
+  if (tankPanel) tankPanel.hidden = ui.domain !== 'iot' || ui.phase < 2;
   var p1 = byId('phase1Btn');
   var p2 = byId('phase2Btn');
   var p3 = byId('phase3Btn');
@@ -835,6 +837,7 @@ async function refreshConnections() {
     (async function() {
       try {
         var d = await getJson('/api/iot/status');
+        if (!tankSaving) renderTank(d.tank);
         var online = d.mqtt_connected;
         text('sideMqttStatus', online ? 'Connected' : 'Offline');
         var pill = byId('pillMqtt');
@@ -844,6 +847,9 @@ async function refreshConnections() {
         }
       } catch (e) {
         text('sideMqttStatus', 'Unavailable');
+        text('tankStatus', 'Connection unavailable');
+        text('tankWarning', 'Cannot refresh telemetry. Displayed values are last known, not live.');
+        if (byId('tankWarning')) byId('tankWarning').hidden = false;
         var pill = byId('pillMqtt');
         if (pill) { pill.className = 'status-pill error'; setStatusText(pill, 'MQTT Unavailable'); }
       }
@@ -1048,6 +1054,7 @@ function downloadFile(content, filename, type) {
 
 /* --- Init --- */
 document.addEventListener('DOMContentLoaded', function() {
+  initTank();
   pollDashboard();
 
   /* Load temporal window config */

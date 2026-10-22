@@ -33,6 +33,7 @@ from services.mqtt_service import (
     LAST_ACKS,
 )
 from services.usb_service import usb_service
+from services import tank_monitor
 
 log = get_logger("api.routes")
 
@@ -319,7 +320,21 @@ def get_iot_status():
         "states": get_all_device_states(),
         "sensors": get_all_sensor_data(),
         "last_acks": LAST_ACKS,
+        "tank": tank_monitor.snapshot(get_all_sensor_data(), get_all_device_states(), mqtt_service._connected),
     }), 200
+
+
+@api_bp.post('/iot/tank-height')
+def set_tank_height():
+    """Save local calculation settings; never publish a pump or firmware command."""
+    try:
+        config = tank_monitor.save_config(request.get_json(silent=True))
+    except ValueError as exc:
+        return jsonify(success=False, error=str(exc)), 400
+    except OSError:
+        return jsonify(success=False, error='Could not save tank height. Please retry.'), 503
+    return jsonify(success=True, config=config,
+                   tank=tank_monitor.snapshot(get_all_sensor_data(), get_all_device_states(), mqtt_service._connected))
 
 
 @api_bp.route("/iot/devices", methods=["GET"])

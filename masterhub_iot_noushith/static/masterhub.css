@@ -3111,3 +3111,31 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .database-history-list summary { cursor:pointer; overflow-wrap:anywhere; }
 .database-history-list pre { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.75rem; }
 #databaseOlder { margin:12px; }
+
+/* IoT-only tank telemetry; independent of the command selection timer. */
+.tank-monitor { border:1px solid var(--border-subtle); border-radius:14px; padding:22px; margin:20px 0; background:var(--bg-card); }
+.tank-monitor[hidden], .tank-monitor [hidden] { display:none !important; }
+.tank-header, .tank-inputs { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.tank-header h3 { font-size:1.15rem; }
+.tank-muted, .tank-details dt { color:var(--text-secondary); font-size:.85rem; }
+#tankStatus { color:var(--text-secondary); font-size:.85rem; }
+.tank-calibration { background:var(--bg-surface-hover); padding:14px; border-radius:9px; margin:18px 0; }
+.tank-inputs { justify-content:flex-start; }
+.tank-inputs input { width:145px; min-width:0; }
+.tank-inputs input, .tank-inputs select { padding:8px 10px; border:1px solid var(--border-hover); border-radius:6px; background:var(--bg-input); color:var(--text-primary); font:inherit; }
+.tank-calibration p { margin-top:8px; }
+.tank-readings { display:grid; grid-template-columns:1.2fr 1fr; gap:28px; }
+.tank-level { display:flex; align-items:center; gap:18px; }
+.tank-level > div:last-child { min-width:0; overflow-wrap:anywhere; }
+.tank-vessel { width:125px; height:185px; flex-shrink:0; border:2px solid var(--border-hover); border-radius:18px 18px 24px 24px; overflow:hidden; position:relative; background:var(--bg-surface-hover); }
+.tank-water { position:absolute; bottom:0; width:100%; background:var(--accent); opacity:.5; }
+.tank-vessel strong { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.6rem; color:var(--text-primary); }
+.tank-scale { height:185px; display:flex; flex-direction:column; justify-content:space-between; font-size:.75rem; color:var(--text-secondary); margin-left:-10px; }
+.tank-value { font-size:1.7rem; display:block; margin:4px 0; }
+.tank-float { background:var(--bg-surface-hover); border-radius:9px; padding:14px; margin-bottom:12px; }
+.tank-float strong { display:block; font-size:1.25rem; margin:5px 0; }
+.tank-details dl > div { display:flex; justify-content:space-between; gap:12px; margin:7px 0; }
+.tank-details dd { text-align:right; overflow-wrap:anywhere; }
+.tank-warning { margin-top:14px; padding:10px 12px; background:var(--amber-bg); color:var(--text-primary); border-radius:6px; }
+@media(max-width:760px) { .tank-readings { grid-template-columns:1fr; } .tank-monitor { padding:14px; } }
+@media(max-width:400px) { .tank-level { gap:12px; flex-wrap:wrap; } .tank-level > div:last-child { flex-basis:100%; } .tank-inputs input { width:120px; } }

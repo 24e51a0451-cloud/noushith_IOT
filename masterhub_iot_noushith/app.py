@@ -72,10 +72,11 @@ def create_app() -> Flask:
         from services.event_store import event_store
         if not app.testing:
             event_store.start()
+            mqtt_service.start()
         # Keep a cached stylesheet/script from mismatching an updated template.
         paths = [os.path.join(app.root_path, folder, name) for folder, name in (
             ('templates', 'dashboard.html'), ('static', 'masterhub.css'),
-            ('static', 'masterhub.js'), ('static', 'database-history.js'), ('static', 'bci-panel.js'))]
+            ('static', 'masterhub.js'), ('static', 'tank-monitor.js'), ('static', 'database-history.js'), ('static', 'bci-panel.js'))]
         version = str(max(os.stat(path).st_mtime_ns for path in paths))
         return Response(render_template("dashboard.html", dashboard_asset_version=version),
                         headers={"Cache-Control": "no-cache"}, mimetype="text/html")

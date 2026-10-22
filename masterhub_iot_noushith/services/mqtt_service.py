@@ -107,6 +107,7 @@ class MQTTService:
         self._client.on_message = self._on_message
 
         self._connected = False
+        self._started = False
         self._lock = threading.Lock()
 
         # User-defined callback
@@ -225,6 +226,10 @@ class MQTTService:
 
             # Resolve device ID from either camelCase (deviceId) or snake_case (device_id)
             device_id = data.get("deviceId") or data.get("device_id")
+            if not device_id and len(parts) == 4 and parts[:2] == ['iot', 'device']:
+                device_id = parts[2]
+            if not device_id and len(parts) == 3 and parts[0] == 'iot':
+                device_id = parts[1]
             if not device_id and "esp32" in msg.topic:
                 device_id = "esp32"
 
@@ -236,13 +241,13 @@ class MQTTService:
                     if "states" in data and isinstance(data["states"], dict):
                         DEVICE_STATES[device_id] = data["states"]
                     if "lastSensor" in data and isinstance(data["lastSensor"], dict):
-                        LATEST_SENSORS[device_id] = data["lastSensor"]
+                        LATEST_SENSORS.setdefault(device_id, dict(data["lastSensor"], _timestamp=None, _retained=True))
                     if "esp32" in msg.topic:
                         ONLINE_DEVICES["esp32"] = data
                         if "states" in data and isinstance(data["states"], dict):
                             DEVICE_STATES["esp32"] = data["states"]
                         if "lastSensor" in data and isinstance(data["lastSensor"], dict):
-                            LATEST_SENSORS["esp32"] = data["lastSensor"]
+                            LATEST_SENSORS["esp32"] = LATEST_SENSORS[device_id]
                     log.info(f"IoT Device Status Updated : {device_id} -> {data.get('states')}")
 
                 # 2. Update ACKs
@@ -271,10 +276,10 @@ class MQTTService:
 
                 # 3. Update Sensors (LoRa Telemetry)
                 elif msg.topic.endswith("/sensor"):
-                    LATEST_SENSORS[device_id] = data
-                    LATEST_SENSORS[device_id]["_timestamp"] = time.time()
+                    LATEST_SENSORS[device_id] = dict(data, _timestamp=time.time(),
+                                                   _retained=bool(getattr(msg, 'retain', False)))
                     if "esp32" in msg.topic:
-                        LATEST_SENSORS["esp32"] = data
+                        LATEST_SENSORS["esp32"] = LATEST_SENSORS[device_id]
                     log.info(f"LoRa Sensor Packet from {device_id}: distance={data.get('distance')} float={data.get('float')} rssi={data.get('rssi')}")
 
         else:
@@ -350,6 +355,15 @@ class MQTTService:
     # CONNECTION
     # -------------------------------------------------
 
+    def start(self):
+        """Receive telemetry without waiting for a command or blocking page loading."""
+        with self._lock:
+            if self._started:
+                return
+            self._client.connect_async(self.host, self.port, KEEPALIVE)
+            self._client.loop_start()
+            self._started = True
+
     def connect(self, timeout=5):
         with self._lock:
             if self._connected:
@@ -362,6 +376,7 @@ class MQTTService:
                     KEEPALIVE
                 )
                 self._client.loop_start()
+                self._started = True
             except Exception as exc:
                 log.error(f"MQTT connect error: {exc}")
                 return False
@@ -378,6 +393,7 @@ class MQTTService:
             self._client.loop_stop()
             self._client.disconnect()
             self._connected = False
+            self._started = False
             log.info("MQTT Client Disconnected")
 
     # -------------------------------------------------

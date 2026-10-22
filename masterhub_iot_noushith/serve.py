@@ -13,6 +13,8 @@ def main():
     with database() as db:
         db.execute('SELECT 1')
     event_store.start()
+    from services.mqtt_service import mqtt_service
+    mqtt_service.start()
     mobile_registration.start()
     try:
         # One process owns the hardware and in-memory state; SSE needs spare threads.

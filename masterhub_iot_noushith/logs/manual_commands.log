@@ -178,3 +178,5 @@
 2026-10-17 14:29:30 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_media' [system · mode_media] | Mode: 'MEDIA_MODE' | Outcome: SUCCESS | Latency: 11.7ms
 2026-10-17 14:29:37 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_mobile_jiosaavn' [system · mode_mobile_jiosaavn] | Mode: 'MOBILE_JIOSAAVN_MODE' | Outcome: SUCCESS | Latency: 704.0ms
 2026-10-17 14:29:45 | WARNING  | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mobile_jiosaavn_play_pause' [ai_ml · mobile_jiosaavn_play_pause] | Mode: 'MOBILE_JIOSAAVN_MODE' | Outcome: PENDING | Latency: 3704.9ms
+2026-10-22 10:10:19 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_iot' [system · mode_iot] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 8.1ms
+2026-10-22 10:49:35 | INFO     | MANUAL_COMMAND | Source: 'ui_button' | Gesture: '—' | Mapped: 'mode_iot' [system · mode_iot] | Mode: 'IOT_MODE' | Outcome: SUCCESS | Latency: 1440.3ms

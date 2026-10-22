@@ -347,6 +347,39 @@
       <div class="temporal-gauge" id="twGaugeFill" style="position:absolute;bottom:0;left:0;height:4px;background:var(--accent);border-radius:0 0 12px 12px;width:100%;transition:width 0.08s linear;"></div>
     </div>
 
+    <section id="tankMonitor" class="tank-monitor" aria-labelledby="tankHeading" hidden>
+      <div class="tank-header">
+        <div><h3 id="tankHeading">Tank monitoring</h3><p class="tank-muted">IoT Smart Home · LoRa sensor <span id="tankDevice">esp32</span></p></div>
+        <span id="tankStatus" role="status">Waiting for readings</span>
+      </div>
+      <form id="tankHeightForm" class="tank-calibration">
+        <div class="tank-inputs">
+          <label for="tankHeight">Tank height</label>
+          <input id="tankHeight" name="height" type="number" step="any" required placeholder="Enter height" aria-describedby="tankHeightHelp tankHeightError">
+          <label for="tankUnit">Unit</label>
+          <select id="tankUnit" name="unit"><option value="cm">cm</option><option value="ft">ft</option></select>
+          <button type="submit" id="tankSave" class="btn-primary">Save &amp; calculate</button>
+        </div>
+        <p id="tankHeightHelp" class="tank-muted">Sensor at tank top · 5–5000 cm · 1 ft = 30.48 cm. Saved in MasterHub for calculation only.</p>
+        <p id="tankHeightError" class="tank-warning" role="alert" hidden></p>
+        <p id="tankSaved" class="tank-muted" role="status"></p>
+      </form>
+      <div class="tank-readings">
+        <div class="tank-level">
+          <div id="tankGraphic" class="tank-vessel" role="img" aria-label="Water level unavailable">
+            <div id="tankFill" class="tank-water" hidden></div><strong id="tankPercent">—</strong>
+          </div>
+          <div class="tank-scale" aria-hidden="true"><span>100%</span><span>50%</span><span>0%</span></div>
+          <div><p class="tank-muted">Calculated water level</p><strong id="tankLevelValue" class="tank-value">—</strong><p id="tankDepth">Water depth unavailable</p><p id="tankDistance" class="tank-muted">Waiting for distance</p><p id="tankCalibration" class="tank-muted"></p></div>
+        </div>
+        <div class="tank-details">
+          <div class="tank-float"><p class="tank-muted">Float sensor</p><strong id="tankFloat">Unknown</strong><p class="tank-muted">1 = Overflow · 0 = Not triggered</p></div>
+          <dl><div><dt>Pump reported state</dt><dd id="tankPump">Unavailable</dd></div><div><dt>LoRa signal</dt><dd id="tankRssi">Unavailable</dd></div><div><dt>MQTT gateway</dt><dd id="tankGateway">Unknown</dd></div><div><dt>Last received</dt><dd id="tankReceived">Never</dd></div></dl>
+        </div>
+      </div>
+      <p id="tankWarning" class="tank-warning" role="status" hidden></p>
+    </section>
+
     <!-- Phase 1: Domains -->
     <section id="phase1">
       <div class="domain-grid" id="domainGrid"></div>
@@ -740,6 +773,7 @@
   </div>
 </div>
 
+<script src="{{ url_for('static', filename='tank-monitor.js', v=dashboard_asset_version) }}"></script>
 <script src="{{ url_for('static', filename='masterhub.js', v=dashboard_asset_version) }}"></script>
 <script src="{{ url_for('static', filename='bci-panel.js', v=dashboard_asset_version) }}"></script>
 <script src="/static/jiosaavn-mobile.js"></script>
