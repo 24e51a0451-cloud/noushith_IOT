@@ -1,0 +1,55 @@
+2026-10-15 23:11:33.573 IST [34200] LOG:  starting PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35229, 64-bit
+2026-10-15 23:11:33.574 IST [34200] LOG:  listening on IPv4 address "127.0.0.1", port 55447
+2026-10-15 23:11:33.630 IST [31452] LOG:  database system was shut down at 2026-10-15 23:11:07 IST
+2026-10-15 23:11:33.651 IST [34200] LOG:  database system is ready to accept connections
+2026-10-15 23:12:12.019 IST [2064] ERROR:  duplicate key value violates unique constraint "mqtt_devices_username_key"
+2026-10-15 23:12:12.019 IST [2064] DETAIL:  Key (username)=(sathwik) already exists.
+2026-10-15 23:12:12.019 IST [2064] STATEMENT:  INSERT INTO mqtt_devices VALUES($1,$2,$3,$4)
+	                          ON CONFLICT(device_id) DO UPDATE SET username=excluded.username,
+	                          device_type=excluded.device_type,updated_at=excluded.updated_at
+2026-10-15 23:12:20.680 IST [29328] ERROR:  duplicate key value violates unique constraint "users_username_key"
+2026-10-15 23:12:20.680 IST [29328] DETAIL:  Key (username)=(test_user) already exists.
+2026-10-15 23:12:20.680 IST [29328] STATEMENT:  INSERT INTO users(username,password_hash,created_at) VALUES($1,$2,$3)
+2026-10-15 23:12:24.035 IST [29664] ERROR:  duplicate key value violates unique constraint "users_username_key"
+2026-10-15 23:12:24.035 IST [29664] DETAIL:  Key (username)=(same_user) already exists.
+2026-10-15 23:12:24.035 IST [29664] STATEMENT:  INSERT INTO users(username,password_hash,created_at) VALUES($1,$2,$3)
+2026-10-15 23:12:27.107 IST [35752] ERROR:  duplicate key value violates unique constraint "mqtt_devices_username_key"
+2026-10-15 23:12:27.107 IST [35752] DETAIL:  Key (username)=(alice) already exists.
+2026-10-15 23:12:27.107 IST [35752] STATEMENT:  INSERT INTO mqtt_devices VALUES($1,$2,$3,$4)
+	                          ON CONFLICT(device_id) DO UPDATE SET username=excluded.username,
+	                          device_type=excluded.device_type,updated_at=excluded.updated_at
+2026-10-15 23:12:27.367 IST [5932] ERROR:  duplicate key value violates unique constraint "mqtt_devices_username_key"
+2026-10-15 23:12:27.367 IST [5932] DETAIL:  Key (username)=(same_name) already exists.
+2026-10-15 23:12:27.367 IST [5932] STATEMENT:  INSERT INTO mqtt_devices VALUES($1,$2,$3,$4)
+	                          ON CONFLICT(device_id) DO UPDATE SET username=excluded.username,
+	                          device_type=excluded.device_type,updated_at=excluded.updated_at
+2026-10-15 23:16:22.467 IST [23172] ERROR:  duplicate key value violates unique constraint "mqtt_devices_username_key"
+2026-10-15 23:16:22.467 IST [23172] DETAIL:  Key (username)=(sathwik) already exists.
+2026-10-15 23:16:22.467 IST [23172] STATEMENT:  INSERT INTO mqtt_devices VALUES($1,$2,$3,$4)
+	                          ON CONFLICT(device_id) DO UPDATE SET username=excluded.username,
+	                          device_type=excluded.device_type,updated_at=excluded.updated_at
+2026-10-15 23:16:31.434 IST [19680] ERROR:  duplicate key value violates unique constraint "users_username_key"
+2026-10-15 23:16:31.434 IST [19680] DETAIL:  Key (username)=(test_user) already exists.
+2026-10-15 23:16:31.434 IST [19680] STATEMENT:  INSERT INTO users(username,password_hash,created_at) VALUES($1,$2,$3)
+2026-10-15 23:16:33.629 IST [6592] LOG:  checkpoint starting: time
+2026-10-15 23:16:34.552 IST [23648] ERROR:  duplicate key value violates unique constraint "users_username_key"
+2026-10-15 23:16:34.552 IST [23648] DETAIL:  Key (username)=(same_user) already exists.
+2026-10-15 23:16:34.552 IST [23648] STATEMENT:  INSERT INTO users(username,password_hash,created_at) VALUES($1,$2,$3)
+2026-10-15 23:16:37.086 IST [29588] ERROR:  duplicate key value violates unique constraint "mqtt_devices_username_key"
+2026-10-15 23:16:37.086 IST [29588] DETAIL:  Key (username)=(alice) already exists.
+2026-10-15 23:16:37.086 IST [29588] STATEMENT:  INSERT INTO mqtt_devices VALUES($1,$2,$3,$4)
+	                          ON CONFLICT(device_id) DO UPDATE SET username=excluded.username,
+	                          device_type=excluded.device_type,updated_at=excluded.updated_at
+2026-10-15 23:16:37.351 IST [26816] ERROR:  duplicate key value violates unique constraint "mqtt_devices_username_key"
+2026-10-15 23:16:37.351 IST [26816] DETAIL:  Key (username)=(same_name) already exists.
+2026-10-15 23:16:37.351 IST [26816] STATEMENT:  INSERT INTO mqtt_devices VALUES($1,$2,$3,$4)
+	                          ON CONFLICT(device_id) DO UPDATE SET username=excluded.username,
+	                          device_type=excluded.device_type,updated_at=excluded.updated_at
+2026-10-15 23:17:20.202 IST [6592] LOG:  checkpoint complete: wrote 384 buffers (2.3%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 1 recycled; write=45.095 s, sync=1.388 s, total=46.574 s; sync files=1726, longest=0.005 s, average=0.001 s; distance=8717 kB, estimate=8717 kB; lsn=0/23C4A20, redo lsn=0/2076640
+2026-10-15 23:18:18.605 IST [34200] LOG:  received fast shutdown request
+2026-10-15 23:18:18.607 IST [34200] LOG:  aborting any active transactions
+2026-10-15 23:18:18.636 IST [34200] LOG:  background worker "logical replication launcher" (PID 23228) exited with exit code 1
+2026-10-15 23:18:18.636 IST [6592] LOG:  shutting down
+2026-10-15 23:18:18.637 IST [6592] LOG:  checkpoint starting: shutdown immediate
+2026-10-15 23:18:18.768 IST [6592] LOG:  checkpoint complete: wrote 217 buffers (1.3%), wrote 1 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.094 s, total=0.132 s; sync files=99, longest=0.003 s, average=0.001 s; distance=3920 kB, estimate=8237 kB; lsn=0/244A9D8, redo lsn=0/244A9D8
+2026-10-15 23:18:18.834 IST [34200] LOG:  database system is shut down

@@ -1,0 +1,1 @@
+{"event_id": "f9d82000-f317-4bda-bfdd-2d1c4faac6c2", "instance_id": "test-hub", "received_at": 1791954128139, "kind": "connection", "device_id": "vyshnavi", "status": "BROKER_CONNECTED", "command_id": null, "topic": "", "payload": {"return_code": 0}}

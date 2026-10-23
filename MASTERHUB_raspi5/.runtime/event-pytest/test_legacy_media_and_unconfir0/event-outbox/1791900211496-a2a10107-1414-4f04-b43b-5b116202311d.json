@@ -1,0 +1,1 @@
+{"event_id": "a2a10107-1414-4f04-b43b-5b116202311d", "instance_id": "test-hub", "received_at": 1791900211496, "kind": "status", "device_id": "9818b880-e21d-43ee-a35d-dc94ac63b53a", "status": "OFFLINE", "command_id": null, "topic": "bci/phone/status", "payload": {"message": {"status": "OFFLINE", "remote_state": "STANDBY"}, "retained": false}}

@@ -1,0 +1,1 @@
+{"event_id": "bf7a1d20-36fa-4525-af5b-03db407a123c", "instance_id": "test-hub", "received_at": 1792144700915, "kind": "status", "device_id": "01f2ff56-579b-4936-ab11-49b97e64a775", "status": "alive", "command_id": null, "topic": "masterhub/mobile/vyshnavi/heartbeat", "payload": {"message": {"device_id": "vyshnavi", "status": "alive", "battery_level": 84}, "retained": false}}

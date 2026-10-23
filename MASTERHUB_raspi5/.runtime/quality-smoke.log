@@ -1,0 +1,5 @@
+2026-10-15 23:17:19 | INFO     | masterhub.core.state   | Loaded 17 modes from mode_map.json: ['CAR_MODE', 'CHAIR_MODE', 'CHROME_MODE', 'DESKTOP_JIOSAAVN_MODE', 'DESKTOP_MODE', 'EMBEDDED_MODE', 'FAN_MODE', 'GMAIL_MODE', 'IDLE', 'IOT_MODE', 'JIOSAAVN_MODE', 'LIGHT_MODE', 'MEDIA_MODE', 'MOBILE_JIOSAAVN_MODE', 'NOTEPAD_MODE', 'PUMP_MODE', 'YOUTUBE_MODE']
+2026-10-15 23:17:19 | INFO     | masterhub.core.input_processor | Loaded gesture map with 15 gestures
+2026-10-15 23:17:19 | INFO     | masterhub.core.router  | Router loaded 98 command routes
+2026-10-15 23:17:19 | INFO     | masterhub.services.validator | Loaded 98 valid commands from command_map.json
+2026-10-15 23:17:19 | INFO     | masterhub.actions.iot  | Loaded 23 IoT action payloads

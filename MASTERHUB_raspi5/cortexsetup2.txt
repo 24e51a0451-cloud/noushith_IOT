@@ -1,0 +1,707 @@
+I inspected the uploaded **`master8.zip`**. Based on the actual code in the ZIP, **your MasterHub is intended to receive live EPOC X Mental Command data, but there is currently a blocking bug in the Cortex stream callback registration that will prevent the live headset data from reaching the MasterHub pipeline.**
+
+So the answer is:
+
+> **Architecture: YES. Live headset reception: NOT reliably in the current ZIP. One important code fix is required.**
+
+### Current intended flow
+
+Your project actually has a very good architecture:
+
+```text
+EPOC X
+   ↓
+EMOTIV Launcher
+   ↓
+Cortex :6868
+   ↓
+CortexClient
+   ↓
+Authentication
+   ↓
+Headset discovery
+   ↓
+Session creation
+   ↓
+Subscribe to "com"
+   ↓
+Raw Cortex message
+   ↓
+prediction_mapper.py
+   ↓
+ConfidenceFilter
+   ↓
+GestureStabilizer
+   ↓
+POST http://127.0.0.1:5000/api/command
+   ↓
+InputProcessor
+   ↓
+StateManager
+   ↓
+Router
+   ↓
+Domain Handler
+   ↓
+IoT / Desktop / Embedded / AI-ML
+```
+
+Your `app.py` actually starts the Cortex service automatically:
+
+```python
+start_cortex()
+```
+
+and your `cortex/service.py` starts `LiveRunner` in a background thread.
+
+---
+
+# The important problem I found
+
+In:
+
+```text
+cortex/stream.py
+```
+
+your constructor creates:
+
+```python
+self.callbacks = {}
+```
+
+but later `_register_callback()` uses:
+
+```python
+self._callbacks
+```
+
+Specifically, the code does:
+
+```python
+existing = self._callbacks.get(stream_name)
+```
+
+and later:
+
+```python
+self._callbacks[stream_name] = callback
+```
+
+However, `self._callbacks` is **never initialized**.
+
+You initialized:
+
+```python
+self.callbacks
+```
+
+instead.
+
+Therefore, when this line in `run_live.py` executes:
+
+```python
+self.streams.subscribe_mental_commands(
+    token,
+    session.id,
+    on_prediction_raw=_raw_message_queue.put
+)
+```
+
+the subscription can reach the callback-registration code and hit:
+
+```text
+AttributeError:
+'StreamManager' object has no attribute '_callbacks'
+```
+
+### Fix
+
+In `cortex/stream.py`, change:
+
+```python
+self.callbacks: dict[str, Callable[[dict], None]] = {}
+```
+
+to:
+
+```python
+self._callbacks: dict[str, Callable[[dict], None]] = {}
+```
+
+That is the first fix I would make.
+
+---
+
+# After that fix, the headset pipeline is actually present
+
+Your `cortex_client.py` is correctly designed to connect to:
+
+```text
+wss://localhost:6868
+```
+
+and uses:
+
+```python
+websocket.WebSocketApp
+```
+
+with:
+
+```python
+ping_interval
+ping_timeout
+```
+
+It also has reconnect logic.
+
+Your `cortex/config.py` confirms:
+
+```text
+CORTEX_URL = wss://localhost:6868
+STREAM_NAME = com
+SESSION_STATUS = active
+```
+
+So this matches your EPOC X + EMOTIV Launcher setup.
+
+---
+
+# Authentication is also implemented
+
+`cortex/auth.py` performs:
+
+```text
+requestAccess
+      ↓
+authorize
+      ↓
+cortexToken
+```
+
+The code explicitly asks Cortex whether the application has been approved by the EMOTIV Launcher.
+
+So your existing workflow of:
+
+```text
+EMOTIV Launcher
++
+Client ID
++
+Client Secret
+```
+
+is supported.
+
+---
+
+# Headset detection is implemented
+
+`cortex/headset.py` performs:
+
+```python
+queryHeadsets
+```
+
+and then:
+
+```python
+controlDevice
+```
+
+to connect the headset if necessary.
+
+So the intended flow is:
+
+```text
+Launcher sees EPOC X
+        ↓
+MasterHub queryHeadsets
+        ↓
+Find EPOC X
+        ↓
+controlDevice(connect)
+```
+
+It also reads battery/signal diagnostics using the `dev` stream.
+
+---
+
+# Session creation is implemented
+
+`cortex/session.py` calls:
+
+```python
+createSession
+```
+
+with:
+
+```text
+status = active
+```
+
+That is important because the live Mental Command stream requires an active session.
+
+---
+
+# Mental Command stream is implemented
+
+This is the critical part:
+
+```python
+self.streams.subscribe_mental_commands(
+    token,
+    session.id,
+    on_prediction_raw=_raw_message_queue.put
+)
+```
+
+The stream is:
+
+```text
+com
+```
+
+So Cortex should send messages conceptually like:
+
+```json
+{
+    "com": ["push", 0.92],
+    "time": 1690000000.123,
+    "sid": "..."
+}
+```
+
+Your `prediction_mapper.py` converts that into:
+
+```text
+command = "push"
+confidence = 0.92
+timestamp = ...
+```
+
+---
+
+# Then your pipeline sends it to MasterHub
+
+This is another good part of your project.
+
+`PredictionPipeline` performs:
+
+```text
+Prediction
+    ↓
+ConfidenceFilter
+    ↓
+GestureStabilizer
+    ↓
+CommandSender
+```
+
+Your default confidence threshold is:
+
+```text
+0.80
+```
+
+and duplicate cooldown is:
+
+```text
+500 ms
+```
+
+So if Cortex repeatedly sends:
+
+```text
+push 0.94
+push 0.95
+push 0.93
+push 0.96
+```
+
+the pipeline prevents every single repeated prediction from flooding MasterHub.
+
+---
+
+# The HTTP request is correct
+
+The sender creates:
+
+```json
+{
+    "gesture": "push",
+    "params": {
+        "confidence": 0.94,
+        "source": "masterhub"
+    }
+}
+```
+
+and sends it to:
+
+```text
+http://127.0.0.1:5000/api/command
+```
+
+That endpoint exists in:
+
+```text
+api/routes.py
+```
+
+So this portion is correctly connected.
+
+---
+
+# Then MasterHub resolves the gesture
+
+Your `InputProcessor` receives:
+
+```json
+{
+    "gesture": "push"
+}
+```
+
+and resolves it according to:
+
+```text
+mappings/gesture_map.json
+```
+
+This is important because the meaning of `push` depends on the current mode.
+
+For example, in `IDLE`:
+
+```text
+push → mode_desktop
+```
+
+In `DESKTOP_MODE`:
+
+```text
+push → open_chrome
+```
+
+In `IOT_MODE`:
+
+```text
+push → fan_on
+```
+
+In `MEDIA_MODE`:
+
+```text
+push → media_play
+```
+
+So you have successfully separated:
+
+```text
+RAW BCI GESTURE
+       ↓
+MASTERHUB CONTEXT
+       ↓
+NORMALIZED COMMAND
+```
+
+That's exactly the right architectural idea.
+
+---
+
+# Your final routing is also implemented
+
+For example:
+
+```text
+push
+ ↓
+InputProcessor
+ ↓
+gesture_map
+ ↓
+fan_on
+ ↓
+command_map
+ ↓
+iot / fan_on
+ ↓
+IoT handler
+ ↓
+MQTT
+```
+
+Similarly:
+
+```text
+push
+ ↓
+DESKTOP_MODE
+ ↓
+open_chrome
+ ↓
+Desktop handler
+```
+
+and:
+
+```text
+push
+ ↓
+MEDIA_MODE
+ ↓
+media_play
+ ↓
+AI/ML handler
+```
+
+---
+
+# One important distinction
+
+Your MasterHub **does not receive raw EEG by default**.
+
+It subscribes to:
+
+```text
+com
+```
+
+which is the **Mental Command stream**.
+
+So the current live flow is:
+
+```text
+EPOC X
+ ↓
+Cortex
+ ↓
+Mental Command prediction
+ ↓
+push/pull/left/right/lift/drop
+ ↓
+MasterHub
+```
+
+It is **not**:
+
+```text
+EPOC X
+ ↓
+raw EEG samples
+ ↓
+MasterHub
+```
+
+Your `stream.py` contains `"eeg"` in its supported-stream registry, but the live runner currently subscribes to:
+
+```python
+STREAM_NAME = "com"
+```
+
+So if your goal is **mental-command control**, this is correct.
+
+---
+
+# Another thing I noticed
+
+Your `cortex/run_live.py` documentation still says:
+
+> "This script deliberately does NOT integrate with MasterHub"
+
+but the implementation has since been modified to create:
+
+```python
+self.pipeline = PredictionPipeline()
+```
+
+and then:
+
+```python
+_process_prediction(prediction, self.pipeline)
+```
+
+So the **documentation is outdated**, while the code has already been partially integrated with MasterHub.
+
+The current implementation actually does:
+
+```text
+Cortex
+ ↓
+PredictionMapper
+ ↓
+PredictionPipeline
+ ↓
+HTTP /api/command
+ ↓
+MasterHub
+```
+
+That's a good sign—you are very close.
+
+---
+
+# Your current architecture after fixing the callback bug
+
+It should become:
+
+```text
+                  ┌─────────────────┐
+                  │   EPOC X        │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ EMOTIV Launcher │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Cortex :6868    │
+                  └────────┬────────┘
+                           │
+                       WebSocket
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ CortexClient    │
+                  └────────┬────────┘
+                           │
+                 requestAccess /
+                    authorize
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ HeadsetManager  │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ SessionManager  │
+                  └────────┬────────┘
+                           │
+                           ▼
+                     subscribe com
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Raw Cortex      │
+                  │ {"com":[...]}   │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Prediction      │
+                  │ Mapper          │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Confidence      │
+                  │ Filter          │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Stabilizer      │
+                  └────────┬────────┘
+                           │
+                           ▼
+                POST /api/command
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ InputProcessor  │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ StateManager    │
+                  └────────┬────────┘
+                           │
+                           ▼
+                  ┌─────────────────┐
+                  │ Router          │
+                  └────────┬────────┘
+                           │
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+            IoT         Desktop      Embedded
+              │            │            │
+             MQTT       Windows       MQTT
+              │
+             ESP32
+```
+
+## Verdict
+
+| Component                     | Current ZIP                        |
+| ----------------------------- | ---------------------------------- |
+| Cortex WebSocket              | ✅ Implemented                      |
+| `localhost:6868`              | ✅ Correct                          |
+| Client ID/Secret              | ✅ Implemented through `.env`       |
+| EMOTIV authorization          | ✅ Implemented                      |
+| EPOC X discovery              | ✅ Implemented                      |
+| Headset connection            | ✅ Implemented                      |
+| Cortex session                | ✅ Implemented                      |
+| `com` subscription            | ✅ Implemented                      |
+| Raw `com` callback            | ⚠️ **Blocked by `_callbacks` bug** |
+| Prediction mapper             | ✅ Implemented                      |
+| Confidence filtering          | ✅ Implemented                      |
+| Duplicate stabilization       | ✅ Implemented                      |
+| MasterHub HTTP `/api/command` | ✅ Implemented                      |
+| Gesture → mode/command        | ✅ Implemented                      |
+| Router                        | ✅ Implemented                      |
+| IoT MQTT                      | ✅ Implemented separately           |
+| Desktop automation            | ✅ Implemented                      |
+| Embedded commands             | ✅ Implemented                      |
+| AI/ML media                   | ✅ Implemented                      |
+| Automatic Cortex startup      | ✅ Implemented                      |
+
+### So I would **not yet test the EPOC X with the whole system** until we fix `cortex/stream.py`.
+
+The first change is:
+
+```python
+# CURRENT
+self.callbacks: dict[str, Callable[[dict], None]] = {}
+
+# CHANGE TO
+self._callbacks: dict[str, Callable[[dict], None]] = {}
+```
+
+After that, we should run the MasterHub and watch the logs for this exact progression:
+
+```text
+Cortex connected
+        ↓
+access granted
+        ↓
+Authorized with Cortex
+        ↓
+EPOC X discovered
+        ↓
+Headset connected
+        ↓
+Session created
+        ↓
+Subscribed to stream 'com'
+        ↓
+waiting for live predictions
+        ↓
+Prediction received: gesture='push'
+        ↓
+Confidence accepted
+        ↓
+Gesture stabilized
+        ↓
+SENT gesture='push'
+        ↓
+HTTP 200
+        ↓
+MasterHub routed command
+```
+
+**That is the exact test I recommend doing next.**

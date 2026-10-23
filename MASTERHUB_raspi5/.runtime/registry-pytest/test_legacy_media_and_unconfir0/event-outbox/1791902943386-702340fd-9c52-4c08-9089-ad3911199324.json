@@ -1,0 +1,1 @@
+{"event_id": "702340fd-9c52-4c08-9089-ad3911199324", "instance_id": "test-hub", "received_at": 1791902943386, "kind": "ack", "device_id": "a1c4c376-97a5-4155-95fb-c7e39e7ff4db", "status": "UNCONFIRMED", "command_id": null, "topic": "bci/phone/ack", "payload": {"message": {"command": "Right_JioSaavn", "status": "EXECUTED"}, "retained": false}}

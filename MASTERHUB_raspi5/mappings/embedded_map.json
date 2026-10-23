@@ -1,0 +1,21 @@
+{
+  "_comment": "Maps embedded action identifiers to controller payload templates.",
+  "chair_forward": {"device": "wheelchair", "action": "chair_forward"},
+  "chair_back": {"device": "wheelchair", "action": "chair_back"},
+  "chair_backward": {"device": "wheelchair", "action": "chair_back"},
+  "chair_left": {"device": "wheelchair", "action": "chair_left"},
+  "chair_right": {"device": "wheelchair", "action": "chair_right"},
+  "chair_left360": {"device": "wheelchair", "action": "chair_left360"},
+  "chair_right360": {"device": "wheelchair", "action": "chair_right360"},
+  "chair_360": {"device": "wheelchair", "action": "chair_left360"},
+  "chair_stop": {"device": "wheelchair", "action": "chair_stop"},
+  "car_forward": {"device": "robot_car", "action": "car_forward"},
+  "car_back": {"device": "robot_car", "action": "car_back"},
+  "car_backward": {"device": "robot_car", "action": "car_back"},
+  "car_left": {"device": "robot_car", "action": "car_left"},
+  "car_right": {"device": "robot_car", "action": "car_right"},
+  "car_left360": {"device": "robot_car", "action": "car_left360"},
+  "car_right360": {"device": "robot_car", "action": "car_right360"},
+  "car_360": {"device": "robot_car", "action": "car_left360"},
+  "car_stop": {"device": "robot_car", "action": "car_stop"}
+}

@@ -1,0 +1,1 @@
+{"event_id": "42f9491f-d36c-4bdc-9784-f6be5983d747", "instance_id": "test-hub", "received_at": 1791954128150, "kind": "status", "device_id": "vyshnavi", "status": "online", "command_id": null, "topic": "masterhub/mobile/vyshnavi/heartbeat", "payload": {"message": {"status": "online", "device_id": "vyshnavi"}, "retained": false}}

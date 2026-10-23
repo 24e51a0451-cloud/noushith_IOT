@@ -1,0 +1,10 @@
+Stop the running agent on the target laptop.
+Extract into pc_agent, replacing matching files. Do not replace the laptop's .venv.
+Update the existing .env using single-start.env.example; preserve credentials.
+Run .\start_agent.bat. Missing new dependencies are installed automatically.
+To change the laptop identity, edit only DEVICE_ID in .env and restart.
+Keep MQTT_CLIENT_ID blank to derive it from DEVICE_ID.
+Use a unique DEVICE_ID on each laptop.
+Optional: .\start_agent.bat --check-config prints settings without connecting.
+Process environment overrides .env, and explicit CLI flags override both.
+Remove any previously set DEVICE_ID / MASTERHUB_AGENT_DEVICE_ID / MQTT_* environment overrides if they conflict with the displayed saved settings.

@@ -1,0 +1,6 @@
+{
+  "host": "52.21.249.6",
+  "port": 1883,
+  "car_topic": "robotcar/AA:BB/control",
+  "chair_topic": "wheelchair/98:A3:16:BF:2C:C1/control"
+}

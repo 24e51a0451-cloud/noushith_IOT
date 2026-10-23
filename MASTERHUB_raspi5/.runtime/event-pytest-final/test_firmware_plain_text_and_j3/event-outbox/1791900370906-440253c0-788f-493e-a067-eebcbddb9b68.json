@@ -1,0 +1,1 @@
+{"event_id": "440253c0-788f-493e-a067-eebcbddb9b68", "instance_id": "test-hub", "received_at": 1791900370906, "kind": "status", "device_id": "98:A3:16:BF:2C:C0", "status": "OFFLINE", "command_id": null, "topic": "robotcar/98:A3:16:BF:2C:C0/status", "payload": {"message": {"status": "OFFLINE"}, "retained": false}}

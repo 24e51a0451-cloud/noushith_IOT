@@ -1,0 +1,10 @@
+{
+  "additionalFiles": "..\\..",
+  "builtInLibrariesFolders": "C:\\Users\\NOUSHITH\\AppData\\Local\\Arduino15\\libraries",
+  "compiler.optimization_flags": "-Os",
+  "customBuildProperties": "",
+  "fqbn": "esp32:esp32:esp32:PartitionScheme=min_spiffs",
+  "hardwareFolders": "C:\\Users\\NOUSHITH\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.2,C:\\Users\\NOUSHITH\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\3.3.2",
+  "otherLibrariesFolders": "c:\\Users\\NOUSHITH\\OneDrive\\samb\\Arduino\\libraries",
+  "sketchLocation": "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls"
+}

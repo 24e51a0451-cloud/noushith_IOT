@@ -1,0 +1,1 @@
+{"event_id": "c460d1f9-4194-46f8-afc5-d6dc3e0fdc5c", "instance_id": "b68f3204-9e4a-4a29-93d1-51e4f1c0793f", "received_at": 1792746633879, "kind": "command_request", "device_id": "Local Host", "status": "REQUESTED", "command_id": null, "topic": "", "payload": {"command": "mode_light", "params": {}, "request_id": "f7d65e3a-7981-48a2-8837-6ad2866ecf8b"}}

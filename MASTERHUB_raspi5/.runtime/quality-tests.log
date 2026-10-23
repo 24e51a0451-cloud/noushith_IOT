@@ -1,0 +1,48 @@
+........................................................................ [ 28%]
+........................................................................ [ 57%]
+........................................................................ [ 86%]
+.................................                                        [100%]
+============================== warnings summary ===============================
+services\mqtt_service.py:94
+tests/test_hardware_connections.py::test_firmware_plain_text_and_json_status[CAR ONLINE-True]
+tests/test_hardware_connections.py::test_firmware_plain_text_and_json_status[CAR OFFLINE-False]
+tests/test_hardware_connections.py::test_firmware_plain_text_and_json_status[{"status":"ONLINE"}-True]
+tests/test_hardware_connections.py::test_firmware_plain_text_and_json_status[{"status":"OFFLINE"}-False]
+tests/test_hardware_connections.py::test_another_device_does_not_replace_selected_car
+tests/test_hardware_connections.py::test_mqtt_instances_have_distinct_client_ids
+tests/test_hardware_connections.py::test_mqtt_instances_have_distinct_client_ids
+tests/test_hardware_connections.py::test_publish_wait_is_bounded
+  D:\GALATICX\masterhub_iot_noushith\services\mqtt_service.py:94: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+    self._client = mqtt.Client(
+
+services\mobile_mqtt_service.py:36
+tests/test_ai_media_search.py::test_both_media_menus_contain_only_requested_controls
+tests/test_ai_media_search.py::test_both_media_menus_contain_only_requested_controls
+tests/test_bci_panel.py::test_embedded_panel_and_stream
+  D:\GALATICX\masterhub_iot_noushith\services\mobile_mqtt_service.py:36: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+    self.client = client or mqtt.Client(client_id='masterhub-mobile-' + uuid.uuid4().hex[:12])
+
+tests\test_generator.py:44
+  D:\GALATICX\masterhub_iot_noushith\tests\test_generator.py:44: PytestCollectionWarning: cannot collect test class 'TestCase' because it has a __init__ constructor (from: tests/test_generator.py)
+    class TestCase:
+
+tests\test_generator.py:77
+  D:\GALATICX\masterhub_iot_noushith\tests\test_generator.py:77: PytestCollectionWarning: cannot collect test class 'TestGenerator' because it has a __init__ constructor (from: tests/test_generator.py)
+    class TestGenerator:
+
+tests\test_modernization.py:26
+  D:\GALATICX\masterhub_iot_noushith\tests\test_modernization.py:26: UserWarning: MasterHub modernization test suite initialized with high-precision telemetry.
+    warnings.warn("MasterHub modernization test suite initialized with high-precision telemetry.", UserWarning)
+
+tests/test_mqtt_registration_integration.py::test_registration_rename_and_targeted_delivery_over_local_broker[False]
+tests/test_mqtt_registration_integration.py::test_registration_rename_and_targeted_delivery_over_local_broker[True]
+  D:\GALATICX\masterhub_iot_noushith\tests\test_mqtt_registration_integration.py:40: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+    server = mqtt.Client(client_id='test-discovery')
+
+tests/test_mqtt_registration_integration.py::test_registration_rename_and_targeted_delivery_over_local_broker[False]
+tests/test_mqtt_registration_integration.py::test_registration_rename_and_targeted_delivery_over_local_broker[True]
+  D:\GALATICX\masterhub_iot_noushith\tests\test_mqtt_registration_integration.py:41: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+    phone = mqtt.Client(client_id='test-phone')
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+249 passed, 20 warnings in 21.26s

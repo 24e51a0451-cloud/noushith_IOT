@@ -1,0 +1,1 @@
+{"event_id": "be11ba13-7865-4918-b3d7-2e1d071639de", "instance_id": "test-hub", "received_at": 1791900370609, "kind": "ack", "device_id": "MOBILE_001", "status": "EXECUTED", "command_id": "wrong", "topic": "masterhub/mobile/MOBILE_001/ack", "payload": {"message": {"command_id": "wrong", "status": "EXECUTED"}, "retained": false}}

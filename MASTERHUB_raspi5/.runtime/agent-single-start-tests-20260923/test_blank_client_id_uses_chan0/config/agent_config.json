@@ -1,0 +1,1 @@
+{"device_id": "PC_001", "transport": {"type": "mqtt", "mqtt": {"client_id": "masterhub-agent-PC_001"}}}

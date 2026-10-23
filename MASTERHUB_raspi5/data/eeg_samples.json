@@ -1,0 +1,17 @@
+[
+  {
+    "command": "left_light_on",
+    "confidence": 0.95,
+    "confidence_threshold": 0.9
+  },
+  {
+    "command": "left_fan_on",
+    "confidence": 0.88,
+    "confidence_threshold": 0.9
+  },
+  {
+    "command": "chair_forward",
+    "confidence": 0.97,
+    "confidence_threshold": 0.9
+  }
+]

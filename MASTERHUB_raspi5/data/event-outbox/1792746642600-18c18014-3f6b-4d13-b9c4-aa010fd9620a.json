@@ -1,0 +1,1 @@
+{"event_id": "18c18014-3f6b-4d13-b9c4-aa010fd9620a", "instance_id": "b68f3204-9e4a-4a29-93d1-51e4f1c0793f", "received_at": 1792746642600, "kind": "command", "device_id": "esp32", "status": "PUBLISHED", "command_id": "751038bd4f92", "topic": "iot/esp32/action", "payload": {"message": {"command": "Left_light_on", "command_id": "751038bd4f92"}, "retained": false}}

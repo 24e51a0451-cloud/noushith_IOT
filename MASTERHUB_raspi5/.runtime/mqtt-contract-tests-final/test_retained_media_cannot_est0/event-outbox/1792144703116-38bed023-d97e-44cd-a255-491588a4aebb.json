@@ -1,0 +1,1 @@
+{"event_id": "38bed023-d97e-44cd-a255-491588a4aebb", "instance_id": "test-hub", "received_at": 1792144703116, "kind": "media", "device_id": "485d54a0-822c-4671-a6bd-b5d46635d484", "status": "Playing", "command_id": null, "topic": "bci/phone/media", "payload": {"message": {"status": "Playing"}, "retained": true}}

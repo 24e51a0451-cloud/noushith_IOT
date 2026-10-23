@@ -1,0 +1,1 @@
+{"event_id": "dfbfa8ac-80f0-4492-a2e3-fff893c54470", "instance_id": "b68f3204-9e4a-4a29-93d1-51e4f1c0793f", "received_at": 1792746350368, "kind": "connection", "device_id": "hardware-broker", "status": "CONNECTED", "command_id": null, "topic": "", "payload": {"return_code": 0}}

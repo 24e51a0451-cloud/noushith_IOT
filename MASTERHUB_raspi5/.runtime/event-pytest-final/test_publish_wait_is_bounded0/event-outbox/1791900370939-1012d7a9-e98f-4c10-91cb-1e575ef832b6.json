@@ -1,0 +1,1 @@
+{"event_id": "1012d7a9-e98f-4c10-91cb-1e575ef832b6", "instance_id": "test-hub", "received_at": 1791900370939, "kind": "command", "device_id": "esp32", "status": "PUBLISHED", "command_id": null, "topic": "iot/esp32/action", "payload": {"message": "LIFTCARSTOP", "retained": false}}

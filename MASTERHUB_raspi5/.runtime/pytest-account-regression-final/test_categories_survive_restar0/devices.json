@@ -1,0 +1,49 @@
+{
+  "devices": [
+    {
+      "device_id": "Local Host",
+      "name": "Loopback Direct",
+      "transport": "local",
+      "status": "ONLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_type": "computer",
+      "platform": "windows",
+      "last_seen": 1790843891.5027592,
+      "is_default": false,
+      "device_category": "laptop"
+    },
+    {
+      "device_id": "PC_001",
+      "name": "PC Agent 001",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_type": "computer",
+      "platform": "windows",
+      "last_seen": 1790843891.502761,
+      "is_default": true,
+      "device_category": "laptop"
+    },
+    {
+      "device_id": "LAPTOP_TEST",
+      "name": "Desk laptop",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_category": "laptop",
+      "device_type": "computer",
+      "platform": "windows",
+      "last_seen": 1790843891.5028813,
+      "is_default": false
+    }
+  ]
+}

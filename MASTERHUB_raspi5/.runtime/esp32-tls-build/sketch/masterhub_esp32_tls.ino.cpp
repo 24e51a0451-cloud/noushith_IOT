@@ -1,0 +1,1434 @@
+#include <Arduino.h>
+#line 1 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+/*
+ * ==============================================================================
+ * ESP32 MASTER CONTROLLER NODE (UNIFIED FIRMWARE)
+ * ==============================================================================
+ *
+ * Hardware Map:
+ *   - GPIO 21 : Light Relay (Active-LOW or Active-HIGH, auto-configurable)
+ *   - GPIO 32 : Fan Relay
+ *   - GPIO 25 : Pump Relay
+ *   - GPIO 2  : Status LED (Blinking: Slow = Normal/WiFi OK, Fast = Connecting)
+ *   - GPIO 27 : WiFi Reset / BLE Re-provision Pushbutton (Active-LOW)
+ *   - GPIO 13 : Indicator LED OK    (1 blink = WiFi OK, 2 blinks = MQTT OK)
+ *     (GPIO 34/35 are INPUT-ONLY on ESP32, so they cannot drive LEDs)
+ *
+ * LoRa Module (SX1278 SPI - 433 MHz):
+ *   - SCK:  GPIO 18
+ *   - MISO: GPIO 19
+ *   - MOSI: GPIO 23
+ *   - NSS:  GPIO 5
+ *   - RST:  GPIO 14
+ *   - DIO0: GPIO 26 (not used by firmware, IRQ flags are polled)
+ *
+ * DFPlayer Mini (UART2):
+ *   - TX: GPIO 17 -> DFPlayer RX (via 1k resistor)
+ *   - RX: GPIO 16 -> DFPlayer TX
+ *
+ * Automated Tank Control & MasterHub Integration:
+ *   - Receives Tank Level (% full), Status, and Float state from Arduino Nano via LoRa
+ *   - MasterHub Dashboard integration: Receives tank height from MasterHub MQTT broker and sends it to Arduino Nano via LoRa
+ *   - Sends Float status / ACK to MasterHub via MQTT
+ *   - Tank >= 85% full (or "FULL")  -> DFPlayer plays Track 7 ("Tank Full") & Auto PUMP OFF
+ *   - Tank <= 25% full (or "EMPTY") -> DFPlayer plays Track 8 ("Tank Empty") & Auto PUMP ON
+ *   - Serial input (e.g. "h=220", "HEIGHT:2000" or "2000") sends new tank height to Arduino Nano via LoRa
+ * ==============================================================================
+ */
+
+#include <WiFi.h>
+#include <WiFiClientSecure.h>
+#include <time.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+#include <NimBLEDevice.h>
+#include <Preferences.h>
+#include <HTTPClient.h>
+#include <HTTPUpdate.h>
+#include <SPI.h>
+#include <HardwareSerial.h>
+
+#define FIRMWARE_VERSION "2.4.2-unified-tls"
+
+// ==============================================================================
+// 1. MQTT BROKER CONFIGURATION
+// ==============================================================================
+const char* MQTT_SERVER   = "13.49.213.239";
+// Previous MQTT port: 1883 (unencrypted).
+const int   MQTT_PORT     = 8883;
+const char* MQTT_USER     = "iot_team";
+const char* MQTT_PASS     = "synaptimeshadminbroker";
+
+// Broker trust certificate; replace before its expiry on 22 October 2027.
+static const char BROKER_CERT[] = R"PEM(
+-----BEGIN CERTIFICATE-----
+MIIEIjCCAoqgAwIBAgIUDTHQU7q4aTUlQDAU5hUKg0wu65MwDQYJKoZIhvcNAQEL
+BQAwGDEWMBQGA1UEAwwNMTMuNDkuMjEzLjIzOTAeFw0yNjEwMjIwNjA2NTNaFw0y
+NzEwMjIwNjA2NTNaMBgxFjAUBgNVBAMMDTEzLjQ5LjIxMy4yMzkwggGiMA0GCSqG
+SIb3DQEBAQUAA4IBjwAwggGKAoIBgQC662w0gjGuVoVzY04hDH+7H+jWOIOWEKfn
+Z+6R3CDoMZ8wl6bTEQKgvTmuhwvwmNR369qq4Tmor6+R8vrjaGjb3gxqGP3Yz1Ju
+Sjp3rTDdY17uf5QPHqQFPj+n0aU8npOw921ye72tbPzJC527KdLtBG9X25DU8nLs
+PduqMDenxDY3gms9Lo+T2c9E1mSDvs3HUtTyL2goKOOebuecw8hsxqA+MdohJM1E
+hmGsxCH5AyKWEro38b+Amogg5LeQSCIwTmx/83kxpN/ETkmd/QW3/L1oIzOyJwkz
+HgREAH0H0ujlsSBsHBEdzG2w6Y63aPcwS0XGDIqB0TiR+duFy7U+aKqUTMWgRrE0
+Hcv5LpAnVPMqpZI3BlxdZ1I9tNhL7FtrWN/J1y5hEDdKxgnOXYmC5DEwmL9mGn2Y
+YrXR9MEEWotwIjT9dYoZ7eXRYHn39zvoN1ukiraOG54LGAQ80bb7Ip+i1yMFLUMB
+soipfntikiHOJz/Uj0t3f4nT9uQP2/8CAwEAAaNkMGIwHQYDVR0OBBYEFJIgGW2F
+mPLVLVn4oitaSo3Wm4kGMB8GA1UdIwQYMBaAFJIgGW2FmPLVLVn4oitaSo3Wm4kG
+MA8GA1UdEwEB/wQFMAMBAf8wDwYDVR0RBAgwBocEDTHV7zANBgkqhkiG9w0BAQsF
+AAOCAYEARj/axu4DtKcK18WL+YKv+dCUISV+dGRn9CyY9ISoIRVFoD2/vD6aFJZ7
+BvEQhDBRi9h3lRmudZRFNzw+BAtqdHSqcFDVjv+J93PGsDylWFrI/a30gNR9Wfcu
+mmriqil9tn5BvrKP0sq5vHAgaSnWYmeP0KVRmeCP01DTw0HvchjtqjpxN4jO5/5c
+8y9mga1vF7CfFT03v5+s4A0RSe1tb6Rw1v0cUAwMyOGrRe1buQbpyoNhOptlRT5m
+4/ycFIar0LkcPxn4Y4fptb7rx2NT8fJLhdx3NbWtt5btZtAsRrvGjyw0UBqCLZ44
+v99TStsSOfnkEgTF1elrh2CqastcAEBem7WqyS+ckvuxJv2tz6079GHw0AKHvOBs
+GtJGKHeZT5w1nX1L5FijuvWowOPmUNCF93mfoqM2JplxaGe6yE8jx4BfEUvJXJtq
+1oP2CxZtnCYGETmy5LMljUEUM39FWdPivj62VCXiW0VSYwd0OsUGnDa5/E41ufZS
+GqgioLxD
+-----END CERTIFICATE-----
+)PEM";
+
+const char* BASE_TOPIC = "iot";
+const char* MQTT_DEVICE_ID = "esp32";
+
+// MasterHub registered device identity
+const char* DEVICE_ID   = "00:4B:12:30:81:02";
+const char* MAC_ADDRESS = "00:4B:12:30:81:02";
+
+// ==============================================================================
+// 2. BLE PROVISIONING CONFIGURATION
+// ==============================================================================
+#define SERVICE_UUID        "12345678-1234-1234-1234-123456789abc"
+#define CHARACTERISTIC_UUID "87654321-4321-4321-4321-cba987654321"
+#define BLE_DEVICE_NAME     "IMTIYAZ_ESP32"
+
+// ==============================================================================
+// 3. PIN DEFINITIONS
+// ==============================================================================
+const int PIN_LIGHT       = 21;
+const int PIN_FAN         = 32;
+const int PIN_PUMP        = 25;
+const int PIN_STATUS_LED  = 2;
+const int PIN_WIFI_RESET_BTN = 27;   // active-LOW, INPUT_PULLUP
+
+// ---- Connection indicator LEDs ----
+// NOTE: GPIO 34/35 are INPUT-ONLY on ESP32, so they can't drive LEDs.
+const int PIN_LED_OK    = 13;   // blinks 1x = WiFi OK, 2x = MQTT OK
+
+const unsigned long LED_CYCLE_MS = 2000;  // full pattern repeats every 2s
+const unsigned long LED_ON_MS    = 150;   // each blink on-time
+const unsigned long LED_STEP_MS  = 300;   // blink-to-blink spacing
+
+// ---- Raw SX1278 LoRa driver pins (no library) ----
+#define LORA_SCK   18
+#define LORA_MISO  19
+#define LORA_MOSI  23
+#define LORA_SS     5
+#define LORA_RST   14
+#define LORA_DIO0  26
+
+#define REG_FIFO                 0x00
+#define REG_OP_MODE              0x01
+#define REG_FRF_MSB              0x06
+#define REG_FRF_MID              0x07
+#define REG_FRF_LSB              0x08
+#define REG_PA_CONFIG            0x09
+#define REG_FIFO_ADDR_PTR        0x0D
+#define REG_FIFO_TX_BASE_ADDR    0x0E
+#define REG_FIFO_RX_BASE_ADDR    0x0F
+#define REG_FIFO_RX_CURRENT_ADDR 0x10
+#define REG_IRQ_FLAGS            0x12
+#define REG_RX_NB_BYTES          0x13
+#define REG_PKT_RSSI_VALUE       0x1A
+#define REG_MODEM_CONFIG_1       0x1D
+#define REG_MODEM_CONFIG_2       0x1E
+#define REG_MODEM_CONFIG_3       0x26
+#define REG_PAYLOAD_LENGTH       0x22
+#define REG_SYNC_WORD            0x39
+#define REG_VERSION              0x42
+#define LONG_RANGE 0x80
+#define MODE_SLEEP 0x00
+#define MODE_STDBY 0x01
+#define MODE_TX    0x03
+#define MODE_RX    0x05
+#define TX_DONE    0x08
+#define RX_DONE    0x40
+
+#ifndef VSPI
+#define VSPI 2
+#endif
+
+SPIClass loraSPI(VSPI);
+SPISettings loraSpiSettings(8000000, MSBFIRST, SPI_MODE0);
+
+// ---- DFPlayer Mini voice track IDs ----
+#define TRK_LIGHT_ON   1
+#define TRK_LIGHT_OFF  2
+#define TRK_FAN_ON     3
+#define TRK_FAN_OFF    4
+#define TRK_PUMP_ON    5
+#define TRK_PUMP_OFF   6
+#define TRK_TANK_FULL  7
+#define TRK_TANK_EMPTY 8
+
+HardwareSerial DFSerial(2);
+
+// ==============================================================================
+// 4. RELAY POLARITY
+// ==============================================================================
+bool activeLowRelays = true;
+const bool USE_OPEN_DRAIN = false;
+
+// Keep Arduino's generated prototypes from preceding this custom type.
+struct LedBlinker;
+static void triggerBlink(LedBlinker& led, uint8_t blinks);
+static void runBlinker(LedBlinker& led);
+
+#line 185 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+int getPinLevel(bool isOn);
+#line 329 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+void setup();
+#line 370 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+void loop();
+#line 690 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+float parseHeightFromMqtt(const String& str);
+#line 855 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+void publishAck(const char* command, const char* commandId, const char* result);
+#line 925 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+void setActuatorState(String device, String state, bool viaMqtt, const char* commandId, const char* originalCommand);
+#line 185 "D:\\GALATICX\\masterhub_iot_noushith\\firmware\\masterhub_esp32_tls\\masterhub_esp32_tls.ino"
+int getPinLevel(bool isOn) {
+  if (activeLowRelays) return isOn ? LOW : HIGH;
+  return isOn ? HIGH : LOW;
+}
+
+// ==============================================================================
+// 5. STATE
+// ==============================================================================
+bool stateLight = false;
+bool stateFan   = false;
+bool statePump  = false;
+
+Preferences preferences;
+WiFiClientSecure wifiClient;
+PubSubClient mqttClient(wifiClient);
+
+char wifiSsid[64]     = {0};
+char wifiPassword[64] = {0};
+char deviceId[24]     = {0};
+String actionTopic, statusTopic, ackTopic, sensorTopic;
+char lastCommandId[48] = {0};
+
+char otaUrl[196] = "http://172.18.1.102:5000/firmware.bin";
+bool otaRequested = false;
+enum class OtaState : uint8_t { IDLE, RUNNING, FAILED, SUCCESS };
+OtaState otaState = OtaState::IDLE;
+
+bool isWiFiConfigured  = false;
+bool wifiConnectedOnce = false;
+bool bleModeActive     = false;
+bool isMqttConfigured  = false;
+
+float lastDistance     = -1.0;
+float lastTankPercent  = -1.0;
+float lastTankHeight   = -1.0;
+int   lastFloatState   = -1;
+
+// Height queue management to guarantee delivery to Nano
+float pendingTankHeight      = -1.0;
+int   pendingHeightRetries   = 0;
+
+enum TankState { TANK_UNKNOWN, TANK_NORMAL, TANK_STATE_EMPTY, TANK_STATE_FULL };
+TankState currentTankState = TANK_UNKNOWN;
+
+unsigned long lastHeartbeat      = 0;
+unsigned long lastWiFiRetryMs    = 0;
+unsigned long lastMqttRetryMs    = 0;
+unsigned long lastButtonDebounce = 0;
+bool heartbeatState = false;
+bool buttonWasPressed = false;
+
+// ---------------- Function declarations ----------------
+void setupHardware();
+void applyPinModes();
+void applyCurrentStates();
+void setRelayPolarity(bool isLow);
+void loadWifiCredentials();
+void saveWifiCredentials();
+void connectToWifi();
+void startBleMode();
+void rebuildTopics();
+void reconnectMqtt();
+void mqttCallback(char* topic, byte* payload, unsigned int length);
+void publishMqttStatus();
+void publishAck(const char* command, const char* commandId, const char* result = "executed");
+void publishFloatAck(int floatState);
+void setActuatorState(String device, String state, bool viaMqtt, const char* commandId, const char* originalCommand = nullptr);
+bool parseEmotivCommand(const String& cmd, String& device, String& state);
+void runSelfTest();
+String getStatusJson();
+void processSerialCommands();
+void initVoice();
+void playVoice(uint8_t track);
+void sendDfCommand(uint8_t cmd, uint8_t p1, uint8_t p2);
+uint8_t loraReadReg(uint8_t reg);
+void loraWriteReg(uint8_t reg, uint8_t val);
+void loraSetFrequency();
+int loraReadRssi();
+void loraSendPacket(const char* msg);
+bool loraReceivePacket();
+void loraInit();
+void setupLoRa();
+void processLoRaPacket();
+void sendTankHeightToNano(float heightCm);
+void runOtaUpdate();
+void trimBuffer(char* buffer);
+void updateIndicatorLeds();
+
+char loraPacketBuffer[256] = {0};
+char serialLineBuffer[128] = {0};
+char bleInputBuffer[130]   = {0};
+
+// ==============================================================================
+// BLE PROVISIONING CALLBACKS
+// ==============================================================================
+class WiFiConfigCallbacks : public NimBLECharacteristicCallbacks {
+ public:
+  void onWrite(NimBLECharacteristic* characteristic, NimBLEConnInfo& connInfo) override {
+    std::string payload = characteristic->getValue();
+    if (payload.length() == 0) return;
+
+    size_t currentLength = strlen(bleInputBuffer);
+    size_t incomingLength = payload.length();
+    if (currentLength + incomingLength >= sizeof(bleInputBuffer)) {
+      bleInputBuffer[0] = '\0';
+      currentLength = 0;
+    }
+
+    memcpy(bleInputBuffer + currentLength, payload.data(), incomingLength);
+    bleInputBuffer[currentLength + incomingLength] = '\0';
+
+    char* separator = strchr(bleInputBuffer, ',');
+    if (separator == nullptr) return;
+
+    *separator = '\0';
+    trimBuffer(bleInputBuffer);
+    trimBuffer(separator + 1);
+
+    if (bleInputBuffer[0] == '\0' || separator[1] == '\0') {
+      bleInputBuffer[0] = '\0';
+      return;
+    }
+
+    strncpy(wifiSsid, bleInputBuffer, sizeof(wifiSsid) - 1);
+    strncpy(wifiPassword, separator + 1, sizeof(wifiPassword) - 1);
+    wifiSsid[sizeof(wifiSsid) - 1] = '\0';
+    wifiPassword[sizeof(wifiPassword) - 1] = '\0';
+
+    isWiFiConfigured = true;
+    wifiConnectedOnce = false;
+    bleModeActive = false;
+
+    saveWifiCredentials();
+    WiFi.disconnect(true);
+    bleInputBuffer[0] = '\0';
+
+    Serial.println("[BLE] WiFi credentials received and saved.");
+  }
+};
+WiFiConfigCallbacks wifiConfigCallbacks;
+
+// ==============================================================================
+// SETUP
+// ==============================================================================
+void setup() {
+  Serial.begin(115200);
+  Serial.setTimeout(20);
+  delay(300);
+
+  Serial.println("\n=======================================================");
+  Serial.println("  ESP32 Unified IoT + Tank Automation Node v" FIRMWARE_VERSION);
+  Serial.printf("  Pins: Light(%d) Fan(%d) Pump(%d) Status(%d) Btn(%d)\n",
+                PIN_LIGHT, PIN_FAN, PIN_PUMP, PIN_STATUS_LED, PIN_WIFI_RESET_BTN);
+  Serial.printf("  Indicator LED: OK(%d)\n", PIN_LED_OK);
+  Serial.printf("  Default Relay Mode: %s\n", activeLowRelays ? "ACTIVE-LOW" : "ACTIVE-HIGH");
+  Serial.println("=======================================================");
+
+  setupHardware();
+
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(PIN_STATUS_LED, HIGH);
+    delay(80);
+    digitalWrite(PIN_STATUS_LED, LOW);
+    delay(80);
+  }
+
+  loadWifiCredentials();
+  rebuildTopics();
+  initVoice();
+  setupLoRa();
+
+  if (isWiFiConfigured) {
+    connectToWifi();
+  } else {
+    startBleMode();
+  }
+
+  Serial.println("[READY] Serial / MQTT control active.");
+  Serial.println("Tip: Enter tank height in Serial (e.g. 'h=220', 'HEIGHT:2000' or '2000') to update Nano.");
+  Serial.println("Tip: 'TEST' = self-test, 'STATUS' = status, 'POLARITY:HIGH/LOW' = flip relay logic.");
+}
+
+// ==============================================================================
+// MAIN LOOP
+// ==============================================================================
+void loop() {
+  // ---- Re-provision button ----
+  if (digitalRead(PIN_WIFI_RESET_BTN) == LOW) {
+    if (!buttonWasPressed && !bleModeActive && millis() - lastButtonDebounce > 300) {
+      lastButtonDebounce = millis();
+      Serial.println("[BTN] Re-provision button pressed -> starting BLE mode.");
+      startBleMode();
+    }
+    buttonWasPressed = true;
+  } else {
+    buttonWasPressed = false;
+  }
+
+  processSerialCommands();
+
+  if (isWiFiConfigured && WiFi.status() != WL_CONNECTED) {
+    connectToWifi();
+  }
+
+  if (WiFi.status() == WL_CONNECTED) {
+    if (strcmp(deviceId, DEVICE_ID) != 0) {
+      strncpy(deviceId, DEVICE_ID, sizeof(deviceId) - 1);
+      deviceId[sizeof(deviceId) - 1] = '\0';
+    }
+
+    if (!wifiConnectedOnce) {
+      wifiConnectedOnce = true;
+      Serial.print("[WiFi] Connected. IP: ");
+      Serial.println(WiFi.localIP());
+      configTime(0, 0, "pool.ntp.org", "time.google.com");
+    }
+
+    reconnectMqtt();
+    if (mqttClient.connected()) mqttClient.loop();
+  } else {
+    wifiConnectedOnce = false;
+  }
+
+  if (otaRequested) runOtaUpdate();
+  processLoRaPacket();
+  updateIndicatorLeds();   // WiFi / MQTT indicator LEDs
+
+  unsigned long hbInterval = (WiFi.status() == WL_CONNECTED) ? 1000 : 250;
+  if (millis() - lastHeartbeat >= hbInterval) {
+    lastHeartbeat = millis();
+    heartbeatState = !heartbeatState;
+    digitalWrite(PIN_STATUS_LED, heartbeatState ? HIGH : LOW);
+  }
+}
+
+// ==============================================================================
+// HARDWARE INIT / RELAY POLARITY
+// ==============================================================================
+void applyPinModes() {
+  int outMode = USE_OPEN_DRAIN ? OUTPUT_OPEN_DRAIN : OUTPUT;
+  pinMode(PIN_LIGHT, outMode);
+  pinMode(PIN_FAN, outMode);
+  pinMode(PIN_PUMP, outMode);
+  pinMode(PIN_STATUS_LED, OUTPUT);
+  pinMode(PIN_LED_OK, OUTPUT);
+  pinMode(PIN_WIFI_RESET_BTN, INPUT_PULLUP);
+}
+
+void applyCurrentStates() {
+  digitalWrite(PIN_LIGHT, getPinLevel(stateLight));
+  digitalWrite(PIN_FAN,   getPinLevel(stateFan));
+  digitalWrite(PIN_PUMP,  getPinLevel(statePump));
+}
+
+void setupHardware() {
+  stateLight = false;
+  stateFan   = false;
+  statePump  = false;
+
+  digitalWrite(PIN_LIGHT, getPinLevel(false));
+  digitalWrite(PIN_FAN,   getPinLevel(false));
+  digitalWrite(PIN_PUMP,  getPinLevel(false));
+  digitalWrite(PIN_STATUS_LED, LOW);
+
+  applyPinModes();
+  applyCurrentStates();
+
+  digitalWrite(PIN_LED_OK, LOW);
+
+  Serial.println("[HARDWARE] Actuators initialized in OFF state.");
+}
+
+void setRelayPolarity(bool isLow) {
+  activeLowRelays = isLow;
+  Serial.printf("[CONFIG] Relay polarity -> %s\n",
+                activeLowRelays ? "ACTIVE-LOW (LOW=ON)" : "ACTIVE-HIGH (HIGH=ON)");
+  applyCurrentStates();
+}
+
+// ==============================================================================
+// CONNECTION INDICATOR LEDs (event-based, non-blocking, blinks ONCE per event)
+// ==============================================================================
+//  WiFi connected        -> OK LED    1 blink
+//  MQTT connected        -> OK LED    2 blinks
+struct LedBlinker {
+  int pin;
+  uint8_t blinks;          // blinks in the pattern currently playing
+  uint8_t pending;         // blinks queued to play after the current one
+  unsigned long startMs;
+  bool active;
+};
+
+LedBlinker okLed    = { PIN_LED_OK,    0, 0, 0, false };
+
+static void triggerBlink(LedBlinker& led, uint8_t blinks) {
+  if (led.active) {            // already playing -> queue it, don't overwrite
+    led.pending = blinks;
+    return;
+  }
+  led.blinks  = blinks;
+  led.startMs = millis();
+  led.active  = true;
+}
+
+static void runBlinker(LedBlinker& led) {
+  if (!led.active) return;
+
+  unsigned long t = millis() - led.startMs;
+  unsigned long total = (unsigned long)led.blinks * LED_STEP_MS;
+
+  if (t >= total) {            // pattern finished
+    digitalWrite(led.pin, LOW);
+    led.active = false;
+    if (led.pending > 0) {     // start queued pattern
+      uint8_t next = led.pending;
+      led.pending = 0;
+      triggerBlink(led, next);
+    }
+    return;
+  }
+
+  unsigned long phase = t % LED_STEP_MS;
+  digitalWrite(led.pin, (phase < LED_ON_MS) ? HIGH : LOW);
+}
+
+void updateIndicatorLeds() {
+  static int8_t prevWifi = -1;   // -1 = unknown (fires an event on first run)
+  static int8_t prevMqtt = -1;
+
+  int8_t wifiOk = (WiFi.status() == WL_CONNECTED) ? 1 : 0;
+  int8_t mqttOk = (wifiOk && mqttClient.connected()) ? 1 : 0;
+
+  // ---- WiFi events ----
+  if (wifiOk != prevWifi) {
+    if (wifiOk) triggerBlink(okLed, 1);        // WiFi connected
+    prevWifi = wifiOk;
+    if (!wifiOk) prevMqtt = 0;                 // MQTT is down too
+  }
+
+  // ---- MQTT events ----
+  if (mqttOk != prevMqtt) {
+    if (mqttOk) triggerBlink(okLed, 2);        // MQTT connected
+    prevMqtt = mqttOk;
+  }
+
+  runBlinker(okLed);
+}
+
+// ==============================================================================
+// WIFI CREDENTIAL STORAGE
+// ==============================================================================
+void saveWifiCredentials() {
+  preferences.begin("wifi", false);
+  preferences.putString("ssid", wifiSsid);
+  preferences.putString("pass", wifiPassword);
+  preferences.end();
+}
+
+void loadWifiCredentials() {
+  preferences.begin("wifi", true);
+  String storedSsid = preferences.getString("ssid", "");
+  String storedPassword = preferences.getString("pass", "");
+  preferences.end();
+
+  if (storedSsid.length() > 0) {
+    strncpy(wifiSsid, storedSsid.c_str(), sizeof(wifiSsid) - 1);
+    strncpy(wifiPassword, storedPassword.c_str(), sizeof(wifiPassword) - 1);
+    wifiSsid[sizeof(wifiSsid) - 1] = '\0';
+    wifiPassword[sizeof(wifiPassword) - 1] = '\0';
+    isWiFiConfigured = true;
+  }
+}
+
+void connectToWifi() {
+  if (WiFi.status() == WL_CONNECTED) return;
+  if (millis() - lastWiFiRetryMs < 15000) return;
+
+  lastWiFiRetryMs = millis();
+  WiFi.disconnect(true, true);
+  delay(100);
+  WiFi.mode(WIFI_STA);
+  WiFi.setAutoReconnect(true);
+  WiFi.begin(wifiSsid, wifiPassword);
+
+  Serial.print("[WiFi] Connecting to: ");
+  Serial.println(wifiSsid);
+}
+
+void startBleMode() {
+  Serial.println("[BLE] Starting provisioning mode...");
+  NimBLEDevice::init(BLE_DEVICE_NAME);
+
+  NimBLEServer* bleServer = NimBLEDevice::createServer();
+  NimBLEService* service = bleServer->createService(SERVICE_UUID);
+  NimBLECharacteristic* characteristic =
+      service->createCharacteristic(CHARACTERISTIC_UUID, NIMBLE_PROPERTY::WRITE);
+  characteristic->setCallbacks(&wifiConfigCallbacks);
+  service->start();
+
+  NimBLEAdvertising* advertising = NimBLEDevice::getAdvertising();
+  advertising->addServiceUUID(SERVICE_UUID);
+  advertising->enableScanResponse(true);
+  advertising->start();
+
+  bleModeActive = true;
+  Serial.printf("[BLE] Advertising as '%s'. Write \"ssid,password\" to provision.\n", BLE_DEVICE_NAME);
+}
+
+// ==============================================================================
+// MQTT
+// ==============================================================================
+void rebuildTopics() {
+  actionTopic = String(BASE_TOPIC) + "/" + MQTT_DEVICE_ID + "/action";
+  statusTopic = String(BASE_TOPIC) + "/" + MQTT_DEVICE_ID + "/status";
+  ackTopic    = String(BASE_TOPIC) + "/" + MQTT_DEVICE_ID + "/ack";
+  sensorTopic = String(BASE_TOPIC) + "/" + MQTT_DEVICE_ID + "/sensor";
+}
+
+void reconnectMqtt() {
+  static bool subscribed = false;
+
+  if (!isMqttConfigured) {
+    wifiClient.setCACert(BROKER_CERT);
+    wifiClient.setHandshakeTimeout(5);
+    mqttClient.setSocketTimeout(5);
+    mqttClient.setServer(MQTT_SERVER, MQTT_PORT);
+    mqttClient.setCallback(mqttCallback);
+    mqttClient.setBufferSize(512);
+    isMqttConfigured = true;
+  }
+
+  if (WiFi.status() != WL_CONNECTED) {
+    subscribed = false;
+    return;
+  }
+
+  if (mqttClient.connected()) {
+    if (!subscribed && actionTopic.length() > 0) {
+      subscribed = mqttClient.subscribe(actionTopic.c_str());
+      mqttClient.subscribe("iot/esp32/action");
+      mqttClient.subscribe("iot/esp32/config");
+      mqttClient.subscribe("iot/esp32/height");
+      mqttClient.subscribe("iot/00:4B:12:30:81:02/action");
+      mqttClient.subscribe("iot/00:4B:12:30:81:02/config");
+      mqttClient.subscribe("iot/00:4B:12:30:81:02/height");
+      mqttClient.subscribe("iot/esp32/ping");
+      if (subscribed) Serial.printf("[MQTT] Subscribed to MasterHub topics including: %s\n", actionTopic.c_str());
+    }
+    return;
+  }
+
+  if (millis() - lastMqttRetryMs < 5000) return;
+  lastMqttRetryMs = millis();
+
+  // Wait for a sane clock without blocking local tank control; TLS checks validity.
+  if (time(nullptr) < 1767225600) {  // 1 January 2026 UTC
+    Serial.println("[MQTT] Waiting for NTP time sync before TLS...");
+    return;
+  }
+
+  Serial.printf("[MQTT] Connecting securely to %s:%d...", MQTT_SERVER, MQTT_PORT);
+  char clientId[40];
+  snprintf(clientId, sizeof(clientId), "ESP32-%s", deviceId);
+
+  bool connected;
+  if (strlen(MQTT_USER) > 0) {
+    connected = mqttClient.connect(clientId, MQTT_USER, MQTT_PASS);
+  } else {
+    connected = mqttClient.connect(clientId);
+  }
+
+  if (connected) {
+    Serial.println(" CONNECTED!");
+    subscribed = mqttClient.subscribe(actionTopic.c_str());
+    mqttClient.subscribe("iot/esp32/action");
+    mqttClient.subscribe("iot/esp32/config");
+    mqttClient.subscribe("iot/esp32/height");
+    mqttClient.subscribe("iot/00:4B:12:30:81:02/action");
+    mqttClient.subscribe("iot/00:4B:12:30:81:02/config");
+    mqttClient.subscribe("iot/00:4B:12:30:81:02/height");
+    mqttClient.subscribe("iot/esp32/ping");
+    publishMqttStatus();
+  } else {
+    Serial.printf(" FAILED (rc=%d), retry in 5s.\n", mqttClient.state());
+    subscribed = false;
+  }
+}
+
+bool parseEmotivCommand(const String& cmd, String& device, String& state) {
+  int lastUnderscore = cmd.lastIndexOf('_');
+  if (lastUnderscore == -1) return false;
+
+  String suffix = cmd.substring(lastUnderscore + 1);
+  suffix.toUpperCase();
+  if (suffix != "ON" && suffix != "OFF") return false;
+  state = suffix;
+
+  String rest = cmd.substring(0, lastUnderscore);
+  int firstUnderscore = rest.indexOf('_');
+  device = (firstUnderscore != -1) ? rest.substring(firstUnderscore + 1) : rest;
+  device.toLowerCase();
+  return true;
+}
+
+// Helper to extract height from any string or number received from MasterHub
+float parseHeightFromMqtt(const String& str) {
+  String clean = "";
+  for (unsigned int i = 0; i < str.length(); i++) {
+    char c = str.charAt(i);
+    if (c != ' ' && c != '\t' && c != '\r' && c != '\n') clean += c;
+  }
+  clean.toUpperCase();
+
+  if (clean.startsWith("H=") || clean.startsWith("H:")) {
+    return clean.substring(2).toFloat();
+  }
+  if (clean.startsWith("HEIGHT=") || clean.startsWith("HEIGHT:") ||
+      clean.startsWith("TANK_HEIGHT=") || clean.startsWith("TANK_HEIGHT:") ||
+      clean.startsWith("TANK=") || clean.startsWith("TANK:") ||
+      clean.startsWith("SET_HEIGHT=") || clean.startsWith("SET_HEIGHT:")) {
+    int idx = clean.indexOf('=');
+    if (idx == -1) idx = clean.indexOf(':');
+    return clean.substring(idx + 1).toFloat();
+  }
+
+  bool isNum = true;
+  for (unsigned int i = 0; i < clean.length(); i++) {
+    if (!isDigit(clean.charAt(i)) && clean.charAt(i) != '.') { isNum = false; break; }
+  }
+  if (isNum && clean.length() > 0) {
+    return clean.toFloat();
+  }
+  return -1.0;
+}
+
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+  char message[300] = {0};
+  unsigned int copyLen = (length < sizeof(message) - 1) ? length : sizeof(message) - 1;
+  for (unsigned int i = 0; i < copyLen; i++) message[i] = (char)payload[i];
+  message[copyLen] = '\0';
+
+  String topicStr(topic);
+  String msgStr(message);
+  msgStr.trim();
+
+  Serial.printf("[MQTT RX] %s -> %s\n", topic, message);
+
+  if (topicStr == "iot/esp32/ping" || msgStr.equalsIgnoreCase("PING")) {
+    mqttClient.publish("iot/esp32/pong", "PONG");
+    return;
+  }
+
+  // ==============================================================================
+  // 1. NON-JSON String from MasterHub (e.g. "h=220", "HEIGHT:2000", "220", "light:on")
+  // ==============================================================================
+  if (!msgStr.startsWith("{")) {
+    float parsedH = parseHeightFromMqtt(msgStr);
+    if (parsedH >= 5.0 && parsedH <= 5000.0) {
+      Serial.println();
+      Serial.println("==================================================");
+      Serial.printf(" [MASTERHUB DASHBOARD] Received Tank Height: %.1f cm (Plain String)\n", parsedH);
+      Serial.println(" [ACTION] Forwarding Tank Height to Arduino Nano via LoRa");
+      Serial.println("==================================================");
+      Serial.println();
+
+      sendTankHeightToNano(parsedH);
+      publishAck("SET_HEIGHT", "", "sent_to_nano");
+      return;
+    }
+
+    int sep = msgStr.indexOf(':');
+    if (sep == -1) sep = msgStr.indexOf('=');
+    if (sep == -1) sep = msgStr.indexOf(' ');
+    if (sep != -1) {
+      setActuatorState(msgStr.substring(0, sep), msgStr.substring(sep + 1), true, "", nullptr);
+    }
+    return;
+  }
+
+  // ==============================================================================
+  // 2. JSON Payload from MasterHub Dashboard
+  // ==============================================================================
+  StaticJsonDocument<384> doc;
+  if (deserializeJson(doc, msgStr)) {
+    Serial.println("[MQTT] JSON parse error.");
+    return;
+  }
+
+  const char* command   = doc["command"]   | (doc["action"] | (doc["cmd"] | ""));
+  const char* commandId = doc["command_id"] | (doc["id"] | "");
+  const char* device    = doc["device"]    | (doc["target"] | "");
+
+  // Check if MasterHub sent tank height in any JSON key
+  float targetHeight = -1.0;
+  if (doc.containsKey("height")) {
+    targetHeight = doc["height"].as<float>();
+  } else if (doc.containsKey("tank_height")) {
+    targetHeight = doc["tank_height"].as<float>();
+  } else if (doc.containsKey("tankHeight")) {
+    targetHeight = doc["tankHeight"].as<float>();
+  } else if (doc.containsKey("tank_depth")) {
+    targetHeight = doc["tank_depth"].as<float>();
+  } else if (doc.containsKey("h")) {
+    targetHeight = doc["h"].as<float>();
+  } else if ((strcasecmp(command, "SET_HEIGHT") == 0 || strcasecmp(command, "SET_TANK_HEIGHT") == 0 || strcasecmp(device, "tank") == 0) && doc.containsKey("value")) {
+    targetHeight = doc["value"].as<float>();
+  }
+
+  // If valid tank height received from MasterHub Dashboard:
+  if (targetHeight >= 5.0 && targetHeight <= 5000.0) {
+    Serial.println();
+    Serial.println("==================================================");
+    Serial.printf(" [MASTERHUB DASHBOARD] Received Tank Height: %.1f cm (JSON)\n", targetHeight);
+    Serial.printf(" Command ID  : %s\n", commandId[0] ? commandId : "N/A");
+    Serial.println(" [ACTION] Forwarding Tank Height to Arduino Nano via LoRa");
+    Serial.println("==================================================");
+    Serial.println();
+
+    lastTankHeight = targetHeight;
+    sendTankHeightToNano(targetHeight);
+    publishAck("SET_HEIGHT", commandId, "sent_to_nano");
+    return;
+  }
+
+  if (strcmp(command, "OTA_UPDATE") == 0) {
+    const char* url = doc["url"] | "";
+    if (strlen(url) > 0) {
+      strncpy(otaUrl, url, sizeof(otaUrl) - 1);
+      otaUrl[sizeof(otaUrl) - 1] = '\0';
+    }
+    otaRequested = true;
+    otaState = OtaState::IDLE;
+    Serial.printf("[OTA] Update requested: %s\n", otaUrl);
+    return;
+  }
+
+  if (commandId[0] != '\0' && strcmp(lastCommandId, commandId) == 0) {
+    Serial.println("[MQTT] Duplicate command_id ignored.");
+    return;
+  }
+  if (commandId[0] != '\0') {
+    strncpy(lastCommandId, commandId, sizeof(lastCommandId) - 1);
+    lastCommandId[sizeof(lastCommandId) - 1] = '\0';
+  }
+
+  if (strlen(command) > 0) {
+    String devStr, stateStr;
+    if (parseEmotivCommand(String(command), devStr, stateStr)) {
+      setActuatorState(devStr, stateStr, true, commandId, command);
+      return;
+    }
+  }
+
+  const char* state = doc["state"] | (doc["value"] | "");
+  if (strlen(device) > 0 && strlen(state) > 0) {
+    setActuatorState(String(device), String(state), true, commandId, nullptr);
+  }
+}
+
+void publishMqttStatus() {
+  if (!mqttClient.connected()) return;
+
+  String payload = getStatusJson();
+  bool sent = mqttClient.publish("iot/esp32/status", payload.c_str());
+
+  Serial.print("[MQTT STATUS] ");
+  Serial.println(sent ? "Published" : "Publish FAILED");
+  Serial.println(payload);
+}
+
+void publishAck(const char* command, const char* commandId, const char* result) {
+  if (!mqttClient.connected()) {
+    Serial.println("[ACK] MQTT not connected - ACK NOT SENT.");
+    return;
+  }
+
+  if (ackTopic.length() == 0) {
+    Serial.println("[ACK] ACK topic is empty - ACK NOT SENT.");
+    return;
+  }
+
+  StaticJsonDocument<256> doc;
+  doc["device_id"]  = DEVICE_ID;
+  doc["mac"]         = MAC_ADDRESS;
+  doc["command_id"]  = commandId ? commandId : "";
+  doc["command"]     = command ? command : "";
+  doc["status"]      = "OK";
+  doc["result"]      = result ? result : "executed";
+
+  char payload[256];
+  serializeJson(doc, payload, sizeof(payload));
+
+  bool sent = mqttClient.publish("iot/esp32/ack", payload);
+
+  Serial.println();
+  Serial.println("========== MQTT ACK ==========");
+  Serial.print("ACK Topic   : ");
+  Serial.println("iot/esp32/ack");
+  Serial.print("ACK Status  : ");
+  Serial.println(sent ? "SENT SUCCESSFULLY" : "SEND FAILED");
+  Serial.print("Device ID   : ");
+  Serial.println(DEVICE_ID);
+  Serial.print("Command     : ");
+  Serial.println(command ? command : "");
+  Serial.print("Command ID  : ");
+  Serial.println(commandId ? commandId : "");
+  Serial.print("ACK Payload : ");
+  Serial.println(payload);
+  Serial.println("==============================");
+  Serial.println();
+}
+
+// Publish Float Sensor ACK / Alert to MasterHub via MQTT
+void publishFloatAck(int floatState) {
+  if (!mqttClient.connected()) return;
+
+  StaticJsonDocument<256> doc;
+  doc["device_id"]   = DEVICE_ID;
+  doc["mac"]         = MAC_ADDRESS;
+  doc["command"]     = "FLOAT_STATUS";
+  doc["float"]       = floatState;
+  doc["float_state"] = (floatState == LOW) ? "LOW" : "HIGH";
+  doc["status"]      = "OK";
+  doc["result"]      = (floatState == LOW) ? "FLOAT_ACTIVATED" : "FLOAT_NORMAL";
+
+  char payload[256];
+  serializeJson(doc, payload, sizeof(payload));
+
+  mqttClient.publish("iot/esp32/ack", payload);
+  Serial.println();
+  Serial.println("========== MQTT FLOAT ACK ==========");
+  Serial.printf(" [FLOAT SENSOR] State: %s (Raw: %d)\n", (floatState == LOW) ? "LOW" : "HIGH", floatState);
+  Serial.printf(" [MQTT ACK] Sent to iot/esp32/ack: %s\n", payload);
+  Serial.println("====================================");
+  Serial.println();
+}
+
+// ==============================================================================
+// ACTUATOR CONTROL
+// ==============================================================================
+void setActuatorState(String device, String state, bool viaMqtt, const char* commandId, const char* originalCommand) {
+  device.toLowerCase();
+  state.toUpperCase();
+  bool isOn = (state == "ON" || state == "1" || state == "TRUE");
+  int voiceTrack = -1;
+
+  if (device == "light") {
+    stateLight = isOn;
+    digitalWrite(PIN_LIGHT, getPinLevel(stateLight));
+    voiceTrack = isOn ? TRK_LIGHT_ON : TRK_LIGHT_OFF;
+  } else if (device == "fan") {
+    stateFan = isOn;
+    digitalWrite(PIN_FAN, getPinLevel(stateFan));
+    voiceTrack = isOn ? TRK_FAN_ON : TRK_FAN_OFF;
+  } else if (device == "pump") {
+    statePump = isOn;
+    digitalWrite(PIN_PUMP, getPinLevel(statePump));
+    voiceTrack = isOn ? TRK_PUMP_ON : TRK_PUMP_OFF;
+  } else if (device == "all") {
+    stateLight = isOn; stateFan = isOn; statePump = isOn;
+    applyCurrentStates();
+  } else {
+    Serial.printf("[ACTION] Unknown device '%s' ignored.\n", device.c_str());
+    return;
+  }
+
+  Serial.printf("[ACTION] %s -> %s\n", device.c_str(), isOn ? "ON" : "OFF");
+  if (voiceTrack != -1) playVoice((uint8_t)voiceTrack);
+
+  Serial.println(getStatusJson());
+  publishMqttStatus();
+
+  if (viaMqtt) {
+    char cmdLabel[80];
+    if (originalCommand && originalCommand[0] != '\0') {
+      strncpy(cmdLabel, originalCommand, sizeof(cmdLabel) - 1);
+      cmdLabel[sizeof(cmdLabel) - 1] = '\0';
+    } else {
+      snprintf(cmdLabel, sizeof(cmdLabel), "%s_%s", device.c_str(), isOn ? "on" : "off");
+    }
+    publishAck(cmdLabel, commandId ? commandId : "", "executed");
+  }
+}
+
+void runSelfTest() {
+  Serial.println("\n[TEST] --- Starting Hardware Self-Test ---");
+  digitalWrite(PIN_LIGHT, getPinLevel(false));
+  digitalWrite(PIN_FAN,   getPinLevel(false));
+  digitalWrite(PIN_PUMP,  getPinLevel(false));
+  delay(300);
+
+  Serial.println("[TEST] Light ON");
+  digitalWrite(PIN_LIGHT, getPinLevel(true));
+  delay(600);
+  digitalWrite(PIN_LIGHT, getPinLevel(false));
+
+  Serial.println("[TEST] Fan ON");
+  digitalWrite(PIN_FAN, getPinLevel(true));
+  delay(600);
+  digitalWrite(PIN_FAN, getPinLevel(false));
+
+  Serial.println("[TEST] Pump ON");
+  digitalWrite(PIN_PUMP, getPinLevel(true));
+  delay(600);
+  digitalWrite(PIN_PUMP, getPinLevel(false));
+
+  applyCurrentStates();
+  Serial.println("[TEST] --- Self-Test Finished ---\n");
+}
+
+String getStatusJson() {
+  StaticJsonDocument<256> doc;
+
+  doc["device_id"] = DEVICE_ID;
+  doc["mac"]        = MAC_ADDRESS;
+  doc["system"]     = (WiFi.status() == WL_CONNECTED && mqttClient.connected())
+                        ? "ONLINE" : "OFFLINE";
+  doc["light"]      = stateLight ? "ON" : "OFF";
+  doc["fan"]        = stateFan   ? "ON" : "OFF";
+  doc["pump"]       = statePump  ? "ON" : "OFF";
+  doc["firmware"]   = FIRMWARE_VERSION;
+
+  String out;
+  serializeJson(doc, out);
+  return out;
+}
+
+// ==============================================================================
+// TANK HEIGHT UPDATE VIA LORA (With Burst & Auto-Retry during Nano RX Window)
+// ==============================================================================
+void sendTankHeightToNano(float heightCm) {
+  if (heightCm < 5.0 || heightCm > 5000.0) {
+    Serial.printf("[TANK] Invalid tank height: %.1f cm (must be between 5 and 5000 cm)\n", heightCm);
+    return;
+  }
+
+  pendingTankHeight = heightCm;
+  pendingHeightRetries = 5;
+
+  char buf[64];
+  snprintf(buf, sizeof(buf), "{\"cmd\":\"SET_HEIGHT\",\"height\":%.1f}", heightCm);
+
+  // Send an immediate 3-packet burst with 70ms spacing
+  for (int i = 0; i < 3; i++) {
+    loraSendPacket(buf);
+    delay(70);
+  }
+
+  Serial.println();
+  Serial.println("==================================================");
+  Serial.printf(" [TANK CONFIG] Sent Tank Height: %.1f cm -> Nano (LoRa Burst)\n", heightCm);
+  Serial.printf(" LoRa Packet : %s\n", buf);
+  Serial.println("==================================================");
+  Serial.println();
+}
+
+// ==============================================================================
+// SERIAL COMMAND PARSER
+// ==============================================================================
+void processSerialCommands() {
+  if (!Serial.available()) return;
+
+  String line = Serial.readStringUntil('\n');
+  line.trim();
+  if (line.length() == 0) return;
+
+  Serial.printf("[SERIAL RX] %s\n", line.c_str());
+
+  float parsedH = parseHeightFromMqtt(line);
+  if (parsedH >= 5.0 && parsedH <= 5000.0) {
+    sendTankHeightToNano(parsedH);
+    return;
+  }
+
+  if (line.equalsIgnoreCase("STATUS")) { Serial.println(getStatusJson()); return; }
+
+  if (line.equalsIgnoreCase("IP") || line.equalsIgnoreCase("WIFI")) {
+    if (WiFi.status() == WL_CONNECTED) {
+      Serial.printf("[WiFi] '%s' | IP: %s | RSSI: %d dBm\n",
+                    wifiSsid, WiFi.localIP().toString().c_str(), WiFi.RSSI());
+    } else {
+      Serial.printf("[WiFi] Not connected. Configured: %s\n", isWiFiConfigured ? "YES" : "NO");
+    }
+    return;
+  }
+
+  if (line.equalsIgnoreCase("TEST")) { runSelfTest(); return; }
+
+  if (line.equalsIgnoreCase("POLARITY:HIGH") || line.equalsIgnoreCase("POLARITY HIGH")) {
+    setRelayPolarity(false); return;
+  }
+  if (line.equalsIgnoreCase("POLARITY:LOW") || line.equalsIgnoreCase("POLARITY LOW")) {
+    setRelayPolarity(true); return;
+  }
+  if (line.equalsIgnoreCase("INVERT")) { setRelayPolarity(!activeLowRelays); return; }
+
+  if (line.equalsIgnoreCase("PROVISION") || line.equalsIgnoreCase("BLE")) {
+    if (!bleModeActive) startBleMode();
+    return;
+  }
+
+  // "LIGHT:ON" / "FAN:OFF" / "PUMP:ON" / "ALL:OFF"
+  int colonIndex = line.indexOf(':');
+  if (colonIndex != -1) {
+    setActuatorState(line.substring(0, colonIndex), line.substring(colonIndex + 1), false, "");
+    return;
+  }
+
+  // "light on" / "fan off" / "pump on"
+  int spaceIndex = line.indexOf(' ');
+  if (spaceIndex != -1) {
+    String dev = line.substring(0, spaceIndex);
+    dev.toLowerCase();
+    if (dev == "light" || dev == "fan" || dev == "pump" || dev == "all") {
+      setActuatorState(dev, line.substring(spaceIndex + 1), false, "");
+      return;
+    }
+  }
+
+  // Otherwise send as raw LoRa message
+  loraSendPacket(line.c_str());
+}
+
+// ==============================================================================
+// DFPLAYER MINI VOICE
+// ==============================================================================
+void sendDfCommand(uint8_t cmd, uint8_t p1, uint8_t p2) {
+  uint8_t buf[10];
+  buf[0] = 0x7E; buf[1] = 0xFF; buf[2] = 0x06; buf[3] = cmd;
+  buf[4] = 0x00; buf[5] = p1; buf[6] = p2;
+  uint16_t checksum = 0 - (buf[1] + buf[2] + buf[3] + buf[4] + buf[5] + buf[6]);
+  buf[7] = checksum >> 8; buf[8] = checksum & 0xFF; buf[9] = 0xEF;
+  DFSerial.write(buf, 10);
+  DFSerial.flush();
+}
+
+void initVoice() {
+  DFSerial.begin(9600, SERIAL_8N1, 16, 17);
+  delay(1000);
+  sendDfCommand(0x06, 0x00, 30); // volume = 30
+  delay(200);
+  Serial.println("[VOICE] DFPlayer ready.");
+}
+
+void playVoice(uint8_t track) {
+  Serial.printf("[VOICE] Playing Track %d\n", track);
+  sendDfCommand(0x12, 0x00, track);
+}
+
+// ==============================================================================
+// RAW SX1278 LORA DRIVER
+// ==============================================================================
+uint8_t loraReadReg(uint8_t reg) {
+  loraSPI.beginTransaction(loraSpiSettings);
+  digitalWrite(LORA_SS, LOW);
+  loraSPI.transfer(reg & 0x7F);
+  uint8_t val = loraSPI.transfer(0x00);
+  digitalWrite(LORA_SS, HIGH);
+  loraSPI.endTransaction();
+  return val;
+}
+
+void loraWriteReg(uint8_t reg, uint8_t val) {
+  loraSPI.beginTransaction(loraSpiSettings);
+  digitalWrite(LORA_SS, LOW);
+  loraSPI.transfer(reg | 0x80);
+  loraSPI.transfer(val);
+  digitalWrite(LORA_SS, HIGH);
+  loraSPI.endTransaction();
+}
+
+void loraSetFrequency() {
+  uint64_t frf = ((uint64_t)433000000 << 19) / 32000000;
+  loraWriteReg(REG_FRF_MSB, frf >> 16);
+  loraWriteReg(REG_FRF_MID, frf >> 8);
+  loraWriteReg(REG_FRF_LSB, frf);
+}
+
+int loraReadRssi() {
+  return (int)loraReadReg(REG_PKT_RSSI_VALUE) - 164;
+}
+
+void loraSendPacket(const char* msg) {
+  size_t len = strlen(msg);
+  if (len > 255) len = 255;
+
+  loraWriteReg(REG_OP_MODE, LONG_RANGE | MODE_STDBY);
+  loraWriteReg(REG_FIFO_ADDR_PTR, 0);
+
+  loraSPI.beginTransaction(loraSpiSettings);
+  digitalWrite(LORA_SS, LOW);
+  loraSPI.transfer(REG_FIFO | 0x80);
+  for (size_t i = 0; i < len; i++) loraSPI.transfer(msg[i]);
+  digitalWrite(LORA_SS, HIGH);
+  loraSPI.endTransaction();
+
+  loraWriteReg(REG_PAYLOAD_LENGTH, len);
+  loraWriteReg(REG_OP_MODE, LONG_RANGE | MODE_TX);
+
+  unsigned long txStart = millis();
+  const unsigned long TX_TIMEOUT_MS = 2000;
+  while (!(loraReadReg(REG_IRQ_FLAGS) & TX_DONE)) {
+    if (millis() - txStart > TX_TIMEOUT_MS) {
+      Serial.println("[LoRa] TX timeout - aborting wait.");
+      break;
+    }
+  }
+  loraWriteReg(REG_IRQ_FLAGS, TX_DONE);
+
+  Serial.printf("[LoRa] TX: %s\n", msg);
+}
+
+bool loraReceivePacket() {
+  loraWriteReg(REG_OP_MODE, LONG_RANGE | MODE_RX);
+
+  uint8_t irq = loraReadReg(REG_IRQ_FLAGS);
+  if (!(irq & RX_DONE)) return false;
+  loraWriteReg(REG_IRQ_FLAGS, irq);
+
+  uint8_t len = loraReadReg(REG_RX_NB_BYTES);
+  if (len >= sizeof(loraPacketBuffer)) len = sizeof(loraPacketBuffer) - 1;
+  loraWriteReg(REG_FIFO_ADDR_PTR, loraReadReg(REG_FIFO_RX_CURRENT_ADDR));
+
+  for (uint8_t i = 0; i < len; i++) loraPacketBuffer[i] = (char)loraReadReg(REG_FIFO);
+  loraPacketBuffer[len] = '\0';
+  return true;
+}
+
+void loraInit() {
+  pinMode(LORA_SS, OUTPUT);
+  digitalWrite(LORA_SS, HIGH);
+  pinMode(LORA_RST, OUTPUT);
+  digitalWrite(LORA_RST, LOW);
+  delay(10);
+  digitalWrite(LORA_RST, HIGH);
+  delay(10);
+
+  Serial.printf("[LoRa] VERSION reg: 0x%02X\n", loraReadReg(REG_VERSION));
+
+  loraWriteReg(REG_OP_MODE, LONG_RANGE | MODE_SLEEP);
+  loraSetFrequency();
+  loraWriteReg(REG_FIFO_TX_BASE_ADDR, 0);
+  loraWriteReg(REG_FIFO_RX_BASE_ADDR, 0);
+  loraWriteReg(REG_MODEM_CONFIG_1, 0x72);
+  loraWriteReg(REG_MODEM_CONFIG_2, 0x74);
+  loraWriteReg(REG_MODEM_CONFIG_3, 0x04);
+  loraWriteReg(REG_SYNC_WORD, 0x12);
+  loraWriteReg(REG_PA_CONFIG, 0x8F);
+  loraWriteReg(REG_OP_MODE, LONG_RANGE | MODE_STDBY);
+
+  Serial.println("[LoRa] Initialized.");
+}
+
+void setupLoRa() {
+  loraSPI.begin(LORA_SCK, LORA_MISO, LORA_MOSI, LORA_SS);
+  loraInit();
+}
+
+void processLoRaPacket() {
+  if (!loraReceivePacket()) return;
+
+  Serial.printf("[LoRa] RX: %s\n", loraPacketBuffer);
+  int rssi = loraReadRssi();
+  Serial.printf("[LoRa] RSSI: %d dBm\n", rssi);
+
+  StaticJsonDocument<384> doc;
+  if (deserializeJson(doc, loraPacketBuffer)) {
+    Serial.println("[LoRa] Non-JSON or debug string received.");
+    return;
+  }
+
+  // Check if it's an ACK from Nano (Confirmation that height was successfully set)
+  if (doc.containsKey("ack")) {
+    const char* ackType = doc["ack"] | "";
+    float confirmedHeight = doc["height"] | -1.0;
+    Serial.printf("[LoRa ACK] Arduino Nano acknowledged: %s | Height = %.1f cm\n", ackType, confirmedHeight);
+
+    // Clear pending height update since Nano confirmed receipt
+    pendingTankHeight = -1.0;
+    pendingHeightRetries = 0;
+
+    // Send ACK to MasterHub via MQTT
+    StaticJsonDocument<256> ackDoc;
+    ackDoc["device_id"]  = DEVICE_ID;
+    ackDoc["mac"]        = MAC_ADDRESS;
+    ackDoc["command"]    = "SET_HEIGHT";
+    ackDoc["status"]     = "OK";
+    ackDoc["height"]     = confirmedHeight;
+    ackDoc["result"]     = "HEIGHT_CONFIRMED_BY_NANO";
+    char ackPayload[256];
+    serializeJson(ackDoc, ackPayload, sizeof(ackPayload));
+    mqttClient.publish("iot/esp32/ack", ackPayload);
+    Serial.printf("[MQTT ACK] Forwarded Height ACK to MasterHub: %s\n", ackPayload);
+    return;
+  }
+
+  // If we have a pending height update, Nano JUST sent a packet, so Nano is NOW in its 2.5s RX listening window!
+  if (pendingTankHeight > 0 && pendingHeightRetries > 0) {
+    pendingHeightRetries--;
+    char hCmd[64];
+    snprintf(hCmd, sizeof(hCmd), "{\"cmd\":\"SET_HEIGHT\",\"height\":%.1f}", pendingTankHeight);
+    delay(40);
+    loraSendPacket(hCmd);
+    Serial.printf("[LoRa AUTO-SYNC] Injected pending height (%.1f cm) directly into Nano's active RX window!\n", pendingTankHeight);
+  }
+
+  // Extract sensor fields
+  lastDistance    = doc["dist"] | (doc["distance"] | -1.0);
+  lastTankHeight  = doc["height"] | -1.0;
+  lastTankPercent = doc["pct"] | (doc["percent"] | -1.0);
+  const char* tankStatus = doc["tank"] | (doc["tank_status"] | "");
+  int floatState  = doc["float"] | -1;
+
+  Serial.printf("[SENSOR DATA] Dist: %.1f cm | Height: %.1f cm | Water: %.1f%% | Status: %s | Float: %d\n",
+                lastDistance, lastTankHeight, lastTankPercent, tankStatus, floatState);
+
+  // Send Float Sensor ACK / Alert to MasterHub whenever Float State changes or arrives
+  if (floatState != -1 && floatState != lastFloatState) {
+    lastFloatState = floatState;
+    publishFloatAck(floatState);
+  }
+
+  // Determine Tank Condition
+  bool isFull = (strcmp(tankStatus, "FULL") == 0) || (lastTankPercent >= 85.0);
+  bool isEmpty = (strcmp(tankStatus, "EMPTY") == 0) || (lastTankPercent >= 0.0 && lastTankPercent <= 25.0);
+
+  // Automated Pump and Voice Control with State Hysteresis
+  if (isFull) {
+    if (currentTankState != TANK_STATE_FULL) {
+      currentTankState = TANK_STATE_FULL;
+      Serial.println();
+      Serial.println("==================================================");
+      Serial.println(" [ALERT] >>> TANK IS FULL (>= 85%) <<<");
+      Serial.println(" [ACTION] Playing Voice Track 7 & Turning Pump OFF");
+      Serial.println("==================================================");
+      Serial.println();
+
+      playVoice(TRK_TANK_FULL);
+
+      if (statePump) {
+        setActuatorState("pump", "OFF", false, "AUTO_PUMP_OFF", "pump_off");
+      }
+    }
+  } else if (isEmpty) {
+    if (currentTankState != TANK_STATE_EMPTY) {
+      currentTankState = TANK_STATE_EMPTY;
+      Serial.println();
+      Serial.println("==================================================");
+      Serial.println(" [ALERT] >>> TANK IS EMPTY (<= 25%) <<<");
+      Serial.println(" [ACTION] Playing Voice Track 8 & Turning Pump ON");
+      Serial.println("==================================================");
+      Serial.println();
+
+      playVoice(TRK_TANK_EMPTY);
+
+      if (!statePump) {
+        setActuatorState("pump", "ON", false, "AUTO_PUMP_ON", "pump_on");
+      }
+    }
+  } else if (lastTankPercent > 25.0 && lastTankPercent < 85.0) {
+    if (currentTankState != TANK_NORMAL) {
+      currentTankState = TANK_NORMAL;
+      Serial.printf("[TANK] Water level in normal operating zone (%.1f%%).\n", lastTankPercent);
+    }
+  }
+
+  // Publish Sensor Telemetry to MQTT
+  StaticJsonDocument<384> mqttDoc;
+  mqttDoc["device_id"]   = deviceId;
+  mqttDoc["distance"]    = lastDistance;
+  mqttDoc["height"]      = lastTankHeight;
+  mqttDoc["percent"]     = lastTankPercent;
+  mqttDoc["status"]      = tankStatus;
+  mqttDoc["float"]       = floatState;
+  mqttDoc["float_state"] = (floatState == LOW) ? "LOW" : "HIGH";
+  mqttDoc["rssi"]        = rssi;
+
+  char payload[400];
+  serializeJson(mqttDoc, payload, sizeof(payload));
+  if (mqttClient.connected() && sensorTopic.length() > 0) {
+    mqttClient.publish(sensorTopic.c_str(), payload);
+  }
+}
+
+// ==============================================================================
+// OTA
+// ==============================================================================
+void runOtaUpdate() {
+  if (!otaRequested) return;
+
+  if (!WiFi.isConnected()) {
+    Serial.println("[OTA] WiFi not connected, skipping.");
+    otaRequested = false;
+    otaState = OtaState::FAILED;
+    return;
+  }
+
+  if (otaState == OtaState::IDLE) {
+    otaState = OtaState::RUNNING;
+    Serial.printf("[OTA] Starting update from: %s\n", otaUrl);
+
+    WiFiClient otaClient;
+    t_httpUpdate_return ret = httpUpdate.update(otaClient, otaUrl);
+    switch (ret) {
+      case HTTP_UPDATE_FAILED:
+        Serial.printf("[OTA] Failed: %d %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
+        otaState = OtaState::FAILED;
+        break;
+      case HTTP_UPDATE_NO_UPDATES:
+        Serial.println("[OTA] No update available.");
+        otaState = OtaState::SUCCESS;
+        break;
+      case HTTP_UPDATE_OK:
+        Serial.println("[OTA] Completed successfully.");
+        otaState = OtaState::SUCCESS;
+        break;
+    }
+    otaRequested = false;
+  }
+}
+
+// ==============================================================================
+// UTIL
+// ==============================================================================
+void trimBuffer(char* buffer) {
+  if (buffer == nullptr) return;
+  char* start = buffer;
+  while (*start == ' ' || *start == '\t' || *start == '\r' || *start == '\n') ++start;
+  if (start != buffer) memmove(buffer, start, strlen(start) + 1);
+  char* end = buffer + strlen(buffer);
+  while (end > buffer && (*(end - 1) == ' ' || *(end - 1) == '\t' || *(end - 1) == '\r' || *(end - 1) == '\n')) {
+    --end; *end = '\0';
+  }
+}
+

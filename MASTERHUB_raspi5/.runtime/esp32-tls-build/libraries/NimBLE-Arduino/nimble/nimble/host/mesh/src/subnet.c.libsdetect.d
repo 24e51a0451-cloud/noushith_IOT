@@ -1,0 +1,6 @@
+subnet.o: \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src\nimble\nimble\host\mesh\src\subnet.c \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/porting/nimble/include/syscfg/syscfg.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/esp_port/port/include/esp_nimble_cfg.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimconfig.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimconfig_rename.h

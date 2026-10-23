@@ -1,0 +1,1 @@
+{"event_id": "b42e8e22-69c3-4f79-bf58-5be363e732a3", "instance_id": "test-hub", "received_at": 1791954131721, "kind": "command_request", "device_id": "Local Host", "status": "REQUESTED", "command_id": null, "topic": "", "payload": {"command": "mobile_jiosaavn_search", "params": {"query": "music", "confidence": 0.9}, "request_id": "8d590bac-8aff-44ae-8d40-c55861d9a72b"}}

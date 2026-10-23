@@ -1,0 +1,1 @@
+{"event_id": "754c2a9b-5ed4-4456-9f89-ef9bcaae1f9a", "instance_id": "test-hub", "received_at": 1791954131861, "kind": "command_result", "device_id": "MOBILE_001", "status": "TIMEOUT", "command_id": "c5b94e70-de51-42e5-9c71-57ad769f73d9", "topic": "", "payload": {"command_id": "c5b94e70-de51-42e5-9c71-57ad769f73d9", "command": "NEXT", "status": "TIMEOUT", "deadline": 0}}

@@ -1,0 +1,1 @@
+{"event_id": "56e82a07-b15e-4703-b242-9d5688ca6b3b", "instance_id": "test-hub", "received_at": 1792177718131, "kind": "connection", "device_id": "487e9625-874c-48b6-bfd7-e6f4150e6973", "status": "BROKER_DISCONNECTED", "command_id": null, "topic": "", "payload": {"return_code": 0}}

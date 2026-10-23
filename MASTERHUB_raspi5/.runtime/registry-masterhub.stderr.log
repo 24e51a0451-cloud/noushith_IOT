@@ -1,0 +1,134 @@
+2026-10-13 20:20:28 | INFO     | masterhub.core.state   | Loaded 17 modes from mode_map.json: ['CAR_MODE', 'CHAIR_MODE', 'CHROME_MODE', 'DESKTOP_JIOSAAVN_MODE', 'DESKTOP_MODE', 'EMBEDDED_MODE', 'FAN_MODE', 'GMAIL_MODE', 'IDLE', 'IOT_MODE', 'JIOSAAVN_MODE', 'LIGHT_MODE', 'MEDIA_MODE', 'MOBILE_JIOSAAVN_MODE', 'NOTEPAD_MODE', 'PUMP_MODE', 'YOUTUBE_MODE']
+2026-10-13 20:20:28 | INFO     | masterhub.core.input_processor | Loaded gesture map with 15 gestures
+2026-10-13 20:20:28 | INFO     | masterhub.core.router  | Router loaded 98 command routes
+2026-10-13 20:20:28 | INFO     | masterhub.services.validator | Loaded 98 valid commands from command_map.json
+2026-10-13 20:20:28 | INFO     | masterhub.actions.iot  | Loaded 23 IoT action payloads
+2026-10-13 20:20:29 | INFO     | masterhub.services.mqtt | Connected to MQTT Broker 52.21.249.6:1883
+2026-10-13 20:20:29 | INFO     | masterhub.services.mqtt | Subscribed : iot/esp32/#
+2026-10-13 20:20:29 | INFO     | masterhub.services.mqtt | All IoT, Embedded, and PC Agent subscriptions initialized
+2026-10-13 20:20:29 | INFO     | masterhub.app          | Starting MasterHub Flask server on http://127.0.0.1:5000
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+2026-10-13 20:20:30 | INFO     | masterhub.services.mqtt | IoT Device Status Updated : target-laptop-01 -> None
+2026-10-13 20:20:30 | INFO     | masterhub.services.mqtt | Robot Car [98:A3:16:BF:2C:C0] Status: OFFLINE
+2026-10-13 20:20:30 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_002 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'status_1791561471066', 'timestamp': 1791561471.0662313, 'device_id': 'PC_002', 'status': 'offline', 'name': 'HOME'}
+2026-10-13 20:20:30 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_001 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_001', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:20:30 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_003 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_003', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:20:30 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_004 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_004', 'status': 'offline', 'transport': 'mqtt'}
+Event storage delayed: OperationalError
+2026-10-13 20:47:45 | WARNING  | masterhub.services.mqtt | MQTT Disconnected : 16
+2026-10-13 20:47:45 | WARNING  | masterhub.services.mqtt | MQTT Disconnected : 16
+Event storage delayed: OperationalError
+Event storage delayed: OperationalError
+2026-10-13 20:47:54 | INFO     | masterhub.services.mqtt | Connected to MQTT Broker 52.21.249.6:1883
+2026-10-13 20:47:54 | INFO     | masterhub.services.mqtt | Subscribed : iot/esp32/#
+2026-10-13 20:47:54 | INFO     | masterhub.services.mqtt | All IoT, Embedded, and PC Agent subscriptions initialized
+2026-10-13 20:47:56 | INFO     | masterhub.services.mqtt | IoT Device Status Updated : target-laptop-01 -> None
+2026-10-13 20:47:56 | INFO     | masterhub.services.mqtt | Robot Car [98:A3:16:BF:2C:C0] Status: OFFLINE
+2026-10-13 20:47:56 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_002 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'status_1791561471066', 'timestamp': 1791561471.0662313, 'device_id': 'PC_002', 'status': 'offline', 'name': 'HOME'}
+2026-10-13 20:47:56 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_001 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_001', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:47:56 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_003 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_003', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:47:56 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_004 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_004', 'status': 'offline', 'transport': 'mqtt'}
+Event storage delayed: OperationalError
+2026-10-13 20:48:02 | WARNING  | masterhub.services.mqtt | MQTT Disconnected : 7
+2026-10-13 20:48:04 | INFO     | masterhub.services.mqtt | Connected to MQTT Broker 52.21.249.6:1883
+2026-10-13 20:48:04 | INFO     | masterhub.services.mqtt | Subscribed : iot/esp32/#
+2026-10-13 20:48:04 | INFO     | masterhub.services.mqtt | All IoT, Embedded, and PC Agent subscriptions initialized
+2026-10-13 20:48:05 | INFO     | masterhub.services.mqtt | IoT Device Status Updated : target-laptop-01 -> None
+2026-10-13 20:48:05 | INFO     | masterhub.services.mqtt | Robot Car [98:A3:16:BF:2C:C0] Status: OFFLINE
+2026-10-13 20:48:05 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_002 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'status_1791561471066', 'timestamp': 1791561471.0662313, 'device_id': 'PC_002', 'status': 'offline', 'name': 'HOME'}
+2026-10-13 20:48:05 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_001 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_001', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:48:05 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_003 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_003', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:48:05 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_004 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_004', 'status': 'offline', 'transport': 'mqtt'}
+Unable to save MQTT device registration
+Traceback (most recent call last):
+  File "D:\GALATICX\masterhub_iot_noushith\services\mobile_registration.py", line 71, in on_message
+    result = register_device(payload)
+  File "D:\GALATICX\masterhub_iot_noushith\services\mobile_registration.py", line 26, in register_device
+    with database(path) as db:
+         ~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "D:\GALATICX\masterhub_iot_noushith\core\account_store.py", line 51, in database
+    with psycopg.connect(info, connect_timeout=5, row_factory=dict_row) as connection:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\connection.py", line 100, in connect
+    attempts = conninfo_attempts(params)
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\_conninfo_attempts.py", line 55, in conninfo_attempts
+    raise last_exc
+psycopg.OperationalError: failed to resolve host 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech': [Errno 11001] getaddrinfo failed
+Event storage delayed: OperationalError
+Unable to save MQTT device registration
+Traceback (most recent call last):
+  File "D:\GALATICX\masterhub_iot_noushith\services\mobile_registration.py", line 71, in on_message
+    result = register_device(payload)
+  File "D:\GALATICX\masterhub_iot_noushith\services\mobile_registration.py", line 26, in register_device
+    with database(path) as db:
+         ~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\contextlib.py", line 148, in __exit__
+    next(self.gen)
+    ~~~~^^^^^^^^^^
+  File "D:\GALATICX\masterhub_iot_noushith\core\account_store.py", line 51, in database
+    with psycopg.connect(info, connect_timeout=5, row_factory=dict_row) as connection:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\connection.py", line 172, in __exit__
+    self.commit()
+    ~~~~~~~~~~~^^
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\connection.py", line 305, in commit
+    self.wait(self._commit_gen())
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\connection.py", line 484, in wait
+    return waiting.wait(gen, self.pgconn.socket, interval=interval)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\waiting.py", line 281, in wait_select
+    s = gen.send(ready)
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\_connection_base.py", line 585, in _commit_gen
+    yield from self._exec_command(b"COMMIT")
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\_connection_base.py", line 480, in _exec_command
+    result: PGresult = (yield from generators.execute(self.pgconn))[-1]
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "psycopg_binary/_psycopg/generators.pyx", line 128, in execute
+  File "psycopg_binary/_psycopg/generators.pyx", line 192, in fetch_many
+  File "psycopg_binary/_psycopg/generators.pyx", line 183, in psycopg_binary._psycopg.fetch_many
+  File "psycopg_binary/_psycopg/generators.pyx", line 247, in fetch
+psycopg.OperationalError: consuming input failed: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+Unable to save MQTT device registration
+Traceback (most recent call last):
+  File "D:\GALATICX\masterhub_iot_noushith\services\mobile_registration.py", line 71, in on_message
+    result = register_device(payload)
+  File "D:\GALATICX\masterhub_iot_noushith\services\mobile_registration.py", line 26, in register_device
+    with database(path) as db:
+         ~~~~~~~~^^^^^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "D:\GALATICX\masterhub_iot_noushith\core\account_store.py", line 51, in database
+    with psycopg.connect(info, connect_timeout=5, row_factory=dict_row) as connection:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NOUSHITH\AppData\Roaming\Python\Python314\site-packages\psycopg\connection.py", line 130, in connect
+    raise new_ex.with_traceback(None)
+psycopg.errors.ConnectionTimeout: connection timeout expired
+Multiple connection attempts failed. All failures were:
+- host: 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech', port: None, hostaddr: '2600:1f16:4bf:1627:d0d0:afd5:5c59:8d55': connection timeout expired
+- host: 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech', port: None, hostaddr: '2600:1f16:4bf:160e:189f:c8e0:7fb9:f2d3': connection timeout expired
+- host: 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech', port: None, hostaddr: '2600:1f16:4bf:1612:6589:6ed:598f:1612': connection timeout expired
+- host: 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech', port: None, hostaddr: '52.95.251.153': connection timeout expired
+- host: 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech', port: None, hostaddr: '77.112.100.143': connection timeout expired
+- host: 'ep-delicate-lab-b493lpbx.c-6.us-east-2.aws.neon.tech', port: None, hostaddr: '52.14.39.200': connection timeout expired
+2026-10-13 20:50:53 | WARNING  | masterhub.services.mqtt | MQTT Disconnected : 7
+Event storage delayed: OperationalError
+Event storage delayed: OperationalError
+2026-10-13 20:51:19 | INFO     | masterhub.services.mqtt | Connected to MQTT Broker 52.21.249.6:1883
+2026-10-13 20:51:19 | INFO     | masterhub.services.mqtt | Subscribed : iot/esp32/#
+2026-10-13 20:51:19 | INFO     | masterhub.services.mqtt | All IoT, Embedded, and PC Agent subscriptions initialized
+2026-10-13 20:51:20 | INFO     | masterhub.services.mqtt | IoT Device Status Updated : target-laptop-01 -> None
+2026-10-13 20:51:20 | INFO     | masterhub.services.mqtt | Robot Car [98:A3:16:BF:2C:C0] Status: OFFLINE
+2026-10-13 20:51:20 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_002 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'status_1791561471066', 'timestamp': 1791561471.0662313, 'device_id': 'PC_002', 'status': 'offline', 'name': 'HOME'}
+2026-10-13 20:51:20 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_001 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_001', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:51:20 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_003 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_003', 'status': 'offline', 'transport': 'mqtt'}
+2026-10-13 20:51:20 | INFO     | masterhub.services.mqtt | PC Agent Status Updated : PC_004 -> {'protocol': 'masterhub', 'version': '1.0', 'message_type': 'status', 'command_id': 'lwt', 'device_id': 'PC_004', 'status': 'offline', 'transport': 'mqtt'}

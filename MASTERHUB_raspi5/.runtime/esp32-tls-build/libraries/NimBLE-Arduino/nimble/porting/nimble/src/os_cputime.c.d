@@ -1,0 +1,9 @@
+D:\GALATICX\masterhub_iot_noushith\.runtime\esp32-tls-build\libraries\NimBLE-Arduino\nimble\porting\nimble\src\os_cputime.c.o: \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src\nimble\porting\nimble\src\os_cputime.c \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/porting/nimble/include/syscfg/syscfg.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/esp_port/port/include/esp_nimble_cfg.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimconfig.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimconfig_rename.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/porting/nimble/include/os/os_cputime.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/porting/nimble/include/hal/hal_timer.h \
+ c:\Users\NOUSHITH\OneDrive\samb\Arduino\libraries\NimBLE-Arduino\src/nimble/porting/nimble/include/os/queue.h

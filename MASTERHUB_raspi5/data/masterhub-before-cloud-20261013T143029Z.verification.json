@@ -1,0 +1,30 @@
+{
+  "verified": true,
+  "tables": {
+    "users": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sessions": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "mobile_devices": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "device_registry": {
+      "rows": 1,
+      "sha256": "4cd679b0fe016da6d0c772cd19f0b65972807a5418856d26aeed8d109a6b908a"
+    },
+    "mqtt_devices": {
+      "rows": 19,
+      "sha256": "a09c0c81378ac5f039f246d1e827cae7bc9a46ca5393ef2146dc44effe5ebd8d"
+    },
+    "runtime_events": {
+      "rows": 383,
+      "sha256": "8c4acad256bda93fbf1edff723de4320b02d24401bacdb897579d6e3e1590e18"
+    }
+  },
+  "backup": "masterhub-before-cloud-20261013T143029Z.backup"
+}

@@ -1,0 +1,1 @@
+{"event_id": "48e473dc-044f-466a-bff3-7a2f1b4fe803", "instance_id": "test-hub", "received_at": 1792144700913, "kind": "status", "device_id": "01f2ff56-579b-4936-ab11-49b97e64a775", "status": "ONLINE", "command_id": null, "topic": "masterhub/mobile/vyshnavi/status", "payload": {"message": {"device_id": "vyshnavi", "status": "ONLINE", "remote_state": "ACTIVE"}, "retained": true}}

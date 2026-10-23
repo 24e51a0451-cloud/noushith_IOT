@@ -1,0 +1,23 @@
+[
+  {
+    "name": "push_signal",
+    "window": [[0.1, 0.2, 0.3], [0.2, 0.3, 0.4], [0.3, 0.4, 0.5]],
+    "mode": "CHAIR_MODE",
+    "confidence": 0.95,
+    "confidence_threshold": 0.9
+  },
+  {
+    "name": "left_signal",
+    "window": [[-0.2, -0.4, -0.6], [-0.1, -0.3, -0.5], [-0.3, -0.5, -0.7]],
+    "mode": "IOT_MODE",
+    "confidence": 0.92,
+    "confidence_threshold": 0.9
+  },
+  {
+    "name": "neutral_signal",
+    "window": [[0.01, 0.02, 0.01], [0.02, 0.01, 0.02], [0.01, 0.02, 0.01]],
+    "mode": "CHAIR_MODE",
+    "confidence": 0.89,
+    "confidence_threshold": 0.9
+  }
+]

@@ -1,0 +1,92 @@
+{
+  "devices": [
+    {
+      "device_id": "Local Host",
+      "name": "Loopback Direct",
+      "transport": "local",
+      "status": "ONLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_type": "computer",
+      "platform": "windows",
+      "last_seen": 1790841832.425539,
+      "is_default": false,
+      "device_category": "laptop"
+    },
+    {
+      "device_id": "PC_001",
+      "name": "PC Agent 001",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_type": "computer",
+      "platform": "windows",
+      "last_seen": 1790843521.8603947,
+      "is_default": true,
+      "device_category": "laptop"
+    },
+    {
+      "device_id": "PC_002",
+      "name": "Huzaifa",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "ai_ml"
+      ],
+      "device_category": "mobile",
+      "device_type": "mobile",
+      "platform": "android",
+      "last_seen": 1790843893.1709733,
+      "is_default": false
+    },
+    {
+      "device_id": "PC_003",
+      "name": "Remote PC_003",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_type": "computer",
+      "device_category": "laptop",
+      "platform": "windows",
+      "last_seen": 1790843521.8606331,
+      "is_default": false
+    },
+    {
+      "device_id": "PC_004",
+      "name": "Remote PC_004",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "desktop",
+        "ai_ml"
+      ],
+      "device_type": "computer",
+      "device_category": "laptop",
+      "platform": "windows",
+      "last_seen": 1790843521.8611789,
+      "is_default": false
+    },
+    {
+      "device_id": "Mobile_002",
+      "name": "Huzaifa",
+      "transport": "mqtt",
+      "status": "OFFLINE",
+      "capabilities": [
+        "ai_ml"
+      ],
+      "device_category": "mobile",
+      "device_type": "mobile",
+      "platform": "android",
+      "last_seen": 1790843911.110514,
+      "is_default": false
+    }
+  ]
+}

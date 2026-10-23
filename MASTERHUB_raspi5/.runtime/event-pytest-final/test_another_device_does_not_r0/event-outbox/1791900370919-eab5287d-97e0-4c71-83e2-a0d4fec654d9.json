@@ -1,0 +1,1 @@
+{"event_id": "eab5287d-97e0-4c71-83e2-a0d4fec654d9", "instance_id": "test-hub", "received_at": 1791900370919, "kind": "status", "device_id": "OTHER", "status": "ONLINE", "command_id": null, "topic": "robotcar/OTHER/status", "payload": {"message": "ONLINE", "retained": false}}

@@ -1,0 +1,1 @@
+{"event_id": "0c31ea57-91d7-4f94-9250-56445151b2bc", "instance_id": "test-hub", "received_at": 1792144701085, "kind": "error", "device_id": "MOBILE_001", "status": "FAILED", "command_id": "one", "topic": "masterhub/mobile/MOBILE_001/error", "payload": {"message": {"command_id": "one", "status": "FAILED", "detail": "No media session"}, "retained": false}}

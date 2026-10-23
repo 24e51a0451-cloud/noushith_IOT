@@ -1,0 +1,1 @@
+{"event_id": "d149ce20-1cd2-4f88-825b-ec2e211baf58", "instance_id": "test-hub", "received_at": 1791900211477, "kind": "media", "device_id": "9818b880-e21d-43ee-a35d-dc94ac63b53a", "status": "Playing", "command_id": null, "topic": "bci/phone/media", "payload": {"message": {"title": "Track", "source_app": "com.jio.media.jiobeats", "status": "Playing"}, "retained": false}}

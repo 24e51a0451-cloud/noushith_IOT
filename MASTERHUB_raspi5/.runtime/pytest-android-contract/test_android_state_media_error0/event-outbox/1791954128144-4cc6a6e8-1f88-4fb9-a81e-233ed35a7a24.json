@@ -1,0 +1,1 @@
+{"event_id": "4cc6a6e8-1f88-4fb9-a81e-233ed35a7a24", "instance_id": "test-hub", "received_at": 1791954128144, "kind": "status", "device_id": "vyshnavi", "status": "REMOTE_ACTIVE", "command_id": null, "topic": "masterhub/mobile/vyshnavi/status", "payload": {"message": {"status": "REMOTE_ACTIVE"}, "retained": false}}

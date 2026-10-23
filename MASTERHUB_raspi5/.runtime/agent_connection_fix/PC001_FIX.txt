@@ -1,0 +1,14 @@
+PC_001 connection fix
+
+Stop the running agent on the friend laptop (Ctrl+C).
+Extract this archive into the pc_agent folder, replacing matching files.
+Keep the existing .env file and MQTT credentials.
+Run in PowerShell from pc_agent:
+  .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+  .\start_agent_pc001.bat
+
+The regular start_agent.bat now reads the agent-root .env through config/loader.py.
+Ensure .env contains DEVICE_ID=PC_001 and the same MQTT_BROKER / MQTT_PORT as MasterHub.
+The dedicated launcher explicitly selects PC_001, MQTT transport, and client ID masterhub-agent-PC_001.
+Run only one agent with device ID PC_001; use PC_002 for a different laptop.
+MasterHub marks PC_001 online after its MQTT HELLO or heartbeat arrives.

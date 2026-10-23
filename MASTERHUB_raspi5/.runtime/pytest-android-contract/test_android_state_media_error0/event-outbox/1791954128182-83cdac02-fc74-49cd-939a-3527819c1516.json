@@ -1,0 +1,1 @@
+{"event_id": "83cdac02-fc74-49cd-939a-3527819c1516", "instance_id": "test-hub", "received_at": 1791954128182, "kind": "status", "device_id": "vyshnavi", "status": "OFFLINE", "command_id": null, "topic": "masterhub/mobile/vyshnavi/status", "payload": {"message": {"status": "OFFLINE", "remote_state": "STANDBY"}, "retained": false}}

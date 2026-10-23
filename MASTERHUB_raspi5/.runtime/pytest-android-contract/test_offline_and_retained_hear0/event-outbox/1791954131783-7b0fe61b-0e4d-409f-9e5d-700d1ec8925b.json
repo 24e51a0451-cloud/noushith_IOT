@@ -1,0 +1,1 @@
+{"event_id": "7b0fe61b-0e4d-409f-9e5d-700d1ec8925b", "instance_id": "test-hub", "received_at": 1791954131783, "kind": "status", "device_id": "MOBILE_001", "status": "ONLINE", "command_id": null, "topic": "masterhub/mobile/MOBILE_001/heartbeat", "payload": {"message": {"online": true}, "retained": true}}

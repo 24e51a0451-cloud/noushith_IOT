@@ -1,0 +1,1 @@
+{"event_id": "c8a9564f-14fa-49a9-b3e8-10feae91b443", "instance_id": "test-hub", "received_at": 1792144700929, "kind": "status", "device_id": "01f2ff56-579b-4936-ab11-49b97e64a775", "status": "OFFLINE", "command_id": null, "topic": "masterhub/mobile/vyshnavi/status", "payload": {"message": {"status": "OFFLINE", "reason": "Connection lost / abrupt disconnect"}, "retained": true}}

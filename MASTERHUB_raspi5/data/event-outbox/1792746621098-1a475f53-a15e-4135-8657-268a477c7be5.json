@@ -1,0 +1,1 @@
+{"event_id": "1a475f53-a15e-4135-8657-268a477c7be5", "instance_id": "b68f3204-9e4a-4a29-93d1-51e4f1c0793f", "received_at": 1792746621098, "kind": "connection", "device_id": "2084d99c-41cd-445a-a2e4-44e62a32636c", "status": "BROKER_CONNECTED", "command_id": null, "topic": "", "payload": {"return_code": 0}}

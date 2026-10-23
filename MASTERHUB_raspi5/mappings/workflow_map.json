@@ -1,0 +1,573 @@
+{
+  "domains": {
+    "desktop": {
+      "label": "Python / Desktop",
+      "icon": "💻",
+      "mode": "DESKTOP_MODE",
+      "gesture": "push",
+      "transport": "target",
+      "description": "Applications and desktop controls"
+    },
+    "embedded": {
+      "label": "Embedded Mobility",
+      "icon": "🕹️",
+      "mode": "EMBEDDED_MODE",
+      "gesture": "pull",
+      "transport": "mqtt",
+      "description": "Robot car and wheelchair"
+    },
+    "iot": {
+      "label": "IoT Smart Home",
+      "icon": "💡",
+      "mode": "IOT_MODE",
+      "gesture": "left",
+      "transport": "mqtt",
+      "description": "Lights, fans and pumps"
+    },
+    "ai_ml": {
+      "label": "AI/ML & Media",
+      "icon": "🎵",
+      "mode": "MEDIA_MODE",
+      "gesture": "right",
+      "transport": "target",
+      "description": "Media playback and audio controls"
+    }
+  },
+  "devices": {
+    "robot_car": {
+      "label": "Robot car",
+      "mode": "CAR_MODE",
+      "topic_setting": "car_topic",
+      "gesture": "push",
+      "domain": "embedded",
+      "launch_command": null
+    },
+    "wheelchair": {
+      "label": "Wheelchair",
+      "mode": "CHAIR_MODE",
+      "topic_setting": "chair_topic",
+      "gesture": "pull",
+      "domain": "embedded",
+      "launch_command": null
+    },
+    "mobile_jiosaavn": {
+      "label": "Mobile JioSaavn",
+      "mode": "MOBILE_JIOSAAVN_MODE",
+      "topic_setting": "jiosaavn_topic",
+      "gesture": "push",
+      "domain": "ai_ml",
+      "launch_command": null
+    },
+    "desktop_jiosaavn": {
+      "label": "Desktop JioSaavn",
+      "mode": "DESKTOP_JIOSAAVN_MODE",
+      "topic_setting": "jiosaavn_topic",
+      "gesture": "pull",
+      "domain": "ai_ml",
+      "launch_command": "jiosaavn_open"
+    },
+    "youtube": {
+      "label": "YouTube",
+      "mode": "YOUTUBE_MODE",
+      "gesture": "push",
+      "domain": "desktop",
+      "launch_command": "open_youtube"
+    },
+    "chrome": {
+      "label": "Chrome",
+      "mode": "CHROME_MODE",
+      "gesture": "pull",
+      "domain": "desktop",
+      "launch_command": "open_chrome"
+    },
+    "notepad": {
+      "label": "Notepad",
+      "mode": "NOTEPAD_MODE",
+      "gesture": "left+right",
+      "domain": "desktop",
+      "launch_command": null
+    },
+    "gmail": {
+      "label": "Gmail",
+      "mode": "GMAIL_MODE",
+      "gesture": "right",
+      "domain": "desktop",
+      "launch_command": "gmail_open"
+    },
+    "light": {
+      "label": "Light",
+      "mode": "LIGHT_MODE",
+      "gesture": "push",
+      "domain": "iot",
+      "launch_command": null
+    },
+    "fan": {
+      "label": "Fan",
+      "mode": "FAN_MODE",
+      "gesture": "pull",
+      "domain": "iot",
+      "launch_command": null
+    },
+    "pump": {
+      "label": "Pump",
+      "mode": "PUMP_MODE",
+      "gesture": "left",
+      "domain": "iot",
+      "launch_command": null
+    },
+    "office_excel": {
+      "label": "Microsoft Excel",
+      "mode": "OFFICE_EXCEL_MODE",
+      "gesture": "push",
+      "domain": "desktop",
+      "launch_command": null,
+      "parent": "office"
+    },
+    "office_powerpoint": {
+      "label": "Microsoft PowerPoint",
+      "mode": "OFFICE_POWERPOINT_MODE",
+      "gesture": "pull",
+      "domain": "desktop",
+      "launch_command": null,
+      "parent": "office"
+    },
+    "office_word": {
+      "label": "Microsoft Word",
+      "mode": "OFFICE_WORD_MODE",
+      "gesture": "right",
+      "domain": "desktop",
+      "launch_command": null,
+      "parent": "office"
+    },
+    "office": {
+      "label": "Microsoft Office",
+      "mode": "OFFICE_MODE",
+      "gesture": "left",
+      "domain": "desktop",
+      "launch_command": null
+    }
+  },
+  "parameters": {
+    "search_*": [
+      "query"
+    ],
+    "play_youtube": [
+      "query"
+    ],
+    "write_notepad": [
+      "text"
+    ],
+    "save_notepad": [
+      "filename"
+    ],
+    "compose_gmail": [
+      "to",
+      "subject",
+      "body"
+    ],
+    "mobile_jiosaavn_search": [
+      "query"
+    ],
+    "office_excel_save": [
+      "filename"
+    ],
+    "office_excel_edit": [
+      "sheet",
+      "confirm"
+    ],
+    "office_excel_delete": [
+      "sheet",
+      "confirm"
+    ],
+    "office_excel_close": [
+      "discard"
+    ],
+    "office_powerpoint_save": [
+      "filename"
+    ],
+    "office_powerpoint_edit": [
+      "slide",
+      "confirm"
+    ],
+    "office_powerpoint_delete": [
+      "slide",
+      "confirm"
+    ],
+    "office_powerpoint_close": [
+      "discard"
+    ],
+    "office_word_save": [
+      "filename"
+    ],
+    "office_word_insert": [
+      "text"
+    ],
+    "office_word_replace": [
+      "find",
+      "replacement",
+      "confirm"
+    ],
+    "office_word_delete": [
+      "confirm"
+    ],
+    "office_word_close": [
+      "discard"
+    ]
+  },
+  "heartbeat_timeout_seconds": 90,
+  "bci_workflow": {
+    "youtube": [
+      {
+        "id": "youtube_previous",
+        "label": "Previous video",
+        "gesture": "push"
+      },
+      {
+        "id": "youtube_next",
+        "label": "Next video",
+        "gesture": "pull"
+      },
+      {
+        "id": "youtube_pause",
+        "label": "Play / Pause",
+        "gesture": "left"
+      },
+      {
+        "id": "youtube_search",
+        "label": "Search & play",
+        "gesture": "right"
+      }
+    ],
+    "chrome": [
+      {
+        "id": "chrome_open_article",
+        "label": "Open article",
+        "gesture": "push"
+      },
+      {
+        "id": "chrome_scroll_up",
+        "label": "Scroll up",
+        "gesture": "pull"
+      },
+      {
+        "id": "chrome_scroll_down",
+        "label": "Scroll down",
+        "gesture": "left"
+      },
+      {
+        "id": "chrome_search",
+        "label": "Google search",
+        "gesture": "right"
+      }
+    ],
+    "notepad": [
+      {
+        "id": "notepad_open",
+        "label": "Open",
+        "gesture": "push"
+      },
+      {
+        "id": "notepad_save",
+        "label": "Save file",
+        "gesture": "pull"
+      }
+    ],
+    "gmail": [
+      {
+        "id": "gmail_compose",
+        "label": "Compose",
+        "gesture": "push"
+      },
+      {
+        "id": "gmail_send",
+        "label": "Send",
+        "gesture": "pull"
+      }
+    ],
+    "robot_car": [
+      {
+        "id": "car_forward",
+        "label": "Forward",
+        "gesture": "push"
+      },
+      {
+        "id": "car_back",
+        "label": "Backward",
+        "gesture": "pull"
+      },
+      {
+        "id": "car_left",
+        "label": "Left",
+        "gesture": "left"
+      },
+      {
+        "id": "car_right",
+        "label": "Right",
+        "gesture": "right"
+      },
+      {
+        "id": "car_stop",
+        "label": "Stop",
+        "gesture": "left+right"
+      },
+      {
+        "id": "car_left360",
+        "label": "Left 360",
+        "gesture": "pull+left"
+      },
+      {
+        "id": "car_right360",
+        "label": "Right 360",
+        "gesture": "pull+right"
+      }
+    ],
+    "wheelchair": [
+      {
+        "id": "chair_forward",
+        "label": "Forward",
+        "gesture": "push"
+      },
+      {
+        "id": "chair_back",
+        "label": "Backward",
+        "gesture": "pull"
+      },
+      {
+        "id": "chair_left",
+        "label": "Left",
+        "gesture": "left"
+      },
+      {
+        "id": "chair_right",
+        "label": "Right",
+        "gesture": "right"
+      },
+      {
+        "id": "chair_stop",
+        "label": "Stop",
+        "gesture": "left+right"
+      },
+      {
+        "id": "chair_left360",
+        "label": "Left 360",
+        "gesture": "pull+left"
+      },
+      {
+        "id": "chair_right360",
+        "label": "Right 360",
+        "gesture": "pull+right"
+      }
+    ],
+    "light": [
+      {
+        "id": "left_light_on",
+        "label": "On",
+        "gesture": "right"
+      },
+      {
+        "id": "left_light_off",
+        "label": "Off",
+        "gesture": "left"
+      }
+    ],
+    "fan": [
+      {
+        "id": "left_fan_on",
+        "label": "On",
+        "gesture": "right"
+      },
+      {
+        "id": "left_fan_off",
+        "label": "Off",
+        "gesture": "left"
+      }
+    ],
+    "pump": [
+      {
+        "id": "left_pump_on",
+        "label": "On",
+        "gesture": "right"
+      },
+      {
+        "id": "left_pump_off",
+        "label": "Off",
+        "gesture": "left"
+      }
+    ],
+    "mobile_jiosaavn": [
+      {
+        "id": "mobile_jiosaavn_next",
+        "label": "Next track",
+        "gesture": "push"
+      },
+      {
+        "id": "mobile_jiosaavn_previous",
+        "label": "Previous track",
+        "gesture": "pull"
+      },
+      {
+        "id": "mobile_jiosaavn_play_pause",
+        "label": "Play / Pause",
+        "gesture": "left"
+      },
+      {
+        "id": "mobile_jiosaavn_volume_up",
+        "label": "Volume up",
+        "gesture": "right+push"
+      },
+      {
+        "id": "mobile_jiosaavn_volume_down",
+        "label": "Volume down",
+        "gesture": "right+pull"
+      },
+      {
+        "id": "mobile_jiosaavn_search",
+        "label": "Search & play",
+        "gesture": "right"
+      }
+    ],
+    "desktop_jiosaavn": [
+      {
+        "id": "media_next",
+        "label": "Next track",
+        "gesture": "push"
+      },
+      {
+        "id": "media_previous",
+        "label": "Previous track",
+        "gesture": "pull"
+      },
+      {
+        "id": "media_play",
+        "label": "Play / Pause",
+        "gesture": "left"
+      },
+      {
+        "id": "media_volume_up",
+        "label": "Volume up",
+        "gesture": "right+push"
+      },
+      {
+        "id": "media_volume_down",
+        "label": "Volume down",
+        "gesture": "right+pull"
+      },
+      {
+        "id": "jiosaavn_search",
+        "label": "Search & play",
+        "gesture": "right"
+      }
+    ],
+    "office_excel": [
+      {
+        "id": "office_excel_open",
+        "label": "Open workbook",
+        "gesture": "push"
+      },
+      {
+        "id": "office_excel_sheet1",
+        "label": "Stock example sheet",
+        "gesture": "pull"
+      },
+      {
+        "id": "office_excel_sheet2",
+        "label": "Degree information sheet",
+        "gesture": "left"
+      },
+      {
+        "id": "office_excel_save",
+        "label": "Save workbook",
+        "gesture": "right"
+      },
+      {
+        "id": "office_excel_edit",
+        "label": "Refresh a sheet",
+        "gesture": null
+      },
+      {
+        "id": "office_excel_delete",
+        "label": "Delete a sheet",
+        "gesture": null
+      },
+      {
+        "id": "office_excel_close",
+        "label": "Close workbook",
+        "gesture": null
+      }
+    ],
+    "office_powerpoint": [
+      {
+        "id": "office_powerpoint_open",
+        "label": "Open presentation",
+        "gesture": "push"
+      },
+      {
+        "id": "office_powerpoint_title",
+        "label": "Add project title",
+        "gesture": "pull"
+      },
+      {
+        "id": "office_powerpoint_slide",
+        "label": "Add Python domain slide",
+        "gesture": "left"
+      },
+      {
+        "id": "office_powerpoint_save",
+        "label": "Save presentation",
+        "gesture": "right"
+      },
+      {
+        "id": "office_powerpoint_edit",
+        "label": "Replace slide with technical approach",
+        "gesture": null
+      },
+      {
+        "id": "office_powerpoint_delete",
+        "label": "Delete a slide",
+        "gesture": null
+      },
+      {
+        "id": "office_powerpoint_close",
+        "label": "Close presentation",
+        "gesture": null
+      }
+    ],
+    "office_word": [
+      {
+        "id": "office_word_open",
+        "label": "Create project document",
+        "gesture": "push"
+      },
+      {
+        "id": "office_word_save",
+        "label": "Save document",
+        "gesture": "pull"
+      },
+      {
+        "id": "office_word_insert",
+        "label": "Append text",
+        "gesture": null
+      },
+      {
+        "id": "office_word_replace",
+        "label": "Find and replace text",
+        "gesture": null
+      },
+      {
+        "id": "office_word_delete",
+        "label": "Clear document text",
+        "gesture": null
+      },
+      {
+        "id": "office_word_close",
+        "label": "Close document",
+        "gesture": null
+      }
+    ],
+    "office": []
+  },
+  "navigation": {
+    "back": "push+right",
+    "main_menu": "push+left"
+  }
+}
